@@ -147,3 +147,19 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Fichiers système et éditeurs
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Fichiers temporaires générés
+*.tmp
+*.bak
+
+# Dossier RESOURCES : gardé en local, non poussé
+RESOURCES/
