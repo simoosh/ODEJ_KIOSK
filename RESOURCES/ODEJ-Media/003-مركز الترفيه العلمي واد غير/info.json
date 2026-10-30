@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T20:55:45Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 3,
+    "name": "مركز الترفيه العلمي واد غير",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61573163036734"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61573163036734",
+    "pageRef": "61573163036734",
+    "title": "مركز الترفيه العلمي واد غير - ولاية بجاية"
+  },
+  "email": null,
+  "phone": "0661 89 04 11",
+  "address": "oued ghir , Bejaïa, Algeria",
+  "website": null,
+  "description": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
+  "facebookCategory": "Scientifique · Science et technologie · Organisme jeunesse",
+  "openingHours": "Toujours ouvert",
+  "followers": 1567,
+  "notAvailable": [
+    "email",
+    "website"
+  ]
+}
