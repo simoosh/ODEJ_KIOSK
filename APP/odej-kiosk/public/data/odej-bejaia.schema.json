@@ -36,6 +36,7 @@
         "src": { "type": "string", "description": "Chemin relatif à public/ (media/odej-003/gallery/gallery-01.webp) ou URL" },
         "kind": { "enum": ["image", "video"] },
         "poster": { "type": "string", "description": "Image affichée avant la lecture d'une vidéo" },
+        "fit": { "enum": ["cover", "contain"], "description": "contain montre l'image entière (logo, image carrée)" },
         "caption": { "$ref": "#/$defs/i18n" }
       }
     }

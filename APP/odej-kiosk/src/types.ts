@@ -10,6 +10,8 @@ export interface MediaItem {
   kind?: 'image' | 'video';
   /** Image affichée avant la lecture d'une vidéo */
   poster?: string;
+  /** 'contain' montre l'image entière (logo, image carrée) */
+  fit?: 'cover' | 'contain';
   caption?: I18nText;
 }
 
