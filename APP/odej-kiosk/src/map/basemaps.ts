@@ -1,0 +1,153 @@
+import type { StyleSpecification } from 'maplibre-gl';
+import type { BasemapId, Locale } from '../types';
+import { graticule } from '../lib/geo';
+import { CONFIG } from '../config';
+
+/** Relief : Terrain Tiles (Mapzen) sur AWS Open Data, encodage terrarium, sans clé. */
+const DEM_SOURCE = {
+  type: 'raster-dem' as const,
+  tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+  encoding: 'terrarium' as const,
+  tileSize: 256,
+  maxzoom: 14,
+  attribution: 'Relief © Mapzen Terrain Tiles (AWS Open Data)',
+};
+
+export const SKY = {
+  'sky-color': '#CFE3EE',
+  'horizon-color': '#F3F1EA',
+  'fog-color': '#F3F1EA',
+  'sky-horizon-blend': 0.6,
+  'horizon-fog-blend': 0.6,
+  'fog-ground-blend': 0.8,
+};
+
+export interface BasemapDef {
+  id: BasemapId;
+  /** Couleurs de la vignette dans le sélecteur (pas d'image distante) */
+  swatch: [string, string, string];
+  /** Nécessite internet (tuiles distantes) */
+  online: boolean;
+  terrain: boolean;
+}
+
+export const BASEMAPS: BasemapDef[] = [
+  { id: 'plan', swatch: ['#F2EFE6', '#CFE2C4', '#9CC6DD'], online: true, terrain: true },
+  { id: 'satellite', swatch: ['#3D4B33', '#6E7A4F', '#20425A'], online: true, terrain: true },
+  { id: 'relief', swatch: ['#E9E3CF', '#C3D3A6', '#A98F6A'], online: true, terrain: true },
+  { id: 'osm', swatch: ['#F2EFE9', '#AAD3DF', '#F7C99B'], online: true, terrain: true },
+  { id: 'preview', swatch: ['#ECEEE6', '#D3D9CC', '#1E6B3C'], online: false, terrain: false },
+];
+
+// Le relief (setTerrain) et le ciel (setSky) sont appliqués après le chargement du style, dans MapView :
+// une propriété invalide dans l'objet style empêcherait toute la carte de se charger.
+function rasterStyle(id: string, tiles: string[], attribution: string, maxzoom: number): StyleSpecification {
+  return {
+    version: 8,
+    sources: {
+      [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution },
+      dem: DEM_SOURCE,
+    },
+    layers: [
+      { id: 'bg', type: 'background', paint: { 'background-color': '#EEF0E8' } },
+      { id, type: 'raster', source: id, paint: { 'raster-fade-duration': 200 } },
+    ],
+  } as StyleSpecification;
+}
+
+export function previewStyle(): StyleSpecification {
+  return {
+    version: 8,
+    sources: { graticule: { type: 'geojson', data: graticule(0.1) } },
+    layers: [
+      { id: 'bg', type: 'background', paint: { 'background-color': '#ECEEE6' } },
+      {
+        id: 'grid-minor',
+        type: 'line',
+        source: 'graticule',
+        filter: ['!=', ['get', 'major'], true],
+        paint: { 'line-color': '#D6DBCF', 'line-width': 0.8 },
+      },
+      {
+        id: 'grid-major',
+        type: 'line',
+        source: 'graticule',
+        filter: ['==', ['get', 'major'], true],
+        paint: { 'line-color': '#B9C2B1', 'line-width': 1.4 },
+      },
+    ],
+  } as StyleSpecification;
+}
+
+/** Plan vectoriel OpenStreetMap (OpenFreeMap, sans clé) */
+export const PLAN_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+
+/** Retourne soit un objet style, soit une URL + une transformation (libellés arabe/anglais, relief). */
+export function styleFor(id: BasemapId, locale: Locale):
+  | { style: StyleSpecification }
+  | { url: string; transform: (next: StyleSpecification) => StyleSpecification } {
+  switch (id) {
+    case 'satellite':
+      return {
+        style: rasterStyle(
+          'satellite',
+          ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+          'Imagerie © Esri, Maxar, Earthstar Geographics',
+          19,
+        ),
+      };
+    case 'relief':
+      return {
+        style: rasterStyle(
+          'relief',
+          ['a', 'b', 'c'].map((s) => `https://${s}.tile.opentopomap.org/{z}/{x}/{y}.png`),
+          '© OpenStreetMap contributors, SRTM · Style © OpenTopoMap (CC-BY-SA)',
+          17,
+        ),
+      };
+    case 'osm':
+      return {
+        style: rasterStyle('osm', ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], '© OpenStreetMap contributors', 19),
+      };
+    case 'preview':
+      return { style: previewStyle() };
+    case 'plan':
+    default:
+      return {
+        url: PLAN_STYLE_URL,
+        transform: (next) => localizePlan(next, locale),
+      };
+  }
+}
+
+/** Libellés dans la langue de l'interface + relief et ombrage sous les libellés. */
+function localizePlan(style: StyleSpecification, locale: Locale): StyleSpecification {
+  const nameExpr =
+    locale === 'ar'
+      ? ['coalesce', ['get', 'name:ar'], ['get', 'name']]
+      : ['coalesce', ['get', 'name:en'], ['get', 'name:latin'], ['get', 'name']];
+
+  const layers = style.layers.map((layer) => {
+    if (layer.type !== 'symbol' || !layer.layout || !('text-field' in layer.layout)) return layer;
+    const tf = JSON.stringify(layer.layout['text-field']);
+    if (!tf.includes('name')) return layer; // numéros de route, etc.
+    return { ...layer, layout: { ...layer.layout, 'text-field': nameExpr } } as typeof layer;
+  });
+
+  const firstSymbol = layers.findIndex((l) => l.type === 'symbol');
+  const hillshade = {
+    id: 'hillshade',
+    type: 'hillshade',
+    source: 'dem',
+    paint: { 'hillshade-exaggeration': 0.35, 'hillshade-shadow-color': '#5C6B55', 'hillshade-highlight-color': '#FFFFFF' },
+  } as StyleSpecification['layers'][number];
+  layers.splice(firstSymbol < 0 ? layers.length : firstSymbol, 0, hillshade);
+
+  return {
+    ...style,
+    sources: { ...style.sources, dem: DEM_SOURCE },
+    layers,
+  } as StyleSpecification;
+}
+
+export const TERRAIN_SPEC = { source: 'dem', exaggeration: CONFIG.terrainExaggeration };

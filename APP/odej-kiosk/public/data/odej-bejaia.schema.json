@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "odej-bejaia.schema.json",
+  "title": "Données de la borne ODEJ Béjaïa",
+  "description": "Un seul fichier décrit l'organisation, la wilaya, les catégories, les lieux et les établissements. Tous les textes affichés sont bilingues (ar, en).",
+  "type": "object",
+  "required": ["meta", "organization", "wilaya", "categories", "activities", "places", "establishments"],
+  "$defs": {
+    "i18n": {
+      "type": "object",
+      "required": ["ar", "en"],
+      "properties": {
+        "ar": { "type": ["string", "null"] },
+        "en": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "enum": [
+            "DUPLICATE_COORDS", "NEAR_DUPLICATE", "DUPLICATE_LINK", "DUPLICATE_NAME",
+            "PLACE_MISMATCH", "PLACE_MISSING", "COMMUNE_UNKNOWN",
+            "TYPE_UNKNOWN", "TYPE_FROM_LINK", "SPELLING"
+          ]
+        },
+        "message": { "type": "string" }
+      }
+    },
+    "media": {
+      "type": "object",
+      "required": ["src"],
+      "properties": {
+        "src": { "type": "string", "description": "Chemin relatif à /media/ ou URL" },
+        "kind": { "enum": ["image", "video"] },
+        "caption": { "$ref": "#/$defs/i18n" }
+      }
+    }
+  },
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "updatedAt", "locales", "defaultLocale"],
+      "properties": {
+        "version": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "source": { "type": "string" },
+        "locales": { "type": "array", "items": { "enum": ["ar", "en"] } },
+        "defaultLocale": { "enum": ["ar", "en"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "organization": {
+      "type": "object",
+      "required": ["name", "shortName", "intro"],
+      "properties": {
+        "name": { "$ref": "#/$defs/i18n" },
+        "shortName": { "$ref": "#/$defs/i18n" },
+        "logo": { "type": ["string", "null"] },
+        "intro": { "$ref": "#/$defs/i18n" }
+      }
+    },
+    "wilaya": {
+      "type": "object",
+      "required": ["code", "name", "description", "camera"],
+      "properties": {
+        "code": { "type": "string" },
+        "name": { "$ref": "#/$defs/i18n" },
+        "description": { "$ref": "#/$defs/i18n" },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "properties": { "value": { "type": "number" }, "label": { "$ref": "#/$defs/i18n" } }
+          }
+        },
+        "camera": {
+          "type": "object",
+          "description": "Vue d'arrivée sur la carte après l'animation d'entrée",
+          "required": ["center", "zoom", "pitch", "bearing"],
+          "properties": {
+            "center": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+            "zoom": { "type": "number" },
+            "pitch": { "type": "number", "minimum": 0, "maximum": 85 },
+            "bearing": { "type": "number" }
+          }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "color", "icon"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "label": { "$ref": "#/$defs/i18n" },
+          "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+          "icon": { "enum": ["house", "bed", "ball", "atom", "hall", "star", "tent"] },
+          "defaultActivities": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": { "id": { "type": "string" }, "label": { "$ref": "#/$defs/i18n" } }
+      }
+    },
+    "places": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "$ref": "#/$defs/i18n" },
+          "kind": { "enum": ["commune", "locality"] },
+          "communeId": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "establishments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "category", "location"],
+        "properties": {
+          "id": { "type": "string" },
+          "ref": { "type": "integer", "description": "Numéro de ligne dans la liste ODEJ" },
+          "name": { "$ref": "#/$defs/i18n" },
+          "category": { "type": "string", "description": "id d'une entrée de categories" },
+          "placeId": { "type": ["string", "null"], "description": "id d'une entrée de places" },
+          "location": {
+            "type": "object",
+            "required": ["lat", "lng"],
+            "properties": {
+              "lat": { "type": "number", "minimum": 36.0, "maximum": 37.2 },
+              "lng": { "type": "number", "minimum": 4.0, "maximum": 5.8 }
+            }
+          },
+          "description": { "$ref": "#/$defs/i18n" },
+          "activities": { "type": "array", "items": { "type": "string" }, "description": "Vide = defaultActivities de la catégorie" },
+          "contact": {
+            "type": "object",
+            "properties": {
+              "phone": { "type": ["string", "null"] },
+              "email": { "type": ["string", "null"] },
+              "facebook": { "type": ["string", "null"] }
+            }
+          },
+          "media": {
+            "type": "object",
+            "properties": {
+              "cover": { "oneOf": [{ "$ref": "#/$defs/media" }, { "type": "null" }] },
+              "gallery": { "type": "array", "items": { "$ref": "#/$defs/media" } }
+            }
+          },
+          "openingHours": { "oneOf": [{ "$ref": "#/$defs/i18n" }, { "type": "null" }] },
+          "verification": {
+            "type": "object",
+            "required": ["status", "issues"],
+            "properties": {
+              "status": { "enum": ["ok", "to_check"] },
+              "issues": { "type": "array", "items": { "$ref": "#/$defs/issue" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}
