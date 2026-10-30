@@ -163,3 +163,30 @@ Desktop.ini
 
 # Téléchargements en cours de l'outil de collecte
 RESOURCES/ODEJ-Media/.parts/
+
+# Médias : binaires hors git (voir teamwork/README.md, section 4)
+RESOURCES/**/*.jpg
+RESOURCES/**/*.jpeg
+RESOURCES/**/*.png
+RESOURCES/**/*.webp
+RESOURCES/**/*.gif
+RESOURCES/**/*.heic
+RESOURCES/**/*.mp4
+RESOURCES/**/*.mov
+RESOURCES/**/*.webm
+RESOURCES/**/*.mkv
+RESOURCES/**/*.avi
+RESOURCES/**/*.m4a
+RESOURCES/**/*.mp3
+RESOURCES/**/*.zip
+RESOURCES/**/*.part
+APP/odej-kiosk/public/media/**/*.jpg
+APP/odej-kiosk/public/media/**/*.jpeg
+APP/odej-kiosk/public/media/**/*.png
+APP/odej-kiosk/public/media/**/*.webp
+APP/odej-kiosk/public/media/**/*.gif
+APP/odej-kiosk/public/media/**/*.mp4
+APP/odej-kiosk/public/media/**/*.webm
+APP/odej-kiosk/public/media/index.json
+.media-stage/
+kiosk-pack/

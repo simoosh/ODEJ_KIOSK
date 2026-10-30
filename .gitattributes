@@ -1,0 +1,2 @@
+# Append-only agent log: keep both sides when two agents add entries at once
+teamwork/Update.md merge=union
