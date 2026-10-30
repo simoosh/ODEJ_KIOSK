@@ -56,8 +56,10 @@ Un seul fichier, chargé au démarrage : on peut le modifier sans recompiler.
 ```
 
 `activities` vide = activités par défaut de la catégorie. `verification` n'est jamais affiché sur la borne : c'est le suivi des
-corrections demandées à l'ODEJ (voir `docs/VERIFICATION.md`). Les photos iront dans `public/media/` et se référencent par chemin
-relatif (`"cover": { "src": "media/akbou-auberge.jpg" }`).
+corrections demandées à l'ODEJ (voir `docs/VERIFICATION.md`). Les médias sont dans `public/media/odej-NNN/` et se référencent par chemin
+relatif (`"src": "media/odej-003/gallery/gallery-01.webp"`). `cover` reste `null` tant qu'aucune photo du bâtiment n'est validée.
+`media.gallery` s'affiche dans la fiche ; une vidéo ajoute `"kind": "video"` et une image `poster`.
+Les originaux sont dans `RESOURCES/ODEJ-Media/`, et `docs/media/` relie chaque fichier optimisé à son original.
 
 ## Carte
 

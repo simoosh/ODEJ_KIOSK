@@ -161,5 +161,5 @@ Desktop.ini
 *.tmp
 *.bak
 
-# Dossier RESOURCES : gardé en local, non poussé
-RESOURCES/
+# Téléchargements en cours de l'outil de collecte
+RESOURCES/ODEJ-Media/.parts/
