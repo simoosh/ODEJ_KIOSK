@@ -33,8 +33,9 @@
       "type": "object",
       "required": ["src"],
       "properties": {
-        "src": { "type": "string", "description": "Chemin relatif à /media/ ou URL" },
+        "src": { "type": "string", "description": "Chemin relatif à public/ (media/odej-003/gallery/gallery-01.webp) ou URL" },
         "kind": { "enum": ["image", "video"] },
+        "poster": { "type": "string", "description": "Image affichée avant la lecture d'une vidéo" },
         "caption": { "$ref": "#/$defs/i18n" }
       }
     }

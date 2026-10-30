@@ -3,6 +3,7 @@ import type { Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { distanceKm, toDms } from '../lib/geo';
 import { Icon } from './Icon';
+import { MediaGallery } from './MediaGallery';
 import { QrCode } from './QrCode';
 
 interface Props {
@@ -63,6 +64,13 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
         )}
 
         <p className={`detail-desc ${description ? '' : 'is-pending'}`}>{description || t('descriptionPending')}</p>
+
+        {!!est.media?.gallery.length && (
+          <section className="detail-block">
+            <h3>{t('gallery')}</h3>
+            <MediaGallery key={est.id} items={est.media.gallery} title={t('gallery')} />
+          </section>
+        )}
 
         {acts.length > 0 && (
           <section className="detail-block">
