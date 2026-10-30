@@ -8,6 +8,8 @@ export interface I18nText {
 export interface MediaItem {
   src: string;
   kind?: 'image' | 'video';
+  /** Image affichée avant la lecture d'une vidéo */
+  poster?: string;
   caption?: I18nText;
 }
 
