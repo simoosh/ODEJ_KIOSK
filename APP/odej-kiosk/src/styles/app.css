@@ -1138,6 +1138,10 @@ input:focus-visible {
   border-radius: var(--r-md);
   object-fit: cover;
 }
+.photo.is-contain {
+  object-fit: contain;
+  background: #fff;
+}
 .photo.is-slot {
   display: grid;
   place-content: center;

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T21:28:12Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 1,
+    "name": "مركب رياضي جواري أدكار",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61580052382503"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61580052382503",
+    "pageRef": "61580052382503",
+    "title": "المركب الرياضي الجواري أدكار - ولاية بجاية"
+  },
+  "email": null,
+  "phone": null,
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisation à but non lucratif",
+  "openingHours": null,
+  "followers": 112,
+  "notAvailable": [
+    "address",
+    "description",
+    "email",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}

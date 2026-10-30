@@ -55,7 +55,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
         </header>
 
         {est.media?.cover ? (
-          <img className="photo" src={est.media.cover.src} alt={tx(est.media.cover.caption) || tx(est.name)} />
+          <img className={`photo ${est.media.cover.fit === 'contain' ? 'is-contain' : ''}`} src={est.media.cover.src} alt={tx(est.media.cover.caption) || tx(est.name)} />
         ) : (
           <div className="photo is-slot">
             <Icon name="frame" size="2em" />
