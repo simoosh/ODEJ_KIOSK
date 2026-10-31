@@ -190,3 +190,11 @@ APP/odej-kiosk/public/media/**/*.webm
 APP/odej-kiosk/public/media/index.json
 .media-stage/
 kiosk-pack/
+
+# Netlify (build local)
+.netlify/
+
+# Outils hors application
+tools/**/.cache/
+tools/**/out/
+tools/**/node_modules/
