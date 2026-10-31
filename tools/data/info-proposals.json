@@ -1,4 +1,9 @@
 {
+  "odej-001": {
+    "approved": true,
+    "phone": "034 86 31 98",
+    "email": "cspadekar@odejbejaia-dz.com"
+  },
   "odej-003": {
     "approved": true,
     "description": {
@@ -6,16 +11,21 @@
       "en": "The science leisure centre offers a variety of interactive activities that aim to develop young people's scientific and technological skills in a fun and innovative way."
     },
     "phone": "0661 89 04 11",
+    "email": "clsouedghir@odejbejaia-dz.com",
     "address": "Oued Ghir, Bejaia, Algeria",
     "openingHours": { "ar": "مفتوح دائمًا", "en": "Always open" },
     "unverified": ["description.en", "openingHours"]
   },
   "odej-004": {
     "approved": true,
+    "phone": "034 89 03 16",
+    "email": "cspbenimaouche@odejbejaia-dz.com",
     "address": "Beni Maouche, Bejaia, 06124"
   },
   "odej-021": {
     "approved": true,
+    "phone": "044 21 26 97",
+    "email": "cspighzeramokrane@odejbejaia-dz.com",
     "description": {
       "ar": "المركب الرياضي الجواري أوزلاقن فضاء مخصص لتفتح الشباب من خلال أنشطة تربوية وترفيهية متنوعة. مهمتنا شغل أوقات فراغ الشباب بطريقة بناءة ومفيدة.",
       "en": "CSP Ouzellaguen is a space dedicated to the personal growth of young people through a range of educational and leisure activities. Our mission is to fill young people's free time in a constructive and enriching way."

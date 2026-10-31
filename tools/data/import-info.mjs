@@ -15,6 +15,13 @@ const byId = new Map(data.establishments.map((e) => [e.id, e]));
 const show = (value) => value ?? '—';
 const hasArabic = (text) => /\p{Script=Arabic}/u.test(text ?? '');
 
+/** Champs de contact dont info.json indique la source : Facebook d'abord, site de l'ODEJ en secours. */
+const sourced = [
+  ['phone', 'Le téléphone'],
+  ['email', "L'e-mail"],
+  ['address', "L'adresse"],
+];
+
 function readInfos() {
   return readdirSync(resourcesDir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && /^\d{3}-/.test(entry.name))
@@ -28,14 +35,17 @@ function reportFor({ id, info }) {
   const est = byId.get(id);
   const proposal = proposals[id];
   const rows = [
-    ['description', est.description?.ar, info.description],
-    ['téléphone', est.contact?.phone, info.phone],
-    ['adresse', est.contact?.address, info.address],
-    ['horaires', est.openingHours?.ar, info.openingHours],
+    ['description', est.description?.ar, info.description, 'description'],
+    ['téléphone', est.contact?.phone, info.phone, 'phone'],
+    ['e-mail', est.contact?.email, info.email, 'email'],
+    ['adresse', est.contact?.address, info.address, 'address'],
+    ['horaires', est.openingHours?.ar, info.openingHours, 'openingHours'],
   ];
   const lines = [`## ${id} : ${est.name.ar}`, '', `Page : ${info.scrapedPage.title}`, ''];
-  lines.push('| Champ | Données | Facebook |', '|---|---|---|');
-  for (const [field, current, source] of rows) lines.push(`| ${field} | ${show(current)} | ${show(source)} |`);
+  lines.push('| Champ | Données | Collecté | Source |', '|---|---|---|---|');
+  for (const [field, current, collected, key] of rows) {
+    lines.push(`| ${field} | ${show(current)} | ${show(collected)} | ${show(info.sources?.[key])} |`);
+  }
   if (info.description && !hasArabic(info.description)) lines.push('', 'La description Facebook n\'est pas en arabe.');
   lines.push('', proposal ? `Proposition (validée : ${proposal.approved ? 'oui' : 'non'}) :` : 'Aucune proposition.');
   if (proposal) lines.push('', '```json', JSON.stringify(proposal, null, 2), '```');
@@ -52,16 +62,24 @@ function writeReport() {
 }
 
 function applyApproved() {
+  const infos = new Map(readInfos().map(({ id, info }) => [id, info]));
   let applied = 0;
   for (const [id, proposal] of Object.entries(proposals)) {
     if (!proposal.approved) continue;
     const est = byId.get(id);
+    const sources = infos.get(id)?.sources ?? {};
     if (proposal.description) est.description = proposal.description;
     if (proposal.phone) est.contact.phone = proposal.phone;
+    if (proposal.email) est.contact.email = proposal.email;
     if (proposal.address) est.contact.address = proposal.address;
     if (proposal.openingHours) est.openingHours = proposal.openingHours;
     for (const field of proposal.unverified ?? []) {
       addIssue(est, 'TRANSLATION_UNVERIFIED', `Traduction à valider par l'ODEJ : ${field}.`);
+    }
+    for (const [key, label] of sourced) {
+      if (proposal[key] && sources[key] === 'odej-website') {
+        addIssue(est, 'AUDIT_NOTE', `${label} vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer.`);
+      }
     }
     applied += 1;
   }

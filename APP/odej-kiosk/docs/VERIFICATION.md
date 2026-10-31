@@ -6,7 +6,7 @@ Source : liste PDF de 67 établissements (nom, latitude, longitude, lien Faceboo
 Les coordonnées et les liens ont été extraits du texte du PDF ; les noms arabes ont été relus sur les pages.
 
 - 67 établissements, tous situés dans l'emprise de la wilaya (lat. 36,34 → 36,88 ; long. 4,38 → 5,44).
-- 10 lignes sans remarque.
+- 9 lignes sans remarque.
 - 2 établissements sans type (lignes 14, 49) : ils apparaissent comme « مؤسسة شبانية / Youth facility ».
 - Les paramètres de suivi des liens Facebook (`mibextid`, `sk`) ont été retirés.
 
@@ -118,12 +118,17 @@ Les coordonnées et les liens ont été extraits du texte du PDF ; les noms arab
 | 37 | مركب رياضي جواري تمقرة | Lien Facebook retiré : inaccessible ou page d'un autre établissement. |
 | 49 | الشهداء عصم الطيب وابنه حميمي تازمالت | Lien Facebook retiré : inaccessible ou page d'un autre établissement. |
 
-### Notes de l'audit (28)
+### Notes de l'audit (31)
 
 | N° | Établissement | Note |
 |---|---|---|
+| 1 | مركب رياضي جواري أدكار | Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
+| 1 | مركب رياضي جواري أدكار | L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
 | 2 | بيت الشباب أدكار | Link inaccessible on two independent checks |
+| 3 | مركز الترفيه العلمي واد غير | L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
 | 4 | المركب الرياضي الجواري حامية محند الشريف بني معوش | Wrong Facebook category (music, health) |
+| 4 | المركب الرياضي الجواري حامية محند الشريف بني معوش | Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
+| 4 | المركب الرياضي الجواري حامية محند الشريف بني معوش | L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
 | 5 | الشهيد أوغليس محند أكلي أميزور | Wrong Facebook category (restaurant) |
 | 10 | الشهيد بوحيرد السعيد سوق الإثنين | Same coordinates as #32 |
 | 11 | الشهداء آيت صالح بجاية | Listed as Aït Salah; page is the Ighil Ouazzoug sports complex. Confirm |
@@ -131,6 +136,8 @@ Les coordonnées et les liens ont été extraits du texte du PDF ; les noms arab
 | 14 | الشهداء عبادي سيدي عياد | Link opens the Sidi Aïch youth centre, which is #15 |
 | 16 | مولود فرعون القصر | Coordinates match #42 in Béjaïa city, not El Kseur · Has posts Facebook labels as AI content |
 | 18 | دار الشباب تقريت | Wrong Facebook category (news site) |
+| 21 | الشهيد شيلا الطيب أوزلاقن | Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
+| 21 | الشهيد شيلا الطيب أوزلاقن | L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer. |
 | 24 | الشهيد بن تجي محند أكلي برباشة | Coordinates are far from Barbacha and from #22 |
 | 27 | الشهيد بانون أكلي | Page is the Djebla multi-activity hall. Confirm it is this institution |
 | 28 | الشهيد اسماعيل علي بن عيسى أوقاس | Has posts Facebook labels as AI content |
