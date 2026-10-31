@@ -48,7 +48,7 @@ npm ci
 npm run dev
 ```
 
-L'application s'ouvre sur `http://localhost:5173`. Ajoute `?sim=1` à l'URL pour le simulateur d'écrans.
+L'application s'ouvre sur `http://localhost:5173`. Ajoute `?sim=1` à l'URL pour le simulateur d'écrans, `?debug=1` pour le panneau de performance et `?quality=low` pour imposer un niveau de qualité (voir [docs/PERF.md](APP/odej-kiosk/docs/PERF.md)).
 
 `npm ci` active aussi le hook `.githooks/commit-msg` avec le script `prepare`.
 
