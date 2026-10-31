@@ -119,3 +119,9 @@ What: new commands: `media:check`, `media:thumbs`, `media:publish`, `media:verif
 What: `MediaGallery.tsx` changed: a media that fails to load is hidden, and the gallery disappears when nothing can be shown. The gallery heading moved inside the component. `mediaUrl()` in `src/config.ts` is the only place that builds a media URL. `VITE_MEDIA_BASE_URL` selects the CDN.
 What: publishing to the CDN is not done: it waits for D16 (Cloudflare account) and D17.
 Impact on others: data agent: run `media:thumbs` then `media:check` before each PR. Colleague: `media:check --hash` on your disk should pass; the owner's copy has old `video-05` and `video-06` and no odej-004 or odej-021 binaries, so the kiosk pack must be built from a complete copy.
+
+### 2026-10-31 19:15 · [app-agent] · DECISION · D16 D17 D8 CDN and kiosk setup
+Area: CDN publishing, kiosk PC
+What: the owner decided. D16: the owner creates the Cloudflare account (no bank card; if one is asked for, stop and use plan B from `docs/MEDIA.md`). D17: the colleague runs `media:publish -- --go`, so he needs access to that account. D8: a small script, written at the end of the project, will install what the app needs on any PC and load the media locally.
+What: the network-off test of the kiosk pack is done by the owner, once the pack is complete, with a checklist from the app agent.
+Impact on others: colleague: wait for the account and your access before publishing; `media:check --hash` must pass on your disk first.
