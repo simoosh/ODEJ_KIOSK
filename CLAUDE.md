@@ -66,6 +66,7 @@ npm run dev                 # http://localhost:5173  (?sim=1 screen simulator)
 npm run lint && npm run typecheck && npm test && npm run build
 npm run validate:data       # data file: schema and internal consistency
 npm run preview
+npm run media:check         # media tools: docs/MEDIA.md (media:thumbs, media:publish, media:verify, kiosk:pack)
 
 # from the repo root
 npx netlify-cli build --offline   # reproduces the Netlify build, no linked site needed
