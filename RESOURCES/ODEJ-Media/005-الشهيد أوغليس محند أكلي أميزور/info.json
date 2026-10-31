@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-31T23:04:12Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 5,
+    "name": "الشهيد أوغليس محند أكلي أميزور",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579968204967"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579968204967",
+    "pageRef": "61579968204967",
+    "title": "المركب الرياضي الجواري أميزور-ولاية بجاية"
+  },
+  "email": "cspamizour@odejbejaia-dz.com",
+  "phone": "034 30 75 91",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Restaurant",
+  "openingHours": null,
+  "followers": 161,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}
