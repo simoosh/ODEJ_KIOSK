@@ -54,11 +54,13 @@ Refuse de publier si un fichier dépasse 24 Mio ou si le total dépasse 15 000 f
 
 ### `media:verify`
 
-Envoie un `HEAD` pour chaque URL de `public/media/index.json`, 8 requêtes à la fois, et attend 200 avec le bon `Content-Type`. Sur une vidéo, une requête `Range` doit répondre 206.
+Envoie un `HEAD` pour chaque URL de `public/media/index.json`, 8 requêtes à la fois, et attend 200 avec le bon `Content-Type`. Sur une vidéo, une requête `Range` doit répondre 206 : un 200 avec le fichier complet donne un avertissement, toute autre réponse une erreur. Seules les erreurs font échouer la commande.
 
 ```bash
 npm run media:verify -- --base https://odej-media.pages.dev/
 ```
+
+Cloudflare Pages répond 200 à toutes les requêtes `Range` : chaque vidéo publiée donne donc un avertissement. La cause vient de Pages, pas de nos fichiers. Les vidéos sont lues en téléchargement progressif grâce à `faststart`, et se déplacer vers un point pas encore téléchargé est moins fluide sur le web. Le pack de la borne n'est pas concerné : `serve.mjs` répond 206.
 
 Les vignettes ne sont pas dans l'index : elles ne sont pas contrôlées.
 
@@ -103,6 +105,6 @@ Si Cloudflare est impossible (carte bancaire exigée, compte refusé), le site N
 | `ffprobe not found` | installer ffmpeg, puis ouvrir un nouveau terminal |
 | `wrangler` demande une connexion | `npx wrangler login`, par un humain |
 | Le nom de projet `odej-media` est pris | changer `PROJECT` dans `publish.mjs` et mettre à jour `.env.example` |
-| Une vidéo ne se déplace pas sur le CDN | relancer `media:verify` : la requête Range doit répondre 206 |
+| Une vidéo se déplace mal sur le web | limite connue de Cloudflare Pages, voir `media:verify` : ni un bug ni un fichier à corriger |
 | `referenced but missing` | la copie locale est incomplète : récupérer les fichiers du collègue |
 | `sha256 differs from docs/media` | la copie locale n'est pas la dernière version |
