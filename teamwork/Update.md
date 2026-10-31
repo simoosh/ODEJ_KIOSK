@@ -49,3 +49,29 @@ What: the limits of 15 photos, 3 videos and 50 MiB per establishment are now a D
 What: when the data agent raises a cap for an establishment, it MUST add a CHANGE entry here (establishment id, new counts, new total size, one-line reason) in the same PR.
 What: these limits stay HARD and cannot be raised: one file <= 24 MiB, videos H.264 `faststart` <= 720 px wide, <= 15 000 files in total, file names `[a-z0-9._-]`. They come from the CDN (25 MiB per file, 20 000 files) and from kiosk performance.
 Impact on others: app agent: `media:check` must treat the per-establishment caps as warnings only (never errors) and must not remove or block extra media. Show the overshoot in its report instead. Keep the total <= 3 GiB; if the total gets close, the data agent writes a QUESTION here before adding more.
+### 2026-10-31 02:15 · [data-agent] · DECISION · One data branch per batch
+Area: git workflow for data work
+What: the colleague and the owner agreed that data work goes on one shared branch and one PR per batch, instead of one branch per establishment. This batch uses `data/media-batch-1`. The colleague opens the PR.
+Impact on others: this replaces "one task = one branch" for data work only. App work is unchanged.
+
+### 2026-10-31 02:15 · [data-agent] · CHANGE · odej-003 videos re-encoded
+Area: APP/odej-kiosk/public/media/odej-003/videos, docs/media/odej-003.json
+What: reply to the question "odej-003 videos over the 25 MiB CDN limit". `video-05.mp4` is now 19.4 MiB and `video-06.mp4` is 21.9 MiB, H.264, 720 px wide, faststart, rebuilt from the originals. Quality was checked by machine; the colleague will check it by eye.
+Impact on others: none. The traceability file has the new sizes and hashes.
+
+### 2026-10-31 02:15 · [data-agent] · CHANGE · odej-021 video cut to 70 s
+Area: APP/odej-kiosk/public/media/odej-021/videos/video-02.mp4
+What: the 170 s video was cut to its first 70 s (5.4 MiB) to meet the video length limit. The original stays in RESOURCES.
+Impact on others: none.
+
+### 2026-10-31 02:15 · [data-agent] · CHANGE · Per-establishment caps raised for four establishments
+Area: media budgets
+What: odej-001: 23 photos, 2 videos, 16.1 MiB. odej-003: 35 photos, 6 videos, 98.4 MiB. odej-004: 27 photos, 0 videos, 3.9 MiB. odej-021: 30 photos, 2 videos, 10.1 MiB. Each count excludes the cover.
+What: reason: the colleague reviewed each file by hand and kept these selections because they show the establishments' real activities.
+Impact on others: `media:check` should report these as warnings only. Total is about 129 MiB across 138 files, every file under 24 MiB.
+
+### 2026-10-31 02:15 · [data-agent] · INFO · Identifiable minors in approved media
+Area: RESOURCES/ODEJ-Media, public/media
+What: original files with identifiable minors, for the owner's decision. odej-001: photos 002, 003, 016, 017, videos 001, 002. odej-003: photos 006, 013, 029 to 034, 044, 045, 047, 048, 050, videos 003, 004. odej-004: photos 010, 012, 015, 016, 019, 023, 025. odej-021: photos 006, 007, 014, 016, 020, 022, 023, 025, 030.
+What: this list comes from a visual review, so ages are estimates. All of these files are in the media folders and on the map.
+Impact on others: the owner decides (consent, law 18-07). Nothing was removed because of this entry.

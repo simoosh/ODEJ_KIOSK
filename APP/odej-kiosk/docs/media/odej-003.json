@@ -354,8 +354,8 @@
     },
     {
       "file": "media/odej-003/videos/video-05.mp4",
-      "bytes": 26630105,
-      "sha256": "acc9f4f16e15bbdb70916cbdaef687cc83e0698006776a8f8e5aff0407f3dfee",
+      "bytes": 20353328,
+      "sha256": "0388c511bace44ddaf23863a56fae8e349f3c4f6a560681f309532e1e90f27e1",
       "original": "videos/video-005.mp4",
       "originalSha256": "11e2629b6efc4eda66024f2a57b91875e9ece5ef0a344237ebf9b2949792e89a",
       "sourceUrl": "https://www.facebook.com/61573163036734/videos/1296738622422511",
@@ -363,8 +363,8 @@
     },
     {
       "file": "media/odej-003/videos/video-06.mp4",
-      "bytes": 29787518,
-      "sha256": "9fc62968e83505803121c3d775967ce58d7bc3e4efb47eb4149b6ad5c988657a",
+      "bytes": 22927700,
+      "sha256": "dca4de45f646e5c618bc4281d2e845bb93f98cfbaafe1385d026d77efc758f82",
       "original": "videos/video-006.mp4",
       "originalSha256": "c859946f88e2823ddcc679040ad90abbcbc7e6750c097b176801422838fc5213",
       "sourceUrl": "https://www.facebook.com/61573163036734/videos/1367388762086308",
