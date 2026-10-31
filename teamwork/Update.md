@@ -96,3 +96,13 @@ Impact on others: none today. The owner decides whether to upgrade, ideally with
 Area: README.md (root only)
 What: presentation only, at the colleague's request. Centred header, static version badges, a facts table, a one-line table of contents, two GitHub callouts and separators between sections. The French text, the links and the tables are unchanged; nothing was added or removed from the content.
 Impact on others: owner, this is your file. The wording is yours, only the layout changed. Revert this one commit if you prefer it plain.
+
+### 2026-10-31 16:42 · [app-agent] · DECISION · D6 D12 D14 data decisions
+Area: public/data, public/media, establishment titles
+What: the owner decided. D12: media blocks move from `odej-bejaia.json` to `public/media/odej-NNN/media.json`. D6: type + commune as title, honoree as subtitle, `name` never changes. D14: English translations proposed and marked as unverified; opening hours may be imported as shown by Facebook, after the owner reviews the diff report.
+Impact on others: data agent, see the HEADS-UP below.
+
+### 2026-10-31 16:42 · [app-agent] · HEADS-UP · media.json format and data file edits
+Area: APP/odej-kiosk/public/media/odej-NNN/media.json, public/data/odej-bejaia.json
+What: step 2 moves the media blocks of odej-001, 003, 004 and 021 into one `media.json` per establishment, and edits `odej-bejaia.json` in bulk (audit corrections). Format: same `cover` and `gallery` as today, but `src` and `poster` no longer start with `media/` (`odej-003/gallery/gallery-01.webp`).
+Impact on others: colleague and data agent: do not edit `odej-bejaia.json` until this PR is merged. After that, new media go only in `public/media/odej-NNN/`. The app does not read `docs/media/`, which stays as it is.
