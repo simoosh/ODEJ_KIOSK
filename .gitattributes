@@ -1,6 +1,9 @@
 # Fins de ligne : LF partout, y compris sous Windows
 * text=auto eol=lf
 
+# Scripts Windows : cmd.exe attend du CRLF
+*.bat text eol=crlf
+
 # Binaires
 *.png binary
 *.jpg binary

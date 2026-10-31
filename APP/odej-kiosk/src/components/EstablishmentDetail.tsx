@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Establishment, KioskData } from '../types';
 import { titleOf, type Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
@@ -19,6 +20,8 @@ interface Props {
 
 export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect, onShow, onOrbit }: Props) {
   const { t, tx, locale } = useI18n();
+  const [brokenCover, setBrokenCover] = useState<string | null>(null);
+  const cover = est.media?.cover && est.media.cover.src !== brokenCover ? est.media.cover : null;
   const cat = idx.categories.get(est.category);
   const place = est.placeId ? idx.places.get(est.placeId) : undefined;
   const acts = idx.activitiesOf(est);
@@ -55,8 +58,13 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
           </p>
         </header>
 
-        {est.media?.cover ? (
-          <img className={`photo ${est.media.cover.fit === 'contain' ? 'is-contain' : ''}`} src={est.media.cover.src} alt={tx(est.media.cover.caption) || tx(titleOf(est))} />
+        {cover ? (
+          <img
+            className={`photo ${cover.fit === 'contain' ? 'is-contain' : ''}`}
+            src={cover.src}
+            alt={tx(cover.caption) || tx(titleOf(est))}
+            onError={() => setBrokenCover(cover.src)}
+          />
         ) : (
           <div className="photo is-slot">
             <Icon name="frame" size="2em" />
@@ -66,12 +74,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
 
         <p className={`detail-desc ${description ? '' : 'is-pending'}`}>{description || t('descriptionPending')}</p>
 
-        {!!est.media?.gallery.length && (
-          <section className="detail-block">
-            <h3>{t('gallery')}</h3>
-            <MediaGallery key={est.id} items={est.media.gallery} title={t('gallery')} />
-          </section>
-        )}
+        {!!est.media?.gallery.length && <MediaGallery key={est.id} items={est.media.gallery} title={t('gallery')} />}
 
         {acts.length > 0 && (
           <section className="detail-block">

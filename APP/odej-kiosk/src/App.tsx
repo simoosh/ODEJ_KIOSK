@@ -30,7 +30,7 @@ export default function App() {
       });
     // Sans index, l'application s'affiche sans médias
     Promise.all([load<KioskData>(CONFIG.dataUrl), load<MediaIndex>(CONFIG.mediaIndexUrl).catch(() => ({}))])
-      .then(([kiosk, media]) => setData(withMedia(kiosk, media, `${import.meta.env.BASE_URL}media/`)))
+      .then(([kiosk, media]) => setData(withMedia(kiosk, media)))
       .catch((e) => setError(String(e)));
   }, []);
 

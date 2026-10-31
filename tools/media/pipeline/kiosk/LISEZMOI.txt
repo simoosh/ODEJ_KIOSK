@@ -1,0 +1,3 @@
+Copiez ce dossier sur le PC de la borne. Node.js et Google Chrome doivent y être installés.
+Double-cliquez sur start-kiosk.bat : la borne s'ouvre en plein écran. Les médias sont locaux.
+Pour quitter : Alt+F4, puis fermez la fenêtre « Serveur borne ODEJ ».

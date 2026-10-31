@@ -112,3 +112,10 @@ Area: public/data, public/media/odej-NNN/media.json, tools/data, docs/DATA.md, d
 What: media blocks moved to `media.json` (odej-001, 003, 004, 021). Audit applied: 41 categories, new category `youth-camp`, 4 Facebook links removed, 28 audit notes, odej-003 featured. Titles (`displayName`, `honoree`) added for 37 establishments, `name` unchanged. Facebook info imported for odej-003, 004 and 021 after the owner approved the report; translations and "Toujours ouvert" stay marked as unverified.
 What: `npm run dev` and `npm run build` now generate `public/media/index.json`. `validate:data` also checks each `media.json` and refuses a `media` block in `odej-bejaia.json`.
 Impact on others: colleague and data agent, after this merge: to add media, change only `public/media/odej-NNN/` (guide in `docs/DATA.md`). `src` and `poster` start with `odej-NNN/`, not `media/`. The heads-up freeze on `odej-bejaia.json` ends with the merge.
+
+### 2026-10-31 17:49 · [app-agent] · CHANGE · Step 2b media pipeline
+Area: tools/media/pipeline, APP/odej-kiosk (config, MediaGallery, build scripts), docs/MEDIA.md, teamwork/README.md
+What: new commands: `media:check`, `media:thumbs`, `media:publish`, `media:verify`, `kiosk:pack`. Setup and usage in `docs/MEDIA.md`; commands in `teamwork/README.md` section 6. Per-establishment caps are warnings only, as decided. `npm run build` now removes every binary from `dist/media/`.
+What: `MediaGallery.tsx` changed: a media that fails to load is hidden, and the gallery disappears when nothing can be shown. The gallery heading moved inside the component. `mediaUrl()` in `src/config.ts` is the only place that builds a media URL. `VITE_MEDIA_BASE_URL` selects the CDN.
+What: publishing to the CDN is not done: it waits for D16 (Cloudflare account) and D17.
+Impact on others: data agent: run `media:thumbs` then `media:check` before each PR. Colleague: `media:check --hash` on your disk should pass; the owner's copy has old `video-05` and `video-06` and no odej-004 or odej-021 binaries, so the kiosk pack must be built from a complete copy.

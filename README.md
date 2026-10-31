@@ -60,6 +60,8 @@ L'application s'ouvre sur `http://localhost:5173`. Ajoute `?sim=1` à l'URL pour
 | `npm run build` | valide les données, vérifie les types, construit `dist/` |
 | `npm run validate:data` | valide `public/data/odej-bejaia.json` (schéma et cohérence interne) |
 | `npm run format` | Prettier. Reformate tout le code : à ne lancer qu'après accord, dans un commit `style:` séparé |
+| `npm run media:check` | contrôle les médias. Les autres outils sont dans [docs/MEDIA.md](APP/odej-kiosk/docs/MEDIA.md) |
+| `npm run kiosk:pack` | produit `kiosk-pack/`, le dossier à copier sur le PC de la borne |
 
 ---
 
@@ -77,6 +79,7 @@ ODEJ_KIOSK/
 │  ├─ src/                 code de l'application
 │  ├─ tests/unit/          tests unitaires
 │  └─ docs/                vérification des données, traçabilité des médias
+├─ tools/                  scripts hors application : data/, media/pipeline/
 ├─ RESOURCES/ODEJ-Media/   médias bruts : seuls info.json et manifest.json sont suivis
 ├─ teamwork/               règles partagées et journal des agents
 └─ netlify.toml            déploiement
@@ -121,3 +124,13 @@ npx netlify-cli build --offline
 `--offline` évite d'avoir à lier le dossier à un site Netlify : sans cette option, la commande exige un site lié.
 
 Netlify ne sert que l'application. Les médias passent par un CDN, et la borne du salon exécute un pack local (voir [teamwork/README.md](teamwork/README.md), section 4).
+
+### Mode borne
+
+`npm run kiosk:pack` produit `kiosk-pack/`, à copier sur le PC de la borne. Node.js et Google Chrome doivent y être installés. `start-kiosk.bat` lance le serveur local, puis Chrome avec ces options :
+
+```
+--kiosk --no-first-run --disable-pinch --overscroll-history-navigation=0 --user-data-dir=chrome-profile
+```
+
+Détails dans [docs/MEDIA.md](APP/odej-kiosk/docs/MEDIA.md).

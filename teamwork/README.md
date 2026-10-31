@@ -74,7 +74,7 @@ OPTIMIZED  APP/odej-kiosk/public/media/odej-NNN/...      (binaries ignored by gi
 2. **Select** about 10 photos and 3 videos per establishment: sharp, no duplicates, no tiny-text posters. If you see identifiable minors in a photo, add an `INFO` entry in `Update.md`. The owner decides (consent, law 18-07).
 3. **Optimize** into `APP/odej-kiosk/public/media/odej-NNN/` following the budgets above. Never overwrite an existing optimized file without writing a `CHANGE` entry.
 4. **Describe** the files in `public/media/odej-NNN/media.json` (once step 2 of the action plan has landed) and in `docs/media/odej-NNN.json` (traceability: sha256, original, source URL, date).
-5. **Check**: `npm run media:check` (available after step 2b). Until then, check the budgets by hand.
+5. **Check**: `npm run media:thumbs`, then `npm run media:check`. Fix every error. Warnings are fine when a `CHANGE` entry explains them.
 6. **Commit text files only.** `git status` must not list any photo or video.
 7. **PR** from `data/NNN-name`. Add an entry in `Update.md`.
 8. **Publish to the CDN**: `npm run media:publish` (dry run by default, `--go` to publish). A human who did `wrangler login` runs it. Agents never log in.
@@ -127,4 +127,14 @@ npm run dev                 # http://localhost:5173  (?sim=1 screen simulator, ?
 npm run lint && npm run typecheck && npm test && npm run build
 ```
 
-Media commands (`media:check`, `media:thumbs`, `media:publish`, `media:verify`, `kiosk:pack`) arrive with step 2b. When they land, the app agent updates this section.
+Media tools need one setup: `npm ci --prefix ../../tools/media/pipeline` (from `APP/odej-kiosk`), and `ffmpeg` in the PATH (`winget install ffmpeg`, then open a new terminal). Details: `APP/odej-kiosk/docs/MEDIA.md`.
+
+```bash
+cd APP/odej-kiosk
+npm run media:check             # hard limits are errors, per-establishment caps are warnings
+npm run media:check -- --hash   # also compares sha256 with docs/media/odej-NNN.json
+npm run media:thumbs            # thumbs/<name>-480.webp for each photo and poster
+npm run media:publish           # dry run; add -- --go to publish (a human, after wrangler login)
+npm run media:verify -- --base https://odej-media.pages.dev/
+npm run kiosk:pack              # kiosk-pack/ folder for the kiosk PC
+```
