@@ -75,3 +75,19 @@ Area: RESOURCES/ODEJ-Media, public/media
 What: original files with identifiable minors, for the owner's decision. odej-001: photos 002, 003, 016, 017, videos 001, 002. odej-003: photos 006, 013, 029 to 034, 044, 045, 047, 048, 050, videos 003, 004. odej-004: photos 010, 012, 015, 016, 019, 023, 025. odej-021: photos 006, 007, 014, 016, 020, 022, 023, 025, 030.
 What: this list comes from a visual review, so ages are estimates. All of these files are in the media folders and on the map.
 Impact on others: the owner decides (consent, law 18-07). Nothing was removed because of this entry.
+
+### 2026-10-31 02:55 · [app-agent] · DECISION · D7 Netlify site and PR merges
+Area: deployment, git workflow
+What: the owner decided. Netlify site `odej-bejaia` on the owner's account, production from `main`, deploy previews on each PR. The owner or the colleague merges PRs. Agents never merge.
+Impact on others: none for now. The owner connects the repo to Netlify.
+
+### 2026-10-31 02:56 · [app-agent] · CHANGE · Step 1 repo hygiene
+Area: repo root, APP/odej-kiosk (config, scripts, tests), .github, .githooks
+What: added line-ending rules (LF), `.editorconfig`, ESLint, Prettier config, Vitest, `validate:data`, CI, `netlify.toml`, a commit-msg hook. `npm run build` now validates the data file first and fails on invalid data.
+What: `main` did not compile before this PR (`Cannot find namespace 'GeoJSON'` in `src/lib/geo.ts`). This PR fixes it with type declarations only.
+Impact on others: after this PR is merged, run `npm ci` in `APP/odej-kiosk`: it activates `.githooks/commit-msg` (`core.hooksPath`), which refuses attribution lines. Node 22.13 or newer is needed. Run `npm run validate:data` after editing `odej-bejaia.json`. Do not run `npm run format`: it would rewrite all the code.
+
+### 2026-10-31 03:00 · [app-agent] · QUESTION · maplibre-gl security advisory
+Area: APP/odej-kiosk/package.json
+What: `npm audit` reports a critical XSS in `maplibre-gl` <= 6.4.0 (GHSA-jrc7-96c5-q579, `DOM.sanitize`). Installed: 5.24.0. The fix is a major upgrade to 6.x. It was already there before step 1. The app uses no MapLibre `Popup` or `setHTML`.
+Impact on others: none today. The owner decides whether to upgrade, ideally with step 3, which reworks the map code.
