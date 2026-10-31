@@ -1,5 +1,8 @@
-import type { Category, Establishment, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
+import type { Category, Establishment, I18nText, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
 import { matchScore, normalize } from '../lib/text';
+
+/** Titre affiché : type + commune quand il est connu, sinon le nom officiel. */
+export const titleOf = (e: Establishment): I18nText => e.displayName ?? e.name;
 
 /** Fusionne les médias dans les établissements, par id. Les chemins de l'index sont relatifs à base. */
 export function withMedia(data: KioskData, index: MediaIndex, base: string): KioskData {
@@ -51,7 +54,8 @@ export function sortForList(list: Establishment[], idx: Indexes, locale: Locale)
   const collator = new Intl.Collator(locale);
   const placeName = (e: Establishment) => (e.placeId ? idx.places.get(e.placeId)?.name[locale] ?? '' : '￿');
   return [...list].sort(
-    (a, b) => collator.compare(placeName(a), placeName(b)) || collator.compare(a.name[locale] ?? '', b.name[locale] ?? ''),
+    (a, b) =>
+      collator.compare(placeName(a), placeName(b)) || collator.compare(titleOf(a)[locale] ?? '', titleOf(b)[locale] ?? ''),
   );
 }
 
@@ -77,7 +81,7 @@ export function search(data: KioskData, idx: Indexes, query: string): SearchResu
   const establishments = data.establishments
     .map((e) => {
       const place = e.placeId ? idx.places.get(e.placeId) : undefined;
-      const nameScore = best([e.name.ar, e.name.en]);
+      const nameScore = best([e.name.ar, e.name.en, e.displayName?.ar, e.displayName?.en, e.honoree?.ar, e.honoree?.en]);
       const placeScore = best([place?.name.ar, place?.name.en]);
       return { kind: 'establishment' as const, id: e.id, score: nameScore * 2 + placeScore };
     })

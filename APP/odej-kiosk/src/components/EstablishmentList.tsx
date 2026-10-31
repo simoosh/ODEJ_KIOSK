@@ -1,5 +1,5 @@
 import type { Establishment, KioskData } from '../types';
-import type { Filters, Indexes } from '../data/model';
+import { titleOf, type Filters, type Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
 
@@ -80,10 +80,16 @@ export function EstablishmentList({ data, idx, items, filters, onFilters, onSele
                   <Icon name={c?.icon ?? 'star'} size="1.15em" />
                 </span>
                 <span className="item-text">
-                  <strong>{tx(e.name)}</strong>
+                  <strong>{tx(titleOf(e))}</strong>
                   <small>
-                    {tx(c?.label)}
-                    {p ? <> · {tx(p.name)}</> : null}
+                    {e.honoree ? (
+                      tx(e.honoree)
+                    ) : (
+                      <>
+                        {tx(c?.label)}
+                        {p ? <> · {tx(p.name)}</> : null}
+                      </>
+                    )}
                   </small>
                 </span>
                 <Icon name="back" className="item-go flip-ltr" size="1.1em" />

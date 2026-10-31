@@ -1,5 +1,5 @@
 import type { Establishment, KioskData } from '../types';
-import type { Indexes } from '../data/model';
+import { titleOf, type Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { distanceKm, toDms } from '../lib/geo';
 import { Icon } from './Icon';
@@ -45,8 +45,9 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
             <Icon name={cat?.icon ?? 'star'} size="1em" />
             {tx(cat?.label)}
           </span>
-          <h2 className="display detail-name">{tx(est.name)}</h2>
-          {locale === 'en' && est.name.ar && <p className="detail-alt" lang="ar" dir="rtl">{est.name.ar}</p>}
+          <h2 className="display detail-name">{tx(titleOf(est))}</h2>
+          {est.honoree && <p className="detail-alt">{tx(est.honoree)}</p>}
+          {locale === 'en' && titleOf(est).ar && <p className="detail-alt" lang="ar" dir="rtl">{titleOf(est).ar}</p>}
           <p className="detail-place">
             <Icon name="pin" size="1.05em" />
             {place ? tx(place.name) : t('placeUnknown')}
@@ -55,7 +56,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
         </header>
 
         {est.media?.cover ? (
-          <img className={`photo ${est.media.cover.fit === 'contain' ? 'is-contain' : ''}`} src={est.media.cover.src} alt={tx(est.media.cover.caption) || tx(est.name)} />
+          <img className={`photo ${est.media.cover.fit === 'contain' ? 'is-contain' : ''}`} src={est.media.cover.src} alt={tx(est.media.cover.caption) || tx(titleOf(est))} />
         ) : (
           <div className="photo is-slot">
             <Icon name="frame" size="2em" />
@@ -134,7 +135,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
                       <Icon name={c?.icon ?? 'star'} size="1em" />
                     </span>
                     <span className="item-text">
-                      <strong>{tx(e.name)}</strong>
+                      <strong>{tx(titleOf(e))}</strong>
                     </span>
                     <span className="dist">{fmtKm(d)}</span>
                   </button>

@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import type { KioskData } from '../types';
 import { useI18n } from '../i18n/I18n';
-import { search, topPlaces, type Indexes } from '../data/model';
+import { search, titleOf, topPlaces, type Indexes } from '../data/model';
 import { Icon } from './Icon';
 import { VirtualKeyboard } from './VirtualKeyboard';
 
@@ -122,11 +122,8 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
                         <Icon name={c?.icon ?? 'star'} size="1.1em" />
                       </span>
                       <span className="sr-text">
-                        <strong>{tx(e.name)}</strong>
-                        <small>
-                          {tx(c?.label)}
-                          {p ? ` · ${tx(p.name)}` : ''}
-                        </small>
+                        <strong>{tx(titleOf(e))}</strong>
+                        <small>{e.honoree ? tx(e.honoree) : `${tx(c?.label)}${p ? ` · ${tx(p.name)}` : ''}`}</small>
                       </span>
                     </button>
                   );
