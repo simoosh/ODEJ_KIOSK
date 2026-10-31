@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T21:57:49Z",
+  "updatedAt": "2026-10-31T02:14:32Z",
   "source": "Facebook page, as shown to a logged-out visitor",
   "institution": {
     "id": 4,
@@ -12,19 +12,24 @@
     "pageRef": "61579900258159",
     "title": "المركب الرياضي الجواري بني معوش ولاية بجاية"
   },
-  "email": null,
-  "phone": null,
+  "email": "cspbenimaouche@odejbejaia-dz.com",
+  "phone": "034 89 03 16",
   "address": "Beni Maouche Bejaia , 06124",
   "website": null,
   "description": null,
   "facebookCategory": "Musique/groupe · Santé/beauté",
   "openingHours": null,
   "followers": 69,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
   "notAvailable": [
     "description",
-    "email",
     "openingHours",
-    "phone",
     "website"
   ]
 }

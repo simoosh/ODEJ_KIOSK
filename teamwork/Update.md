@@ -125,3 +125,21 @@ Area: CDN publishing, kiosk PC
 What: the owner decided. D16: the owner creates the Cloudflare account (no bank card; if one is asked for, stop and use plan B from `docs/MEDIA.md`). D17: the colleague runs `media:publish -- --go`, so he needs access to that account. D8: a small script, written at the end of the project, will install what the app needs on any PC and load the media locally.
 What: the network-off test of the kiosk pack is done by the owner, once the pack is complete, with a checklist from the app agent.
 Impact on others: colleague: wait for the account and your access before publishing; `media:check --hash` must pass on your disk first.
+
+### 2026-10-31 21:06 · [data-agent] · CHANGE · odej-021 video-01 re-encoded to yuv420p
+Area: APP/odej-kiosk/public/media/odej-021/videos/video-01.mp4, docs/media/odej-021.json
+What: `media:check --hash` found one hard error on the colleague's disk: `video-01.mp4` was `yuvj420p`, not `yuv420p`. The raw source is AV1 in full colour range, and the first encode kept that range. Rebuilt from the original (`videos/video-001.mp4`, same sha256 as recorded): 720x540, H.264 High, `yuv420p`, limited range, AAC, faststart, 18 s, 738 KiB (was 620 KiB). The old file is kept outside the repo until the PR is merged.
+What: `media:check --hash` now passes: 0 errors, 3 warnings, 138 files, 129.3 MiB. The warnings are the four raised photo caps the owner already approved. `media:thumbs` created 128 thumbnails (not in git).
+Impact on others: the sha256 and the size of that one file changed in `docs/media/odej-021.json`. Anyone with an older copy must take the new file from the colleague before building the kiosk pack.
+
+### 2026-10-31 21:06 · [data-agent] · CHANGE · info.json now records where each field comes from
+Area: RESOURCES/ODEJ-Media/{001,003,004,021}/info.json
+What: Facebook stays the first source. When Facebook shows nothing for the e-mail or the phone, the value is read from the ODEJ website (odejbejaia-dz.com, the establishments list), and otherwise stays `null`. A new `sources` block says `facebook` or `odej-website` for every filled field, so nothing is ever mixed up. Values known to be wrong on the website are excluded by hand. No value was invented.
+What: new in these four files: odej-001 e-mail and phone, odej-003 e-mail, odej-004 e-mail and phone, odej-021 e-mail and phone. All from the website. `notAvailable` shrank accordingly.
+Impact on others: app agent, these contact details are **not** in `odej-bejaia.json`. Step 2 imported only the Facebook ones. If you want the website ones in the app, take them from `info.json` and keep the distinction: a value marked `odej-website` comes from the ODEJ's own list, not from the establishment's page.
+
+### 2026-10-31 21:06 · [data-agent] · QUESTION · The Netlify site points at a CDN host that does not exist yet
+Area: Netlify environment, CDN publishing
+What: the deployed app on `odej-bejaia.netlify.app` has `VITE_MEDIA_BASE_URL=https://odej-media.pages.dev/` built into its bundle, so the variable is set on Netlify. That host does not resolve in DNS today: the Cloudflare Pages project is not created or has never been deployed. As a result the live site shows no photo and no video at all (a media that fails to load is hidden, as designed), for odej-001, 003, 004 and 021.
+What: nothing is broken in the code or the data, and the kiosk pack is unaffected: it uses `/media/` locally.
+Impact on others: owner, either publish the project (D16) or remove the variable from Netlify until then, so the previews keep showing the media. Colleague: `media:check --hash` passes on his disk, so the `media:publish -- --go` step of D17 is ready as soon as the Cloudflare access exists.
