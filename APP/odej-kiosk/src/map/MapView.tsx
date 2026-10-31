@@ -3,6 +3,7 @@ import maplibregl from 'maplibre-gl';
 import type { Map as MlMap, Marker, PaddingOptions } from 'maplibre-gl';
 import type { BasemapId, Category, Establishment, KioskData, Locale } from '../types';
 import { CONFIG } from '../config';
+import { titleOf } from '../data/model';
 import { styleFor, SKY, TERRAIN_SPEC } from './basemaps';
 import { CATEGORY_ICONS, svgString } from '../components/icons';
 import { bounds, distanceKm, type LngLat } from '../lib/geo';
@@ -232,7 +233,8 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
 
   useEffect(() => {
     markersRef.current.forEach(({ el, label, est }) => {
-      const name = est.name[props.locale] ?? est.name.ar ?? '';
+      const title = titleOf(est);
+      const name = title[props.locale] ?? title.ar ?? '';
       label.textContent = name;
       el.setAttribute('aria-label', name);
     });

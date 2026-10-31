@@ -15,6 +15,14 @@ export interface MediaItem {
   caption?: I18nText;
 }
 
+export interface EstablishmentMedia {
+  cover: MediaItem | null;
+  gallery: MediaItem[];
+}
+
+/** Contenu de media/index.json : les media.json de tous les établissements, par id */
+export type MediaIndex = Record<string, EstablishmentMedia>;
+
 export interface Category {
   id: string;
   label: I18nText;
@@ -45,14 +53,22 @@ export interface Issue {
 export interface Establishment {
   id: string;
   ref?: number;
+  /** Nom officiel de la liste ODEJ */
   name: I18nText;
+  /** Titre affiché (type + commune). Absent : on affiche name */
+  displayName?: I18nText;
+  /** Personne qui donne son nom à l'établissement */
+  honoree?: I18nText;
+  featured?: boolean;
+  featuredOrder?: number;
   category: string;
   placeId: string | null;
   location: { lat: number; lng: number };
   description?: I18nText;
   activities?: string[];
-  contact?: { phone?: string | null; email?: string | null; facebook?: string | null };
-  media?: { cover: MediaItem | null; gallery: MediaItem[] };
+  contact?: { phone?: string | null; address?: string | null; email?: string | null; facebook?: string | null };
+  /** Absent du JSON : fusionné au chargement depuis media/index.json */
+  media?: EstablishmentMedia;
   openingHours?: I18nText | null;
   verification?: { status: 'ok' | 'to_check'; issues: Issue[] };
 }

@@ -1,0 +1,25 @@
+{
+  "odej-003": {
+    "approved": true,
+    "description": {
+      "ar": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
+      "en": "The science leisure centre offers a variety of interactive activities that aim to develop young people's scientific and technological skills in a fun and innovative way."
+    },
+    "phone": "0661 89 04 11",
+    "address": "Oued Ghir, Bejaia, Algeria",
+    "openingHours": { "ar": "مفتوح دائمًا", "en": "Always open" },
+    "unverified": ["description.en", "openingHours"]
+  },
+  "odej-004": {
+    "approved": true,
+    "address": "Beni Maouche, Bejaia, 06124"
+  },
+  "odej-021": {
+    "approved": true,
+    "description": {
+      "ar": "المركب الرياضي الجواري أوزلاقن فضاء مخصص لتفتح الشباب من خلال أنشطة تربوية وترفيهية متنوعة. مهمتنا شغل أوقات فراغ الشباب بطريقة بناءة ومفيدة.",
+      "en": "CSP Ouzellaguen is a space dedicated to the personal growth of young people through a range of educational and leisure activities. Our mission is to fill young people's free time in a constructive and enriching way."
+    },
+    "unverified": ["description.ar", "description.en"]
+  }
+}

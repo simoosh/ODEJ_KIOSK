@@ -7,8 +7,10 @@
     "node": "^22.13.0"
   },
   "scripts": {
+    "predev": "node scripts/build-media-index.mjs",
     "dev": "vite",
-    "build": "npm run validate:data && tsc -p tsconfig.json --noEmit && vite build",
+    "prebuild": "node scripts/build-media-index.mjs",
+    "build":"npm run validate:data && tsc -p tsconfig.json --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",

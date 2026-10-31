@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "odej-bejaia.schema.json",
   "title": "Données de la borne ODEJ Béjaïa",
-  "description": "Un seul fichier décrit l'organisation, la wilaya, les catégories, les lieux et les établissements. Tous les textes affichés sont bilingues (ar, en).",
+  "description": "Décrit l'organisation, la wilaya, les catégories, les lieux et les établissements. Tous les textes affichés sont bilingues (ar, en). Les médias sont dans public/media/odej-NNN/media.json (media.schema.json).",
   "type": "object",
   "required": ["meta", "organization", "wilaya", "categories", "activities", "places", "establishments"],
   "$defs": {
@@ -23,21 +23,11 @@
           "enum": [
             "DUPLICATE_COORDS", "NEAR_DUPLICATE", "DUPLICATE_LINK", "DUPLICATE_NAME",
             "PLACE_MISMATCH", "PLACE_MISSING", "COMMUNE_UNKNOWN",
-            "TYPE_UNKNOWN", "TYPE_FROM_LINK", "SPELLING"
+            "TYPE_UNKNOWN", "TYPE_FROM_LINK", "TYPE_FROM_PAGE_NAME", "SPELLING",
+            "NO_PAGE", "AUDIT_NOTE", "TRANSLATION_UNVERIFIED"
           ]
         },
         "message": { "type": "string" }
-      }
-    },
-    "media": {
-      "type": "object",
-      "required": ["src"],
-      "properties": {
-        "src": { "type": "string", "description": "Chemin relatif à public/ (media/odej-003/gallery/gallery-01.webp) ou URL" },
-        "kind": { "enum": ["image", "video"] },
-        "poster": { "type": "string", "description": "Image affichée avant la lecture d'une vidéo" },
-        "fit": { "enum": ["cover", "contain"], "description": "contain montre l'image entière (logo, image carrée)" },
-        "caption": { "$ref": "#/$defs/i18n" }
       }
     }
   },
@@ -135,7 +125,11 @@
         "properties": {
           "id": { "type": "string" },
           "ref": { "type": "integer", "description": "Numéro de ligne dans la liste ODEJ" },
-          "name": { "$ref": "#/$defs/i18n" },
+          "name": { "$ref": "#/$defs/i18n", "description": "Nom officiel de la liste ODEJ, jamais modifié" },
+          "displayName": { "$ref": "#/$defs/i18n", "description": "Titre affiché : type + commune. Absent : on affiche name" },
+          "honoree": { "$ref": "#/$defs/i18n", "description": "Personne qui donne son nom à l'établissement, en sous-titre" },
+          "featured": { "type": "boolean", "description": "Établissement phare du stand" },
+          "featuredOrder": { "type": "integer", "description": "Ordre entre établissements phares" },
           "category": { "type": "string", "description": "id d'une entrée de categories" },
           "placeId": { "type": ["string", "null"], "description": "id d'une entrée de places" },
           "location": {
@@ -152,15 +146,9 @@
             "type": "object",
             "properties": {
               "phone": { "type": ["string", "null"] },
+              "address": { "type": ["string", "null"] },
               "email": { "type": ["string", "null"] },
               "facebook": { "type": ["string", "null"] }
-            }
-          },
-          "media": {
-            "type": "object",
-            "properties": {
-              "cover": { "oneOf": [{ "$ref": "#/$defs/media" }, { "type": "null" }] },
-              "gallery": { "type": "array", "items": { "$ref": "#/$defs/media" } }
             }
           },
           "openingHours": { "oneOf": [{ "$ref": "#/$defs/i18n" }, { "type": "null" }] },

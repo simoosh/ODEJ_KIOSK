@@ -2,7 +2,7 @@
   "$schema": "./odej-bejaia.schema.json",
   "meta": {
     "version": "0.1.0",
-    "updatedAt": "2026-10-29T04:56:32Z",
+    "updatedAt": "2026-10-31T04:00:00Z",
     "source": "Liste des établissements transmise par l'ODEJ de Béjaïa (PDF, 67 lignes, octobre 2026)",
     "locales": [
       "ar",
@@ -127,6 +127,19 @@
         "culture",
         "sport",
         "events"
+      ]
+    },
+    {
+      "id": "youth-camp",
+      "label": {
+        "ar": "مخيم الشباب",
+        "en": "Youth camp"
+      },
+      "color": "#B84E16",
+      "icon": "tent",
+      "defaultActivities": [
+        "accommodation",
+        "tourism"
       ]
     },
     {
@@ -575,117 +588,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61580052382503"
       },
-      "media": {
-        "cover": {
-          "src": "media/odej-001/cover.webp",
-          "kind": "image",
-          "fit": "contain"
-        },
-        "gallery": [
-          {
-            "src": "media/odej-001/gallery/gallery-01.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-02.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-03.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-04.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-05.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-06.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-07.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-08.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-09.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-10.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-11.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-12.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-13.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-14.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-15.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-16.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-17.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-18.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-19.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-20.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-21.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-22.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/gallery/gallery-23.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-001/videos/video-01.mp4",
-            "kind": "video",
-            "poster": "media/odej-001/videos/video-01-poster.webp"
-          },
-          {
-            "src": "media/odej-001/videos/video-02.mp4",
-            "kind": "video",
-            "poster": "media/odej-001/videos/video-02-poster.webp"
-          }
-        ]
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -713,16 +615,21 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61580061350522"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
+        "facebook": null
       },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "NO_PAGE",
+            "message": "Lien Facebook retiré : inaccessible ou page d'un autre établissement."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Link inaccessible on two independent checks"
+          }
+        ]
       }
     },
     {
@@ -739,200 +646,38 @@
         "lng": 4.9728224
       },
       "description": {
-        "ar": null,
-        "en": null
+        "ar": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
+        "en": "The science leisure centre offers a variety of interactive activities that aim to develop young people's scientific and technological skills in a fun and innovative way."
       },
       "activities": [],
       "contact": {
-        "phone": null,
+        "phone": "0661 89 04 11",
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61573163036734"
+        "facebook": "https://www.facebook.com/profile.php?id=61573163036734",
+        "address": "Oued Ghir, Bejaia, Algeria"
       },
-      "media": {
-        "cover": null,
-        "gallery": [
-          {
-            "src": "media/odej-003/gallery/gallery-01.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-02.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-03.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-04.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-05.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-06.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-07.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-08.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-09.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-10.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-11.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-12.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-13.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-14.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-15.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-16.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-17.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-18.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-19.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-20.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-21.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-22.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-23.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-24.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-25.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-26.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-27.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-28.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-29.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-30.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-31.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-32.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-33.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-34.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/gallery/gallery-35.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-003/videos/video-01.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-01-poster.webp"
-          },
-          {
-            "src": "media/odej-003/videos/video-02.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-02-poster.webp"
-          },
-          {
-            "src": "media/odej-003/videos/video-03.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-03-poster.webp"
-          },
-          {
-            "src": "media/odej-003/videos/video-04.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-04-poster.webp"
-          },
-          {
-            "src": "media/odej-003/videos/video-05.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-05-poster.webp"
-          },
-          {
-            "src": "media/odej-003/videos/video-06.mp4",
-            "kind": "video",
-            "poster": "media/odej-003/videos/video-06-poster.webp"
-          }
-        ]
+      "openingHours": {
+        "ar": "مفتوح دائمًا",
+        "en": "Always open"
       },
-      "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
             "code": "SPELLING",
             "message": "Écrit « واد غير » ; nom officiel de la commune : وادي غير."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.en."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : openingHours."
           }
         ]
-      }
+      },
+      "featured": true
     },
     {
       "id": "odej-004",
@@ -955,128 +700,18 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61579900258159"
-      },
-      "media": {
-        "cover": {
-          "src": "media/odej-004/cover.webp",
-          "kind": "image"
-        },
-        "gallery": [
-          {
-            "src": "media/odej-004/gallery/gallery-01.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-02.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-03.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-04.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-05.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-06.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-07.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-08.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-09.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-10.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-11.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-12.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-13.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-14.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-15.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-16.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-17.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-18.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-19.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-20.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-21.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-22.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-23.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-24.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-25.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-26.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-004/gallery/gallery-27.webp",
-            "kind": "image"
-          }
-        ]
+        "facebook": "https://www.facebook.com/profile.php?id=61579900258159",
+        "address": "Beni Maouche, Bejaia, 06124"
       },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Wrong Facebook category (music, health)"
+          }
+        ]
       }
     },
     {
@@ -1086,7 +721,7 @@
         "ar": "الشهيد أوغليس محند أكلي أميزور",
         "en": "Martyr Ouaglis Mohand Akli"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "amizour",
       "location": {
         "lat": 36.6471708,
@@ -1102,19 +737,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579968204967"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري أميزور-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Wrong Facebook category (restaurant)"
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري أميزور",
+        "en": "Amizour Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد أوغليس محند أكلي",
+        "en": "Martyr Ouaglis Mohand Akli"
       }
     },
     {
@@ -1140,10 +783,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61580027542318"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1162,7 +801,7 @@
         "ar": "الشهيد حماي بشير شميني",
         "en": "Martyr Hamai Bachir"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "chemini",
       "location": {
         "lat": 36.5954608,
@@ -1178,19 +817,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61580077104373"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري- شميني ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري شميني",
+        "en": "Chemini Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد حماي بشير",
+        "en": "Martyr Hamai Bachir"
       }
     },
     {
@@ -1200,7 +843,7 @@
         "ar": "المجاهد المرحوم محمد بوضياف أوقاس",
         "en": "Mujahid Mohamed Boudiaf"
       },
-      "category": "youth-facility",
+      "category": "hostel",
       "placeId": "aokas",
       "location": {
         "lat": 36.6448061,
@@ -1216,19 +859,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579809004668"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« بيت الشباب اوقاس ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "بيت الشباب أوقاس",
+        "en": "Aokas Youth Hostel"
+      },
+      "honoree": {
+        "ar": "المجاهد المرحوم محمد بوضياف",
+        "en": "Mujahid Mohamed Boudiaf"
       }
     },
     {
@@ -1254,10 +901,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100066941829908"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -1271,7 +914,7 @@
         "ar": "الشهيد بوحيرد السعيد سوق الإثنين",
         "en": "Martyr Bouhired Said"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "souk-el-tenine",
       "location": {
         "lat": 36.6280037,
@@ -1287,10 +930,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579649019605"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1300,10 +939,22 @@
             "message": "Coordonnées identiques à la ligne 32."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب الشهيد بوحيرد سعيد سوق الاثنين -ولاية بجاية- »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Same coordinates as #32"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب سوق الإثنين",
+        "en": "Souk El Tenine Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بوحيرد السعيد",
+        "en": "Martyr Bouhired Said"
       }
     },
     {
@@ -1313,7 +964,7 @@
         "ar": "الشهداء آيت صالح بجاية",
         "en": "Ait Salah Martyrs"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "bejaia",
       "location": {
         "lat": 36.7721416,
@@ -1329,19 +980,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579845034839"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري اغيل اوعزوق بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Listed as Aït Salah; page is the Ighil Ouazzoug sports complex. Confirm"
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري بجاية",
+        "en": "Bejaia Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهداء آيت صالح",
+        "en": "Ait Salah Martyrs"
       }
     },
     {
@@ -1351,7 +1010,7 @@
         "ar": "الشهيد خالدي عبد القادر صنادلة",
         "en": "Martyr Khaldi Abdelkader"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "senadla",
       "location": {
         "lat": 36.4496728,
@@ -1367,23 +1026,31 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61571842560285"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
-          },
-          {
             "code": "COMMUNE_UNKNOWN",
             "message": "« صنادلة » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب الصنادلة-ولاية بحاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Wrong Facebook category (interior decoration)"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب صنادلة",
+        "en": "Senadla Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد خالدي عبد القادر",
+        "en": "Martyr Khaldi Abdelkader"
       }
     },
     {
@@ -1408,10 +1075,6 @@
         "phone": null,
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579942858361"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
       },
       "openingHours": null,
       "verification": {
@@ -1440,11 +1103,7 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61556223667359"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
+        "facebook": null
       },
       "openingHours": null,
       "verification": {
@@ -1453,6 +1112,14 @@
           {
             "code": "TYPE_UNKNOWN",
             "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+          },
+          {
+            "code": "NO_PAGE",
+            "message": "Lien Facebook retiré : inaccessible ou page d'un autre établissement."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Link opens the Sidi Aïch youth centre, which is #15"
           }
         ]
       }
@@ -1464,7 +1131,7 @@
         "ar": "عيماد العربي سيدي عيش",
         "en": "Aimad Larbi"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "sidi-aich",
       "location": {
         "lat": 36.6275021,
@@ -1480,10 +1147,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1BMUUDa4Yc/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1493,10 +1156,18 @@
             "message": "« عيماد » : orthographe à confirmer (عماد ؟)."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب سيدي عيش - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب سيدي عيش",
+        "en": "Sidi Aich Youth Centre"
+      },
+      "honoree": {
+        "ar": "عيماد العربي",
+        "en": "Aimad Larbi"
       }
     },
     {
@@ -1506,7 +1177,7 @@
         "ar": "مولود فرعون القصر",
         "en": "Mouloud Feraoun"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "el-kseur",
       "location": {
         "lat": 36.7584523,
@@ -1522,10 +1193,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1AvmEe4LxM/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1539,10 +1206,22 @@
             "message": "Le nom cite El Kseur mais les coordonnées tombent en ville de Béjaïa (≈ 21 km d'El Kseur), identiques à la ligne 42."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب القصر-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Coordinates match #42 in Béjaïa city, not El Kseur · Has posts Facebook labels as AI content"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب القصر",
+        "en": "El Kseur Youth Centre"
+      },
+      "honoree": {
+        "ar": "مولود فرعون",
+        "en": "Mouloud Feraoun"
       }
     },
     {
@@ -1552,7 +1231,7 @@
         "ar": "الشهيد عبد الرحمان فارس أقبو",
         "en": "Martyr Abderrahmane Fares"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "akbou",
       "location": {
         "lat": 36.4581245,
@@ -1568,19 +1247,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100063712759284"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب اقبو- ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب أقبو",
+        "en": "Akbou Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد عبد الرحمان فارس",
+        "en": "Martyr Abderrahmane Fares"
       }
     },
     {
@@ -1606,10 +1289,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579675752048"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1617,6 +1296,10 @@
           {
             "code": "COMMUNE_UNKNOWN",
             "message": "« تقريت » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Wrong Facebook category (news site)"
           }
         ]
       }
@@ -1628,7 +1311,7 @@
         "ar": "الشهيد معداوي بوالسعد قندوزة",
         "en": "Martyr Maadaoui Bouelsaad"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "guendouza",
       "location": {
         "lat": 36.4532283,
@@ -1644,10 +1327,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579857720892"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1657,14 +1336,22 @@
             "message": "À 143 m de la ligne 6 : même site ou coordonnées recopiées ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
-          },
-          {
             "code": "COMMUNE_UNKNOWN",
             "message": "« قندوزة » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب قندوزة - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب قندوزة",
+        "en": "Guendouza Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد معداوي بوالسعد",
+        "en": "Martyr Maadaoui Bouelsaad"
       }
     },
     {
@@ -1690,10 +1377,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579762055054"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -1707,15 +1390,15 @@
         "ar": "الشهيد شيلا الطيب أوزلاقن",
         "en": "Martyr Chila Tayeb"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "ouzellaguen",
       "location": {
         "lat": 36.5475007,
         "lng": 4.608137
       },
       "description": {
-        "ar": null,
-        "en": null
+        "ar": "المركب الرياضي الجواري أوزلاقن فضاء مخصص لتفتح الشباب من خلال أنشطة تربوية وترفيهية متنوعة. مهمتنا شغل أوقات فراغ الشباب بطريقة بناءة ومفيدة.",
+        "en": "CSP Ouzellaguen is a space dedicated to the personal growth of young people through a range of educational and leisure activities. Our mission is to fill young people's free time in a constructive and enriching way."
       },
       "activities": [],
       "contact": {
@@ -1723,153 +1406,31 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/19NBtGZk71/"
       },
-      "media": {
-        "cover": {
-          "src": "media/odej-021/cover.webp",
-          "kind": "image"
-        },
-        "gallery": [
-          {
-            "src": "media/odej-021/gallery/gallery-01.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-02.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-03.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-04.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-05.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-06.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-07.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-08.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-09.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-10.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-11.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-12.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-13.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-14.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-15.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-16.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-17.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-18.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-19.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-20.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-21.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-22.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-23.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-24.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-25.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-26.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-27.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-28.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-29.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/gallery/gallery-30.webp",
-            "kind": "image"
-          },
-          {
-            "src": "media/odej-021/videos/video-01.mp4",
-            "kind": "video",
-            "poster": "media/odej-021/videos/video-01-poster.webp"
-          },
-          {
-            "src": "media/odej-021/videos/video-02.mp4",
-            "kind": "video",
-            "poster": "media/odej-021/videos/video-02-poster.webp"
-          }
-        ]
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري أوزلاقن - ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.ar."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.en."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري أوزلاقن",
+        "en": "Ouzellaguen Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد شيلا الطيب",
+        "en": "Martyr Chila Tayeb"
       }
     },
     {
@@ -1894,10 +1455,6 @@
         "phone": null,
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579581283111"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
       },
       "openingHours": null,
       "verification": {
@@ -1928,10 +1485,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100047701147317"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -1945,7 +1498,7 @@
         "ar": "الشهيد بن تجي محند أكلي برباشة",
         "en": "Martyr Bentedji Mohand Akli"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "barbacha",
       "location": {
         "lat": 36.6813495,
@@ -1961,10 +1514,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1BPy6K5UFH/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -1974,10 +1523,22 @@
             "message": "Le nom cite Barbacha mais le point est à ≈ 14 km au nord de Barbacha, près d'El Kseur."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب برباشة-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Coordinates are far from Barbacha and from #22"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب برباشة",
+        "en": "Barbacha Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بن تجي محند أكلي",
+        "en": "Martyr Bentedji Mohand Akli"
       }
     },
     {
@@ -1987,7 +1548,7 @@
         "ar": "يوم الشهيد 18 فيفري تامريجت",
         "en": "18 February Martyrs' Day"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "tamridjet",
       "location": {
         "lat": 36.5746785,
@@ -2003,19 +1564,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579600935202"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب تامريجت -ولاية بجاية- »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب تامريجت",
+        "en": "Tamridjet Youth Centre"
+      },
+      "honoree": {
+        "ar": "يوم الشهيد 18 فيفري",
+        "en": "18 February Martyrs' Day"
       }
     },
     {
@@ -2041,10 +1606,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579719070404"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2063,7 +1624,7 @@
         "ar": "الشهيد بانون أكلي",
         "en": "Martyr Banoun Akli"
       },
-      "category": "youth-facility",
+      "category": "multipurpose-hall",
       "placeId": null,
       "location": {
         "lat": 36.7898198,
@@ -2079,10 +1640,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/17Hdz56ACD/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2092,8 +1649,12 @@
             "message": "Aucune commune dans le nom ; le point se situe entre Adekar, Toudja et Beni Ksila."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« قاعة متعددة النشاطات جبلة ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Page is the Djebla multi-activity hall. Confirm it is this institution"
           }
         ]
       }
@@ -2105,7 +1666,7 @@
         "ar": "الشهيد اسماعيل علي بن عيسى أوقاس",
         "en": "Martyr Smail Ali Benaissa"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "aokas",
       "location": {
         "lat": 36.6411292,
@@ -2121,19 +1682,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100048413726285"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري أوقاس -ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Has posts Facebook labels as AI content"
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري أوقاس",
+        "en": "Aokas Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد اسماعيل علي بن عيسى",
+        "en": "Martyr Smail Ali Benaissa"
       }
     },
     {
@@ -2143,7 +1712,7 @@
         "ar": "الشهيد عيوز سليمان درقينة",
         "en": "Martyr Aiouz Slimane"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "darguina",
       "location": {
         "lat": 36.5505346,
@@ -2159,10 +1728,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100064090062577"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2172,10 +1737,22 @@
             "message": "Même nom que la ligne 67, à 1.6 km : doublon ou deux établissements distincts ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري الشهيد عيوز سليمان درڤينة ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Same listed name as #67, a different institution · Has posts Facebook labels as AI content"
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري درقينة",
+        "en": "Darguina Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد عيوز سليمان",
+        "en": "Martyr Aiouz Slimane"
       }
     },
     {
@@ -2201,14 +1778,15 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579996163422"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Has posts Facebook labels as AI content"
+          }
+        ]
       }
     },
     {
@@ -2218,7 +1796,7 @@
         "ar": "الشهيد جرود برمطان",
         "en": "Martyr Djeroud"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "bermatane",
       "location": {
         "lat": 36.6042586,
@@ -2234,23 +1812,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579987524148"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
-          },
-          {
             "code": "COMMUNE_UNKNOWN",
             "message": "« برمطان » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري سيدي عيش-ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري برمطان",
+        "en": "Bermatane Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد جرود",
+        "en": "Martyr Djeroud"
       }
     },
     {
@@ -2276,10 +1858,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/complexesportifdeproximitesoukeltenine/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2291,8 +1869,20 @@
           {
             "code": "TYPE_FROM_LINK",
             "message": "Type déduit du lien Facebook, à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Same coordinates as #10"
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري سوق الإثنين",
+        "en": "Souk El Tenine Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد عمارة عمار",
+        "en": "Martyr Amara Amar"
       }
     },
     {
@@ -2302,7 +1892,7 @@
         "ar": "الشهيد أوشيحة لحلو تازمالت",
         "en": "Martyr Ouchiha Lahlou"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "tazmalt",
       "location": {
         "lat": 36.3906026,
@@ -2318,23 +1908,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100064802464215"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "DUPLICATE_LINK",
-            "message": "Même lien Facebook que la ligne 49 (à 0.5 km)."
-          },
-          {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب تازمالت- بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب تازمالت",
+        "en": "Tazmalt Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد أوشيحة لحلو",
+        "en": "Martyr Ouchiha Lahlou"
       }
     },
     {
@@ -2344,7 +1934,7 @@
         "ar": "الشهيد سباحي محند تيشي",
         "en": "Martyr Sebahi Mohand"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "tichy",
       "location": {
         "lat": 36.6699679,
@@ -2360,10 +1950,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579465127750"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2373,10 +1959,18 @@
             "message": "À 68 m de la ligne 50 : même site ou coordonnées recopiées ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري تيشي-بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري تيشي",
+        "en": "Tichy Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد سباحي محند",
+        "en": "Martyr Sebahi Mohand"
       }
     },
     {
@@ -2386,7 +1980,7 @@
         "ar": "الشهيد بركاني طاهر تيمزريت",
         "en": "Martyr Berkani Tahar"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "timezrit",
       "location": {
         "lat": 36.6277852,
@@ -2402,19 +1996,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579418235780"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري تيمزريت - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري تيمزريت",
+        "en": "Timezrit Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "الشهيد بركاني طاهر",
+        "en": "Martyr Berkani Tahar"
       }
     },
     {
@@ -2424,7 +2022,7 @@
         "ar": "شعبان اعمر تيزي انبربر",
         "en": "Chaabane Amar"
       },
-      "category": "youth-facility",
+      "category": "sports-complex",
       "placeId": "tizi-nberber",
       "location": {
         "lat": 36.595048,
@@ -2440,10 +2038,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579811944125"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2453,10 +2047,18 @@
             "message": "Écrit « تيزي انبربر » dans la liste ; nom officiel de la commune : تيزي نبربر."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري تيزي نبربر - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "مركب رياضي جواري تيزي نبربر",
+        "en": "Tizi N'Berber Local Sports Complex"
+      },
+      "honoree": {
+        "ar": "شعبان اعمر",
+        "en": "Chaabane Amar"
       }
     },
     {
@@ -2480,23 +2082,23 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=100079941069593"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
+        "facebook": null
       },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "DUPLICATE_LINK",
-            "message": "Même lien Facebook que la ligne 39 (à 27.0 km)."
-          },
-          {
             "code": "SPELLING",
             "message": "Écrit « تمقرة » dans la liste ; nom officiel de la commune : تامقرة."
+          },
+          {
+            "code": "NO_PAGE",
+            "message": "Lien Facebook retiré : inaccessible ou page d'un autre établissement."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Link opens the Akfadou youth centre, which is #39"
           }
         ]
       }
@@ -2508,7 +2110,7 @@
         "ar": "الشهيد بلغانية أحمد أجيوان",
         "en": "Martyr Belghania Ahmed"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "adjiouane",
       "location": {
         "lat": 36.4587928,
@@ -2524,23 +2126,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/19i1Cr5fct/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
-          },
-          {
             "code": "COMMUNE_UNKNOWN",
             "message": "« أجيوان » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب اجيوان -ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب أجيوان",
+        "en": "Adjiouane Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بلغانية أحمد",
+        "en": "Martyr Belghania Ahmed"
       }
     },
     {
@@ -2550,7 +2156,7 @@
         "ar": "الشهيد بوعيدان أرزقي أكفادو",
         "en": "Martyr Bouaidane Arezki"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "akfadou",
       "location": {
         "lat": 36.6316996,
@@ -2566,23 +2172,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100079941069593"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "DUPLICATE_LINK",
-            "message": "Même lien Facebook que la ligne 37 (à 27.0 km)."
-          },
-          {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب أكفادو - الشهيد بوعيفل أرزقي- ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب أكفادو",
+        "en": "Akfadou Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بوعيدان أرزقي",
+        "en": "Martyr Bouaidane Arezki"
       }
     },
     {
@@ -2592,7 +2198,7 @@
         "ar": "الشهيد حريش محند أوقاس",
         "en": "Martyr Harrich Mohand"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "aokas",
       "location": {
         "lat": 36.6348539,
@@ -2608,19 +2214,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579953660171"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب اوقاس-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "No profile picture"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب أوقاس",
+        "en": "Aokas Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد حريش محند",
+        "en": "Martyr Harrich Mohand"
       }
     },
     {
@@ -2646,10 +2260,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100089213300258"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -2663,7 +2273,7 @@
         "ar": "الشهيدة فاطمة رمطاني بجاية",
         "en": "Martyr Fatma Remtani"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "bejaia",
       "location": {
         "lat": 36.7584523,
@@ -2679,10 +2289,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579782907491"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2692,10 +2298,22 @@
             "message": "Coordonnées identiques à la ligne 16."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب فاطمة رمطاني - ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Same coordinates as #16"
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب بجاية",
+        "en": "Bejaia Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيدة فاطمة رمطاني",
+        "en": "Martyr Fatma Remtani"
       }
     },
     {
@@ -2721,14 +2339,15 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579678238775"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Has posts Facebook labels as AI content"
+          }
+        ]
       }
     },
     {
@@ -2738,7 +2357,7 @@
         "ar": "الشهيد مسالي علي خراطة",
         "en": "Martyr Messali Ali"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "kherrata",
       "location": {
         "lat": 36.4949338,
@@ -2754,10 +2373,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100088918610901"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2767,10 +2382,18 @@
             "message": "À 105 m de la ligne 54 : même site ou coordonnées recopiées ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب خراطة - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب خراطة",
+        "en": "Kherrata Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد مسالي علي",
+        "en": "Martyr Messali Ali"
       }
     },
     {
@@ -2780,7 +2403,7 @@
         "ar": "الشهيد بوفرورة محمد بن علي ملبو",
         "en": "Martyr Boufroura Mohamed Benali"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "melbou",
       "location": {
         "lat": 36.6400904,
@@ -2796,19 +2419,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100091665812577"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب الشهيد بوفرورة محمد بن علي ملبو- ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب ملبو",
+        "en": "Melbou Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بوفرورة محمد بن علي",
+        "en": "Martyr Boufroura Mohamed Benali"
       }
     },
     {
@@ -2818,7 +2445,7 @@
         "ar": "الشهيد بوهدو عبد الحميد",
         "en": "Martyr Bouhaddou Abdelhamid"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": null,
       "location": {
         "lat": 36.547249,
@@ -2834,10 +2461,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579585817575"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2851,8 +2474,12 @@
             "message": "Aucune commune dans le nom ; le point est dans Seddouk, à 150 m de la ligne 57."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب مسيسنة-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Page says Messissna; coordinates sit beside Seddouk (#30, #57). Confirm"
           }
         ]
       }
@@ -2880,10 +2507,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61567478515020"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -2897,7 +2520,7 @@
         "ar": "الشهيد تواتي اعمر",
         "en": "Martyr Touati Amar"
       },
-      "category": "youth-facility",
+      "category": "youth-camp",
       "placeId": null,
       "location": {
         "lat": 36.8822041,
@@ -2913,10 +2536,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1CVVweqTfs/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -2926,8 +2545,12 @@
             "message": "Aucune commune dans le nom ; le point est sur la côte, secteur Beni Ksila."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« مخيم الشباب بني كسيلة - ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Page is the Beni Ksila youth camp. Confirm · Has posts Facebook labels as AI content"
           }
         ]
       }
@@ -2953,20 +2576,12 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=100064802464215"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
+        "facebook": null
       },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
-          {
-            "code": "DUPLICATE_LINK",
-            "message": "Même lien Facebook que la ligne 33 (à 0.5 km)."
-          },
           {
             "code": "SPELLING",
             "message": "Cellule tronquée dans la liste (« لشهداء ») : lu « الشهداء »."
@@ -2974,6 +2589,14 @@
           {
             "code": "TYPE_UNKNOWN",
             "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+          },
+          {
+            "code": "NO_PAGE",
+            "message": "Lien Facebook retiré : inaccessible ou page d'un autre établissement."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Link opens the Tazmalt youth centre, which is #33"
           }
         ]
       }
@@ -3001,10 +2624,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/AubergeDeJeunesseDeTichy"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3018,6 +2637,14 @@
             "message": "Type déduit du lien Facebook, à confirmer."
           }
         ]
+      },
+      "displayName": {
+        "ar": "بيت الشباب تيشي",
+        "en": "Tichy Youth Hostel"
+      },
+      "honoree": {
+        "ar": "الشهيد سعدلي العيد",
+        "en": "Martyr Saadli Laid"
       }
     },
     {
@@ -3027,7 +2654,7 @@
         "ar": "الشهيد دهاملة مولود",
         "en": "Martyr Dehamla Mouloud"
       },
-      "category": "youth-facility",
+      "category": "youth-camp",
       "placeId": null,
       "location": {
         "lat": 36.6362766,
@@ -3043,10 +2670,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579738836631"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3056,8 +2679,12 @@
             "message": "Aucune commune dans le nom ; le point est près de Souk El Ténine / Melbou."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« مخيم الشباب ملبو-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Page is the Melbou youth camp. Confirm"
           }
         ]
       }
@@ -3069,7 +2696,7 @@
         "ar": "الشهداء الإخوة سوماري بجاية",
         "en": "Soumari Brothers Martyrs"
       },
-      "category": "youth-facility",
+      "category": "hostel",
       "placeId": "bejaia",
       "location": {
         "lat": 36.7574168,
@@ -3085,19 +2712,27 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579719040563"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« بيت الشباب الاخوة سوماري- ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "No profile picture"
           }
         ]
+      },
+      "displayName": {
+        "ar": "بيت الشباب بجاية",
+        "en": "Bejaia Youth Hostel"
+      },
+      "honoree": {
+        "ar": "الشهداء الإخوة سوماري",
+        "en": "Soumari Brothers Martyrs"
       }
     },
     {
@@ -3107,7 +2742,7 @@
         "ar": "الشهيد بوهراوة اعمر",
         "en": "Martyr Bouhraoua Amar"
       },
-      "category": "youth-facility",
+      "category": "hostel",
       "placeId": null,
       "location": {
         "lat": 36.6310171,
@@ -3123,10 +2758,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100092991300286"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3136,8 +2767,8 @@
             "message": "Aucune commune dans le nom ; le point est près de Souk El Ténine."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« بيت الشباب سوق الاثنين بجاية »), à confirmer par l'ODEJ."
           }
         ]
       }
@@ -3149,7 +2780,7 @@
         "ar": "الشهيد مسعودي رابح خراطة",
         "en": "Martyr Messaoudi Rabah"
       },
-      "category": "youth-facility",
+      "category": "hostel",
       "placeId": "kherrata",
       "location": {
         "lat": 36.4943368,
@@ -3165,10 +2796,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1LvkvvzC7k/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3178,10 +2805,18 @@
             "message": "À 105 m de la ligne 44 : même site ou coordonnées recopiées ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« بيت الشباب خراطة - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "بيت الشباب خراطة",
+        "en": "Kherrata Youth Hostel"
+      },
+      "honoree": {
+        "ar": "الشهيد مسعودي رابح",
+        "en": "Martyr Messaoudi Rabah"
       }
     },
     {
@@ -3191,7 +2826,7 @@
         "ar": "المجاهد المرحوم عبدون محند أميزور",
         "en": "Mujahid Abdoune Mohand"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "amizour",
       "location": {
         "lat": 36.6364745,
@@ -3207,19 +2842,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61580024096605"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب أميزور-ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب أميزور",
+        "en": "Amizour Youth Centre"
+      },
+      "honoree": {
+        "ar": "المجاهد المرحوم عبدون محند",
+        "en": "Mujahid Abdoune Mohand"
       }
     },
     {
@@ -3229,7 +2868,7 @@
         "ar": "مولود قاسم نايت بلقاسم",
         "en": "Mouloud Kacem Nait Belkacem"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": null,
       "location": {
         "lat": 36.3382106,
@@ -3245,10 +2884,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579482942062"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3258,8 +2893,12 @@
             "message": "Aucune commune dans le nom ; le point est au sud de la wilaya, secteur Aït R'zine / Ighil Ali."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب إغيل علي ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Page is the Ighil Ali youth centre. Confirm"
           }
         ]
       }
@@ -3271,7 +2910,7 @@
         "ar": "بركاني مجيد صدوق",
         "en": "Berkani Madjid"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "seddouk",
       "location": {
         "lat": 36.5468231,
@@ -3287,10 +2926,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579791424048"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3300,10 +2935,18 @@
             "message": "À 152 m de la ligne 46 : même site ou coordonnées recopiées ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب صدوق- ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب صدوق",
+        "en": "Seddouk Youth Centre"
+      },
+      "honoree": {
+        "ar": "بركاني مجيد",
+        "en": "Berkani Madjid"
       }
     },
     {
@@ -3329,14 +2972,15 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1Eus4op5WF/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "AUDIT_NOTE",
+            "message": "2 followers"
+          }
+        ]
       }
     },
     {
@@ -3362,10 +3006,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/mj034267083"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3375,6 +3015,14 @@
             "message": "Type déduit du lien Facebook, à confirmer."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب الفلاي",
+        "en": "Leflaye Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد آيت يحي خلاف",
+        "en": "Martyr Ait Yahia Khellaf"
       }
     },
     {
@@ -3384,7 +3032,7 @@
         "ar": "الشهيد معوش حاج لعمارة",
         "en": "Martyr Maouche Hadj Laamara"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": null,
       "location": {
         "lat": 36.5458879,
@@ -3400,10 +3048,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/1AvdQRg65E/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3413,8 +3057,8 @@
             "message": "Aucune commune dans le nom ; le point est à 355 m de la ligne 21 (Ouzellaguen)."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب الشهيد معوش حاج لعمارة أوزلاڤن - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
       }
@@ -3441,10 +3085,6 @@
         "phone": null,
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579625024371"
-      },
-      "media": {
-        "cover": null,
-        "gallery": []
       },
       "openingHours": null,
       "verification": {
@@ -3475,10 +3115,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579914447931"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "ok",
@@ -3508,10 +3144,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=100080305100679"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3519,6 +3151,10 @@
           {
             "code": "COMMUNE_UNKNOWN",
             "message": "« لعلام » est un lieu-dit : commune de rattachement à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Has posts Facebook labels as AI content"
           }
         ]
       }
@@ -3530,7 +3166,7 @@
         "ar": "الشهيد بوعيطة عبدالرحمان تاوريت إغيل",
         "en": "Martyr Bouaita Abderrahmane"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "taourirt-ighil",
       "location": {
         "lat": 36.6975255,
@@ -3546,10 +3182,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61580011975052"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3559,10 +3191,18 @@
             "message": "Écrit « تاوريت إغيل » dans la liste ; nom officiel de la commune : تاوريرت إغيل."
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب تاوريرت اغيل-ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب تاوريرت إغيل",
+        "en": "Taourirt Ighil Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد بوعيطة عبدالرحمان",
+        "en": "Martyr Bouaita Abderrahmane"
       }
     },
     {
@@ -3572,7 +3212,7 @@
         "ar": "الشهيد قشي مجيد تيمزريت",
         "en": "Martyr Kechi Madjid"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "timezrit",
       "location": {
         "lat": 36.6155207,
@@ -3588,19 +3228,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579721738505"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب تيمزريت - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب تيمزريت",
+        "en": "Timezrit Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد قشي مجيد",
+        "en": "Martyr Kechi Madjid"
       }
     },
     {
@@ -3610,7 +3254,7 @@
         "ar": "الشهيد لطرش عبد الله البرزاخ ذرع القايد",
         "en": "Martyr Latreche Abdellah (El Berzakh)"
       },
-      "category": "youth-facility",
+      "category": "youth-centre",
       "placeId": "draa-el-kaid",
       "location": {
         "lat": 36.4418633,
@@ -3626,19 +3270,23 @@
         "email": null,
         "facebook": "https://www.facebook.com/share/19fgjP24gA/"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
         "issues": [
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« دار الشباب البرزاخ - ولاية بجاية »), à confirmer par l'ODEJ."
           }
         ]
+      },
+      "displayName": {
+        "ar": "دار الشباب ذراع القايد",
+        "en": "Draa El Kaid Youth Centre"
+      },
+      "honoree": {
+        "ar": "الشهيد لطرش عبد الله البرزاخ",
+        "en": "Martyr Latreche Abdellah (El Berzakh)"
       }
     },
     {
@@ -3648,7 +3296,7 @@
         "ar": "الشهيد عيوز سليمان درقينة",
         "en": "Martyr Aiouz Slimane"
       },
-      "category": "youth-facility",
+      "category": "hostel",
       "placeId": "darguina",
       "location": {
         "lat": 36.5647144,
@@ -3664,10 +3312,6 @@
         "email": null,
         "facebook": "https://www.facebook.com/profile.php?id=61579776788961"
       },
-      "media": {
-        "cover": null,
-        "gallery": []
-      },
       "openingHours": null,
       "verification": {
         "status": "to_check",
@@ -3677,10 +3321,22 @@
             "message": "Même nom que la ligne 29, à 1.6 km : doublon ou deux établissements distincts ?"
           },
           {
-            "code": "TYPE_UNKNOWN",
-            "message": "Type d'établissement non indiqué (maison de jeunes, salle polyvalente… ?)."
+            "code": "TYPE_FROM_PAGE_NAME",
+            "message": "Type déduit du nom de la page Facebook (« بيت الشباب درقينة-ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Same listed name as #29, a different institution"
           }
         ]
+      },
+      "displayName": {
+        "ar": "بيت الشباب درقينة",
+        "en": "Darguina Youth Hostel"
+      },
+      "honoree": {
+        "ar": "الشهيد عيوز سليمان",
+        "en": "Martyr Aiouz Slimane"
       }
     }
   ]

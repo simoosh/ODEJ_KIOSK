@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { BasemapId, KioskData, Locale } from './types';
+import type { BasemapId, KioskData, Locale, MediaIndex } from './types';
 import { CONFIG } from './config';
 import { I18nProvider, useI18n } from './i18n/I18n';
 import { MapView, type CameraState, type MapHandle } from './map/MapView';
-import { applyFilters, buildIndexes, sortForList, type Filters } from './data/model';
+import { applyFilters, buildIndexes, sortForList, withMedia, type Filters } from './data/model';
 import { Landing } from './components/Landing';
 import { SearchBox, type SearchPick } from './components/SearchBox';
 import { EstablishmentList } from './components/EstablishmentList';
@@ -23,12 +23,14 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(CONFIG.dataUrl)
-      .then((r) => {
+    const load = <T,>(url: string) =>
+      fetch(url).then((r) => {
         if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-        return r.json();
-      })
-      .then(setData)
+        return r.json() as Promise<T>;
+      });
+    // Sans index, l'application s'affiche sans médias
+    Promise.all([load<KioskData>(CONFIG.dataUrl), load<MediaIndex>(CONFIG.mediaIndexUrl).catch(() => ({}))])
+      .then(([kiosk, media]) => setData(withMedia(kiosk, media, `${import.meta.env.BASE_URL}media/`)))
       .catch((e) => setError(String(e)));
   }, []);
 

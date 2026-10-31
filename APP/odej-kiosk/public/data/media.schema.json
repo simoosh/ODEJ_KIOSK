@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "media.schema.json",
+  "title": "Médias d'un établissement (public/media/odej-NNN/media.json)",
+  "description": "Les chemins sont relatifs à la racine des médias : odej-003/gallery/gallery-01.webp, sans le préfixe media/.",
+  "type": "object",
+  "required": ["cover", "gallery"],
+  "additionalProperties": false,
+  "$defs": {
+    "i18n": {
+      "type": "object",
+      "required": ["ar", "en"],
+      "properties": {
+        "ar": { "type": ["string", "null"] },
+        "en": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "path": { "type": "string", "pattern": "^odej-[0-9]{3}/[a-z0-9._/-]+$" },
+    "item": {
+      "type": "object",
+      "required": ["src"],
+      "additionalProperties": false,
+      "properties": {
+        "src": { "$ref": "#/$defs/path" },
+        "kind": { "enum": ["image", "video"] },
+        "poster": { "$ref": "#/$defs/path", "description": "Image affichée avant la lecture d'une vidéo" },
+        "fit": { "enum": ["cover", "contain"], "description": "contain montre l'image entière (logo, image carrée)" },
+        "caption": { "$ref": "#/$defs/i18n" }
+      }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "cover": { "oneOf": [{ "$ref": "#/$defs/item" }, { "type": "null" }] },
+    "gallery": { "type": "array", "items": { "$ref": "#/$defs/item" } },
+    "activities": {
+      "type": "array",
+      "description": "Réservé au classement par activité (étape M), pas encore lu par l'application",
+      "items": {
+        "type": "object",
+        "required": ["slug", "label", "gallery"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "label": { "$ref": "#/$defs/i18n" },
+          "cover": { "oneOf": [{ "$ref": "#/$defs/item" }, { "type": "null" }] },
+          "gallery": { "type": "array", "items": { "$ref": "#/$defs/item" } }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "description": "Réservé aux médias manquants à collecter, pas encore lu par l'application",
+      "items": {
+        "type": "object",
+        "required": ["note"],
+        "additionalProperties": false,
+        "properties": {
+          "activity": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

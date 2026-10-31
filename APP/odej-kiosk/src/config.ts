@@ -1,6 +1,7 @@
 /** Réglages de la borne. Tout ce qui est contenu (textes, établissements) vit dans public/data/odej-bejaia.json. */
 export const CONFIG = {
   dataUrl: 'data/odej-bejaia.json',
+  mediaIndexUrl: 'media/index.json',
 
   /** Retour automatique à l'accueil après inactivité (ms) */
   idleTimeoutMs: 120_000,
