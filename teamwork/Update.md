@@ -43,3 +43,9 @@ Impact on others: do not commit the other two. Do not commit changes to the vali
 Area: whole repo
 What: photos and videos removed from git history. Old clones must be deleted. Backups restored locally.
 Impact on others: agents may start working. Never commit photos or videos.
+### 2026-10-31 02:00 · [owner] · DECISION · Per-establishment media caps are flexible for the data agent
+Area: media budgets (teamwork/README.md section 4), tools/media
+What: the limits of 15 photos, 3 videos and 50 MiB per establishment are now a DEFAULT, not a hard rule. The colleague (data collector) may raise them for establishments of his choice when the content justifies it.
+What: when the data agent raises a cap for an establishment, it MUST add a CHANGE entry here (establishment id, new counts, new total size, one-line reason) in the same PR.
+What: these limits stay HARD and cannot be raised: one file <= 24 MiB, videos H.264 `faststart` <= 720 px wide, <= 15 000 files in total, file names `[a-z0-9._-]`. They come from the CDN (25 MiB per file, 20 000 files) and from kiosk performance.
+Impact on others: app agent: `media:check` must treat the per-establishment caps as warnings only (never errors) and must not remove or block extra media. Show the overshoot in its report instead. Keep the total <= 3 GiB; if the total gets close, the data agent writes a QUESTION here before adding more.
