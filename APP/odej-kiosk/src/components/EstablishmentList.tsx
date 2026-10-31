@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { Establishment, KioskData } from '../types';
 import { titleOf, type Filters, type Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
@@ -12,7 +13,7 @@ interface Props {
   onSelect(id: string): void;
 }
 
-export function EstablishmentList({ data, idx, items, filters, onFilters, onSelect }: Props) {
+export const EstablishmentList = memo(function EstablishmentList({ data, idx, items, filters, onFilters, onSelect }: Props) {
   const { t, tx } = useI18n();
   const counts = new Map<string, number>();
   for (const e of data.establishments) {
@@ -100,4 +101,4 @@ export function EstablishmentList({ data, idx, items, filters, onFilters, onSele
       </ul>
     </div>
   );
-}
+});

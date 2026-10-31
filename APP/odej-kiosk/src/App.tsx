@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { BasemapId, KioskData, Locale, MediaIndex } from './types';
-import { CONFIG } from './config';
+import { CONFIG, forcedQuality, nextQuality, QUALITY, type QualityLevel } from './config';
 import { I18nProvider, useI18n } from './i18n/I18n';
-import { MapView, type CameraState, type MapHandle } from './map/MapView';
+import { MapView, type MapHandle } from './map/MapView';
 import { applyFilters, buildIndexes, sortForList, withMedia, type Filters } from './data/model';
 import { Landing } from './components/Landing';
 import { SearchBox, type SearchPick } from './components/SearchBox';
@@ -13,9 +13,14 @@ import { IdleOverlay } from './components/IdleOverlay';
 import { ScreenSimulator } from './components/ScreenSimulator';
 import { Icon } from './components/Icon';
 import { useIdle, useSize } from './lib/hooks';
+import { perfCounters } from './lib/perf';
 import type { StringKey } from './i18n/strings';
 
+const DebugPanel = lazy(() => import('./components/DebugPanel'));
+
 const SIM_ENABLED = __ARTIFACT__ || new URLSearchParams(location.search).has('sim');
+const DEBUG = new URLSearchParams(location.search).has('debug');
+const FORCED_QUALITY = forcedQuality(location.search);
 const NO_FILTERS: Filters = { category: null, place: null, activity: null };
 
 export default function App() {
@@ -56,15 +61,20 @@ function Kiosk({ data, size }: { data: KioskData; size: { w: number; h: number }
 
 function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w: number; h: number }; onToggleLang(): void }) {
   const { locale, dir, t } = useI18n();
+  useEffect(() => {
+    if (DEBUG) perfCounters.renders += 1;
+  });
   const idx = useMemo(() => buildIndexes(data), [data]);
   const mapRef = useRef<MapHandle>(null);
+  const compassRef = useRef<HTMLSpanElement>(null);
 
   const [screen, setScreen] = useState<'landing' | 'map'>('landing');
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const [basemap, setBasemap] = useState<BasemapId>(__ARTIFACT__ ? 'preview' : 'plan');
-  const [terrain, setTerrain] = useState(!__ARTIFACT__);
-  const [camera, setCamera] = useState<CameraState>({ bearing: 0, pitch: 0, zoom: 8 });
+  const [quality, setQuality] = useState<QualityLevel>(FORCED_QUALITY ?? 'high');
+  const [terrain, setTerrain] = useState(!__ARTIFACT__ && QUALITY[quality].terrain);
+  const [is3d, setIs3d] = useState(false);
   const [orbiting, setOrbiting] = useState(false);
   const [sheetCollapsed, setSheetCollapsed] = useState(false);
   const [notice, setNotice] = useState<StringKey | null>(__ARTIFACT__ ? 'offlineNotice' : null);
@@ -111,21 +121,42 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
 
   const idleLeft = useIdle(screen === 'map', CONFIG.idleTimeoutMs, CONFIG.idleWarningMs, goHome);
 
-  const select = (id: string) => {
+  const select = useCallback((id: string) => {
     setSelectedId(id);
     setSheetCollapsed(false);
     mapRef.current?.focus(id);
-  };
+  }, []);
 
   const pointsOf = (list: typeof data.establishments) => list.map((e) => [e.location.lng, e.location.lat] as [number, number]);
 
-  const applyAndFit = (f: Filters) => {
-    setFilters(f);
-    setSelectedId(null);
-    const list = applyFilters(data, idx, f);
-    if (f.category || f.place || f.activity) mapRef.current?.fitPoints(pointsOf(list));
-    else mapRef.current?.whole();
-  };
+  const applyAndFit = useCallback(
+    (f: Filters) => {
+      setFilters(f);
+      setSelectedId(null);
+      const list = applyFilters(data, idx, f);
+      if (f.category || f.place || f.activity) mapRef.current?.fitPoints(pointsOf(list));
+      else mapRef.current?.whole();
+    },
+    [data, idx],
+  );
+
+  const onBasemapFailed = useCallback((id: BasemapId) => {
+    if (id !== 'preview') {
+      setBasemap('preview');
+      setNotice('offlineNotice');
+    }
+  }, []);
+
+  const onEntryFps = useCallback(
+    (fps: number) => {
+      if (FORCED_QUALITY) return;
+      const next = nextQuality(quality, fps);
+      if (next === quality) return;
+      setQuality(next);
+      setTerrain(!__ARTIFACT__ && QUALITY[next].terrain);
+    },
+    [quality],
+  );
 
   const onPick = (p: SearchPick) => {
     if (p.kind === 'establishment') select(p.id);
@@ -156,20 +187,18 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
         data={data}
         locale={locale}
         basemap={basemap}
-        terrain={terrain}
+        terrain={terrain && screen === 'map'}
         selectedId={selectedId}
         highlightIds={highlightIds}
         padding={padding}
         markersVisible={screen === 'map'}
+        quality={quality}
+        compass={compassRef}
         onSelect={select}
-        onCamera={setCamera}
+        on3dChange={setIs3d}
         onOrbitChange={setOrbiting}
-        onBasemapFailed={(id) => {
-          if (id !== 'preview') {
-            setBasemap('preview');
-            setNotice('offlineNotice');
-          }
-        }}
+        onBasemapFailed={onBasemapFailed}
+        onEntryFps={onEntryFps}
       />
 
       <div className="map-ui" aria-hidden={screen !== 'map'}>
@@ -220,9 +249,11 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
 
         <MapControls
           map={mapRef}
-          camera={camera}
+          compass={compassRef}
+          is3d={is3d}
           basemap={basemap}
           terrain={terrain}
+          terrainLocked={quality === 'low'}
           onBasemap={onBasemap}
           onTerrain={setTerrain}
         />
@@ -240,6 +271,12 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
       <Landing data={data} leaving={screen === 'map'} onStart={start} onToggleLang={onToggleLang} />
 
       {idleLeft !== null && <IdleOverlay secondsLeft={idleLeft} onStay={() => window.dispatchEvent(new Event('pointerdown'))} />}
+
+      {DEBUG && (
+        <Suspense fallback={null}>
+          <DebugPanel map={mapRef} quality={quality} />
+        </Suspense>
+      )}
     </div>
   );
 }

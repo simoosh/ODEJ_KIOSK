@@ -1,6 +1,6 @@
 import { useState, type RefObject } from 'react';
 import type { BasemapId } from '../types';
-import type { MapHandle, CameraState } from '../map/MapView';
+import type { MapHandle } from '../map/MapView';
 import { BASEMAPS } from '../map/basemaps';
 import { useI18n } from '../i18n/I18n';
 import type { StringKey } from '../i18n/strings';
@@ -8,24 +8,25 @@ import { Icon } from './Icon';
 
 interface Props {
   map: RefObject<MapHandle | null>;
-  camera: CameraState;
+  compass: RefObject<HTMLSpanElement | null>;
+  is3d: boolean;
   basemap: BasemapId;
   terrain: boolean;
+  terrainLocked: boolean;
   onBasemap(id: BasemapId): void;
   onTerrain(on: boolean): void;
 }
 
-export function MapControls({ map, camera, basemap, terrain, onBasemap, onTerrain }: Props) {
+export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocked, onBasemap, onTerrain }: Props) {
   const { t } = useI18n();
   const [layersOpen, setLayersOpen] = useState(false);
-  const is3d = camera.pitch > 5;
   const visible = BASEMAPS.filter((b) => (__ARTIFACT__ ? true : b.id !== 'preview'));
 
   return (
     <div className="controls">
       <div className="ctrl-group">
         <button type="button" className="ctrl" onClick={() => map.current?.resetNorth()} aria-label={t('resetNorth')} title={t('resetNorth')}>
-          <span className="compass" style={{ transform: `rotate(${-camera.bearing}deg)` }}>
+          <span className="compass" ref={compass}>
             <Icon name="compass" />
           </span>
         </button>
@@ -94,8 +95,8 @@ export function MapControls({ map, camera, basemap, terrain, onBasemap, onTerrai
               </button>
             ))}
           </div>
-          <label className={`switch ${__ARTIFACT__ ? 'is-disabled' : ''}`}>
-            <input id="terrain-toggle" type="checkbox" checked={terrain} disabled={__ARTIFACT__} onChange={(e) => onTerrain(e.target.checked)} />
+          <label className={`switch ${__ARTIFACT__ || terrainLocked ? 'is-disabled' : ''}`}>
+            <input id="terrain-toggle" type="checkbox" checked={terrain} disabled={__ARTIFACT__ || terrainLocked} onChange={(e) => onTerrain(e.target.checked)} />
             <span className="switch-track" aria-hidden="true" />
             <span>{t('terrain3d')}</span>
           </label>

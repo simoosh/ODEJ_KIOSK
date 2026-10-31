@@ -1,17 +1,33 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState, type RefObject } from 'react';
 import maplibregl from 'maplibre-gl';
-import type { Map as MlMap, Marker, PaddingOptions } from 'maplibre-gl';
-import type { BasemapId, Category, Establishment, KioskData, Locale } from '../types';
-import { CONFIG } from '../config';
+import type { GeoJSONSource, Map as MlMap, Marker, PaddingOptions } from 'maplibre-gl';
+import type { BasemapId, KioskData, Locale } from '../types';
+import { CONFIG, QUALITY, type QualityLevel } from '../config';
 import { titleOf } from '../data/model';
 import { styleFor, SKY, TERRAIN_SPEC } from './basemaps';
-import { CATEGORY_ICONS, svgString } from '../components/icons';
+import {
+  addMarkerLayers,
+  MARKER_LAYER,
+  MARKER_SOURCE,
+  markerCollection,
+  pickMarker,
+  placeEstablishments,
+  rasterizeMarkers,
+  scaleMarkerLayers,
+  SELECTED_LAYER,
+  selectedLabelOffset,
+  syncMarkerLayers,
+  type MarkerImages,
+  type PlacedEstablishment,
+} from './markers';
 import { bounds, distanceKm, type LngLat } from '../lib/geo';
 
 export interface MapHandle {
+  /** Pour le panneau ?debug=1 */
+  getMap(): MlMap | null;
   /** Animation d'entrée : de la vue d'attente à la wilaya en 3D */
   enter(): void;
-  /** Retour à la vue d'attente (accueil), rotation lente */
+  /** Retour à la vue d'attente (accueil) */
   attract(): void;
   focus(id: string): void;
   fitPoints(points: LngLat[]): void;
@@ -24,12 +40,6 @@ export interface MapHandle {
   orbit(on: boolean): void;
 }
 
-export interface CameraState {
-  bearing: number;
-  pitch: number;
-  zoom: number;
-}
-
 interface Props {
   data: KioskData;
   locale: Locale;
@@ -40,26 +50,33 @@ interface Props {
   highlightIds: Set<string> | null;
   padding: PaddingOptions;
   markersVisible: boolean;
+  quality: QualityLevel;
+  /** Élément de la boussole : tourné directement, sans passer par React */
+  compass: RefObject<HTMLElement | null>;
   onSelect(id: string): void;
-  onCamera(state: CameraState): void;
+  on3dChange(on: boolean): void;
   onOrbitChange(on: boolean): void;
   onBasemapFailed(id: BasemapId): void;
-}
-
-interface MarkerEntry {
-  marker: Marker;
-  el: HTMLButtonElement;
-  label: HTMLSpanElement;
-  est: Establishment;
+  /** FPS mesuré pendant l'entrée sur la carte */
+  onEntryFps(fps: number): void;
 }
 
 let rtlPluginRequested = false;
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+const pixelRatioFor = (quality: QualityLevel) => Math.min(window.devicePixelRatio, QUALITY[quality].maxPixelRatio);
 
-export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref) {
+const POP_BATCH = 6;
+const POP_INTERVAL_MS = 120;
+
+export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props, ref) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
-  const markersRef = useRef<Map<string, MarkerEntry>>(new Map());
+  const placedRef = useRef<PlacedEstablishment[]>([]);
+  /** Nombre de marqueurs affichés, dans l'ordre de placedRef */
+  const shownRef = useRef(0);
+  const popTimer = useRef(0);
+  const imagesRef = useRef<MarkerImages | null>(null);
+  const labelRef = useRef<Marker | null>(null);
   const rotation = useRef<{ raf: number; speed: number; last: number; onStop?: () => void } | null>(null);
   /** Invalide la rotation d'attente programmée si une autre animation démarre entre-temps */
   const moveSeq = useRef(0);
@@ -91,7 +108,10 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
         maxPitch: CONFIG.maxPitch,
         maxBounds: CONFIG.maxBounds,
         attributionControl: { compact: true, customAttribution: 'Données : ODEJ Béjaïa' },
-        fadeDuration: 150,
+        fadeDuration: 0,
+        pixelRatio: pixelRatioFor(live.current.quality),
+        canvasContextAttributes: { antialias: false },
+        maxTileCacheSize: CONFIG.maxTileCacheSize,
       });
     } catch (err) {
       console.error(err);
@@ -100,7 +120,7 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
     }
     mapRef.current = map;
 
-    // Relief + ciel après chaque changement de style
+    // Relief, ciel et marqueurs après chaque changement de style
     map.on('style.load', () => {
       applyTerrain(map, live.current.terrain);
       try {
@@ -109,7 +129,15 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
       } catch {
         /* version sans ciel */
       }
+      installMarkers();
     });
+
+    rasterizeMarkers(live.current.data.categories)
+      .then((images) => {
+        imagesRef.current = images;
+        installMarkers();
+      })
+      .catch((err) => console.error(err));
 
     // Détection d'un fond de carte inaccessible (pas d'internet, hôte bloqué)
     let errors = 0;
@@ -131,21 +159,45 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
       tilesOk = false;
     };
 
-    // Échelle des marqueurs selon le zoom + état caméra pour les contrôles
-    let raf = 0;
-    const onMove = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const zoom = map.getZoom();
-        const s = Math.max(0.6, Math.min(1.08, 0.6 + (zoom - 8) * 0.085));
-        container.style.setProperty('--mk-s', s.toFixed(3));
-        container.classList.toggle('show-labels', zoom >= 13);
-        live.current.onCamera({ bearing: map.getBearing(), pitch: map.getPitch(), zoom });
+    // Jamais de setState ici : la boussole s'écrit dans le DOM, l'état 2D/3D attend la fin du mouvement
+    let bearing = 0;
+    map.on('move', () => {
+      const next = map.getBearing();
+      if (next === bearing) return;
+      bearing = next;
+      const compass = live.current.compass.current;
+      if (compass) compass.style.transform = `rotate(${-next}deg)`;
+    });
+    map.on('moveend', () => live.current.on3dChange(map.getPitch() > 5));
+
+    // Zone de toucher d'au moins 44 × 44 px autour du doigt
+    map.on('click', (e) => {
+      if (!map.getLayer(MARKER_LAYER)) return;
+      const { x, y } = e.point;
+      const features = map.queryRenderedFeatures(
+        [
+          [x - CONFIG.touchRadius, y - CONFIG.touchRadius],
+          [x + CONFIG.touchRadius, y + CONFIG.touchRadius],
+        ],
+        { layers: [MARKER_LAYER, SELECTED_LAYER] },
+      );
+      const hits = features.map((feature) => {
+        const id = String(feature.properties.id);
+        const position = placedRef.current.find((p) => p.est.id === id)?.position;
+        const point = position ? map.project(position) : e.point;
+        return { id, distance: point.dist(e.point) };
       });
-    };
-    map.on('move', onMove);
-    onMove();
+      const id = pickMarker(hits, live.current.selectedId);
+      if (id) live.current.onSelect(id);
+    });
+    for (const layer of [MARKER_LAYER, SELECTED_LAYER]) {
+      map.on('mouseenter', layer, () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', layer, () => {
+        map.getCanvas().style.cursor = '';
+      });
+    }
 
     // Toute interaction de l'utilisateur arrête la rotation automatique
     const stopOnUser = (e: any) => {
@@ -157,14 +209,16 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
     map.on('rotatestart', stopOnUser);
 
     // Conteneur redimensionné (simulateur d'écran, rotation portrait/paysage)
-    const ro = new ResizeObserver(() => map.resize());
+    const ro = new ResizeObserver(() => {
+      map.resize();
+      scaleMarkerLayers(map);
+    });
     ro.observe(container);
 
     return () => {
       ro.disconnect();
       stopRotation();
-      markersRef.current.forEach((m) => m.marker.remove());
-      markersRef.current.clear();
+      window.clearTimeout(popTimer.current);
       map.remove();
       mapRef.current = null;
     };
@@ -177,6 +231,8 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
     if (!map) return;
     (map as unknown as { __resetBasemapErrors?: () => void }).__resetBasemapErrors?.();
     const spec = styleFor(props.basemap, props.locale);
+    // Le relief de l'ancien style fait planter le rendu tant que le nouveau charge : style.load le remet
+    applyTerrain(map, false);
     if ('url' in spec) {
       map.setStyle(spec.url, { diff: false, transformStyle: (_prev, next) => spec.transform(next) });
     } else {
@@ -188,66 +244,35 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
   /* ----------------------------------------------------------------- relief */
   useEffect(() => {
     const map = mapRef.current;
-    if (map && map.isStyleLoaded()) applyTerrain(map, props.terrain);
+    if (map) applyTerrain(map, props.terrain);
   }, [props.terrain]);
+
+  /* --------------------------------------------------------------- qualité */
+  useEffect(() => {
+    mapRef.current?.setPixelRatio(pixelRatioFor(props.quality));
+  }, [props.quality]);
 
   /* -------------------------------------------------------------- marqueurs */
   useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    const cats = new Map<string, Category>(props.data.categories.map((c) => [c.id, c]));
-    const seen = new Map<string, number>();
-    const entries = markersRef.current;
-    entries.forEach((m) => m.marker.remove());
-    entries.clear();
-
-    for (const est of props.data.establishments) {
-      const cat = cats.get(est.category) ?? props.data.categories[props.data.categories.length - 1];
-      // Deux établissements aux mêmes coordonnées : léger décalage (~16 m) pour pouvoir toucher les deux
-      const key = `${est.location.lat.toFixed(5)},${est.location.lng.toFixed(5)}`;
-      const n = seen.get(key) ?? 0;
-      seen.set(key, n + 1);
-      const pos: LngLat = [est.location.lng + n * 0.00018, est.location.lat];
-
-      const el = document.createElement('button');
-      el.type = 'button';
-      el.className = 'mk';
-      el.style.setProperty('--c', cat.color);
-      el.innerHTML =
-        `<span class="mk-scale"><span class="mk-pop">` +
-        `<span class="mk-label"></span>` +
-        `<span class="mk-pin">${svgString(CATEGORY_ICONS[cat.icon] ?? CATEGORY_ICONS.star, 20)}</span>` +
-        `<span class="mk-stem"></span><span class="mk-dot"></span>` +
-        `</span></span>`;
-      el.addEventListener('click', (ev) => {
-        ev.stopPropagation();
-        live.current.onSelect(est.id);
-      });
-      const label = el.querySelector('.mk-label') as HTMLSpanElement;
-      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat(pos).addTo(map);
-      entries.set(est.id, { marker, el, label, est });
-    }
-    syncMarkers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    placedRef.current = placeEstablishments(props.data.establishments, props.data.categories);
+    pushMarkers();
   }, [props.data]);
 
   useEffect(() => {
-    markersRef.current.forEach(({ el, label, est }) => {
-      const title = titleOf(est);
-      const name = title[props.locale] ?? title.ar ?? '';
-      label.textContent = name;
-      el.setAttribute('aria-label', name);
-    });
-  }, [props.data, props.locale]);
+    pushMarkers();
+    syncSelection();
+  }, [props.locale]);
 
   useEffect(() => {
-    syncMarkers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    syncSelection();
   }, [props.selectedId, props.highlightIds]);
 
   // Masqués sur l'accueil ; réaffichés par popMarkers() pendant l'animation d'entrée
   useEffect(() => {
-    if (!props.markersVisible) containerRef.current?.classList.add('markers-off');
+    if (props.markersVisible) return;
+    window.clearTimeout(popTimer.current);
+    shownRef.current = 0;
+    pushMarkers();
   }, [props.markersVisible]);
 
   /* ----------------------------------------------------------- marge carte */
@@ -259,30 +284,68 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
     map.easeTo({ padding: props.padding, duration: 500 });
   }, [props.padding.top, props.padding.right, props.padding.bottom, props.padding.left]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function syncMarkers() {
-    const { selectedId, highlightIds } = live.current;
-    markersRef.current.forEach(({ el, est }) => {
-      const sel = est.id === selectedId;
-      el.classList.toggle('mk--sel', sel);
-      el.classList.toggle('mk--dim', !!highlightIds && !highlightIds.has(est.id) && !sel);
-      el.setAttribute('aria-pressed', String(sel));
-      el.style.zIndex = sel ? '20' : '';
-    });
+  /** Sources et couches disparaissent à chaque setStyle : on les réinstalle sur le nouveau style. */
+  function installMarkers() {
+    const map = mapRef.current;
+    const images = imagesRef.current;
+    if (!map || !images || map.getSource(MARKER_SOURCE)) return;
+    try {
+      addMarkerLayers(map, images);
+    } catch {
+      // Style remplacé entre-temps : son style.load relancera l'installation
+      return;
+    }
+    pushMarkers();
+    syncSelection();
   }
 
+  function pushMarkers() {
+    const source = mapRef.current?.getSource(MARKER_SOURCE) as GeoJSONSource | undefined;
+    source?.setData(markerCollection(placedRef.current.slice(0, shownRef.current), live.current.locale));
+  }
+
+  function syncSelection() {
+    const map = mapRef.current;
+    if (!map) return;
+    const { selectedId, highlightIds, locale } = live.current;
+    syncMarkerLayers(map, selectedId, highlightIds);
+    labelRef.current?.remove();
+    labelRef.current = null;
+    const placed = placedRef.current.find((p) => p.est.id === selectedId);
+    if (!placed) return;
+    const title = titleOf(placed.est);
+    const element = document.createElement('div');
+    element.className = 'mk-label';
+    element.textContent = title[locale] ?? title.ar ?? '';
+    labelRef.current = new maplibregl.Marker({ element, anchor: 'bottom', offset: selectedLabelOffset() }).setLngLat(placed.position).addTo(map);
+  }
+
+  /** Ajout par lots, du centre vers l'extérieur : un seul setData à chaque lot, aucune animation par marqueur. */
   function popMarkers(center: LngLat) {
-    const list = [...markersRef.current.values()].sort(
-      (a, b) =>
-        distanceKm(center, [a.est.location.lng, a.est.location.lat]) - distanceKm(center, [b.est.location.lng, b.est.location.lat]),
-    );
-    list.forEach(({ el }, i) => {
-      el.classList.remove('mk--in');
-      el.style.setProperty('--d', `${Math.min(i * 28, 1600)}ms`);
-    });
-    // reflow puis relance de l'animation
-    void containerRef.current?.offsetWidth;
-    list.forEach(({ el }) => el.classList.add('mk--in'));
-    containerRef.current?.classList.remove('markers-off');
+    const distance = (p: PlacedEstablishment) => distanceKm(center, p.position);
+    placedRef.current = [...placedRef.current].sort((a, b) => distance(a) - distance(b));
+    window.clearTimeout(popTimer.current);
+    shownRef.current = reducedMotion() ? placedRef.current.length : 0;
+    const step = () => {
+      shownRef.current = Math.min(shownRef.current + POP_BATCH, placedRef.current.length);
+      pushMarkers();
+      if (shownRef.current < placedRef.current.length) popTimer.current = window.setTimeout(step, POP_INTERVAL_MS);
+    };
+    step();
+  }
+
+  /** FPS réel pendant les premières secondes sur la carte. Rien à conclure si l'onglet est masqué. */
+  function measureEntry(map: MlMap) {
+    if (reducedMotion()) return;
+    let frames = 0;
+    const count = () => {
+      frames += 1;
+    };
+    map.on('render', count);
+    window.setTimeout(() => {
+      map.off('render', count);
+      if (!document.hidden) live.current.onEntryFps(frames / (CONFIG.qualitySampleMs / 1000));
+    }, CONFIG.qualitySampleMs);
   }
 
   /* -------------------------------------------------------------- rotation */
@@ -312,6 +375,7 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
 
   /* ------------------------------------------------------------- caméra API */
   useImperativeHandle(ref, () => ({
+    getMap: () => mapRef.current,
     enter() {
       const map = mapRef.current;
       if (!map) return;
@@ -332,6 +396,7 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
       window.setTimeout(() => {
         if (moveSeq.current === my || live.current.markersVisible) popMarkers(cam.center);
       }, reducedMotion() ? 0 : 1100);
+      measureEntry(map);
     },
     attract() {
       const map = mapRef.current;
@@ -347,19 +412,16 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
         duration: 2400,
         essential: true,
       });
-      const my = ++moveSeq.current;
-      map.once('moveend', () => {
-        if (moveSeq.current === my) startRotation(2.2);
-      });
+      moveSeq.current++;
     },
     focus(id) {
       const map = mapRef.current;
-      const entry = markersRef.current.get(id);
-      if (!map || !entry) return;
+      const placed = placedRef.current.find((p) => p.est.id === id);
+      if (!map || !placed) return;
       moveSeq.current++;
       stopRotation();
       map.flyTo({
-        center: entry.marker.getLngLat(),
+        center: placed.position,
         zoom: CONFIG.focusZoom,
         pitch: CONFIG.focusPitch,
         bearing: map.getBearing() - 20,
@@ -447,16 +509,18 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
 
   return (
     <div className="map-wrap">
-      <div ref={containerRef} className="map markers-off" />
+      <div ref={containerRef} className="map" />
       {failed && <div className="map-failed">MapLibre GL n'a pas pu démarrer (WebGL indisponible ?)</div>}
     </div>
   );
-});
+}));
 
+/** Relief et ombrage ne se cumulent pas : l'ombrage ne sert que sur la carte à plat. */
 function applyTerrain(map: MlMap, on: boolean) {
   try {
     if (on && map.getSource('dem')) map.setTerrain(TERRAIN_SPEC);
     else map.setTerrain(null);
+    if (map.getLayer('hillshade')) map.setLayoutProperty('hillshade', 'visibility', on ? 'none' : 'visible');
   } catch {
     /* style sans source de relief */
   }

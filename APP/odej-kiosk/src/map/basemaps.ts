@@ -13,6 +13,9 @@ const DEM_SOURCE = {
   attribution: 'Relief © Mapzen Terrain Tiles (AWS Open Data)',
 };
 
+/** Polices des étiquettes de marqueurs sur les fonds raster (mêmes que le plan vectoriel) */
+const GLYPHS_URL = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
+
 export const SKY = {
   'sky-color': '#CFE3EE',
   'horizon-color': '#F3F1EA',
@@ -44,13 +47,14 @@ export const BASEMAPS: BasemapDef[] = [
 function rasterStyle(id: string, tiles: string[], attribution: string, maxzoom: number): StyleSpecification {
   return {
     version: 8,
+    glyphs: GLYPHS_URL,
     sources: {
       [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution },
       dem: DEM_SOURCE,
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': '#EEF0E8' } },
-      { id, type: 'raster', source: id, paint: { 'raster-fade-duration': 200 } },
+      { id, type: 'raster', source: id, paint: { 'raster-fade-duration': 0 } },
     ],
   } as StyleSpecification;
 }
