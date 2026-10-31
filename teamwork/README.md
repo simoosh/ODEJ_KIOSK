@@ -59,12 +59,14 @@ OPTIMIZED  APP/odej-kiosk/public/media/odej-NNN/...      (binaries ignored by gi
 | Rule | Value | Why |
 |---|---|---|
 | One file | **<= 24 MiB** (hard) | CDN limit is 25 MiB per file |
-| Photos | WebP, <= 1600 px wide, <= 15 per establishment | gallery speed |
-| Videos | MP4 H.264 + AAC, <= 720 px wide, <= 70 s, <= 3 per establishment, **`-movflags +faststart`** | must stream from the CDN |
-| One establishment | <= 50 MiB in total | total target <= 3 GiB |
+| Photos | WebP, <= 1600 px wide. Default: <= 15 per establishment (can be raised, see below) | gallery speed |
+| Videos | MP4 H.264 + AAC, <= 720 px wide, <= 70 s. Default: <= 3 per establishment (can be raised, see below), **`-movflags +faststart`** | must stream from the CDN |
+| One establishment | Default: <= 50 MiB in total (can be raised, see below) | total target <= 3 GiB |
 | `odej-003` (Oued Ghir, the star) | no per-establishment cap. The 24 MiB per-file cap still applies. | it is allowed to be big |
 | Total files on the CDN | <= 15 000 | CDN limit is 20 000 |
 | File names | `[a-z0-9._-]` only | URLs |
+
+**Flexible per-establishment caps.** The three "default" limits above (photo count, video count, size per establishment) may be raised by the data agent / colleague for establishments of his choice, when the content justifies it. When you do, add a `CHANGE` entry in `Update.md` in the same PR: establishment id, new counts, new total size, one-line reason. The **hard** limits never change: one file <= 24 MiB, videos H.264 `faststart` <= 720 px wide, <= 15 000 files in total, safe file names. If the total gets close to 3 GiB, write a `QUESTION` entry before adding more. (Decision of 31 Oct 2026, see `Update.md`.)
 
 ### Workflow for the data agent
 
