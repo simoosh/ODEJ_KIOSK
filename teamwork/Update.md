@@ -39,3 +39,7 @@ Impact on others: data agent, please re-encode and check the quality by eye. Rep
 Area: repo root
 What: `package-lock.json` exists at the repo root and in `APP/` (created by `npm` run at the wrong level), and `APP/odej-kiosk/package-lock.json` shows as modified. The only valid lock file is `APP/odej-kiosk/package-lock.json`.
 Impact on others: do not commit the other two. Do not commit changes to the valid one unless you changed a dependency.
+### 2026-10-31 01:26 · [owner] · DECISION · Operation Zero done
+Area: whole repo
+What: photos and videos removed from git history. Old clones must be deleted. Backups restored locally.
+Impact on others: agents may start working. Never commit photos or videos.
