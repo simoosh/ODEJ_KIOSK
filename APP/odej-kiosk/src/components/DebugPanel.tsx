@@ -10,7 +10,7 @@ interface ScenarioResult extends FrameStats {
 
 declare global {
   interface Window {
-    odejPerf?: { run(): Promise<ScenarioResult>; idle(): Promise<number> };
+    odejPerf?: { map: MlMap; run(): Promise<ScenarioResult>; idle(): Promise<number> };
   }
 }
 
@@ -86,7 +86,7 @@ export default function DebugPanel({ map, quality }: { map: RefObject<MapHandle 
       const dpr = instance.getPixelRatio().toFixed(2);
       setText(`${frames} fps · ${meanMs} ms · ${tileCount(instance)} tuiles · dpr ${dpr}${quality ? ` · ${quality}` : ''} · ${perfCounters.renders} rendus`);
     }, 1000);
-    window.odejPerf = { run: () => runScenario(instance), idle: () => idleFrames(instance) };
+    window.odejPerf = { map: instance, run: () => runScenario(instance), idle: () => idleFrames(instance) };
     return () => {
       instance.off('render', onRender);
       window.clearInterval(id);
