@@ -4,7 +4,7 @@ Cibles, mesures et réglages de la carte. La borne aura probablement un GPU int�
 
 ## Cibles et résultats
 
-Machine : portable sur secteur, AMD Radeon 780M (GPU intégré, confirmé par `WEBGL_debug_renderer_info`), Chrome 3D en Direct3D 11. Écran 1920×1080, `pixelRatio` 1, relief activé, fond `plan`, 67 marqueurs affichés. Médiane de 3 passages du scénario.
+Machine : portable sur secteur, AMD Radeon 780M (GPU intégré, confirmé par `WEBGL_debug_renderer_info`), Chrome en Direct3D 11. Écran 1920×1080, `pixelRatio` 1, relief activé, fond `plan`, 67 marqueurs affichés. Médiane de 3 passages du scénario.
 
 | Mesure | Cible | Avant | Après (`high`) |
 |---|---|---|---|
