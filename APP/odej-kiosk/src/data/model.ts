@@ -1,5 +1,22 @@
-import type { Category, Establishment, KioskData, Locale, Place } from '../types';
+import type { Category, Establishment, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
 import { matchScore, normalize } from '../lib/text';
+
+/** Fusionne les médias dans les établissements, par id. Les chemins de l'index sont relatifs à base. */
+export function withMedia(data: KioskData, index: MediaIndex, base: string): KioskData {
+  const resolve = (item: MediaItem): MediaItem => ({
+    ...item,
+    src: base + item.src,
+    ...(item.poster ? { poster: base + item.poster } : {}),
+  });
+  return {
+    ...data,
+    establishments: data.establishments.map((e) => {
+      const media = index[e.id];
+      if (!media) return e;
+      return { ...e, media: { cover: media.cover ? resolve(media.cover) : null, gallery: media.gallery.map(resolve) } };
+    }),
+  };
+}
 
 export interface Indexes {
   categories: Map<string, Category>;
