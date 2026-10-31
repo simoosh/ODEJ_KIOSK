@@ -191,3 +191,8 @@ Area: RESOURCES/ODEJ-Media/005-*, public/media/odej-005
 What: children's faces are recognisable in `photo-001` (about ten girls in costume on stage), `photo-015` (close-up of one girl, the most exposed of the set), `photo-018` (children with a mascot) and `photo-020` (boys at the table-tennis table). Less identifiable, distant or from behind: `photo-016` and `photo-019`.
 What: this comes from looking at every photo, so the ages are estimates. All of these are in the optimized set and will go to the CDN.
 Impact on others: owner, this is your decision, consent and law 18-07. Nothing was removed.
+
+### 2026-11-01 00:57 · [app-agent] · DECISION · D10 minors in published media
+Area: public/media, CDN `odej-media`, kiosk pack
+What: the owner states that the ODEJ has given its agreement for the media listed in the entry "Identifiable minors in approved media". These media stay online and on the kiosk. Nothing is removed.
+Impact on others: none on files. The owner keeps a written trace of the agreement (date, name, scope). Data agent: keep reporting new identifiable minors with an `INFO` entry; this decision covers the listed files only.
