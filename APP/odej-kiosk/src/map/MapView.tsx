@@ -9,6 +9,8 @@ import { CATEGORY_ICONS, svgString } from '../components/icons';
 import { bounds, distanceKm, type LngLat } from '../lib/geo';
 
 export interface MapHandle {
+  /** Pour le panneau ?debug=1 */
+  getMap(): MlMap | null;
   /** Animation d'entrée : de la vue d'attente à la wilaya en 3D */
   enter(): void;
   /** Retour à la vue d'attente (accueil), rotation lente */
@@ -312,6 +314,7 @@ export const MapView = forwardRef<MapHandle, Props>(function MapView(props, ref)
 
   /* ------------------------------------------------------------- caméra API */
   useImperativeHandle(ref, () => ({
+    getMap: () => mapRef.current,
     enter() {
       const map = mapRef.current;
       if (!map) return;

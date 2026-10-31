@@ -321,6 +321,24 @@ input:focus-visible {
   }
 }
 
+/* Panneau ?debug=1 */
+.debug-panel {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  z-index: 100;
+  max-inline-size: 100%;
+  padding: 0.4rem 0.6rem;
+  background: rgba(20, 33, 27, 0.85);
+  color: #fff;
+  font: 0.8rem/1.4 monospace;
+  direction: ltr;
+}
+.debug-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
 /* --------------------------------------------------------------------- accueil */
 .landing {
   position: absolute;

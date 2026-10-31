@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { BasemapId, KioskData, Locale, MediaIndex } from './types';
 import { CONFIG } from './config';
 import { I18nProvider, useI18n } from './i18n/I18n';
@@ -13,9 +13,13 @@ import { IdleOverlay } from './components/IdleOverlay';
 import { ScreenSimulator } from './components/ScreenSimulator';
 import { Icon } from './components/Icon';
 import { useIdle, useSize } from './lib/hooks';
+import { perfCounters } from './lib/perf';
 import type { StringKey } from './i18n/strings';
 
+const DebugPanel = lazy(() => import('./components/DebugPanel'));
+
 const SIM_ENABLED = __ARTIFACT__ || new URLSearchParams(location.search).has('sim');
+const DEBUG = new URLSearchParams(location.search).has('debug');
 const NO_FILTERS: Filters = { category: null, place: null, activity: null };
 
 export default function App() {
@@ -56,6 +60,7 @@ function Kiosk({ data, size }: { data: KioskData; size: { w: number; h: number }
 
 function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w: number; h: number }; onToggleLang(): void }) {
   const { locale, dir, t } = useI18n();
+  if (DEBUG) perfCounters.renders += 1;
   const idx = useMemo(() => buildIndexes(data), [data]);
   const mapRef = useRef<MapHandle>(null);
 
@@ -240,6 +245,12 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
       <Landing data={data} leaving={screen === 'map'} onStart={start} onToggleLang={onToggleLang} />
 
       {idleLeft !== null && <IdleOverlay secondsLeft={idleLeft} onStay={() => window.dispatchEvent(new Event('pointerdown'))} />}
+
+      {DEBUG && (
+        <Suspense fallback={null}>
+          <DebugPanel map={mapRef} />
+        </Suspense>
+      )}
     </div>
   );
 }
