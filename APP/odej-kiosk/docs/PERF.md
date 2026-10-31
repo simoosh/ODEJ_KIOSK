@@ -17,6 +17,8 @@ Machine : portable sur secteur, AMD Radeon 780M (GPU intégré, confirmé par `W
 
 Les cibles sont atteintes sur cette machine. Elles restent à confirmer sur la borne (D8).
 
+Ce tableau a été mesuré avec MapLibre 5.24. Après le passage à MapLibre 6.16, mêmes scénarios, la médiane de `high` monte à 196 FPS et le 5ᵉ centile à 137. Une partie de cet écart peut venir de l'état de la machine : les deux séries n'ont pas été mesurées au même moment. Le bundle initial passe à 395,7 Ko (+2,7 %), et le worker devient un fichier séparé de 519 Ko, hors gzip.
+
 | Niveau | FPS médian | 5ᵉ centile |
 |---|---|---|
 | `high` | 106,4 | 80 |
