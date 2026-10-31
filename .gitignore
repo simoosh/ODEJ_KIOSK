@@ -194,6 +194,9 @@ kiosk-pack/
 # Netlify (build local)
 .netlify/
 
+# Wrangler (cache local de media:publish)
+.wrangler/
+
 # Outils hors application
 tools/**/.cache/
 tools/**/out/
