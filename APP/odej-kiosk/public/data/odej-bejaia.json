@@ -584,14 +584,23 @@
       },
       "activities": [],
       "contact": {
-        "phone": null,
-        "email": null,
+        "phone": "034 86 31 98",
+        "email": "cspadekar@odejbejaia-dz.com",
         "facebook": "https://www.facebook.com/profile.php?id=61580052382503"
       },
       "openingHours": null,
       "verification": {
-        "status": "ok",
-        "issues": []
+        "status": "to_check",
+        "issues": [
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
+          }
+        ]
       }
     },
     {
@@ -652,7 +661,7 @@
       "activities": [],
       "contact": {
         "phone": "0661 89 04 11",
-        "email": null,
+        "email": "clsouedghir@odejbejaia-dz.com",
         "facebook": "https://www.facebook.com/profile.php?id=61573163036734",
         "address": "Oued Ghir, Bejaia, Algeria"
       },
@@ -674,6 +683,10 @@
           {
             "code": "TRANSLATION_UNVERIFIED",
             "message": "Traduction à valider par l'ODEJ : openingHours."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
           }
         ]
       },
@@ -698,8 +711,8 @@
       },
       "activities": [],
       "contact": {
-        "phone": null,
-        "email": null,
+        "phone": "034 89 03 16",
+        "email": "cspbenimaouche@odejbejaia-dz.com",
         "facebook": "https://www.facebook.com/profile.php?id=61579900258159",
         "address": "Beni Maouche, Bejaia, 06124"
       },
@@ -710,6 +723,14 @@
           {
             "code": "AUDIT_NOTE",
             "message": "Wrong Facebook category (music, health)"
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
           }
         ]
       }
@@ -1402,8 +1423,8 @@
       },
       "activities": [],
       "contact": {
-        "phone": null,
-        "email": null,
+        "phone": "044 21 26 97",
+        "email": "cspighzeramokrane@odejbejaia-dz.com",
         "facebook": "https://www.facebook.com/share/19NBtGZk71/"
       },
       "openingHours": null,
@@ -1421,6 +1442,14 @@
           {
             "code": "TRANSLATION_UNVERIFIED",
             "message": "Traduction à valider par l'ODEJ : description.en."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "Le téléphone vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
+          },
+          {
+            "code": "AUDIT_NOTE",
+            "message": "L'e-mail vient de la liste du site de l'ODEJ, pas de la page Facebook : à confirmer."
           }
         ]
       },
