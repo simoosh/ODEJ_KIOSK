@@ -86,3 +86,8 @@ Area: repo root, APP/odej-kiosk (config, scripts, tests), .github, .githooks
 What: added line-ending rules (LF), `.editorconfig`, ESLint, Prettier config, Vitest, `validate:data`, CI, `netlify.toml`, a commit-msg hook. `npm run build` now validates the data file first and fails on invalid data.
 What: `main` did not compile before this PR (`Cannot find namespace 'GeoJSON'` in `src/lib/geo.ts`). This PR fixes it with type declarations only.
 Impact on others: after this PR is merged, run `npm ci` in `APP/odej-kiosk`: it activates `.githooks/commit-msg` (`core.hooksPath`), which refuses attribution lines. Node 22.13 or newer is needed. Run `npm run validate:data` after editing `odej-bejaia.json`. Do not run `npm run format`: it would rewrite all the code.
+
+### 2026-10-31 03:00 · [app-agent] · QUESTION · maplibre-gl security advisory
+Area: APP/odej-kiosk/package.json
+What: `npm audit` reports a critical XSS in `maplibre-gl` <= 6.4.0 (GHSA-jrc7-96c5-q579, `DOM.sanitize`). Installed: 5.24.0. The fix is a major upgrade to 6.x. It was already there before step 1. The app uses no MapLibre `Popup` or `setHTML`.
+Impact on others: none today. The owner decides whether to upgrade, ideally with step 3, which reworks the map code.

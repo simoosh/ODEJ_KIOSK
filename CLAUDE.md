@@ -68,7 +68,7 @@ npm run validate:data       # data file: schema and internal consistency
 npm run preview
 
 # from the repo root
-npx netlify-cli build       # reproduces the Netlify build
+npx netlify-cli build --offline   # reproduces the Netlify build, no linked site needed
 ```
 
 Paths contain spaces and Arabic: always quote them.

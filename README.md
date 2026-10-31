@@ -74,7 +74,9 @@ Netlify construit l'application depuis `main`, avec un aperçu de déploiement s
 Pour reproduire le build Netlify en local, depuis la racine du dépôt, après `npm ci` dans `APP/odej-kiosk` :
 
 ```bash
-npx netlify-cli build
+npx netlify-cli build --offline
 ```
+
+`--offline` évite d'avoir à lier le dossier à un site Netlify : sans cette option, la commande exige un site lié.
 
 Netlify ne sert que l'application. Les médias passent par un CDN, et la borne du salon exécute un pack local (voir [teamwork/README.md](teamwork/README.md), section 4).
