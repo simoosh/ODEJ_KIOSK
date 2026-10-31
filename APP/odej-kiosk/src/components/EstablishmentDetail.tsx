@@ -101,7 +101,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
           </button>
         </div>
 
-        {(est.contact?.phone || est.contact?.address || est.openingHours) && (
+        {(est.contact?.phone || est.contact?.email || est.contact?.address || est.openingHours) && (
           <section className="detail-block">
             <h3>{t('contact')}</h3>
             <dl className="coords">
@@ -109,6 +109,12 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
                 <>
                   <dt>{t('phone')}</dt>
                   <dd dir="ltr">{est.contact.phone}</dd>
+                </>
+              )}
+              {est.contact?.email && (
+                <>
+                  <dt>{t('email')}</dt>
+                  <dd dir="ltr">{est.contact.email}</dd>
                 </>
               )}
               {est.contact?.address && (
