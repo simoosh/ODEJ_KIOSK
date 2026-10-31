@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T21:57:49Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 4,
+    "name": "المركب الرياضي الجواري  حامية محند الشريف بني معوش",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579900258159"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579900258159",
+    "pageRef": "61579900258159",
+    "title": "المركب الرياضي الجواري بني معوش ولاية بجاية"
+  },
+  "email": null,
+  "phone": null,
+  "address": "Beni Maouche Bejaia , 06124",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Musique/groupe · Santé/beauté",
+  "openingHours": null,
+  "followers": 69,
+  "notAvailable": [
+    "description",
+    "email",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}

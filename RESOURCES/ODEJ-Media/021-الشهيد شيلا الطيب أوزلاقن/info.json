@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T22:21:51Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 21,
+    "name": "الشهيد شيلا الطيب أوزلاقن",
+    "pageUrl": "https://www.facebook.com/share/19NBtGZk71/?mibextid=wwXIfr"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/19NBtGZk71/?mibextid=wwXIfr",
+    "pageRef": "cspouzellaguenn",
+    "title": "المركب الرياضي الجواري أوزلاقن - ولاية بجاية"
+  },
+  "email": null,
+  "phone": null,
+  "address": null,
+  "website": null,
+  "description": "CSP Ouzellaguen est un espace dédié à l'épanouissement des jeunes à travers une diversité d'activités éducatives et de loisirs. Notre mission est d'occuper le temps libre des jeunes de manière constructive et enrichissante.",
+  "facebookCategory": "Centre de loisirs",
+  "openingHours": null,
+  "followers": 193,
+  "notAvailable": [
+    "address",
+    "email",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}
