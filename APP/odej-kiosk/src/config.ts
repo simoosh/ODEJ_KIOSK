@@ -46,9 +46,6 @@ export const CONFIG = {
   /** Sous fpsDown, on descend d'un niveau ; sous fpsLow, directement à low */
   fpsDown: 40,
   fpsLow: 25,
-
-  /** Plugin MapLibre pour afficher l'arabe sur la carte (à héberger localement pour le mode hors ligne) */
-  rtlTextPluginUrl: 'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.3.0/dist/mapbox-gl-rtl-text.js',
 } as const;
 
 export type QualityLevel = 'high' | 'medium' | 'low';
