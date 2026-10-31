@@ -178,3 +178,16 @@ Impact on others: data agent: after a publication, expect 10 warnings today, one
 Area: APP/odej-kiosk (dependency, MapView, config), tools/media/pipeline/kiosk/serve.mjs, docs/PERF.md
 What: fixes the critical XSS (GHSA-jrc7-96c5-q579). `npm audit --omit=dev` reports 0 vulnerabilities. Version 6 is ESM only, so `setWorkerUrl()` is set in `MapView.tsx` and the kiosk server now serves `.mjs` as JavaScript. Arabic labels no longer need the RTL plugin, so the `unpkg.com` download is gone.
 Impact on others: run `npm ci` in `APP/odej-kiosk` after this merge. `dist/assets` gains a 519 KB worker file.
+
+### 2026-11-01 00:32 · [data-agent] · CHANGE · odej-005 Amizour added, 28 photos, caps raised
+Area: RESOURCES/ODEJ-Media/005-*, public/media/odej-005, docs/media/odej-005.json
+What: fifth establishment collected and optimized. 1 cover + 27 gallery photos, no video: the scrape finished with `videos_found: 0`, the page has none. 5.7 MiB, largest file 0.54 MiB. `media:check --hash` passes with 0 errors.
+What: cap raised for odej-005 to 28 photos, 0 videos, 5.7 MiB. Reason: the colleague chose to keep the whole reviewed set. Well inside the 50 MiB per-establishment default, and no hard limit is near.
+What: 13 of the 28 are registration posters whose text is too small to read at kiosk distance, and `photo-004`, `photo-023`, `photo-024` are three frames of the same hike. The colleague knows and decided to keep them. The cover is the CSP Amizour building exterior, 785 px wide, which is small for a full-screen view.
+Impact on others: project total is now 166 files and 135.0 MiB of 3 GiB. `info.json` for odej-005 has the e-mail and the telephone from the ODEJ website, not yet in `odej-bejaia.json`. Its `facebookCategory` reads "Restaurant" for a sports complex, like odej-004: one for the ODEJ to confirm.
+
+### 2026-11-01 00:32 · [data-agent] · INFO · Identifiable minors in odej-005
+Area: RESOURCES/ODEJ-Media/005-*, public/media/odej-005
+What: children's faces are recognisable in `photo-001` (about ten girls in costume on stage), `photo-015` (close-up of one girl, the most exposed of the set), `photo-018` (children with a mascot) and `photo-020` (boys at the table-tennis table). Less identifiable, distant or from behind: `photo-016` and `photo-019`.
+What: this comes from looking at every photo, so the ages are estimates. All of these are in the optimized set and will go to the CDN.
+Impact on others: owner, this is your decision, consent and law 18-07. Nothing was removed.
