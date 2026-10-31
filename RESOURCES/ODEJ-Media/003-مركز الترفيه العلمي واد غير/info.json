@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T21:29:37Z",
+  "updatedAt": "2026-10-31T02:14:32Z",
   "source": "Facebook page, as shown to a logged-out visitor",
   "institution": {
     "id": 3,
@@ -12,7 +12,7 @@
     "pageRef": "61573163036734",
     "title": "مركز الترفيه العلمي واد غير - ولاية بجاية"
   },
-  "email": null,
+  "email": "clsouedghir@odejbejaia-dz.com",
   "phone": "0661 89 04 11",
   "address": "oued ghir , Bejaïa, Algeria",
   "website": null,
@@ -20,8 +20,16 @@
   "facebookCategory": "Scientifique · Science et technologie · Organisme jeunesse",
   "openingHours": "Toujours ouvert",
   "followers": 1567,
+  "sources": {
+    "email": "odej-website",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
   "notAvailable": [
-    "email",
     "website"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T21:28:12Z",
+  "updatedAt": "2026-10-31T02:14:32Z",
   "source": "Facebook page, as shown to a logged-out visitor",
   "institution": {
     "id": 1,
@@ -12,20 +12,24 @@
     "pageRef": "61580052382503",
     "title": "المركب الرياضي الجواري أدكار - ولاية بجاية"
   },
-  "email": null,
-  "phone": null,
+  "email": "cspadekar@odejbejaia-dz.com",
+  "phone": "034 86 31 98",
   "address": null,
   "website": null,
   "description": null,
   "facebookCategory": "Organisation à but non lucratif",
   "openingHours": null,
   "followers": 112,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
   "notAvailable": [
     "address",
     "description",
-    "email",
     "openingHours",
-    "phone",
     "website"
   ]
 }

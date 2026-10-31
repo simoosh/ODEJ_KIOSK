@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T22:21:51Z",
+  "updatedAt": "2026-10-31T02:14:32Z",
   "source": "Facebook page, as shown to a logged-out visitor",
   "institution": {
     "id": 21,
@@ -12,19 +12,24 @@
     "pageRef": "cspouzellaguenn",
     "title": "المركب الرياضي الجواري أوزلاقن - ولاية بجاية"
   },
-  "email": null,
-  "phone": null,
+  "email": "cspighzeramokrane@odejbejaia-dz.com",
+  "phone": "044 21 26 97",
   "address": null,
   "website": null,
   "description": "CSP Ouzellaguen est un espace dédié à l'épanouissement des jeunes à travers une diversité d'activités éducatives et de loisirs. Notre mission est d'occuper le temps libre des jeunes de manière constructive et enrichissante.",
   "facebookCategory": "Centre de loisirs",
   "openingHours": null,
   "followers": 193,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
   "notAvailable": [
     "address",
-    "email",
     "openingHours",
-    "phone",
     "website"
   ]
 }
