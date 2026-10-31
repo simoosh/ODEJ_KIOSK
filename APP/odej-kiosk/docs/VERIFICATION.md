@@ -151,6 +151,15 @@ Les coordonnées et les liens ont été extraits du texte du PDF ; les noms arab
 | 63 | دار الشباب لعلام | Has posts Facebook labels as AI content |
 | 67 | الشهيد عيوز سليمان درقينة | Same listed name as #29, a different institution |
 
+## Infos Facebook importées, à valider
+
+| N° | Établissement | Remarque |
+|---|---|---|
+| 3 | مركز الترفيه العلمي واد غير | Traduction à valider par l'ODEJ : description.en. |
+| 3 | مركز الترفيه العلمي واد غير | Traduction à valider par l'ODEJ : openingHours. |
+| 21 | الشهيد شيلا الطيب أوزلاقن | Traduction à valider par l'ODEJ : description.ar. |
+| 21 | الشهيد شيلا الطيب أوزلاقن | Traduction à valider par l'ODEJ : description.en. |
+
 ## Questions à poser à l'ODEJ
 
 1. Le type des lignes 14, 49, et la confirmation des 41 types déduits des pages Facebook.
@@ -158,4 +167,5 @@ Les coordonnées et les liens ont été extraits du texte du PDF ; les noms arab
 3. La page Facebook des lignes 2, 14, 37, 49, s'il y en a une.
 4. Les lignes 29, 67 portent le même nom : l'audit indique deux établissements distincts, à confirmer.
 5. La commune des lignes 27, 46, 48, 51, 53, 56, 60 et des lieux-dits (lignes 12, 18, 19, 26, 31, 38, 63).
-6. Les graphies françaises officielles des noms (pour la version anglaise), le logo en vectoriel, et pour chaque établissement : photos, description, activités, horaires, téléphone.
+6. La validation des textes et des horaires de la section « Infos Facebook importées », lignes 3, 21.
+7. Les graphies françaises officielles des noms (pour la version anglaise), le logo en vectoriel, et pour chaque établissement : photos, description, activités, horaires, téléphone.

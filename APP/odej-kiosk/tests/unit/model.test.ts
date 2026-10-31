@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { withMedia } from '../../src/data/model';
+import { buildIndexes, search, sortForList, titleOf, withMedia } from '../../src/data/model';
 import type { Establishment, KioskData } from '../../src/types';
 
 const est = (id: string): Establishment => ({
@@ -11,6 +11,33 @@ const est = (id: string): Establishment => ({
 });
 
 const data = { establishments: [est('odej-001'), est('odej-002')] } as KioskData;
+
+describe('titres affichés', () => {
+  const named: Establishment = {
+    ...est('odej-005'),
+    name: { ar: 'الشهيد حماي بشير شميني', en: 'Martyr Hamai Bachir' },
+    displayName: { ar: 'دار الشباب شميني', en: 'Chemini Youth Centre' },
+    honoree: { ar: 'الشهيد حماي بشير', en: 'Martyr Hamai Bachir' },
+  };
+  const plain: Establishment = { ...est('odej-006'), name: { ar: 'بيت الشباب أقبو', en: 'Akbou Youth Hostel' } };
+  const kiosk = { establishments: [named, plain], categories: [], places: [], activities: [] } as unknown as KioskData;
+  const idx = buildIndexes(kiosk);
+
+  it('préfère displayName au nom officiel', () => {
+    expect(titleOf(named)).toBe(named.displayName);
+    expect(titleOf(plain)).toBe(plain.name);
+  });
+
+  it('trouve un établissement par son titre, sa personne ou son nom officiel', () => {
+    for (const query of ['دار الشباب', 'Chemini', 'حماي', 'الشهيد حماي بشير شميني']) {
+      expect(search(kiosk, idx, query).establishments.map((h) => h.id)).toContain('odej-005');
+    }
+  });
+
+  it('trie sur le titre affiché', () => {
+    expect(sortForList([plain, named], idx, 'en').map((e) => e.id)).toEqual(['odej-006', 'odej-005']);
+  });
+});
 
 describe('withMedia', () => {
   it('fusionne les médias par id et préfixe les chemins', () => {

@@ -98,6 +98,32 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
           </button>
         </div>
 
+        {(est.contact?.phone || est.contact?.address || est.openingHours) && (
+          <section className="detail-block">
+            <h3>{t('contact')}</h3>
+            <dl className="coords">
+              {est.contact?.phone && (
+                <>
+                  <dt>{t('phone')}</dt>
+                  <dd dir="ltr">{est.contact.phone}</dd>
+                </>
+              )}
+              {est.contact?.address && (
+                <>
+                  <dt>{t('address')}</dt>
+                  <dd dir="ltr">{est.contact.address}</dd>
+                </>
+              )}
+              {est.openingHours && (
+                <>
+                  <dt>{t('openingHours')}</dt>
+                  <dd>{tx(est.openingHours)}</dd>
+                </>
+              )}
+            </dl>
+          </section>
+        )}
+
         <section className="detail-grid">
           {est.contact?.facebook && (
             <div className="qr-card">

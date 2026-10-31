@@ -2,7 +2,7 @@
   "$schema": "./odej-bejaia.schema.json",
   "meta": {
     "version": "0.1.0",
-    "updatedAt": "2026-10-29T04:56:32Z",
+    "updatedAt": "2026-10-31T04:00:00Z",
     "source": "Liste des établissements transmise par l'ODEJ de Béjaïa (PDF, 67 lignes, octobre 2026)",
     "locales": [
       "ar",
@@ -646,22 +646,34 @@
         "lng": 4.9728224
       },
       "description": {
-        "ar": null,
-        "en": null
+        "ar": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
+        "en": "The science leisure centre offers a variety of interactive activities that aim to develop young people's scientific and technological skills in a fun and innovative way."
       },
       "activities": [],
       "contact": {
-        "phone": null,
+        "phone": "0661 89 04 11",
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61573163036734"
+        "facebook": "https://www.facebook.com/profile.php?id=61573163036734",
+        "address": "Oued Ghir, Bejaia, Algeria"
       },
-      "openingHours": null,
+      "openingHours": {
+        "ar": "مفتوح دائمًا",
+        "en": "Always open"
+      },
       "verification": {
         "status": "to_check",
         "issues": [
           {
             "code": "SPELLING",
             "message": "Écrit « واد غير » ; nom officiel de la commune : وادي غير."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.en."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : openingHours."
           }
         ]
       },
@@ -688,7 +700,8 @@
       "contact": {
         "phone": null,
         "email": null,
-        "facebook": "https://www.facebook.com/profile.php?id=61579900258159"
+        "facebook": "https://www.facebook.com/profile.php?id=61579900258159",
+        "address": "Beni Maouche, Bejaia, 06124"
       },
       "openingHours": null,
       "verification": {
@@ -1384,8 +1397,8 @@
         "lng": 4.608137
       },
       "description": {
-        "ar": null,
-        "en": null
+        "ar": "المركب الرياضي الجواري أوزلاقن فضاء مخصص لتفتح الشباب من خلال أنشطة تربوية وترفيهية متنوعة. مهمتنا شغل أوقات فراغ الشباب بطريقة بناءة ومفيدة.",
+        "en": "CSP Ouzellaguen is a space dedicated to the personal growth of young people through a range of educational and leisure activities. Our mission is to fill young people's free time in a constructive and enriching way."
       },
       "activities": [],
       "contact": {
@@ -1400,6 +1413,14 @@
           {
             "code": "TYPE_FROM_PAGE_NAME",
             "message": "Type déduit du nom de la page Facebook (« المركب الرياضي الجواري أوزلاقن - ولاية بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.ar."
+          },
+          {
+            "code": "TRANSLATION_UNVERIFIED",
+            "message": "Traduction à valider par l'ODEJ : description.en."
           }
         ]
       },

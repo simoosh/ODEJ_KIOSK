@@ -71,6 +71,9 @@ ${table('| N° | Établissement | Remarque |', issueRows(['NO_PAGE']))}
 ### Notes de l'audit (${withCode('AUDIT_NOTE').length})
 
 ${table('| N° | Établissement | Note |', issueRows(['AUDIT_NOTE']))}
+## Infos Facebook importées, à valider
+
+${table('| N° | Établissement | Remarque |', issueRows(['TRANSLATION_UNVERIFIED']))}
 ## Questions à poser à l'ODEJ
 
 1. Le type des lignes ${refs(noType)}, et la confirmation des ${typeRows.length} types déduits des pages Facebook.
@@ -78,7 +81,8 @@ ${table('| N° | Établissement | Note |', issueRows(['AUDIT_NOTE']))}
 3. La page Facebook des lignes ${refs(noPage)}, s'il y en a une.
 4. Les lignes ${refs(withCode('DUPLICATE_NAME'))} portent le même nom : l'audit indique deux établissements distincts, à confirmer.
 5. La commune des lignes ${refs(withCode('PLACE_MISSING'))} et des lieux-dits (lignes ${refs(withCode('COMMUNE_UNKNOWN'))}).
-6. Les graphies françaises officielles des noms (pour la version anglaise), le logo en vectoriel, et pour chaque établissement : photos, description, activités, horaires, téléphone.
+6. La validation des textes et des horaires de la section « Infos Facebook importées », lignes ${refs(withCode('TRANSLATION_UNVERIFIED'))}.
+7. Les graphies françaises officielles des noms (pour la version anglaise), le logo en vectoriel, et pour chaque établissement : photos, description, activités, horaires, téléphone.
 `;
 
 writeFileSync(resolve(appDir, 'docs/VERIFICATION.md'), doc);
