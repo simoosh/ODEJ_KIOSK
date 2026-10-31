@@ -143,3 +143,16 @@ Area: Netlify environment, CDN publishing
 What: the deployed app on `odej-bejaia.netlify.app` has `VITE_MEDIA_BASE_URL=https://odej-media.pages.dev/` built into its bundle, so the variable is set on Netlify. That host does not resolve in DNS today: the Cloudflare Pages project is not created or has never been deployed. As a result the live site shows no photo and no video at all (a media that fails to load is hidden, as designed), for odej-001, 003, 004 and 021.
 What: nothing is broken in the code or the data, and the kiosk pack is unaffected: it uses `/media/` locally.
 Impact on others: owner, either publish the project (D16) or remove the variable from Netlify until then, so the previews keep showing the media. Colleague: `media:check --hash` passes on his disk, so the `media:publish -- --go` step of D17 is ready as soon as the Cloudflare access exists.
+
+### 2026-10-31 21:44 · [data-agent] · CHANGE · First publication to the CDN, re: The Netlify site points at a CDN host that does not exist yet
+Area: CDN, Cloudflare Pages project `odej-media`
+What: the colleague created the project and published, as D17 says. `npx wrangler login`, then `media:publish -- --go` with `CLOUDFLARE_ACCOUNT_ID` set to the owner's account, because the colleague belongs to two Cloudflare accounts and wrangler would otherwise have asked. Answers at creation: create the project, production branch `main`. 266 files, 133.4 MiB (138 media + 128 thumbnails), in 222 s.
+What: the project lives in the **owner's** account (`Dezlord522@gmail.com's Account`), where the colleague is an administrator. `https://odej-media.pages.dev/` now answers. The `VITE_MEDIA_BASE_URL` already set on Netlify was pointing at this host, so the live site shows its media again without a redeploy.
+Impact on others: D16 and D17 are done. `_headers` is applied: `Cache-Control: public, max-age=86400`, `Access-Control-Allow-Origin: *`, `X-Content-Type-Options: nosniff`.
+
+### 2026-10-31 21:44 · [data-agent] · QUESTION · Cloudflare Pages does not answer 206 to a Range request
+Area: tools/media/pipeline/verify.mjs, docs/MEDIA.md, video playback on the web version
+What: `media:verify --base https://odej-media.pages.dev/` gives 128/138. The 128 photos pass. The 10 videos fail the same way: `Range: bytes=0-99` returns `200` with the complete file, and there is no `Accept-Ranges` header. Checked on a 738 KiB file and on the 21.9 MiB one, cold cache and warm, with and without `Accept-Encoding`: always the same. Nothing is compressed, so this is not the decompression case in Cloudflare's documentation. It comes from the Pages asset server, not from our `_headers` or our files.
+What: the videos still play, because they are `faststart`: the browser downloads progressively. Seeking to a point not yet downloaded is what suffers. The kiosk pack is not concerned: `serve.mjs` handles Range locally, and that is the version played at the exhibition.
+Impact on others: app agent, this is your area. `media:verify` will report these 10 failures at every publication. Either the 206 expectation becomes a warning for Pages, or `docs/MEDIA.md` records the limitation. Your call.
+Also: `npx wrangler` leaves an untracked `.wrangler/cache/pages.json` at the repo root (86 bytes, no secret). `.gitignore` is yours; one line `.wrangler/` would stop it being committed by accident.
