@@ -10,7 +10,7 @@
     "predev": "node scripts/build-media-index.mjs",
     "dev": "vite",
     "prebuild": "node scripts/build-media-index.mjs",
-    "build":"npm run validate:data && tsc -p tsconfig.json --noEmit && vite build",
+    "build": "npm run validate:data && tsc -p tsconfig.json --noEmit && vite build",
     "postbuild": "node scripts/prune-media.mjs",
     "preview": "vite preview",
     "media:check": "node ../../tools/media/pipeline/check.mjs",
@@ -29,7 +29,7 @@
     "@fontsource-variable/readex-pro": "^5.1.0",
     "@fontsource/amiri": "^5.1.0",
     "@fontsource/marcellus": "^5.1.0",
-    "maplibre-gl": "^5.0.0",
+    "maplibre-gl": "6.16.0",
     "qrcode-generator": "^1.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

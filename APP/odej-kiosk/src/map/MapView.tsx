@@ -1,5 +1,6 @@
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState, type RefObject } from 'react';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import type { GeoJSONSource, Map as MlMap, Marker, PaddingOptions } from 'maplibre-gl';
 import type { BasemapId, KioskData, Locale } from '../types';
 import { CONFIG, QUALITY, type QualityLevel } from '../config';
@@ -61,7 +62,9 @@ interface Props {
   onEntryFps(fps: number): void;
 }
 
-let rtlPluginRequested = false;
+// Avec un bundler, MapLibre ne trouve pas son worker tout seul
+maplibregl.setWorkerUrl(workerUrl);
+
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const pixelRatioFor = (quality: QualityLevel) => Math.min(window.devicePixelRatio, QUALITY[quality].maxPixelRatio);
 
@@ -92,11 +95,6 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     if (!container) return;
     let map: MlMap;
     try {
-      if (!maplibregl?.Map) throw new Error('MapLibre non chargé');
-      if (!__ARTIFACT__ && !rtlPluginRequested && maplibregl.getRTLTextPluginStatus?.() === 'unavailable') {
-        rtlPluginRequested = true;
-        Promise.resolve(maplibregl.setRTLTextPlugin(CONFIG.rtlTextPluginUrl, true)).catch(() => undefined);
-      }
       const first = styleFor('preview', live.current.locale);
       map = new maplibregl.Map({
         container,

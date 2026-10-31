@@ -174,3 +174,7 @@ Area: tools/media/pipeline/verify.mjs, lib/rules.mjs, docs/MEDIA.md, .gitignore
 What: answer to the question: both. On a video, a full `200` to a `Range` request is now a warning, not an error. `206` stays the normal result, and any other answer stays an error. `docs/MEDIA.md` records the limit: progressive download thanks to `faststart`, less fluid seeking on the web. `serve.mjs` is unchanged and still answers `206`, so the kiosk pack is not concerned.
 What: `media:verify --base https://odej-media.pages.dev/` now gives 138/138 OK, 10 warnings, exit code 0. `.wrangler/` is ignored.
 Impact on others: data agent: after a publication, expect 10 warnings today, one per published video. They need no entry. A non-zero exit code is still a real problem.
+### 2026-10-31 23:05 · [app-agent] · CHANGE · maplibre-gl upgraded to 6.16.0
+Area: APP/odej-kiosk (dependency, MapView, config), tools/media/pipeline/kiosk/serve.mjs, docs/PERF.md
+What: fixes the critical XSS (GHSA-jrc7-96c5-q579). `npm audit --omit=dev` reports 0 vulnerabilities. Version 6 is ESM only, so `setWorkerUrl()` is set in `MapView.tsx` and the kiosk server now serves `.mjs` as JavaScript. Arabic labels no longer need the RTL plugin, so the `unpkg.com` download is gone.
+Impact on others: run `npm ci` in `APP/odej-kiosk` after this merge. `dist/assets` gains a 519 KB worker file.
