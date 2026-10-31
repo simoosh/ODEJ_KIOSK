@@ -1,14 +1,14 @@
 # ODEJ_KIOSK
 
-Borne tactile de l'ODEJ Béjaïa pour le salon des établissements de jeunesse (Alger, 11 novembre 2026) : une carte 3D de la wilaya de Béjaïa et de ses 67 établissements, en arabe et en anglais, en portrait et en paysage.
+Touch-screen kiosk for the ODEJ Béjaïa stand at the youth-establishments exhibition (Algiers, 11 November 2026): a 3D map of Béjaïa wilaya and its 67 establishments, in Arabic and English, in portrait and landscape.
 
-Stack : React, TypeScript, Vite, MapLibre, OpenStreetMap. Les données sont dans des fichiers JSON : pas de back-end, pas de base de données.
+Stack: React, TypeScript, Vite, MapLibre, OpenStreetMap. The data lives in JSON files: no back-end, no database.
 
-Les agents et les contributeurs lisent d'abord [CLAUDE.md](CLAUDE.md) et [teamwork/README.md](teamwork/README.md).
+Agents and contributors read [CLAUDE.md](CLAUDE.md) and [teamwork/README.md](teamwork/README.md) first.
 
-## Démarrage
+## Getting started
 
-Node 22 est requis (voir `.nvmrc`).
+Node 22 is required (see `.nvmrc`).
 
 ```bash
 cd APP/odej-kiosk
@@ -16,67 +16,67 @@ npm ci
 npm run dev
 ```
 
-L'application s'ouvre sur `http://localhost:5173`. Ajoute `?sim=1` à l'URL pour le simulateur d'écrans.
+The app opens at `http://localhost:5173`. Add `?sim=1` to the URL for the screen simulator.
 
-`npm ci` active aussi le hook `.githooks/commit-msg` avec le script `prepare`.
+`npm ci` also enables the `.githooks/commit-msg` hook through the `prepare` script.
 
-| Commande (dans `APP/odej-kiosk`) | Rôle |
+| Command (inside `APP/odej-kiosk`) | What it does |
 |---|---|
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript |
-| `npm test` | tests unitaires (Vitest) |
-| `npm run build` | valide les données, vérifie les types, construit `dist/` |
-| `npm run validate:data` | valide `public/data/odej-bejaia.json` (schéma et cohérence interne) |
-| `npm run format` | Prettier. Reformate tout le code : à ne lancer qu'après accord, dans un commit `style:` séparé |
+| `npm test` | unit tests (Vitest) |
+| `npm run build` | validates the data, checks the types, builds `dist/` |
+| `npm run validate:data` | validates `public/data/odej-bejaia.json` (schema and internal consistency) |
+| `npm run format` | Prettier. Reformats all the code: only run it once agreed, in a separate `style:` commit |
 
-## Arborescence
+## Repository layout
 
 ```
 ODEJ_KIOSK/
-├─ .claude/settings.json   réglages de l'agent
-├─ .githooks/commit-msg    refuse les lignes d'attribution dans les commits
-├─ .github/workflows/      CI : lint, typecheck, test, build
-├─ APP/odej-kiosk/         l'application (ne pas déplacer)
-│  ├─ public/data/         données et schéma
-│  ├─ public/media/        médias optimisés : binaires ignorés par git
-│  ├─ scripts/             scripts de build
-│  ├─ src/                 code de l'application
-│  ├─ tests/unit/          tests unitaires
-│  └─ docs/                vérification des données, traçabilité des médias
-├─ RESOURCES/ODEJ-Media/   médias bruts : seuls info.json et manifest.json sont suivis
-├─ teamwork/               règles partagées et journal des agents
-└─ netlify.toml            déploiement
+├─ .claude/settings.json   agent settings
+├─ .githooks/commit-msg    rejects attribution lines in commits
+├─ .github/workflows/      CI: lint, typecheck, test, build
+├─ APP/odej-kiosk/         the application (do not move it)
+│  ├─ public/data/         data and schema
+│  ├─ public/media/        optimized media: binaries ignored by git
+│  ├─ scripts/             build scripts
+│  ├─ src/                 application code
+│  ├─ tests/unit/          unit tests
+│  └─ docs/                data verification, media traceability
+├─ RESOURCES/ODEJ-Media/   raw media: only info.json and manifest.json are tracked
+├─ teamwork/               shared rules and the agents' log
+└─ netlify.toml            deployment
 ```
 
-## Répartition des fichiers
+## Who owns what
 
-| Zone | Responsable |
+| Area | Owner |
 |---|---|
-| `APP/odej-kiosk/src/**`, `scripts/**`, configuration, CI, Netlify, `tools/media/pipeline/**`, `tools/dem/**`, `tools/data/**` | propriétaire (agent applicatif) |
-| `RESOURCES/**`, `tools/media/collect/**`, `APP/odej-kiosk/docs/media/**`, `APP/odej-kiosk/public/media/odej-NNN/**` | collègue (agent données) |
-| `APP/odej-kiosk/public/data/odej-bejaia.json` et son schéma | partagé : prévenir dans `teamwork/Update.md` avant d'éditer |
-| `teamwork/**` | tout le monde. `Update.md` se modifie en ajout seulement |
+| `APP/odej-kiosk/src/**`, `scripts/**`, configuration, CI, Netlify, `tools/media/pipeline/**`, `tools/dem/**`, `tools/data/**` | owner (app agent) |
+| `RESOURCES/**`, `tools/media/collect/**`, `APP/odej-kiosk/docs/media/**`, `APP/odej-kiosk/public/media/odej-NNN/**` | colleague (data agent) |
+| `APP/odej-kiosk/public/data/odej-bejaia.json` and its schema | shared: say so in `teamwork/Update.md` before editing |
+| `teamwork/**` | everyone. `Update.md` is append-only |
 
-Aucune photo ni vidéo n'entre dans git. Les règles sont dans [teamwork/README.md](teamwork/README.md), section 4.
+No photo or video goes into git. The rules are in [teamwork/README.md](teamwork/README.md), section 4.
 
-## Workflow git
+## Git workflow
 
-- Une tâche, une branche, une PR. Branches : `step/NN-nom` pour l'application, `data/...` pour les données.
-- Pas de push direct sur `main`, sauf une entrée dans `teamwork/Update.md`. Jamais de force-push sur `main`.
-- Commits au format Conventional Commits, sujet en anglais à l'impératif.
-- Avant une PR : `git fetch origin && git rebase origin/main`, puis `npm ci && npm run lint && npm run typecheck && npm test && npm run build`.
-- La CI doit être verte. Le propriétaire ou le collègue fusionne : un agent ne fusionne jamais.
+- One task, one branch, one PR. Branches: `step/NN-name` for the application, `data/...` for the data.
+- No direct push to `main`, except an entry in `teamwork/Update.md`. Never force-push `main`.
+- Conventional Commits, subject in English, imperative.
+- Before a PR: `git fetch origin && git rebase origin/main`, then `npm ci && npm run lint && npm run typecheck && npm test && npm run build`.
+- CI must be green. The owner or the colleague merges: an agent never merges.
 
-## Déploiement
+## Deployment
 
-Netlify construit l'application depuis `main`, avec un aperçu de déploiement sur chaque PR. La configuration est dans `netlify.toml` (`base = "APP/odej-kiosk"`). Site prévu : `odej-bejaia`, sur le compte Netlify du propriétaire.
+Netlify builds the application from `main`, with a deploy preview on every PR. The configuration is in `netlify.toml` (`base = "APP/odej-kiosk"`). Planned site: `odej-bejaia`, on the owner's Netlify account.
 
-Pour reproduire le build Netlify en local, depuis la racine du dépôt, après `npm ci` dans `APP/odej-kiosk` :
+To reproduce the Netlify build locally, from the repository root, after `npm ci` in `APP/odej-kiosk`:
 
 ```bash
 npx netlify-cli build --offline
 ```
 
-`--offline` évite d'avoir à lier le dossier à un site Netlify : sans cette option, la commande exige un site lié.
+`--offline` avoids having to link the folder to a Netlify site: without it, the command requires a linked site.
 
-Netlify ne sert que l'application. Les médias passent par un CDN, et la borne du salon exécute un pack local (voir [teamwork/README.md](teamwork/README.md), section 4).
+Netlify only serves the application. The media go through a CDN, and the exhibition kiosk runs a local pack (see [teamwork/README.md](teamwork/README.md), section 4).

@@ -91,3 +91,8 @@ Impact on others: after this PR is merged, run `npm ci` in `APP/odej-kiosk`: it 
 Area: APP/odej-kiosk/package.json
 What: `npm audit` reports a critical XSS in `maplibre-gl` <= 6.4.0 (GHSA-jrc7-96c5-q579, `DOM.sanitize`). Installed: 5.24.0. The fix is a major upgrade to 6.x. It was already there before step 1. The app uses no MapLibre `Popup` or `setHTML`.
 Impact on others: none today. The owner decides whether to upgrade, ideally with step 3, which reworks the map code.
+
+### 2026-10-31 04:44 · [data-agent] · CHANGE · Root README translated to English
+Area: README.md (root only)
+What: the colleague asked for the root README in English. Same structure, same content, same links as the French version written in step 1. Nothing was added or removed. `APP/odej-kiosk/README.md` is untouched and stays in French.
+Impact on others: owner, this is your file. If you prefer it in French, revert this one commit. Say which language the project keeps so the two READMEs match.
