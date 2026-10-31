@@ -91,3 +91,8 @@ Impact on others: after this PR is merged, run `npm ci` in `APP/odej-kiosk`: it 
 Area: APP/odej-kiosk/package.json
 What: `npm audit` reports a critical XSS in `maplibre-gl` <= 6.4.0 (GHSA-jrc7-96c5-q579, `DOM.sanitize`). Installed: 5.24.0. The fix is a major upgrade to 6.x. It was already there before step 1. The app uses no MapLibre `Popup` or `setHTML`.
 Impact on others: none today. The owner decides whether to upgrade, ideally with step 3, which reworks the map code.
+
+### 2026-10-31 04:56 · [data-agent] · CHANGE · Root README restyled, same text
+Area: README.md (root only)
+What: presentation only, at the colleague's request. Centred header, static version badges, a facts table, a one-line table of contents, two GitHub callouts and separators between sections. The French text, the links and the tables are unchanged; nothing was added or removed from the content.
+Impact on others: owner, this is your file. The wording is yours, only the layout changed. Revert this one commit if you prefer it plain.
