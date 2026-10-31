@@ -12,6 +12,8 @@ import {
   MIB,
   photoErrors,
   publishRefusals,
+  rangeErrors,
+  rangeWarnings,
   referenceErrors,
   videoErrors,
 } from '../../../../tools/media/pipeline/lib/rules.mjs';
@@ -112,6 +114,25 @@ describe('publication', () => {
     expect(publishRefusals([{ path: 'a.mp4', bytes: 26 * MIB }])).toHaveLength(1);
     expect(publishRefusals(Array.from({ length: LIMITS.totalFiles + 1 }, (_, i) => ({ path: `${i}`, bytes: 1 })))).toHaveLength(1);
     expect(publishRefusals([{ path: 'a.mp4', bytes: MIB }])).toEqual([]);
+  });
+});
+
+describe('requête Range sur une vidéo', () => {
+  it('accepte 206 sans avertissement', () => {
+    expect(rangeErrors('v.mp4', 206)).toEqual([]);
+    expect(rangeWarnings('v.mp4', 206)).toEqual([]);
+  });
+
+  it('avertit sur un 200 complet, sans erreur', () => {
+    expect(rangeErrors('v.mp4', 200)).toEqual([]);
+    expect(rangeWarnings('v.mp4', 200)).toEqual(['v.mp4: Range 200 with the full file, expected 206']);
+  });
+
+  it('refuse toute autre réponse', () => {
+    for (const status of [204, 404, 416, 500]) {
+      expect(rangeErrors('v.mp4', status)).toEqual([`v.mp4: Range ${status}, expected 206`]);
+      expect(rangeWarnings('v.mp4', status)).toEqual([]);
+    }
   });
 });
 

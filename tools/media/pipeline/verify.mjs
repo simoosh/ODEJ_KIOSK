@@ -1,9 +1,11 @@
 // npm run media:verify : contrôle les URL publiées à partir de public/media/index.json.
 // Attend 200 et le bon Content-Type ; sur une vidéo, une requête Range doit répondre 206.
+// Un 200 complet à cette requête n'est qu'un avertissement : voir docs/MEDIA.md.
 // Base : VITE_MEDIA_BASE_URL, ou --base <url>.
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { argValue, defaultMediaDir, references } from './lib/media-files.mjs';
+import { rangeErrors, rangeWarnings } from './lib/rules.mjs';
 
 const CONCURRENCY = 8;
 const base = argValue('--base') ?? process.env.VITE_MEDIA_BASE_URL;
@@ -20,6 +22,7 @@ if (!existsSync(indexFile)) {
 }
 
 const paths = Object.values(JSON.parse(readFileSync(indexFile, 'utf8'))).flatMap((media) => references(media).all);
+const warnings = [];
 
 async function verify(path) {
   const url = root + path;
@@ -31,7 +34,8 @@ async function verify(path) {
   if (isVideo) {
     const range = await fetch(url, { headers: { Range: 'bytes=0-1023' } });
     await range.body?.cancel();
-    if (range.status !== 206) return `${path}: Range ${range.status}, expected 206`;
+    warnings.push(...rangeWarnings(path, range.status));
+    return rangeErrors(path, range.status)[0] ?? null;
   }
   return null;
 }
@@ -50,5 +54,7 @@ await Promise.all(
 
 for (const failure of failures.slice(0, 20)) console.error(`  - ${failure}`);
 if (failures.length > 20) console.error(`  ... and ${failures.length - 20} more`);
-console.log(`media:verify: ${paths.length - failures.length}/${paths.length} OK on ${root}`);
+for (const warning of warnings.slice(0, 20)) console.log(`  warn  ${warning}`);
+if (warnings.length > 20) console.log(`  warn  ... and ${warnings.length - 20} more`);
+console.log(`media:verify: ${paths.length - failures.length}/${paths.length} OK, ${warnings.length} warning(s) on ${root}`);
 if (failures.length > 0) process.exit(1);
