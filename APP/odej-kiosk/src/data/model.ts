@@ -1,15 +1,16 @@
 import type { Category, Establishment, I18nText, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
+import { MEDIA_BASE, mediaUrl } from '../config';
 import { matchScore, normalize } from '../lib/text';
 
 /** Titre affiché : type + commune quand il est connu, sinon le nom officiel. */
 export const titleOf = (e: Establishment): I18nText => e.displayName ?? e.name;
 
-/** Fusionne les médias dans les établissements, par id. Les chemins de l'index sont relatifs à base. */
-export function withMedia(data: KioskData, index: MediaIndex, base: string): KioskData {
+/** Fusionne les médias dans les établissements, par id, avec leurs URL complètes. */
+export function withMedia(data: KioskData, index: MediaIndex, base: string = MEDIA_BASE): KioskData {
   const resolve = (item: MediaItem): MediaItem => ({
     ...item,
-    src: base + item.src,
-    ...(item.poster ? { poster: base + item.poster } : {}),
+    src: mediaUrl(item.src, base),
+    ...(item.poster ? { poster: mediaUrl(item.poster, base) } : {}),
   });
   return {
     ...data,

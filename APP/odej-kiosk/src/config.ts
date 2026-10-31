@@ -1,3 +1,16 @@
+/** Racine des médias : le CDN si VITE_MEDIA_BASE_URL est défini, sinon le site lui-même. Toujours avec une barre finale. */
+export function resolveMediaBase(cdnUrl: string | undefined, baseUrl: string): string {
+  const base = cdnUrl || `${baseUrl}media/`;
+  return base.endsWith('/') ? base : `${base}/`;
+}
+
+export const MEDIA_BASE = resolveMediaBase(import.meta.env.VITE_MEDIA_BASE_URL, import.meta.env.BASE_URL);
+
+/** Seul endroit qui fabrique une URL de média. Tolère l'ancien préfixe media/. */
+export function mediaUrl(src: string, base: string = MEDIA_BASE): string {
+  return base + src.replace(/^media\//, '');
+}
+
 /** Réglages de la borne. Tout ce qui est contenu (textes, établissements) vit dans public/data/odej-bejaia.json. */
 export const CONFIG = {
   dataUrl: 'data/odej-bejaia.json',
