@@ -1,0 +1,12 @@
+{
+  "name": "odej-media-pipeline",
+  "private": true,
+  "type": "module",
+  "description": "Contrôle, vignettes, publication et pack de la borne. Lancé depuis APP/odej-kiosk (npm run media:*).",
+  "engines": {
+    "node": "^22.13.0"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
+}
