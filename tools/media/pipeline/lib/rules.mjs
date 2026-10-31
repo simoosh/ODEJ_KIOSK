@@ -48,6 +48,15 @@ export function videoWarnings(path, seconds) {
   return seconds > LIMITS.videoSeconds ? [`${path}: ${Math.round(seconds)} s, default limit is ${LIMITS.videoSeconds} s`] : [];
 }
 
+/** Réponse à une requête Range sur une vidéo. 200 n'est pas une erreur : faststart permet le téléchargement progressif. */
+export function rangeErrors(path, status) {
+  return status === 200 || status === 206 ? [] : [`${path}: Range ${status}, expected 206`];
+}
+
+export function rangeWarnings(path, status) {
+  return status === 200 ? [`${path}: Range 200 with the full file, expected 206`] : [];
+}
+
 /** Compare les fichiers présents aux références de media.json. */
 export function referenceErrors(files, references) {
   const present = new Set(files);
