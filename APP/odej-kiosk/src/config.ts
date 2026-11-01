@@ -33,6 +33,11 @@ export const CONFIG = {
     [6.2, 37.3],
   ] as [[number, number], [number, number]],
 
+  /** Tuiles de relief, relatives à la racine du site */
+  terrainTiles: 'terrain/{z}/{x}/{y}.webp',
+  terrainAttribution:
+    'Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. Sports areas © OpenStreetMap contributors',
+
   /** Exagération du relief 3D */
   terrainExaggeration: 1,
 

@@ -12,6 +12,11 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/terrain/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
   for = "/data/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"

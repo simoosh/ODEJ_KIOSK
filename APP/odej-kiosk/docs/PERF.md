@@ -70,3 +70,7 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 - Un `setStyle` efface les couches et les images : `installMarkers()` les remet à chaque `style.load`.
 - Le relief doit être retiré avant un `setStyle`, sinon le rendu plante pendant le chargement du nouveau style.
 - Une boucle `requestAnimationFrame` ne tourne que pendant une action demandée, comme la visite à 360°.
+
+## Relief auto-hébergé
+
+Le relief vient de `public/terrain/` (`tools/dem`) : 134 tuiles, 13,8 Mio, zooms 8 à 11, en `high` environ 200 FPS en médiane et 145 au 5ᵉ centile, sur la même machine.

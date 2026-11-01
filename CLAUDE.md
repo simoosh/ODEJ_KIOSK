@@ -48,7 +48,7 @@ ODEJ_KIOSK/
 ├─ APP/odej-kiosk/
 │  ├─ public/data/                  odej-bejaia.json + schema
 │  ├─ public/media/odej-NNN/        optimized media: binaries ignored, media.json tracked
-│  ├─ public/terrain/, public/vendor/   planned
+│  ├─ public/terrain/                relief tiles, built by tools/dem
 │  ├─ scripts/                      build scripts (data validation, media index)
 │  ├─ src/
 │  ├─ tests/unit/, tests/e2e/

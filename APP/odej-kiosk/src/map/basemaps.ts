@@ -3,15 +3,17 @@ import type { BasemapId, Locale } from '../types';
 import { graticule } from '../lib/geo';
 import { CONFIG } from '../config';
 
-/** Relief : Terrain Tiles (Mapzen) sur AWS Open Data, encodage terrarium, sans clé. */
-const DEM_SOURCE = {
+/** Relief auto-hébergé (tools/dem) : Copernicus GLO-30, surfaces sportives d'OSM aplaties. */
+const demSource = () => ({
   type: 'raster-dem' as const,
-  tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
-  encoding: 'terrarium' as const,
-  tileSize: 256,
-  maxzoom: 14,
-  attribution: 'Relief © Mapzen Terrain Tiles (AWS Open Data)',
-};
+  tiles: [`${location.origin}${import.meta.env.BASE_URL}${CONFIG.terrainTiles}`],
+  encoding: 'mapbox' as const,
+  tileSize: 512,
+  minzoom: 8,
+  maxzoom: 11,
+  bounds: [4, 36.1, 5.9, 37.1] as [number, number, number, number],
+  attribution: CONFIG.terrainAttribution,
+});
 
 /** Polices des étiquettes de marqueurs sur les fonds raster (mêmes que le plan vectoriel) */
 const GLYPHS_URL = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
@@ -50,7 +52,7 @@ function rasterStyle(id: string, tiles: string[], attribution: string, maxzoom: 
     glyphs: GLYPHS_URL,
     sources: {
       [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution },
-      dem: DEM_SOURCE,
+      dem: demSource(),
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': '#EEF0E8' } },
@@ -149,7 +151,7 @@ function localizePlan(style: StyleSpecification, locale: Locale): StyleSpecifica
 
   return {
     ...style,
-    sources: { ...style.sources, dem: DEM_SOURCE },
+    sources: { ...style.sources, dem: demSource() },
     layers,
   } as StyleSpecification;
 }

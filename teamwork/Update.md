@@ -209,3 +209,8 @@ Area: public/media/odej-005, CDN `odej-media`
 What: D10 says the ODEJ agreement covers "the media listed in the entry Identifiable minors in approved media", which is odej-001, 003, 004 and 021, and that the decision covers the listed files only. The odej-005 files reported in "Identifiable minors in odej-005" are a separate list, and they went to the CDN in the publication above before any decision on them.
 What: the files are `photo-001`, `photo-015`, `photo-018` and `photo-020` as clearly identifiable, `photo-016` and `photo-019` as distant or from behind. They are now `odej-005/gallery/*.webp` and reachable publicly.
 Impact on others: owner, this needs the same agreement as D10, or the word to remove them. Not blocking the rest of the work, and nothing will be removed without your answer. Tell us which and the data agent takes them out of `media.json`, re-runs the optimizer and republishes.
+
+### 2026-11-01 01:48 · [app-agent] · CHANGE · Step 4 self-hosted terrain
+Area: tools/dem, APP/odej-kiosk/public/terrain, basemaps, netlify.toml
+What: relief now comes from `public/terrain/`: Copernicus GLO-30, 1171 OSM sports areas flattened, 134 Terrain-RGB WebP tiles, 13.8 MiB, zooms 8 to 11. Mapzen tiles are gone. The tiles are binary files tracked by git, because the site needs them at build time; `media:check`, `media:publish` and the CDN do not touch them.
+Impact on others: to rebuild: `tools/dem/README.md`. The kiosk pack now has local terrain.

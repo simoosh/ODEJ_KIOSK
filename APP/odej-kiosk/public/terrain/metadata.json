@@ -1,0 +1,26 @@
+{
+  "encoding": "mapbox",
+  "format": "webp",
+  "tileSize": 512,
+  "minzoom": 8,
+  "maxzoom": 11,
+  "bounds": [
+    4.0,
+    36.1,
+    5.9,
+    37.1
+  ],
+  "source": "Copernicus DEM GLO-30, OpenStreetMap",
+  "date": "2026-11-01",
+  "osmDate": "2026-11-01",
+  "flatten": {
+    "polygons": 1185,
+    "flattened": 1171,
+    "too_large": 2,
+    "not_flat": 12,
+    "at_sea": 0,
+    "outside": 0
+  },
+  "tiles": 134,
+  "bytes": 14429168
+}
