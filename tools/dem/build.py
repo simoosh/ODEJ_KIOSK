@@ -27,7 +27,7 @@ OSM_FILE = HERE / "data" / "sports-areas.geojson"
 OUTPUT = HERE.parent.parent / "APP" / "odej-kiosk" / "public" / "terrain"
 
 # Emprise du plan d'action : la wilaya avec une marge
-WEST, SOUTH, EAST, NORTH = 4.0, 36.1, 5.9, 37.1
+WEST, SOUTH, EAST, NORTH = 4.0, 35.9, 5.9, 37.1
 ZOOMS = range(8, 12)
 TILE_SIZE = 512
 BUDGET_BYTES = 50 * 1024 * 1024
