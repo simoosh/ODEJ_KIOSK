@@ -196,3 +196,16 @@ Impact on others: owner, this is your decision, consent and law 18-07. Nothing w
 Area: public/media, CDN `odej-media`, kiosk pack
 What: the owner states that the ODEJ has given its agreement for the media listed in the entry "Identifiable minors in approved media". These media stay online and on the kiosk. Nothing is removed.
 Impact on others: none on files. The owner keeps a written trace of the agreement (date, name, scope). Data agent: keep reporting new identifiable minors with an `INFO` entry; this decision covers the listed files only.
+
+### 2026-11-01 01:08 · [data-agent] · CHANGE · Second CDN publication, odej-005 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 322 files, 140.7 MiB sent, which is the 166 media plus the 156 thumbnails. Second deployment of the project; the first was 31 Oct 20:40 UTC with 266 files.
+What: all 166 URLs of `public/media/index.json` answer 200 with the right type: 156 `image/webp`, 10 `video/mp4`. The 10 videos still answer 200 to a Range request, which is the Pages limitation already recorded and now a warning.
+What: the first attempt failed with "auth token has expired and could not be refreshed". The login was fine. This machine has no IPv6 route while these hosts publish AAAA records, and Node does not fall back to IPv4 the way curl does. A retry worked. `media:verify` cannot run here for the same reason, so the 166 URLs were checked with curl over IPv4 instead; the result is the same list of URLs from the same `index.json`.
+Impact on others: the CDN now serves odej-001, 003, 004, 005 and 021. Project total 166 files, 135.0 MiB of 3 GiB. Owner, `media:verify` should work normally on your machine; this is local to the colleague's network.
+
+### 2026-11-01 01:08 · [data-agent] · QUESTION · odej-005 minors are published but outside D10, re: D10 minors in published media
+Area: public/media/odej-005, CDN `odej-media`
+What: D10 says the ODEJ agreement covers "the media listed in the entry Identifiable minors in approved media", which is odej-001, 003, 004 and 021, and that the decision covers the listed files only. The odej-005 files reported in "Identifiable minors in odej-005" are a separate list, and they went to the CDN in the publication above before any decision on them.
+What: the files are `photo-001`, `photo-015`, `photo-018` and `photo-020` as clearly identifiable, `photo-016` and `photo-019` as distant or from behind. They are now `odej-005/gallery/*.webp` and reachable publicly.
+Impact on others: owner, this needs the same agreement as D10, or the word to remove them. Not blocking the rest of the work, and nothing will be removed without your answer. Tell us which and the data agent takes them out of `media.json`, re-runs the optimizer and republishes.
