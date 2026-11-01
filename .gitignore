@@ -171,6 +171,7 @@ RESOURCES/**/*.png
 RESOURCES/**/*.webp
 RESOURCES/**/*.gif
 RESOURCES/**/*.heic
+RESOURCES/**/*.avif
 RESOURCES/**/*.mp4
 RESOURCES/**/*.mov
 RESOURCES/**/*.webm
