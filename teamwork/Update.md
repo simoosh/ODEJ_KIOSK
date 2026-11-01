@@ -295,3 +295,9 @@ What: table of the establishments that already have media on the map, state afte
 Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
 
 Impact on others: none. Remaining: 52 establishments with no media yet.
+
+### 2026-11-01 05:34 · [data-agent] · CHANGE · Fourth CDN publication, odej-011 to 041 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 925 files, 272.8 MiB staged, which is the 475 media plus the 450 thumbnails. The CDN now serves odej-001, 003, 004, 005, 007, 008, 009, 010, 011, 012, 013, 016, 017, 021 and 041.
+What: all 925 URLs answer 200 over IPv4 with curl: image/webp or video/mp4. `media:verify` still cannot run on the colleague's machine (no IPv6 route). On the rebased branch: `validate:data`, lint (0 errors, 9 existing warnings), typecheck, 79 tests, the build and `media:check --hash` all pass.
+Impact on others: project total is 475 files and 257.2 MiB of 3 GiB. Nothing to do on your side.
