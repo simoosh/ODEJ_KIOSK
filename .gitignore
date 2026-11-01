@@ -199,5 +199,6 @@ kiosk-pack/
 
 # Outils hors application
 tools/**/.cache/
+tools/**/.venv/
 tools/**/out/
 tools/**/node_modules/
