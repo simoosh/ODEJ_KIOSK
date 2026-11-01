@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T02:45:22Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 12,
+    "name": "الشهيد خالدي عبد القادر  صنادلة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61571842560285"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61571842560285",
+    "pageRef": "61571842560285",
+    "title": "دار الشباب الصنادلة-ولاية بحاية"
+  },
+  "email": "mjsnadela@odejbejaia-dz.com",
+  "phone": "034 39 25 05",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Décoration d’intérieur · Création digitale",
+  "openingHours": null,
+  "followers": 24,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "../../data/media.schema.json",
+  "cover": {
+    "src": "odej-011/cover.webp",
+    "kind": "image"
+  },
+  "gallery": []
+}

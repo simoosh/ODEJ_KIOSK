@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T02:56:12Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 13,
+    "name": "دار الشباب تيبان",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579942858361"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579942858361",
+    "pageRef": "61579942858361",
+    "title": "دار الشباب تيبان-بجاية"
+  },
+  "email": "mjtibane@odejbejaia-dz.com",
+  "phone": "034 14 11 54",
+  "address": "tibane, Bejaïa, Algeria, 06087",
+  "website": null,
+  "description": "دار شباب",
+  "facebookCategory": "Organisme jeunesse · Sport",
+  "openingHours": "Toujours ouvert",
+  "followers": 19,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "website"
+  ]
+}

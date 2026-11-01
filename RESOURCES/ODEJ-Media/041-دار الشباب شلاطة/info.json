@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T03:53:39Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 41,
+    "name": "دار الشباب شلاطة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100089213300258"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100089213300258",
+    "pageRef": "100089213300258",
+    "title": "دار الشباب شلاطة-ديوان مؤسسات الشباب ولاية بجاية"
+  },
+  "email": null,
+  "phone": "0698 31 85 82",
+  "address": "ayris Chellata",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 182,
+  "sources": {
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "email",
+    "openingHours",
+    "website"
+  ]
+}

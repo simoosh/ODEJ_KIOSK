@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T03:33:25Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 17,
+    "name": "الشهيد عبد الرحمان فارس أقبو",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100063712759284"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100063712759284",
+    "pageRef": "100063712759284",
+    "title": "دار الشباب اقبو- ولاية بجاية"
+  },
+  "email": "mjakbou@odejbejaia-dz.com",
+  "phone": "034 33 45 85",
+  "address": null,
+  "website": null,
+  "description": "دار الشباب اقبو- ولاية بجاية",
+  "facebookCategory": "Sports et loisirs",
+  "openingHours": null,
+  "followers": 6019,
+  "sources": {
+    "email": "odej-website",
+    "phone": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "openingHours",
+    "website"
+  ]
+}
