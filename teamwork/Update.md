@@ -314,3 +314,8 @@ Area: CDN `odej-media`, public/media
 What: `media:publish -- --go` run by the colleague. 1654 files, 404.4 MiB staged: 852 media plus 802 thumbnails. The CDN now serves 24 establishments.
 What: all 1654 URLs answer 200 over IPv4 with curl: 1604 `image/webp`, 50 `video/mp4`. One re-encoded video was compared byte for byte with the local file. `media:verify` still cannot run on this machine (no IPv6 route).
 Impact on others: nothing to do on your side.
+
+### 2026-11-01 17:22 · [data-agent] · CHANGE · New data problems register
+Area: teamwork/Data.md, teamwork/README.md section 4
+What: at the colleague's request, `Data.md` lists every open problem with the establishments' data: coordinates, Facebook pages, names, types, contact details and media. It covers the 24 scraped establishments and the 43 still to scrape. The workflow now requires updating it in each batch PR.
+Impact on others: when you solve a listed problem, delete its line and add a `CHANGE` entry here. `Data.md` is not append-only.

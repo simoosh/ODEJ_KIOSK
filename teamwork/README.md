@@ -76,7 +76,7 @@ OPTIMIZED  APP/odej-kiosk/public/media/odej-NNN/...      (binaries ignored by gi
 4. **Describe** the files in `public/media/odej-NNN/media.json` (once step 2 of the action plan has landed) and in `docs/media/odej-NNN.json` (traceability: sha256, original, source URL, date).
 5. **Check**: `npm run media:thumbs`, then `npm run media:check`. Fix every error. Warnings are fine when a `CHANGE` entry explains them.
 6. **Commit text files only.** `git status` must not list any photo or video.
-7. **PR** from `data/NNN-name`. Add an entry in `Update.md`.
+7. **PR** from `data/NNN-name`. Add an entry in `Update.md`. Add the new establishments and any problem found to `Data.md`, in the same PR.
 8. **Publish to the CDN**: `npm run media:publish` (dry run by default, `--go` to publish). A human who did `wrangler login` runs it. Agents never log in.
 
 ### Backups
