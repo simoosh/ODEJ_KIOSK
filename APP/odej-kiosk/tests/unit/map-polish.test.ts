@@ -1,23 +1,59 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
-import { fogOpacity, outsideFog } from '../../src/map/fog';
+import { cloudEdge, cloudOpacity, splitOpacity } from '../../src/lib/clouds';
+import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
 import type { LngLat } from '../../src/lib/geo';
 
 describe('brouillard', () => {
-  it('laisse la wilaya dégagée et couvre le lointain', () => {
-    expect(fogOpacity(1, 0.5)).toBe(0);
-    expect(fogOpacity(0, 0.5)).toBe(1);
+  it('commence à zéro au bord de la wilaya, sans cassure', () => {
+    expect(fogOpacity(0, 0)).toBe(0);
+    expect(fogOpacity(0, 1)).toBe(0);
   });
 
-  it('épaissit le bord là où le bruit est faible', () => {
-    expect(fogOpacity(0.15, 0.1)).toBeGreaterThan(fogOpacity(0.15, 0.9));
+  it('épaissit progressivement avec la distance', () => {
+    const steps = [10, 20, 30, 40, 50].map((km) => fogOpacity(km, 0.5));
+    expect(steps).toEqual([...steps].sort((a, b) => a - b));
+    expect(fogOpacity(20, 0.5)).toBeLessThan(0.5);
+  });
+
+  it('devient opaque au loin', () => {
+    expect(fogOpacity(100, 0)).toBe(1);
+  });
+
+  it('mesure la distance au contour', () => {
+    const inside = new Uint8Array(25);
+    inside[12] = 1;
+    const field = distanceField(inside, 5, 5);
+    expect(field[12]).toBe(0);
+    expect(field[13]).toBe(1);
+    expect(field[14]).toBe(2);
+    expect(field[18]).toBeCloseTo(Math.SQRT2);
   });
 
   it('troue le monde sur la zone peinte', () => {
     const hole = outsideFog([[3, 35], [7, 38]]).geometry.coordinates[1];
     expect(hole).toContainEqual([3, 35]);
     expect(hole).toContainEqual([7, 38]);
+  });
+});
+
+describe("nuages de l'accueil", () => {
+  it('descendent plus bas au centre que sur les côtés', () => {
+    expect(cloudEdge(0.5, false)).toBeGreaterThan(cloudEdge(0, false));
+    expect(cloudEdge(0, false)).toBeCloseTo(cloudEdge(1, false));
+  });
+
+  it('sont opaques en haut et disparaissent en bas', () => {
+    expect(cloudOpacity(0.5, 0.2, 0.5, false)).toBe(1);
+    expect(cloudOpacity(0.5, 1, 0.5, false)).toBe(0);
+  });
+
+  it("s'ouvrent en deux sans changer l'image au repos", () => {
+    for (const [alpha, share] of [[1, 0.5], [0.6, 0.3], [0.4, 1], [0.8, 0]]) {
+      const [left, right] = splitOpacity(alpha, share);
+      expect(right + left * (1 - right)).toBeCloseTo(alpha);
+    }
   });
 });
 

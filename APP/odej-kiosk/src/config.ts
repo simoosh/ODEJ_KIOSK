@@ -22,11 +22,30 @@ export const CONFIG = {
   /** Compte à rebours affiché avant le retour (ms) */
   idleWarningMs: 10_000,
 
-  /** Rotation continue derrière l'accueil */
-  orbit: { pitch: 50, degreesPerSecond: 3, flightMs: 2_400 },
-  /** Part de l'écran couverte par le voile de l'accueil : la wilaya tourne dans ce qui reste */
-  landingVeil: 0.42,
-  landingVeilPortrait: 0.5,
+  /** Rotation continue derrière l'accueil. zoomOut : caméra plus haute que le dézoom permis sur la carte */
+  orbit: { pitch: 50, degreesPerSecond: 3, flightMs: 2_400, zoomOut: 0.55 },
+  /** Haut de la zone où tourne la wilaya sur l'accueil, en part de l'écran */
+  landingMapTop: 0.58,
+  landingMapTopPortrait: 0.62,
+
+  /** Nuages de l'accueil (lib/clouds.ts). Bord opaque en part de la hauteur : côtés, puis centre */
+  clouds: {
+    canvas: [640, 360],
+    landscape: { side: 0.52, center: 0.66 },
+    portrait: { side: 0.56, center: 0.64 },
+    /** Grilles du bruit, de la plus large à la plus fine : de grandes masses, pas un grain */
+    noiseCells: [4, 8, 16, 32],
+    fade: 0.2,
+    tear: 0.2,
+    seam: 0.05,
+    light: [250, 250, 247],
+    shadow: [232, 237, 240],
+    wispLow: 0.5,
+    wispHigh: 0.68,
+    wispDrop: 0.05,
+  },
+  /** Durée du recentrement de la caméra après le bouton de l'accueil (ms) */
+  enterFlightMs: 3_600,
   /** Agrandissement de l'emprise du contour pour limiter le centre de la carte, sur chaque côté */
   boundsMargin: 0.15,
   /** Dézoom permis au-delà du cadrage de la wilaya */
@@ -48,8 +67,8 @@ export const CONFIG = {
 
   /** Tuiles de relief, relatives à la racine du site */
   /** ?v= à changer à chaque régénération : les tuiles restent 30 jours dans le cache du navigateur */
-  terrainTiles: 'terrain/{z}/{x}/{y}.webp?v=3',
-  terrainBounds: [4, 35.9, 5.9, 37.1] as [number, number, number, number],
+  terrainTiles: 'terrain/{z}/{x}/{y}.webp?v=4',
+  terrainBounds: [3.8, 35.75, 6.05, 37.3] as [number, number, number, number],
   terrainAttribution:
     'Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. Sports areas © OpenStreetMap contributors',
 
@@ -61,7 +80,7 @@ export const CONFIG = {
   /** Sous-couche : quelques tuiles suffisent à couvrir la wilaya, le temps que le détail arrive */
   satelliteUnderlayZoom: 9,
   /** Au-delà, le brouillard est opaque : inutile de charger ce que personne ne voit */
-  satelliteBounds: [4.15, 36.05, 5.7, 37.05] as [number, number, number, number],
+  satelliteBounds: [3.8, 35.75, 6.05, 37.3] as [number, number, number, number],
   /** Échecs de tuiles d'affilée avant de passer au fond de secours */
   basemapMaxErrors: 8,
   /** Délai maximal de chargement d'un style (ms) */
@@ -76,19 +95,17 @@ export const CONFIG = {
   /** Tuiles gardées en mémoire par source */
   maxTileCacheSize: 300,
 
-  /** Brouillard autour de la wilaya, peint au démarrage (map/fog.ts) */
+  /** Brouillard autour de la wilaya, peint au démarrage (map/fog.ts) : il s'épaissit avec la distance au contour */
   fog: {
     color: '#EDF1F3',
     rgb: [237, 241, 243],
     /** Zone peinte : emprise du contour agrandie de ce ratio de chaque côté */
     regionMargin: 1,
-    /** Largeur du flou autour du contour */
-    blurKm: 10,
-    /** Couverture à laquelle le brouillard est opaque, puis celle à laquelle il disparaît */
-    opaqueAt: 0.03,
-    clearAt: 0.22,
-    noiseStrength: 0.3,
-    shade: 0.22,
+    /** Distance au contour où le brouillard commence, puis celle où il devient opaque */
+    clearKm: 3,
+    opaqueKm: 58,
+    noiseStrength: 0.4,
+    shade: 0.1,
   },
 
   /** Tuiles chargées en arrière-plan sur l'accueil (map/preload.ts) */

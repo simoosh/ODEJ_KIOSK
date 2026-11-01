@@ -241,25 +241,52 @@ input:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 50;
-  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s linear 0s;
 }
 .landing.is-leaving {
-  opacity: 0;
   visibility: hidden;
-  transform: scale(1.03);
-  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s linear 0.8s;
   pointer-events: none;
+  transition: visibility 0s linear 1.7s;
 }
-.landing-veil {
+/* Sortie en parallaxe : le plan avant part plus vite et plus loin. Seul transform bouge, sur quatre calques */
+.clouds {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--paper) 0%, rgba(247, 246, 241, 0.97) 46%, rgba(247, 246, 241, 0.55) 72%, rgba(247, 246, 241, 0.1) 100%);
+  overflow: hidden;
+  pointer-events: none;
 }
-[dir='rtl'] .landing-veil {
-  background: linear-gradient(to left, var(--paper) 0%, rgba(247, 246, 241, 0.97) 46%, rgba(247, 246, 241, 0.55) 72%, rgba(247, 246, 241, 0.1) 100%);
+.cloud-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 1.6s cubic-bezier(0.55, 0, 0.25, 1);
 }
-.is-portrait .landing-veil {
-  background: linear-gradient(to bottom, var(--paper) 0%, rgba(247, 246, 241, 0.97) 58%, rgba(247, 246, 241, 0.5) 80%, rgba(247, 246, 241, 0.05) 100%);
+.cloud-front-left,
+.cloud-front-right {
+  transition-duration: 1.25s;
+}
+.is-leaving .cloud-back-left {
+  transform: translateX(-75%);
+}
+.is-leaving .cloud-back-right {
+  transform: translateX(75%);
+}
+.is-leaving .cloud-front-left {
+  transform: translateX(-110%);
+}
+.is-leaving .cloud-front-right {
+  transform: translateX(110%);
+}
+.landing-inner,
+.landing-motifs {
+  will-change: transform;
+  transition: transform 1.05s cubic-bezier(0.6, 0, 0.3, 1), opacity 0.8s ease;
+}
+.is-leaving .landing-inner,
+.is-leaving .landing-motifs {
+  transform: translateY(-115%);
+  opacity: 0;
 }
 .motif-band {
   position: absolute;
@@ -294,14 +321,12 @@ input:focus-visible {
 .landing-inner {
   position: relative;
   height: 100%;
-  width: min(100%, 56rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 2rem 4rem 3rem;
 }
 .is-portrait .landing-inner {
-  width: 100%;
-  height: auto;
   padding: 2rem 3rem;
 }
 .landing-head {
@@ -358,13 +383,17 @@ input:focus-visible {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: min(1.4rem, 2.2cqh);
-  padding-top: min(4rem, 6cqh);
+  text-align: center;
+  gap: min(1.3rem, 2.1cqh);
+  padding-top: min(4rem, 7cqh);
+  padding-bottom: 15cqh;
 }
 .is-portrait .landing-body {
   padding-top: 7rem;
-  gap: 1.8rem;
+  padding-bottom: 34cqh;
+  gap: 1.5rem;
 }
 .is-portrait .landing-title {
   font-size: 5rem;
@@ -413,9 +442,8 @@ input:focus-visible {
 }
 .landing-title {
   margin: 0;
-  font-size: min(4rem, 7.2cqh);
+  font-size: min(4.6rem, 8cqh);
   color: var(--ink);
-  max-width: 14em;
 }
 .kiosk[lang='en'] .landing-title {
   font-size: min(4.2rem, 7.6cqh);
@@ -423,39 +451,17 @@ input:focus-visible {
 }
 .landing-lead {
   margin: 0;
-  max-width: 38rem;
+  max-width: 52rem;
   font-size: 1.18rem;
   line-height: 1.75;
   color: var(--ink-2);
 }
-.wilaya-card {
-  max-width: 40rem;
-  padding: 1.4rem 1.6rem;
-  border-radius: var(--r-lg);
-  background: var(--card);
-  box-shadow: var(--shadow);
-  display: grid;
-  gap: 0.5rem;
-}
-.wilaya-card h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--green);
-}
-.wilaya-card p {
-  margin: 0;
-  color: var(--ink-2);
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
 .facts {
-  margin: 0.6rem 0 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem 2.4rem;
-  border-top: 0.06rem solid var(--line);
-  padding-top: 0.9rem;
+  justify-content: center;
+  gap: 0.6rem 3rem;
 }
 .facts div {
   display: flex;
@@ -477,10 +483,10 @@ input:focus-visible {
 }
 .cta-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem 1.6rem;
-  margin-top: 0.6rem;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
 }
 .cta {
   display: inline-flex;
@@ -505,7 +511,10 @@ input:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  color: var(--ink-3);
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(247, 246, 241, 0.82);
+  color: var(--ink-2);
   font-size: 1rem;
 }
 .pulse {

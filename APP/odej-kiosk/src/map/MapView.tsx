@@ -342,11 +342,11 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   }, [props.markersVisible]);
 
   /* ------------------------------------------------------------ dézoom max */
-  // Assez pour voir la wilaya entière, pas au-delà : suit la place que laisse le panneau
+  // Suit la place que laisse le panneau ; l'accueil, plus haut, reprend sa limite à la fin de l'entrée
   useEffect(() => {
     const map = mapRef.current;
-    if (map) map.setMinZoom(wilayaCamera(map).zoom - CONFIG.zoomOutMargin);
-  }, [props.padding.top, props.padding.right, props.padding.bottom, props.padding.left]);
+    if (map) map.setMinZoom(props.markersVisible ? mapMinZoom(map) : landingZoom(map));
+  }, [props.padding.top, props.padding.right, props.padding.bottom, props.padding.left]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* --------------------------------------------------------------- accueil */
   useEffect(() => {
@@ -440,12 +440,20 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     return { ...frameCamera(points, pitch, bearing, width, height), pitch, bearing };
   }
 
-  /** Le voile de l'accueil couvre un côté de l'écran : la wilaya tourne dans le reste. */
+  /** Assez pour voir la wilaya entière, pas au-delà. */
+  function mapMinZoom(map: MlMap) {
+    return wilayaCamera(map).zoom - CONFIG.zoomOutMargin;
+  }
+
+  function landingZoom(map: MlMap) {
+    return mapMinZoom(map) - CONFIG.orbit.zoomOut;
+  }
+
+  /** Les nuages couvrent le haut de l'accueil : la wilaya tourne dans le bas de l'écran, centrée. */
   function landingPadding(map: MlMap) {
     const { clientWidth, clientHeight } = map.getCanvas();
-    if (clientHeight > clientWidth) return { top: clientHeight * CONFIG.landingVeilPortrait, right: 0, bottom: 0, left: 0 };
-    const side = clientWidth * CONFIG.landingVeil;
-    return live.current.locale === 'ar' ? { top: 0, right: side, bottom: 0, left: 0 } : { top: 0, right: 0, bottom: 0, left: side };
+    const top = clientHeight * (clientHeight > clientWidth ? CONFIG.landingMapTopPortrait : CONFIG.landingMapTop);
+    return { top, right: 0, bottom: 0, left: 0 };
   }
 
   /* -------------------------------------------------------------- rotation */
@@ -483,10 +491,11 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       stopRotation();
       const cam = wilayaCamera(map);
       framedRef.current = true;
+      map.once('moveend', () => map.setMinZoom(mapMinZoom(map)));
       map.flyTo({
         ...cam,
         padding: live.current.padding,
-        duration: reducedMotion() ? 0 : 4200,
+        duration: reducedMotion() ? 0 : CONFIG.enterFlightMs,
         curve: 1.25,
         essential: true,
       });
@@ -505,9 +514,11 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       map.once('moveend', () => {
         if (moveSeq.current === my) startRotation(CONFIG.orbit.degreesPerSecond);
       });
+      const zoom = landingZoom(map);
+      map.setMinZoom(zoom);
       map.easeTo({
         center: wilayaCenter(live.current),
-        zoom: map.getMinZoom(),
+        zoom,
         pitch: CONFIG.orbit.pitch,
         padding: landingPadding(map),
         duration: reducedMotion() ? 0 : CONFIG.orbit.flightMs,

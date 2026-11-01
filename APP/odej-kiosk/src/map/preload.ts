@@ -55,8 +55,8 @@ export function preloadUrls(sources: PreloadSources, wilaya: [LngLat, LngLat], e
     ...new Set([
       ...whole(sources.satellite, [CONFIG.satelliteUnderlayZoom], satelliteArea),
       ...whole(sources.terrain, terrainZooms, terrainArea),
-      ...whole(sources.plan, planZooms, area),
-      ...whole(sources.satellite, satelliteZooms, area),
+      ...whole(sources.plan, planZooms, satelliteArea),
+      ...whole(sources.satellite, satelliteZooms, satelliteArea),
       ...whole(sources.plan, planDetailZooms, area),
       ...whole(sources.satellite, satelliteDetailZooms, area),
       ...around(sources.plan, aroundPlanZooms),

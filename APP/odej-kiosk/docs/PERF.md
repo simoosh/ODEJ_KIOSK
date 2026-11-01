@@ -62,13 +62,15 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 - Aucun `setState` pendant un mouvement : la boussole s'écrit directement dans le DOM, l'état 2D/3D attend `moveend`.
 - Les 67 marqueurs DOM sont remplacés par des couches WebGL (`src/map/markers.ts`). Les images sont rasterisées une fois au démarrage. Seule l'étiquette de l'établissement sélectionné est un élément HTML.
 - `pixelRatio` plafonné, antialiasing coupé, `fadeDuration` à 0, inclinaison limitée à 70°, relief sans exagération, ombrage coupé quand le relief est actif.
-- Accueil sans relief. Plus d'animation infinie sur la carte. La rotation à 360° rend la carte en continu derrière l'accueil : c'est le seul rendu sans action de l'utilisateur, à la demande du propriétaire.
+- Plus d'animation infinie sur la carte. La rotation à 360° rend la carte en continu derrière l'accueil : c'est le seul rendu sans action de l'utilisateur, à la demande du propriétaire.
+- Le relief reste actif derrière l'accueil : l'activer au toucher du bouton gelait l'écran 723 ms. Sans ce changement de relief, l'animation démarre en moins de 10 ms.
 
 ## À respecter
 
 - Ne jamais appeler `setState` depuis un écouteur `move`, `render` ou `zoom`.
 - Un `setStyle` efface les couches et les images : `installMarkers()` les remet à chaque `style.load`.
 - Le relief doit être retiré avant un `setStyle`, sinon le rendu plante pendant le chargement du nouveau style.
+- La sortie de l'accueil n'anime que `transform`, sur quatre calques : elle reste fluide même si la carte charge.
 - Une boucle `requestAnimationFrame` ne tourne que pendant une action demandée, comme la visite à 360°, ou derrière l'accueil.
 
 ## Relief auto-hébergé
