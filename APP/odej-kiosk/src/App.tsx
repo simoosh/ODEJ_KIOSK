@@ -207,7 +207,7 @@ function KioskScreen({
         boundary={boundary}
         locale={locale}
         basemap={basemap}
-        terrain={terrain && screen === 'map'}
+        terrain={terrain}
         selectedId={selectedId}
         highlightIds={highlightIds}
         padding={padding}
@@ -288,7 +288,7 @@ function KioskScreen({
         )}
       </div>
 
-      <Landing data={data} leaving={screen === 'map'} onStart={start} onToggleLang={onToggleLang} />
+      <Landing data={data} leaving={screen === 'map'} portrait={portrait} onStart={start} onToggleLang={onToggleLang} />
 
       {idleLeft !== null && <IdleOverlay secondsLeft={idleLeft} onStay={() => window.dispatchEvent(new Event('pointerdown'))} />}
 

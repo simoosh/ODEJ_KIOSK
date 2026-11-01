@@ -1,16 +1,18 @@
 import type { KioskData } from '../types';
 import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
+import { LandingClouds } from './LandingClouds';
 import { FlagRule, MotifBand } from './Motifs';
 
 interface Props {
   data: KioskData;
   leaving: boolean;
+  portrait: boolean;
   onStart(): void;
   onToggleLang(): void;
 }
 
-export function Landing({ data, leaving, onStart, onToggleLang }: Props) {
+export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Props) {
   const { t, tx } = useI18n();
   const facts = [
     { value: data.establishments.length, label: t('statEstablishments'), strong: true },
@@ -19,7 +21,7 @@ export function Landing({ data, leaving, onStart, onToggleLang }: Props) {
 
   return (
     <section className={`landing ${leaving ? 'is-leaving' : ''}`} aria-hidden={leaving}>
-      <div className="landing-veil" />
+      <LandingClouds portrait={portrait} />
       <MotifBand className="landing-motifs" />
 
       <div className="landing-inner">
@@ -49,18 +51,14 @@ export function Landing({ data, leaving, onStart, onToggleLang }: Props) {
           <h1 className="display landing-title">{t('landingTitle')}</h1>
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
-          <div className="wilaya-card">
-            <h2>{t('wilayaHeading')}</h2>
-            <p>{tx(data.wilaya.description)}</p>
-            <dl className="facts">
-              {facts.map((f) => (
-                <div key={f.label} className={f.strong ? 'is-strong' : ''}>
-                  <dt>{f.label}</dt>
-                  <dd>{f.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <dl className="facts">
+            {facts.map((f) => (
+              <div key={f.label} className={f.strong ? 'is-strong' : ''}>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
 
           <div className="cta-row">
             <button type="button" className="cta" onClick={onStart}>
