@@ -1,5 +1,5 @@
 /** Mesures de performance, pour le panneau ?debug=1 et le scénario de docs/PERF.md. */
-export const perfCounters = { renders: 0 };
+export const perfCounters = { renders: 0, preloaded: 0 };
 
 export interface FrameStats {
   frames: number;

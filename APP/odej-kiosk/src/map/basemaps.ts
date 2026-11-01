@@ -3,15 +3,17 @@ import type { BasemapId, Locale } from '../types';
 import { graticule } from '../lib/geo';
 import { CONFIG } from '../config';
 
+export const terrainTemplate = () => `${location.origin}${import.meta.env.BASE_URL}${CONFIG.terrainTiles}`;
+
 /** Relief auto-hébergé (tools/dem) : Copernicus GLO-30, surfaces sportives d'OSM aplaties. */
 const demSource = () => ({
   type: 'raster-dem' as const,
-  tiles: [`${location.origin}${import.meta.env.BASE_URL}${CONFIG.terrainTiles}`],
+  tiles: [terrainTemplate()],
   encoding: 'mapbox' as const,
   tileSize: 512,
   minzoom: 8,
   maxzoom: 11,
-  bounds: [4, 36.1, 5.9, 37.1] as [number, number, number, number],
+  bounds: CONFIG.terrainBounds,
   attribution: CONFIG.terrainAttribution,
 });
 
@@ -22,10 +24,17 @@ const GLYPHS_URL = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf'
 const SATELLITE_KEY = import.meta.env.VITE_SATELLITE_KEY;
 const SATELLITE_TOKEN = SATELLITE_KEY ? `?token=${encodeURIComponent(SATELLITE_KEY)}` : '';
 
+/** L'horizon prend la couleur du brouillard : les deux se confondent au loin */
+export const SATELLITE_TILES = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}${SATELLITE_TOKEN}`;
+/** Source vectorielle du style du plan */
+export const PLAN_SOURCE = 'openmaptiles';
+/** Fondu court : une tuile qui arrive ne saute pas aux yeux */
+const RASTER_FADE_MS = 160;
+
 export const SKY = {
   'sky-color': '#CFE3EE',
-  'horizon-color': '#F3F1EA',
-  'fog-color': '#F3F1EA',
+  'horizon-color': CONFIG.fog.color,
+  'fog-color': CONFIG.fog.color,
   'sky-horizon-blend': 0.6,
   'horizon-fog-blend': 0.6,
   'fog-ground-blend': 0.8,
@@ -53,12 +62,15 @@ function rasterStyle(id: string, tiles: string[], attribution: string, maxzoom: 
     version: 8,
     glyphs: GLYPHS_URL,
     sources: {
-      [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution },
+      [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution, bounds: CONFIG.terrainBounds },
+      // Sous-couche légère : jamais de trou le temps que le détail arrive, puisque le détail ne descend pas sous son zoom
+      [`${id}-low`]: { type: 'raster', tiles, tileSize: 256, maxzoom: CONFIG.satelliteDetailZoom - 1, bounds: CONFIG.terrainBounds },
       dem: demSource(),
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': '#EEF0E8' } },
-      { id, type: 'raster', source: id, paint: { 'raster-fade-duration': 0 } },
+      { id: `${id}-low`, type: 'raster', source: `${id}-low`, paint: { 'raster-fade-duration': 0 } },
+      { id, type: 'raster', source: id, paint: { 'raster-fade-duration': RASTER_FADE_MS } },
     ],
   } as StyleSpecification;
 }
@@ -99,7 +111,7 @@ export function styleFor(id: BasemapId, locale: Locale):
       return {
         style: rasterStyle(
           'satellite',
-          [`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}${SATELLITE_TOKEN}`],
+          [SATELLITE_TILES],
           'Imagerie © Esri, Maxar, Earthstar Geographics',
           CONFIG.satelliteSourceMaxZoom,
         ),

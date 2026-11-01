@@ -1,13 +1,23 @@
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState, type RefObject } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-import type { GeoJSONSource, LngLat as MlLngLat, Map as MlMap, Marker, PaddingOptions, TransformConstrainFunction } from 'maplibre-gl';
+import type {
+  CalculateTileZoomFunction,
+  GeoJSONSource,
+  LngLat as MlLngLat,
+  Map as MlMap,
+  Marker,
+  PaddingOptions,
+  TransformConstrainFunction,
+  VectorTileSource,
+} from 'maplibre-gl';
 import type { BasemapId, Boundary, KioskData, Locale } from '../types';
 import { CONFIG, QUALITY, type QualityLevel } from '../config';
 import { titleOf } from '../data/model';
-import { styleFor, SKY, TERRAIN_SPEC } from './basemaps';
+import { PLAN_SOURCE, SATELLITE_TILES, styleFor, SKY, TERRAIN_SPEC, terrainTemplate } from './basemaps';
+import { addFogLayers, buildFogImage, type FogImage } from './fog';
+import { preloadUrls, startPreload } from './preload';
 import {
-  addBoundaryLayers,
   addMarkerLayers,
   MARKER_LAYER,
   MARKER_SOURCE,
@@ -70,13 +80,19 @@ maplibregl.setWorkerUrl(workerUrl);
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const pixelRatioFor = (quality: QualityLevel) => Math.min(window.devicePixelRatio, QUALITY[quality].maxPixelRatio);
 
-/** Seul le centre est limité : maxBounds contraint tout l'écran et interdit le zoom qui montre la wilaya entière. */
+/**
+ * Seul le centre est limité : maxBounds contraint tout l'écran et interdit le zoom qui montre la wilaya entière.
+ * Une contrainte personnalisée remplace celle de MapLibre : c'est donc elle qui doit appliquer le zoom minimal et maximal.
+ */
 const centerInside =
-  ([[w, s], [e, n]]: [LngLat, LngLat]): TransformConstrainFunction =>
+  (map: MlMap, [[w, s], [e, n]]: [LngLat, LngLat]): TransformConstrainFunction =>
   (center: MlLngLat, zoom: number) => ({
     center: new maplibregl.LngLat(Math.min(e, Math.max(w, center.lng)), Math.min(n, Math.max(s, center.lat))),
-    zoom,
+    zoom: Math.min(map.getMaxZoom(), Math.max(map.getMinZoom(), zoom)),
   });
+
+/** Valeurs par défaut de MapLibre */
+const SATELLITE_LOD = [9.314, 3] as const;
 
 const POP_BATCH = 6;
 const POP_INTERVAL_MS = 120;
@@ -91,9 +107,9 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   const imagesRef = useRef<MarkerImages | null>(null);
   const labelRef = useRef<Marker | null>(null);
   const rotation = useRef<{ raf: number; speed: number; last: number; onStop?: () => void } | null>(null);
-  /** Invalide le tour ou l'animation programmés si une autre animation démarre entre-temps */
+  /** Invalide la rotation ou l'animation programmées si une autre animation démarre entre-temps */
   const moveSeq = useRef(0);
-  const tourTimer = useRef(0);
+  const fogRef = useRef<FogImage | null>(null);
   /** La vue d'ensemble se recadre quand le panneau change de place ; pas une vue choisie par l'utilisateur */
   const framedRef = useRef(false);
   const [failed, setFailed] = useState(false);
@@ -112,12 +128,14 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       map = new maplibregl.Map({
         container,
         style: 'style' in first ? first.style : first.url,
-        ...CONFIG.tourViewpoints[0],
+        center: wilayaCenter(live.current),
+        zoom: CONFIG.minZoom + 2,
+        pitch: CONFIG.orbit.pitch,
         maxPitch: CONFIG.maxPitch,
         minZoom: CONFIG.minZoom,
-        transformConstrain: centerInside(CONFIG.maxBounds),
         attributionControl: { compact: true, customAttribution: 'Données : ODEJ Béjaïa' },
         fadeDuration: 0,
+        cancelPendingTileRequestsWhileZooming: false,
         pixelRatio: pixelRatioFor(live.current.quality),
         canvasContextAttributes: { antialias: false },
         maxTileCacheSize: CONFIG.maxTileCacheSize,
@@ -128,6 +146,8 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       return;
     }
     mapRef.current = map;
+    map.setTransformConstrain(centerInside(map, CONFIG.maxBounds));
+    if (live.current.boundary) fogRef.current = buildFogImage(live.current.boundary);
 
     // Relief, ciel et marqueurs après chaque changement de style
     map.on('style.load', () => {
@@ -139,7 +159,22 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
         /* version sans ciel */
       }
       installMarkers();
+      keepSatelliteDetail(map);
     });
+
+    // Sur l'accueil, personne ne regarde : on prépare les tuiles que la carte demandera
+    let stopPreload: (() => void) | undefined;
+    const beginPreload = () => {
+      const plan = (map.getSource(PLAN_SOURCE) as VectorTileSource | undefined)?.tiles?.[0];
+      if (!plan || stopPreload || __ARTIFACT__) return;
+      map.off('sourcedata', beginPreload);
+      const { boundary, data } = live.current;
+      const points = data.establishments.map((e) => [e.location.lng, e.location.lat] as LngLat);
+      const wilaya = bounds(boundary ? boundaryPoints(boundary) : points);
+      const sources = { plan, satellite: SATELLITE_TILES, terrain: terrainTemplate() };
+      stopPreload = startPreload(preloadUrls(sources, wilaya, points), () => !live.current.markersVisible);
+    };
+    map.on('sourcedata', beginPreload);
 
     rasterizeMarkers(live.current.data.categories)
       .then((images) => {
@@ -236,7 +271,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       ro.disconnect();
       stopRotation();
       window.clearTimeout(popTimer.current);
-      window.clearTimeout(tourTimer.current);
+      stopPreload?.();
       map.remove();
       mapRef.current = null;
     };
@@ -275,7 +310,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !props.boundary) return;
-    map.setTransformConstrain(centerInside(expandBounds(bounds(boundaryPoints(props.boundary)), CONFIG.boundsMargin)));
+    map.setTransformConstrain(centerInside(map, expandBounds(bounds(boundaryPoints(props.boundary)), CONFIG.boundsMargin)));
   }, [props.boundary]);
 
   /* --------------------------------------------------------------- qualité */
@@ -306,6 +341,19 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     pushMarkers();
   }, [props.markersVisible]);
 
+  /* ------------------------------------------------------------ dézoom max */
+  // Assez pour voir la wilaya entière, pas au-delà : suit la place que laisse le panneau
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map) map.setMinZoom(wilayaCamera(map).zoom - CONFIG.zoomOutMargin);
+  }, [props.padding.top, props.padding.right, props.padding.bottom, props.padding.left]);
+
+  /* --------------------------------------------------------------- accueil */
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map && !props.markersVisible && rotation.current) map.easeTo({ padding: landingPadding(map), duration: 600 });
+  }, [props.locale, props.padding.top, props.padding.bottom]); // eslint-disable-line react-hooks/exhaustive-deps
+
   /* ----------------------------------------------------------- marge carte */
   // Les animations de caméra emportent la marge avec elles ; ici on ne corrige que la vue au repos
   // (rotation portrait/paysage, changement de langue qui déplace le panneau).
@@ -321,7 +369,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     const images = imagesRef.current;
     if (!map || !images || map.getSource(MARKER_SOURCE)) return;
     try {
-      if (live.current.boundary) addBoundaryLayers(map, live.current.boundary);
+      if (fogRef.current) addFogLayers(map, fogRef.current);
       addMarkerLayers(map, images);
     } catch {
       // Style remplacé entre-temps : son style.load relancera l'installation
@@ -392,25 +440,12 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     return { ...frameCamera(points, pitch, bearing, width, height), pitch, bearing };
   }
 
-  /** Enchaîne les points de vue. Sans mouvement si l'utilisateur l'a demandé. */
-  function tour(index: number) {
-    const map = mapRef.current;
-    if (!map) return;
-    const viewpoint = CONFIG.tourViewpoints[index % CONFIG.tourViewpoints.length];
-    const padding = { top: 0, right: 0, bottom: 0, left: 0 };
-    if (reducedMotion()) {
-      map.jumpTo({ ...viewpoint, padding });
-      return;
-    }
-    const my = ++moveSeq.current;
-    // easeTo, pas flyTo : flyTo prend de la hauteur entre deux points et fait entrer la mer dans le cadre
-    map.easeTo({ ...viewpoint, padding, duration: CONFIG.tourFlightMs, essential: true });
-    map.once('moveend', () => {
-      if (moveSeq.current !== my) return;
-      tourTimer.current = window.setTimeout(() => {
-        if (moveSeq.current === my) tour(index + 1);
-      }, CONFIG.tourPauseMs);
-    });
+  /** Le voile de l'accueil couvre un côté de l'écran : la wilaya tourne dans le reste. */
+  function landingPadding(map: MlMap) {
+    const { clientWidth, clientHeight } = map.getCanvas();
+    if (clientHeight > clientWidth) return { top: clientHeight * CONFIG.landingVeilPortrait, right: 0, bottom: 0, left: 0 };
+    const side = clientWidth * CONFIG.landingVeil;
+    return live.current.locale === 'ar' ? { top: 0, right: side, bottom: 0, left: 0 } : { top: 0, right: 0, bottom: 0, left: side };
   }
 
   /* -------------------------------------------------------------- rotation */
@@ -445,7 +480,6 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       const map = mapRef.current;
       if (!map) return;
       moveSeq.current++;
-      window.clearTimeout(tourTimer.current);
       stopRotation();
       const cam = wilayaCamera(map);
       framedRef.current = true;
@@ -463,9 +497,22 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       measureEntry(map);
     },
     attract() {
+      const map = mapRef.current;
+      if (!map) return;
       stopRotation();
       framedRef.current = false;
-      tour(0);
+      const my = ++moveSeq.current;
+      map.once('moveend', () => {
+        if (moveSeq.current === my) startRotation(CONFIG.orbit.degreesPerSecond);
+      });
+      map.easeTo({
+        center: wilayaCenter(live.current),
+        zoom: map.getMinZoom(),
+        pitch: CONFIG.orbit.pitch,
+        padding: landingPadding(map),
+        duration: reducedMotion() ? 0 : CONFIG.orbit.flightMs,
+        essential: true,
+      });
     },
     focus(id) {
       const map = mapRef.current;
@@ -561,6 +608,25 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     </div>
   );
 }));
+
+function wilayaCenter({ boundary, data }: Pick<Props, 'boundary' | 'data'>): LngLat {
+  const points = boundary ? boundaryPoints(boundary) : data.establishments.map((e) => [e.location.lng, e.location.lat] as LngLat);
+  const [[w, s], [e, n]] = bounds(points);
+  return [(w + e) / 2, (s + n) / 2];
+}
+
+/**
+ * Au loin, MapLibre charge des zooms plus bas. Sur Esri, sous le zoom 12, c'est une autre imagerie, d'une autre couleur :
+ * la carte paraît coupée en deux. On garde le détail partout dans le champ.
+ */
+function keepSatelliteDetail(map: MlMap) {
+  if (!map.getSource('satellite')) return;
+  map.setSourceTileLodParams(SATELLITE_LOD[0], SATELLITE_LOD[1], 'satellite');
+  // calculateTileZoom n'est pas dans le type public des sources : c'est lui que setSourceTileLodParams vient de poser
+  const source = map.getSource('satellite') as unknown as { calculateTileZoom: CalculateTileZoomFunction };
+  const lod = source.calculateTileZoom;
+  source.calculateTileZoom = (...args) => Math.max(lod(...args), CONFIG.satelliteDetailZoom);
+}
 
 /** Relief et ombrage ne se cumulent pas : l'ombrage ne sert que sur la carte à plat. */
 function applyTerrain(map: MlMap, on: boolean) {
