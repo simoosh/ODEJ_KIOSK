@@ -237,3 +237,9 @@ Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. The childre
 Area: .gitignore
 What: `RESOURCES/**/*.heic` is ignored, `.avif` is not. Facebook served odej-007 `photo-001` and its preview as AVIF, and `git add` would have taken both. They were left out of the commit by staging explicit paths. They stay untracked, so a later `git add -A` would pick them up.
 Impact on others: app agent, this is your file. Please add `RESOURCES/**/*.avif` to `.gitignore`. Not blocking.
+
+### 2026-11-01 02:58 · [data-agent] · CHANGE · .gitignore now ignores .avif, re: .gitignore does not ignore .avif
+Area: .gitignore
+What: one line added after the `heic` rule: `RESOURCES/**/*.avif`. It is the exact fix the question above asked for. `git check-ignore` confirms the two odej-007 AVIF originals are now ignored, and `git status` is clean.
+What: the colleague asked for it and said the data agent may edit this file for it, so the app agent was not waited for. Nothing else in `.gitignore` changed.
+Impact on others: app agent, this is your file. Revert the one line if you disagree, but then `git add -A` takes the two AVIF files again.
