@@ -25,7 +25,10 @@ const SATELLITE_KEY = import.meta.env.VITE_SATELLITE_KEY;
 const SATELLITE_TOKEN = SATELLITE_KEY ? `?token=${encodeURIComponent(SATELLITE_KEY)}` : '';
 
 /** L'horizon prend la couleur du brouillard : les deux se confondent au loin */
-export const SATELLITE_TILES = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}${SATELLITE_TOKEN}`;
+/** Deux serveurs : un navigateur n'ouvre que 6 connexions par serveur, et Esri ne parle pas HTTP/2 */
+export const SATELLITE_TILES = ['server', 'services'].map(
+  (host) => `https://${host}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}${SATELLITE_TOKEN}`,
+);
 /** Source vectorielle du style du plan */
 export const PLAN_SOURCE = 'openmaptiles';
 /** Fondu court : une tuile qui arrive ne saute pas aux yeux */
@@ -62,9 +65,10 @@ function rasterStyle(id: string, tiles: string[], attribution: string, maxzoom: 
     version: 8,
     glyphs: GLYPHS_URL,
     sources: {
-      [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution, bounds: CONFIG.terrainBounds },
-      // Sous-couche légère : jamais de trou le temps que le détail arrive, puisque le détail ne descend pas sous son zoom
-      [`${id}-low`]: { type: 'raster', tiles, tileSize: 256, maxzoom: CONFIG.satelliteDetailZoom - 1, bounds: CONFIG.terrainBounds },
+      // Sous-couche de quelques tuiles : jamais de trou le temps que le détail arrive, puisqu'il ne descend pas sous son zoom.
+      // En premier : ses requêtes partent avant celles du détail.
+      [`${id}-low`]: { type: 'raster', tiles, tileSize: 256, maxzoom: CONFIG.satelliteUnderlayZoom, bounds: CONFIG.satelliteBounds },
+      [id]: { type: 'raster', tiles, tileSize: 256, maxzoom, attribution, bounds: CONFIG.satelliteBounds },
       dem: demSource(),
     },
     layers: [
@@ -111,7 +115,7 @@ export function styleFor(id: BasemapId, locale: Locale):
       return {
         style: rasterStyle(
           'satellite',
-          [SATELLITE_TILES],
+          SATELLITE_TILES,
           'Imagerie © Esri, Maxar, Earthstar Geographics',
           CONFIG.satelliteSourceMaxZoom,
         ),

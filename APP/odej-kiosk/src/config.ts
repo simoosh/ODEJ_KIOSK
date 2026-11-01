@@ -58,6 +58,10 @@ export const CONFIG = {
   satelliteMaxZoom: 18,
   /** Sous ce zoom, Esri passe à une imagerie générique d'une autre couleur : on ne la charge jamais à côté du détail */
   satelliteDetailZoom: 12,
+  /** Sous-couche : quelques tuiles suffisent à couvrir la wilaya, le temps que le détail arrive */
+  satelliteUnderlayZoom: 9,
+  /** Au-delà, le brouillard est opaque : inutile de charger ce que personne ne voit */
+  satelliteBounds: [4.15, 36.05, 5.7, 37.05] as [number, number, number, number],
   /** Échecs de tuiles d'affilée avant de passer au fond de secours */
   basemapMaxErrors: 8,
   /** Délai maximal de chargement d'un style (ms) */
@@ -98,7 +102,7 @@ export const CONFIG = {
     terrainZooms: [8, 9, 10, 11],
     /** D'abord la vue d'ensemble des deux fonds, puis le détail */
     planZooms: [8, 9, 10, 11],
-    satelliteZooms: [9, 10, 11, 12],
+    satelliteZooms: [12],
     planDetailZooms: [12, 13],
     satelliteDetailZooms: [13],
     aroundPlanZooms: [14],

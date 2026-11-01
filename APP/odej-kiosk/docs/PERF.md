@@ -81,7 +81,7 @@ Le contexte WebGL s'est perdu pendant le zoom vers un établissement : souvent d
 
 ## Tuiles
 
-- **Satellite :** sous le zoom 12, Esri sert une imagerie générique d'une autre couleur. Le détail ne descend jamais sous ce zoom, même au loin. Une sous-couche légère évite un trou le temps qu'il arrive.
+- **Satellite :** sous le zoom 12, Esri sert une imagerie générique d'une autre couleur. Le détail ne descend jamais sous ce zoom, même au loin. Une sous-couche de quelques tuiles, au zoom 9, évite un trou le temps qu'il arrive. À cache vide, la wilaya est couverte en 3 s et le détail complet arrive en 25 s.
 - **Préchargement :** sur l'accueil, environ 6 000 tuiles entrent dans le cache du navigateur en 5 minutes : vue d'ensemble, puis abords des 67 établissements. Il s'arrête dès qu'on touche la carte et reprend au retour à l'accueil.
 - **Mesure :** 6 survols rapides en satellite, 1920×1080. Stabilisation à l'arrivée : plus de 15 s à cache vide, 2 s à cache plein, avec 83 % des tuiles lues dans le cache.
 - **Satellite sur le scénario :** 200 FPS en médiane, 143 au 5ᵉ centile, avec la même machine.

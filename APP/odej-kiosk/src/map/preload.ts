@@ -4,11 +4,13 @@ import { expandBounds, mercator, type LngLat } from '../lib/geo';
 
 export interface PreloadSources {
   plan: string;
-  satellite: string;
+  /** Plusieurs serveurs : même répartition que MapLibre, sinon le cache ne servirait pas */
+  satellite: string[];
   terrain: string;
 }
 
-function tileUrl(template: string, z: number, x: number, y: number) {
+function tileUrl(templates: string | string[], z: number, x: number, y: number) {
+  const template = Array.isArray(templates) ? templates[(x + y) % templates.length] : templates;
   return template.replace('{z}', String(z)).replace('{x}', String(x)).replace('{y}', String(y));
 }
 
@@ -24,13 +26,13 @@ export function tileRange([[west, south], [east, north]]: [LngLat, LngLat], zoom
   return tiles;
 }
 
-/** Du plus utile au moins utile : vue d'ensemble, puis les abords de chaque établissement. */
+/** Du plus utile au moins utile : sous-couche satellite, vue d'ensemble, puis les abords de chaque établissement. */
 export function preloadUrls(sources: PreloadSources, wilaya: [LngLat, LngLat], establishments: LngLat[]) {
   const { terrainZooms, planZooms, satelliteZooms, planDetailZooms, satelliteDetailZooms, aroundPlanZooms, aroundSatelliteZooms, radiusDegrees } =
     CONFIG.preload;
-  const whole = (template: string, zooms: readonly number[], area: [LngLat, LngLat]) =>
+  const whole = (template: string | string[], zooms: readonly number[], area: [LngLat, LngLat]) =>
     zooms.flatMap((z) => tileRange(area, z).map(([x, y]) => tileUrl(template, z, x, y)));
-  const around = (template: string, zooms: readonly number[]) =>
+  const around = (template: string | string[], zooms: readonly number[]) =>
     zooms.flatMap((z) =>
       establishments.flatMap(([lng, lat]) => {
         const area: [LngLat, LngLat] = [
@@ -44,9 +46,14 @@ export function preloadUrls(sources: PreloadSources, wilaya: [LngLat, LngLat], e
     [CONFIG.terrainBounds[0], CONFIG.terrainBounds[1]],
     [CONFIG.terrainBounds[2], CONFIG.terrainBounds[3]],
   ];
+  const satelliteArea: [LngLat, LngLat] = [
+    [CONFIG.satelliteBounds[0], CONFIG.satelliteBounds[1]],
+    [CONFIG.satelliteBounds[2], CONFIG.satelliteBounds[3]],
+  ];
   const area = expandBounds(wilaya, CONFIG.preload.wilayaMargin);
   return [
     ...new Set([
+      ...whole(sources.satellite, [CONFIG.satelliteUnderlayZoom], satelliteArea),
       ...whole(sources.terrain, terrainZooms, terrainArea),
       ...whole(sources.plan, planZooms, area),
       ...whole(sources.satellite, satelliteZooms, area),

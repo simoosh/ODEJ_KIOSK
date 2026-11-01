@@ -23,7 +23,7 @@ describe('brouillard', () => {
 
 describe('préchargement', () => {
   const wilaya: [LngLat, LngLat] = [[4.2, 36.3], [5.6, 36.95]];
-  const sources = { plan: 'p/{z}/{x}/{y}', satellite: 's/{z}/{y}/{x}', terrain: 't/{z}/{x}/{y}?v=2' };
+  const sources = { plan: 'p/{z}/{x}/{y}', satellite: ['s/{z}/{y}/{x}', 's/{z}/{y}/{x}'], terrain: 't/{z}/{x}/{y}?v=2' };
 
   afterEach(() => vi.unstubAllGlobals());
 
@@ -31,11 +31,20 @@ describe('préchargement', () => {
     expect(tileRange([[5.07, 36.74], [5.07, 36.74]], 14)).toEqual([[8422, 6391]]);
   });
 
-  it('ne demande jamais deux fois la même tuile et commence par le relief', () => {
+  it('ne demande jamais deux fois la même tuile et commence par la sous-couche satellite', () => {
     const urls = preloadUrls(sources, wilaya, [[5, 36.7], [5, 36.7]]);
     expect(new Set(urls).size).toBe(urls.length);
-    expect(urls[0]).toMatch(/^t\/8\//);
+    expect(urls[0]).toMatch(/^s\/9\//);
+    expect(urls.some((url) => url.startsWith('t/8/'))).toBe(true);
     expect(urls.some((url) => url.startsWith('s/16/'))).toBe(true);
+  });
+
+  it('répartit le satellite entre les serveurs comme MapLibre', () => {
+    const urls = preloadUrls({ ...sources, satellite: ['a/{z}/{y}/{x}', 'b/{z}/{y}/{x}'] }, wilaya, []);
+    for (const url of urls.filter((u) => /^[ab]\//.test(u))) {
+      const [host, , y, x] = url.split('/');
+      expect(host).toBe((Number(x) + Number(y)) % 2 === 0 ? 'a' : 'b');
+    }
   });
 
   it("s'arrête après plusieurs échecs de réseau", async () => {
