@@ -319,3 +319,39 @@ Impact on others: nothing to do on your side.
 Area: teamwork/Data.md, teamwork/README.md section 4
 What: at the colleague's request, `Data.md` lists every open problem with the establishments' data: coordinates, Facebook pages, names, types, contact details and media. It covers the 24 scraped establishments and the 43 still to scrape. The workflow now requires updating it in each batch PR.
 Impact on others: when you solve a listed problem, delete its line and add a `CHANGE` entry here. `Data.md` is not append-only.
+
+### 2026-11-01 17:52 · [data-agent] · INFO · Establishments collected so far, 24 of 67
+Area: public/media, RESOURCES/ODEJ-Media
+What: updated table of the establishments with media on the map, after the fifth CDN publication. It replaces the 15-row table of 2026-11-01 05:18. Refresh it with `python3 tools/media/collect/status_table.py`.
+
+| # | Establishment | Commune | Photos | Videos | MiB | Cover | Phone | E-mail | Address | Hours | Contact on map |
+|--:|---|---|--:|--:|--:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 001 | Adekar Local Sports Complex | Adekar | 23 | 2 | 16.2 | yes | yes | yes | - | - | yes |
+| 003 | Oued Ghir Science Leisure Centre | Oued Ghir | 35 | 6 | 98.9 | - | yes | yes | yes | yes | yes |
+| 004 | Hamia Mohand Cherif Local Sports Complex | Beni Maouche | 27 | 0 | 3.9 | yes | yes | yes | yes | - | yes |
+| 005 | Martyr Ouaglis Mohand Akli | Amizour | 27 | 0 | 5.7 | yes | yes | yes | - | - | - |
+| 007 | Martyr Hamai Bachir | Chemini | 32 | 1 | 12.3 | yes | - | yes | yes | - | - |
+| 008 | Mujahid Mohamed Boudiaf | Aokas | 26 | 1 | 20.5 | yes | - | yes | - | - | - |
+| 009 | El Kseur Local Sports Complex | El Kseur | 28 | 1 | 8.4 | yes | yes | yes | yes | - | - |
+| 010 | Martyr Bouhired Said | Souk El Tenine | 23 | 3 | 14.2 | yes | yes | yes | - | - | - |
+| 011 | Ait Salah Martyrs | Bejaia | 0 | 0 | 0.0 | yes | yes | yes | yes | - | - |
+| 012 | Martyr Khaldi Abdelkader | Senadla | 38 | 2 | 9.5 | yes | yes | yes | - | - | - |
+| 013 | Tibane Youth Centre | Tibane | 15 | 0 | 1.6 | yes | yes | yes | yes | yes | - |
+| 016 | Mouloud Feraoun | El Kseur | 38 | 2 | 18.9 | yes | yes | yes | - | - | - |
+| 017 | Martyr Abderrahmane Fares | Akbou | 33 | 3 | 29.0 | yes | yes | yes | - | - | - |
+| 018 | Takriets Youth Centre | Takriets | 43 | 2 | 8.8 | yes | yes | yes | yes | yes | - |
+| 019 | Martyr Maadaoui Bouelsaad | Guendouza | 5 | 7 | 19.8 | yes | yes | yes | yes | - | - |
+| 020 | Tifra Local Sports Complex | Tifra | 24 | 1 | 6.8 | yes | yes | yes | yes | - | - |
+| 021 | Martyr Chila Tayeb | Ouzellaguen | 30 | 2 | 10.3 | yes | yes | yes | - | - | yes |
+| 022 | Barbacha Local Sports Complex | Barbacha | 46 | 2 | 15.9 | yes | yes | yes | - | - | - |
+| 023 | Ait R'zine Youth Centre | Ait R'zine | 40 | 2 | 14.2 | yes | yes | yes | yes | - | - |
+| 024 | Martyr Bentedji Mohand Akli | Barbacha | 36 | 3 | 10.8 | yes | - | yes | yes | - | - |
+| 025 | 18 February Martyrs' Day | Tamridjet | 37 | 1 | 12.9 | yes | yes | yes | - | - | - |
+| 026 | Tizi El Oued Youth Centre | Tizi El Oued | 47 | 3 | 14.9 | yes | yes | yes | yes | - | - |
+| 027 | Martyr Banoun Akli | not known | 40 | 4 | 16.2 | yes | yes | yes | - | - | - |
+| 041 | Chellata Youth Centre | Chellata | 36 | 2 | 7.8 | yes | yes | - | yes | - | - |
+| | **24 of 67 collected** | | **729** | **50** | **377.5** | | | | | | |
+
+Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
+
+Impact on others: none. Remaining: 43 establishments with no media yet. Open problems are in `teamwork/Data.md`.
