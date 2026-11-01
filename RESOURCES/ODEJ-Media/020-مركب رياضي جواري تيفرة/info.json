@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T14:11:13Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 20,
+    "name": "مركب رياضي جواري تيفرة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579762055054"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579762055054",
+    "pageRef": "61579762055054",
+    "title": "المركب الرياضي الجواري تيفرة - ولاية بجاية"
+  },
+  "email": "csptifra@odejbejaia-dz.com",
+  "phone": "034 14 21 43",
+  "address": "Tifra, Algeria, 06028",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Musique/groupe",
+  "openingHours": null,
+  "followers": 137,
+  "sources": {
+    "email": "odej-website",
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

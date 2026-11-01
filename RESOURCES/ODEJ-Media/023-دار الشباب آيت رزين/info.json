@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T14:34:43Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 23,
+    "name": "دار الشباب آيت رزين",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100047701147317"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100047701147317",
+    "pageRef": "100047701147317",
+    "title": "دار الشباب أيت أرزين - ولاية بجاية"
+  },
+  "email": "mjaitrzine@odejbejaia-dz.com",
+  "phone": "034 36 49 33",
+  "address": "Ait R'zine, 06000",
+  "website": null,
+  "description": "la Maison de Jeunes d'Ait R'zine. Etablissement de jeunes. ODEJ DJS Bejaia",
+  "facebookCategory": "Sports et loisirs",
+  "openingHours": null,
+  "followers": 3832,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

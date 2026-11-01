@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T15:06:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 24,
+    "name": "الشهيد بن تحي محند أكلي برباشة",
+    "pageUrl": "https://www.facebook.com/share/1BPy6K5UFH/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/1BPy6K5UFH/",
+    "pageRef": "61579442115019",
+    "title": "دار الشباب برباشة-ولاية بجاية"
+  },
+  "email": "azeddinekendira900@gmail.com",
+  "phone": null,
+  "address": "برباشة, Bejaïa, Algeria, 06096",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Centre culturel",
+  "openingHours": null,
+  "followers": 1311,
+  "sources": {
+    "email": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}

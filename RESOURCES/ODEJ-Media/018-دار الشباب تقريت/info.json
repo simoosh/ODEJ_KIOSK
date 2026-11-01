@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T14:00:29Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 18,
+    "name": "دار الشباب تقريت",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579675752048"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579675752048",
+    "pageRef": "61579675752048",
+    "title": "دار الشباب تقريت-ولاية بجاية"
+  },
+  "email": "mjttakariat@gmail.com",
+  "phone": "034 26 61 19",
+  "address": "https://maps.app.goo.gl/Ud4uMK5ftQiPrcCF8, Bougie, Algeria, 06036",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Site web d’actualités",
+  "openingHours": "Ferme bientôt",
+  "followers": 347,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "website"
+  ]
+}

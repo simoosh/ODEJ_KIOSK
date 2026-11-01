@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T15:09:54Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 25,
+    "name": "يوم الشهيد 18 فيفري تامريجت",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579600935202"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579600935202",
+    "pageRef": "61579600935202",
+    "title": "دار الشباب تامريجت -ولاية بجاية-"
+  },
+  "email": "mjtameridjet@odejbejaia-dz.com",
+  "phone": "034 15 13 92",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Produit/service",
+  "openingHours": null,
+  "followers": 361,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

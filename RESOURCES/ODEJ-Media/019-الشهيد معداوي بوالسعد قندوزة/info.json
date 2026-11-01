@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T13:48:17Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 19,
+    "name": "الشهيد معداوي بوالسعد قندوزة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579857720892"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579857720892",
+    "pageRef": "61579857720892",
+    "title": "دار الشباب قندوزة - ولاية بجاية"
+  },
+  "email": "mjguendouza@odejbejaia-dz.com",
+  "phone": "034 36 52 00",
+  "address": "cité sidi abederhman  guendouza  Akbou , Akbou, Algeria, 06001",
+  "website": null,
+  "description": "دار الشباب قندوزة فضاء للابداع والثقافة نرافق شبابنا نحو مستقبل أفضل",
+  "facebookCategory": "Centre culturel · Musique/groupe · Centre de loisirs",
+  "openingHours": null,
+  "followers": 468,
+  "sources": {
+    "email": "odej-website",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}
