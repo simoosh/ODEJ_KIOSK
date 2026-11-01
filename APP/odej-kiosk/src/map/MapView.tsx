@@ -139,22 +139,21 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
 
     // Détection d'un fond de carte inaccessible (pas d'internet, hôte bloqué)
     let errors = 0;
-    let tilesOk = false;
     map.on('data', (e: any) => {
-      if (e.dataType === 'source' && e.tile && e.sourceId !== 'dem') tilesOk = true;
+      if (e.dataType === 'source' && e.tile && e.sourceId !== 'dem' && e.sourceId !== MARKER_SOURCE) errors = 0;
     });
     map.on('error', (e: any) => {
       const current = live.current.basemap;
-      if (current === 'preview' || tilesOk) return;
+      if (current === 'preview') return;
       // On ne compte que les échecs réseau (style ou tuiles), pas les avertissements de validation
       const err = e?.error;
       if (!err || !(typeof err.status === 'number' || /fetch|network|failed|load/i.test(String(err.message)))) return;
       errors += 1;
-      if (errors === 4) live.current.onBasemapFailed(current);
+      // Sans couche de marqueurs, c'est le style lui-même qui n'a pas chargé : la carte resterait vide
+      if (errors === CONFIG.basemapMaxErrors || !map.getLayer(MARKER_LAYER)) live.current.onBasemapFailed(current);
     });
     (map as unknown as { __resetBasemapErrors: () => void }).__resetBasemapErrors = () => {
       errors = 0;
-      tilesOk = false;
     };
 
     // Jamais de setState ici : la boussole s'écrit dans le DOM, l'état 2D/3D attend la fin du mouvement
@@ -231,11 +230,17 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     const spec = styleFor(props.basemap, props.locale);
     // Le relief de l'ancien style fait planter le rendu tant que le nouveau charge : style.load le remet
     applyTerrain(map, false);
+    map.setMaxZoom(props.basemap === 'satellite' ? CONFIG.satelliteMaxZoom : null);
     if ('url' in spec) {
       map.setStyle(spec.url, { diff: false, transformStyle: (_prev, next) => spec.transform(next) });
     } else {
       map.setStyle(spec.style, { diff: false });
     }
+    // Un serveur qui ne répond jamais ne déclenche aucune erreur
+    const timeout = window.setTimeout(() => {
+      if (props.basemap !== 'preview' && !map.getLayer(MARKER_LAYER)) live.current.onBasemapFailed(props.basemap);
+    }, CONFIG.basemapTimeoutMs);
+    return () => window.clearTimeout(timeout);
     // la langue ne change que les libellés du plan vectoriel
   }, [props.basemap, props.basemap === 'plan' ? props.locale : null]); // eslint-disable-line react-hooks/exhaustive-deps
 

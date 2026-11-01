@@ -143,7 +143,7 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
   const onBasemapFailed = useCallback((id: BasemapId) => {
     if (id !== 'preview') {
       setBasemap('preview');
-      setNotice('offlineNotice');
+      setNotice('basemapFallback');
     }
   }, []);
 

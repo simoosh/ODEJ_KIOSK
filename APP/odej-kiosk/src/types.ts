@@ -96,4 +96,4 @@ export interface KioskData {
   establishments: Establishment[];
 }
 
-export type BasemapId = 'plan' | 'satellite' | 'relief' | 'osm' | 'preview';
+export type BasemapId = 'plan' | 'satellite' | 'preview';

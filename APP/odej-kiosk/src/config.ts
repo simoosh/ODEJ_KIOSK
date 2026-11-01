@@ -38,6 +38,14 @@ export const CONFIG = {
   terrainAttribution:
     'Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. Sports areas © OpenStreetMap contributors',
 
+  /** Au-delà du zoom 18, Esri renvoie un carré « Map data not yet available » : on sur-échantillonne le zoom 17 */
+  satelliteSourceMaxZoom: 17,
+  satelliteMaxZoom: 18,
+  /** Échecs de tuiles d'affilée avant de passer au fond de secours */
+  basemapMaxErrors: 8,
+  /** Délai maximal de chargement d'un style (ms) */
+  basemapTimeoutMs: 12_000,
+
   /** Exagération du relief 3D */
   terrainExaggeration: 1,
 
