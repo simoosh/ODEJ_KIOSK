@@ -57,3 +57,13 @@ Je crée ou je modifie seulement `public/media/odej-NNN/`. Je ne touche pas à `
 | `build-verification.mjs` | régénère `docs/VERIFICATION.md` |
 
 Après une modification de `name`, de `category` ou de `placeId`, je relance `apply-names.mjs`. Après une modification des issues, je relance `build-verification.mjs`.
+
+## Contour de la wilaya
+
+`public/data/bejaia-boundary.geojson` vient de la relation OpenStreetMap 1278765, licence ODbL, simplifiée à environ 110 m (10,9 Ko). Pour le régénérer, depuis la racine du dépôt :
+
+```bash
+node tools/data/build-boundary.mjs
+```
+
+Le cadrage de la carte part de ce contour : `wilaya.camera` ne garde que `pitch` et `bearing`.
