@@ -366,3 +366,9 @@ Area: src/map, src/config.ts, tools/dem, APP/odej-kiosk/public/terrain
 What: at the owner's request: fog replaces the outline and the mask, the zoom-out is limited to the wilaya, the landing turns 360° without stopping (it replaces the tour of step 6), satellite detail stays uniform in the whole view, and tiles are preloaded on the landing screen. Terrain now covers 35.9°N and up: 156 tiles, 18.5 MiB.
 What: about 6 000 tiles are fetched in the background, including from Esri. This adds to the open D3 question.
 Impact on others: none on data or media.
+
+### 2026-11-01 21:25 · [app-agent] · CHANGE · Progressive fog and landing redesign
+Area: src/map/fog.ts, src/lib/clouds.ts, src/components/Landing.tsx, src/styles/app.css, tools/dem, public/terrain
+What: at the owner's request: the fog now thickens with the distance to the boundary, so the sea and part of the neighbouring wilayas stay visible. The landing is split horizontally: centered text over clouds, the map turning below. The button opens the clouds to the sides while the text leaves upwards.
+What: terrain and satellite now reach the neighbours: 224 tiles, 23.1 MiB. The landing card is reduced to the three figures: `wilaya.description` is no longer shown.
+Impact on others: none on data or media.
