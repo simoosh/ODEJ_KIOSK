@@ -50,3 +50,45 @@ export function graticule(step = 0.1, west = 3.7, south = 35.9, east = 6.2, nort
   }
   return { type: 'FeatureCollection', features } as GeoJSON.FeatureCollection;
 }
+
+/** Tous les points d'un contour, tous polygones confondus. */
+export function boundaryPoints(boundary: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>): LngLat[] {
+  return boundary.features.flatMap((f) => f.geometry.coordinates.flat(2) as LngLat[]);
+}
+
+/** Emprise agrandie de ratio sur chaque côté. */
+export function expandBounds([[w, s], [e, n]]: [LngLat, LngLat], ratio: number): [LngLat, LngLat] {
+  const dx = (e - w) * ratio;
+  const dy = (n - s) * ratio;
+  return [
+    [w - dx, s - dy],
+    [e + dx, n + dy],
+  ];
+}
+
+/** L'inclinaison grossit le bord le plus proche : marge pour que la wilaya reste entière. */
+const PERSPECTIVE_MARGIN = 1.12;
+
+/**
+ * Centre et zoom qui font tenir des points dans width × height, pour une orientation et une inclinaison données.
+ * Calculés sur les points eux-mêmes : cameraForBounds ne tient pas compte de l'inclinaison.
+ */
+export function frameCamera(points: LngLat[], pitch: number, bearing: number, width: number, height: number) {
+  const b = (bearing * Math.PI) / 180;
+  const tilt = Math.cos((pitch * Math.PI) / 180);
+  const projected = points.map(([lng, lat]) => {
+    const x = (lng + 180) / 360;
+    const y = (1 - Math.asinh(Math.tan((lat * Math.PI) / 180)) / Math.PI) / 2;
+    return [x * Math.cos(b) + y * Math.sin(b), (-x * Math.sin(b) + y * Math.cos(b)) * tilt];
+  });
+  const xs = projected.map((p) => p[0]);
+  const ys = projected.map((p) => p[1]);
+  const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  const scale = Math.min(width / (maxX - minX), height / (maxY - minY)) / PERSPECTIVE_MARGIN;
+  const midX = (minX + maxX) / 2;
+  const midY = (minY + maxY) / 2 / tilt;
+  const x = midX * Math.cos(b) - midY * Math.sin(b);
+  const y = midX * Math.sin(b) + midY * Math.cos(b);
+  const center: LngLat = [x * 360 - 180, (Math.atan(Math.sinh(Math.PI * (1 - 2 * y))) * 180) / Math.PI];
+  return { center, zoom: Math.log2(scale / 512) };
+}

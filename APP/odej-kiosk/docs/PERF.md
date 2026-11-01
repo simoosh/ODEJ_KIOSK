@@ -12,7 +12,7 @@ Machine : portable sur secteur, AMD Radeon 780M (GPU intégré, confirmé par `W
 | FPS au 5ᵉ centile | ≥ 30 | 22,6 | 80 |
 | Rendus React pendant le scénario de 9 s | ≤ 5 par geste de 3 s | 167 | 0 (5 au plus) |
 | Frames au repos, sur la carte | 0 | 0 | 0 |
-| Frames en 3 s sur l'accueil | 0 | 28 à 85 | 0 à 5, le temps que les dernières tuiles arrivent |
+| Frames en 3 s sur l'accueil, avant le tour de l'étape 6 | 0 | 28 à 85 | 0 à 5, le temps que les dernières tuiles arrivent |
 | Bundle JS initial (gzip) | pas plus de 10 % | 383,3 Ko | 385,4 Ko (+0,5 %) |
 
 Les cibles sont atteintes sur cette machine. Elles restent à confirmer sur la borne (D8).
@@ -62,7 +62,7 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 - Aucun `setState` pendant un mouvement : la boussole s'écrit directement dans le DOM, l'état 2D/3D attend `moveend`.
 - Les 67 marqueurs DOM sont remplacés par des couches WebGL (`src/map/markers.ts`). Les images sont rasterisées une fois au démarrage. Seule l'étiquette de l'établissement sélectionné est un élément HTML.
 - `pixelRatio` plafonné, antialiasing coupé, `fadeDuration` à 0, inclinaison limitée à 70°, relief sans exagération, ombrage coupé quand le relief est actif.
-- Accueil fixe, sans relief ni rotation. Plus d'animation infinie sur la carte.
+- Accueil sans relief. Plus d'animation infinie sur la carte. Le tour de l'étape 6 rend la carte en continu derrière l'accueil, sans relief : c'est le seul rendu sans action de l'utilisateur.
 
 ## À respecter
 

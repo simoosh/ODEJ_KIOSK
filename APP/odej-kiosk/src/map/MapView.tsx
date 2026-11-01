@@ -1,12 +1,13 @@
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState, type RefObject } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-import type { GeoJSONSource, Map as MlMap, Marker, PaddingOptions } from 'maplibre-gl';
-import type { BasemapId, KioskData, Locale } from '../types';
+import type { GeoJSONSource, LngLat as MlLngLat, Map as MlMap, Marker, PaddingOptions, TransformConstrainFunction } from 'maplibre-gl';
+import type { BasemapId, Boundary, KioskData, Locale } from '../types';
 import { CONFIG, QUALITY, type QualityLevel } from '../config';
 import { titleOf } from '../data/model';
 import { styleFor, SKY, TERRAIN_SPEC } from './basemaps';
 import {
+  addBoundaryLayers,
   addMarkerLayers,
   MARKER_LAYER,
   MARKER_SOURCE,
@@ -21,7 +22,7 @@ import {
   type MarkerImages,
   type PlacedEstablishment,
 } from './markers';
-import { bounds, distanceKm, type LngLat } from '../lib/geo';
+import { boundaryPoints, bounds, distanceKm, expandBounds, frameCamera, type LngLat } from '../lib/geo';
 
 export interface MapHandle {
   /** Pour le panneau ?debug=1 */
@@ -43,6 +44,7 @@ export interface MapHandle {
 
 interface Props {
   data: KioskData;
+  boundary: Boundary | null;
   locale: Locale;
   basemap: BasemapId;
   terrain: boolean;
@@ -68,6 +70,14 @@ maplibregl.setWorkerUrl(workerUrl);
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const pixelRatioFor = (quality: QualityLevel) => Math.min(window.devicePixelRatio, QUALITY[quality].maxPixelRatio);
 
+/** Seul le centre est limité : maxBounds contraint tout l'écran et interdit le zoom qui montre la wilaya entière. */
+const centerInside =
+  ([[w, s], [e, n]]: [LngLat, LngLat]): TransformConstrainFunction =>
+  (center: MlLngLat, zoom: number) => ({
+    center: new maplibregl.LngLat(Math.min(e, Math.max(w, center.lng)), Math.min(n, Math.max(s, center.lat))),
+    zoom,
+  });
+
 const POP_BATCH = 6;
 const POP_INTERVAL_MS = 120;
 
@@ -81,8 +91,11 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   const imagesRef = useRef<MarkerImages | null>(null);
   const labelRef = useRef<Marker | null>(null);
   const rotation = useRef<{ raf: number; speed: number; last: number; onStop?: () => void } | null>(null);
-  /** Invalide la rotation d'attente programmée si une autre animation démarre entre-temps */
+  /** Invalide le tour ou l'animation programmés si une autre animation démarre entre-temps */
   const moveSeq = useRef(0);
+  const tourTimer = useRef(0);
+  /** La vue d'ensemble se recadre quand le panneau change de place ; pas une vue choisie par l'utilisateur */
+  const framedRef = useRef(false);
   const [failed, setFailed] = useState(false);
 
   // Les callbacks changent à chaque rendu : on les garde dans une ref pour les écouteurs de la carte.
@@ -99,12 +112,10 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       map = new maplibregl.Map({
         container,
         style: 'style' in first ? first.style : first.url,
-        center: CONFIG.attractCamera.center,
-        zoom: CONFIG.attractCamera.zoom,
-        pitch: CONFIG.attractCamera.pitch,
-        bearing: CONFIG.attractCamera.bearing,
+        ...CONFIG.tourViewpoints[0],
         maxPitch: CONFIG.maxPitch,
-        maxBounds: CONFIG.maxBounds,
+        minZoom: CONFIG.minZoom,
+        transformConstrain: centerInside(CONFIG.maxBounds),
         attributionControl: { compact: true, customAttribution: 'Données : ODEJ Béjaïa' },
         fadeDuration: 0,
         pixelRatio: pixelRatioFor(live.current.quality),
@@ -198,7 +209,9 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
 
     // Toute interaction de l'utilisateur arrête la rotation automatique
     const stopOnUser = (e: any) => {
-      if (e.originalEvent) stopRotation();
+      if (!e.originalEvent) return;
+      framedRef.current = false;
+      stopRotation();
     };
     map.on('dragstart', stopOnUser);
     map.on('zoomstart', stopOnUser);
@@ -216,6 +229,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       ro.disconnect();
       stopRotation();
       window.clearTimeout(popTimer.current);
+      window.clearTimeout(tourTimer.current);
       map.remove();
       mapRef.current = null;
     };
@@ -249,6 +263,13 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     const map = mapRef.current;
     if (map) applyTerrain(map, props.terrain);
   }, [props.terrain]);
+
+  /* ---------------------------------------------------------------- contour */
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !props.boundary) return;
+    map.setTransformConstrain(centerInside(expandBounds(bounds(boundaryPoints(props.boundary)), CONFIG.boundsMargin)));
+  }, [props.boundary]);
 
   /* --------------------------------------------------------------- qualité */
   useEffect(() => {
@@ -284,7 +305,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !props.markersVisible || map.isMoving()) return;
-    map.easeTo({ padding: props.padding, duration: 500 });
+    map.easeTo({ ...(framedRef.current ? wilayaCamera(map) : {}), padding: props.padding, duration: 500 });
   }, [props.padding.top, props.padding.right, props.padding.bottom, props.padding.left]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /** Sources et couches disparaissent à chaque setStyle : on les réinstalle sur le nouveau style. */
@@ -293,6 +314,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     const images = imagesRef.current;
     if (!map || !images || map.getSource(MARKER_SOURCE)) return;
     try {
+      if (live.current.boundary) addBoundaryLayers(map, live.current.boundary);
       addMarkerLayers(map, images);
     } catch {
       // Style remplacé entre-temps : son style.load relancera l'installation
@@ -351,6 +373,39 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     }, CONFIG.qualitySampleMs);
   }
 
+  /** Wilaya centrée dans la zone libre de la carte, entière malgré l'inclinaison. */
+  function wilayaCamera(map: MlMap) {
+    const { boundary, data, padding } = live.current;
+    const points = boundary ? boundaryPoints(boundary) : data.establishments.map((e) => [e.location.lng, e.location.lat] as LngLat);
+    const { pitch, bearing } = data.wilaya.camera;
+    const canvas = map.getCanvas();
+    const margin = CONFIG.framePadding * 2;
+    const width = canvas.clientWidth - (padding.left ?? 0) - (padding.right ?? 0) - margin;
+    const height = canvas.clientHeight - (padding.top ?? 0) - (padding.bottom ?? 0) - margin;
+    return { ...frameCamera(points, pitch, bearing, width, height), pitch, bearing };
+  }
+
+  /** Enchaîne les points de vue. Sans mouvement si l'utilisateur l'a demandé. */
+  function tour(index: number) {
+    const map = mapRef.current;
+    if (!map) return;
+    const viewpoint = CONFIG.tourViewpoints[index % CONFIG.tourViewpoints.length];
+    const padding = { top: 0, right: 0, bottom: 0, left: 0 };
+    if (reducedMotion()) {
+      map.jumpTo({ ...viewpoint, padding });
+      return;
+    }
+    const my = ++moveSeq.current;
+    // easeTo, pas flyTo : flyTo prend de la hauteur entre deux points et fait entrer la mer dans le cadre
+    map.easeTo({ ...viewpoint, padding, duration: CONFIG.tourFlightMs, essential: true });
+    map.once('moveend', () => {
+      if (moveSeq.current !== my) return;
+      tourTimer.current = window.setTimeout(() => {
+        if (moveSeq.current === my) tour(index + 1);
+      }, CONFIG.tourPauseMs);
+    });
+  }
+
   /* -------------------------------------------------------------- rotation */
   function startRotation(speedDegPerSec: number, onStop?: () => void) {
     const map = mapRef.current;
@@ -383,13 +438,12 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       const map = mapRef.current;
       if (!map) return;
       moveSeq.current++;
+      window.clearTimeout(tourTimer.current);
       stopRotation();
-      const cam = live.current.data.wilaya.camera;
+      const cam = wilayaCamera(map);
+      framedRef.current = true;
       map.flyTo({
-        center: cam.center,
-        zoom: cam.zoom,
-        pitch: cam.pitch,
-        bearing: cam.bearing,
+        ...cam,
         padding: live.current.padding,
         duration: reducedMotion() ? 0 : 4200,
         curve: 1.25,
@@ -402,25 +456,15 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       measureEntry(map);
     },
     attract() {
-      const map = mapRef.current;
-      if (!map) return;
       stopRotation();
-      const a = CONFIG.attractCamera;
-      map.flyTo({
-        center: a.center,
-        zoom: a.zoom,
-        pitch: a.pitch,
-        bearing: map.getBearing(),
-        padding: { top: 0, right: 0, bottom: 0, left: 0 },
-        duration: 2400,
-        essential: true,
-      });
-      moveSeq.current++;
+      framedRef.current = false;
+      tour(0);
     },
     focus(id) {
       const map = mapRef.current;
       const placed = placedRef.current.find((p) => p.est.id === id);
       if (!map || !placed) return;
+      framedRef.current = false;
       moveSeq.current++;
       stopRotation();
       map.flyTo({
@@ -436,6 +480,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     fitPoints(points) {
       const map = mapRef.current;
       if (!map || points.length === 0) return;
+      framedRef.current = false;
       moveSeq.current++;
       stopRotation();
       if (points.length === 1) {
@@ -463,16 +508,8 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       if (!map) return;
       moveSeq.current++;
       stopRotation();
-      const cam = live.current.data.wilaya.camera;
-      map.flyTo({
-        center: cam.center,
-        zoom: cam.zoom,
-        pitch: cam.pitch,
-        bearing: cam.bearing,
-        padding: live.current.padding,
-        duration: 2200,
-        essential: true,
-      });
+      framedRef.current = true;
+      map.flyTo({ ...wilayaCamera(map), padding: live.current.padding, duration: 2200, essential: true });
     },
     zoomBy(d) {
       const map = mapRef.current;
