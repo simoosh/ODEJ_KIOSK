@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T01:12:44Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 9,
+    "name": "مركب رياضي جواري القصر",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100066941829908"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100066941829908",
+    "pageRef": "100066941829908",
+    "title": "المُركّب الرِّياضي الجواري القصر"
+  },
+  "email": "cspelkseur@odejbejaia-dz.com",
+  "phone": "030 16 75 42",
+  "address": "برشيش - القصر, 06300",
+  "website": null,
+  "description": "المركب الرياضي الجواري القصر.",
+  "facebookCategory": "Organisme gouvernemental",
+  "openingHours": null,
+  "followers": 5314,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

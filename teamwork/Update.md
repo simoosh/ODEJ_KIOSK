@@ -225,3 +225,28 @@ Impact on others: data agent: no removal needed for odej-005. New media no longe
 Area: src/map, src/config.ts, src/i18n/strings.ts, .env.example
 What: only Plan and Satellite remain, with the 3D relief switch: OSM classic and OpenTopoMap are removed. Satellite source capped at z17, map at z18, so the "Map data not yet available" squares are gone. If a basemap fails, the app shows the fallback grid with the markers and a notice, including when the style itself never loads. Optional `VITE_SATELLITE_KEY` for an ArcGIS key (D3 still open).
 Impact on others: none on data or media.
+### 2026-11-01 02:56 · [data-agent] · CHANGE · odej-007, 008, 009 and 010 added, caps raised
+Area: RESOURCES/ODEJ-Media/{007,008,009,010}-*, public/media/odej-{007,008,009,010}, docs/media
+What: four establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-007 32 photos, 1 video, 12.3 MiB. odej-008 26 photos, 1 video, 20.5 MiB. odej-009 28 photos, 1 video, 8.4 MiB. odej-010 23 photos, 3 videos, 14.2 MiB. Every file is under 24 MiB.
+What: caps raised for these four, all far under 50 MiB. Reason: the colleague kept each reviewed set. The odej-008 video was 31.6 MiB, 1080x1920, 69.9 s in the original. It is now 15.6 MiB at 720 px wide, so it fits.
+What: the odej-008 cover is not from Facebook. The colleague supplied `IMG-20261101-WA0002.jpg` (1600x900, an aerial view of a stone building with a dark dome) and chose it as the cover. It is stored as `preview/preview-2.jpg` next to the original `preview.jpg`, which stays on disk, and `manifest.json` points at it. It appears to show the same building as `photo-026` in that folder. The scrappper rebuilds the manifest from its database, so a later rewrite of that manifest would put `preview.jpg` back.
+What: a light review found nothing that blocks publishing. Left in place, the colleague's call: odej-007 has 26 of 33 photos under 1000 px wide, a badminton poster (`photo-003`) and a photo of the Martyrs' Memorial in Algiers (`photo-002`). odej-008 `photo-001` is an advertising banner. odej-009 has three posters (`photo-003`, `photo-012`, `photo-026`). odej-010 has three low-resolution videos, 360 to 480 px wide, and several photos with a burned-in date stamp.
+Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. The children in these photos are covered by D10 as extended, so there is no per-file INFO entry. `info.json` has an e-mail for all four, and a telephone for odej-009 and odej-010. None of it is in `odej-bejaia.json` yet. odej-010 shares its coordinates with #32, a dataset warning that does not touch the media.
+
+### 2026-11-01 02:56 · [data-agent] · QUESTION · .gitignore does not ignore .avif
+Area: .gitignore
+What: `RESOURCES/**/*.heic` is ignored, `.avif` is not. Facebook served odej-007 `photo-001` and its preview as AVIF, and `git add` would have taken both. They were left out of the commit by staging explicit paths. They stay untracked, so a later `git add -A` would pick them up.
+Impact on others: app agent, this is your file. Please add `RESOURCES/**/*.avif` to `.gitignore`. Not blocking.
+
+### 2026-11-01 02:58 · [data-agent] · CHANGE · .gitignore now ignores .avif, re: .gitignore does not ignore .avif
+Area: .gitignore
+What: one line added after the `heic` rule: `RESOURCES/**/*.avif`. It is the exact fix the question above asked for. `git check-ignore` confirms the two odej-007 AVIF originals are now ignored, and `git status` is clean.
+What: the colleague asked for it and said the data agent may edit this file for it, so the app agent was not waited for. Nothing else in `.gitignore` changed.
+Impact on others: app agent, this is your file. Revert the one line if you disagree, but then `git add -A` takes the two AVIF files again.
+
+### 2026-11-01 03:05 · [data-agent] · CHANGE · Third CDN publication, odej-007 to 010 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 566 files, 200.2 MiB staged, which is the 291 media plus the 275 thumbnails. The CDN now serves odej-001, 003, 004, 005, 007, 008, 009, 010 and 021.
+What: all 291 URLs of `public/media/index.json` answer 200: 275 `image/webp` and 16 `video/mp4`. The thumbnails and the odej-008 cover were spot-checked too, and the cover on the CDN is byte for byte the local file. As in the previous publication, `media:verify` cannot run on the colleague's machine because it has no IPv6 route, so the check was done with curl over IPv4 on the same list.
+What: before the PR, on the rebased branch: `validate:data`, lint (0 errors, 9 existing warnings), typecheck, 75 tests and the build all pass.
+Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. Nothing to do on your side. The odej-007 to 010 entries above carry the details.

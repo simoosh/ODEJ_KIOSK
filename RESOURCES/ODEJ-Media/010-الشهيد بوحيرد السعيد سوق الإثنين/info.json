@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T01:31:38Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 10,
+    "name": "الشهيد بوحيرد السعيد سوق الإثنين",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579649019605"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579649019605",
+    "pageRef": "61579649019605",
+    "title": "دار الشباب الشهيد بوحيرد سعيد سوق الاثنين -ولاية بجاية-"
+  },
+  "email": "mjsoukeltenine@odejbejaia-dz.com",
+  "phone": "034 26 03 04",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisation à but non lucratif",
+  "openingHours": null,
+  "followers": 208,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}
