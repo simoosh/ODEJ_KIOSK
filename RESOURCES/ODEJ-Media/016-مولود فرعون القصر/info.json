@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T03:13:56Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 16,
+    "name": "مولود فرعون القصر",
+    "pageUrl": "https://www.facebook.com/share/1AvmEe4LxM/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/1AvmEe4LxM/",
+    "pageRef": "61579702448359",
+    "title": "دار الشباب القصر-ولاية بجاية"
+  },
+  "email": "mjelkseur@odejbejaia-dz.com",
+  "phone": "034 82 13 04",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisme jeunesse · Lieu de sport et de loisirs",
+  "openingHours": null,
+  "followers": 1115,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

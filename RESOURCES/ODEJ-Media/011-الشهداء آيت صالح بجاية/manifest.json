@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T02:34:10Z",
+  "institution": {
+    "id": 11,
+    "name": "الشهداء آيت صالح بجاية",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579845034839",
+    "latitude": 36.7721416,
+    "longitude": 4.9812182
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579845034839",
+    "pageRef": "61579845034839",
+    "title": "المركب الرياضي الجواري اغيل اوعزوق بجاية"
+  },
+  "datasetWarnings": [],
+  "preview": "preview/preview.jpg",
+  "items": [
+    {
+      "file": "photos/photo-001.jpg",
+      "type": "photo",
+      "facebookId": "122099268152994834",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122099268152994834",
+      "postUrl": null,
+      "album": "Profile pictures",
+      "caption": null,
+      "postedAt": "2025-08-27T14:52:13Z",
+      "originalName": "539941860_122099268158994834_69228823392238625_n.jpg",
+      "format": "jpeg",
+      "width": 200,
+      "height": 200,
+      "bytes": 8265,
+      "durationSec": null,
+      "sha256": "aadbd3ae1952842c2e5fa438be2048bc7214a1b1fd29bf1612798aac8855a329",
+      "reviewDecision": "keep",
+      "downloadStatus": "done",
+      "duplicateOf": null,
+      "nearDuplicateOf": null,
+      "ownerMismatch": false,
+      "downloadedAt": "2026-11-01T02:34:10Z",
+      "tool": "gallery-dl 1.32.18"
+    }
+  ],
+  "failed": []
+}

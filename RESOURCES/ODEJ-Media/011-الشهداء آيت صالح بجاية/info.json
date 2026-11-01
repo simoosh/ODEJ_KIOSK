@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T02:32:01Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 11,
+    "name": "الشهداء آيت صالح بجاية",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579845034839"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579845034839",
+    "pageRef": "61579845034839",
+    "title": "المركب الرياضي الجواري اغيل اوعزوق بجاية"
+  },
+  "email": "cspighil31@gmail.com",
+  "phone": "034 16 73 54",
+  "address": "ighil ouzoug , 06000",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Services publics & administration",
+  "openingHours": null,
+  "followers": 114,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

@@ -259,3 +259,39 @@ Impact on others: none.
 Area: public/data (`bejaia-boundary.geojson`, `wilaya.camera` in `odej-bejaia.json` and its schema), src/map, src/config.ts, tools/data/build-boundary.mjs
 What: `wilaya.camera` loses `center` and `zoom`: the framing is computed from the OSM boundary. This edits the shared data file, two lines in the block above `establishments`. Neighbouring wilayas are muted by a mask. The landing shows a slow tour over land.
 Impact on others: data agent: rebase before editing `odej-bejaia.json`. Nothing changes for media.
+
+### 2026-11-01 05:18 · [data-agent] · CHANGE · odej-011, 012, 013, 016, 017 and 041 added, caps raised
+Area: RESOURCES/ODEJ-Media/{011,012,013,016,017,041}-*, public/media/odej-{011,012,013,016,017,041}, docs/media
+What: six establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-011 0 photos (only a cover), odej-012 38 photos, 2 videos, 9.5 MiB. odej-013 15 photos, 0 videos, 1.6 MiB. odej-016 38 photos, 2 videos, 18.9 MiB. odej-017 33 photos, 3 videos, 29.0 MiB. odej-041 36 photos, 2 videos, 7.8 MiB. Every file is under 24 MiB.
+What: caps raised for 012, 016, 017 and 041 (photos over 15, and odej-017 at 3 videos), all far under 50 MiB. Reason: the colleague kept each reviewed set. odej-016 `video-02` runs 90 s, over the 70 s default, a warning only.
+What: odej-012 `video-02` is not from Facebook. The colleague supplied it (30 s, 324x640, H.264 + AAC) and it was added to that `manifest.json` by hand with tool `manual`. The scrappper rebuilds the manifest from its database, so a later rewrite would drop that entry. One Facebook video for odej-012 failed ("Video is damaged") and is listed in `failed`.
+What: light review, nothing blocks publishing. Left in place: odej-013 has all 16 photos under 1000 px wide, odej-012 19 of 39, odej-041 15 of 37. The children in these photos are covered by D10 as extended, so there is no per-file INFO entry. `info.json` has a telephone and an e-mail for all six except odej-041 (no e-mail) and odej-011, where only the cover was kept. None of it is in `odej-bejaia.json` yet.
+What: new file `tools/media/collect/status_table.py` prints the table below. Run it to refresh the table at any time.
+Impact on others: project total, once uploaded, is 475 files and 257.2 MiB of 3 GiB. Nothing to do on your side. App agent: the contact import (`tools/data/import-info.mjs`) still has to run for odej-005 to 041.
+
+### 2026-11-01 05:18 · [data-agent] · INFO · Establishments collected so far, with their data
+Area: public/media, RESOURCES/ODEJ-Media
+What: table of the establishments that already have media on the map, state after the batch above is uploaded.
+
+| # | Establishment | Commune | Photos | Videos | MiB | Cover | Phone | E-mail | Address | Hours | Contact on map |
+|--:|---|---|--:|--:|--:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 001 | Adekar Local Sports Complex | Adekar | 23 | 2 | 16.2 | yes | yes | yes | - | - | yes |
+| 003 | Oued Ghir Science Leisure Centre | Oued Ghir | 35 | 6 | 98.9 | - | yes | yes | yes | yes | yes |
+| 004 | Hamia Mohand Cherif Local Sports Complex | Beni Maouche | 27 | 0 | 3.9 | yes | yes | yes | yes | - | yes |
+| 005 | Martyr Ouaglis Mohand Akli | Amizour | 27 | 0 | 5.7 | yes | yes | yes | - | - | - |
+| 007 | Martyr Hamai Bachir | Chemini | 32 | 1 | 12.3 | yes | - | yes | yes | - | - |
+| 008 | Mujahid Mohamed Boudiaf | Aokas | 26 | 1 | 20.5 | yes | - | yes | - | - | - |
+| 009 | El Kseur Local Sports Complex | El Kseur | 28 | 1 | 8.4 | yes | yes | yes | yes | - | - |
+| 010 | Martyr Bouhired Said | Souk El Tenine | 23 | 3 | 14.2 | yes | yes | yes | - | - | - |
+| 011 | Ait Salah Martyrs | Bejaia | 0 | 0 | 0.0 | yes | yes | yes | yes | - | - |
+| 012 | Martyr Khaldi Abdelkader | Senadla | 38 | 2 | 9.5 | yes | yes | yes | - | - | - |
+| 013 | Tibane Youth Centre | Tibane | 15 | 0 | 1.6 | yes | yes | yes | yes | yes | - |
+| 016 | Mouloud Feraoun | El Kseur | 38 | 2 | 18.9 | yes | yes | yes | - | - | - |
+| 017 | Martyr Abderrahmane Fares | Akbou | 33 | 3 | 29.0 | yes | yes | yes | - | - | - |
+| 021 | Martyr Chila Tayeb | Ouzellaguen | 30 | 2 | 10.3 | yes | yes | yes | - | - | yes |
+| 041 | Chellata Youth Centre | Chellata | 36 | 2 | 7.8 | yes | yes | - | yes | - | - |
+| | **15 of 67 collected** | | **411** | **25** | **257.2** | | | | | | |
+
+Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
+
+Impact on others: none. Remaining: 52 establishments with no media yet.
