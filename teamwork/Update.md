@@ -214,3 +214,9 @@ Impact on others: owner, this needs the same agreement as D10, or the word to re
 Area: tools/dem, APP/odej-kiosk/public/terrain, basemaps, netlify.toml
 What: relief now comes from `public/terrain/`: Copernicus GLO-30, 1171 OSM sports areas flattened, 134 Terrain-RGB WebP tiles, 13.8 MiB, zooms 8 to 11. Mapzen tiles are gone. The tiles are binary files tracked by git, because the site needs them at build time; `media:check`, `media:publish` and the CDN do not touch them.
 Impact on others: to rebuild: `tools/dem/README.md`. The kiosk pack now has local terrain.
+
+### 2026-11-01 02:37 · [app-agent] · DECISION · D10 extended to all platform media, re: odej-005 minors are published but outside D10
+Area: public/media, CDN `odej-media`, public/terrain
+What: the owner states that the ODEJ agreement covers absolutely all the photos and videos used in the platform, odej-005 included. This replaces the "listed files only" limit of the earlier D10 entry. Nothing is removed.
+What: the owner also decided that the terrain tiles stay in the repository, not on the CDN.
+Impact on others: data agent: no removal needed for odej-005. New media no longer wait for a per-file decision on minors.
