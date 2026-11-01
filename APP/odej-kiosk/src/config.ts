@@ -15,19 +15,34 @@ export function mediaUrl(src: string, base: string = MEDIA_BASE): string {
 export const CONFIG = {
   dataUrl: 'data/odej-bejaia.json',
   mediaIndexUrl: 'media/index.json',
+  boundaryUrl: 'data/bejaia-boundary.geojson',
 
   /** Retour automatique à l'accueil après inactivité (ms) */
   idleTimeoutMs: 120_000,
   /** Compte à rebours affiché avant le retour (ms) */
   idleWarningMs: 10_000,
 
-  /** Vue « attente » derrière l'accueil : fixe, aucun rendu continu */
-  attractCamera: { center: [4.92, 36.6] as [number, number], zoom: 8.3, pitch: 38, bearing: 0 },
+  /** Tour d'accueil : points de vue au-dessus des terres, regard vers l'intérieur pour éviter la mer */
+  tourViewpoints: [
+    { center: [4.72, 36.54] as [number, number], zoom: 10.6, pitch: 55, bearing: 60 },
+    { center: [4.5, 36.62] as [number, number], zoom: 10.8, pitch: 55, bearing: 150 },
+    { center: [5.02, 36.655] as [number, number], zoom: 11.4, pitch: 58, bearing: 345 },
+    { center: [5.2, 36.47] as [number, number], zoom: 10.8, pitch: 55, bearing: 200 },
+  ],
+  /** Durée d'un trajet et pause sur chaque point de vue (ms) */
+  tourFlightMs: 16_000,
+  tourPauseMs: 3_000,
+  /** Agrandissement de l'emprise du contour pour limiter le centre de la carte, sur chaque côté */
+  boundsMargin: 0.25,
+  /** Marge autour de la wilaya dans le cadrage (px) */
+  framePadding: 24,
   /** Vue d'un établissement sélectionné */
   focusZoom: 15.4,
   focusPitch: 62,
 
   maxPitch: 70,
+  minZoom: 7,
+  /** Limites du centre de la carte tant que le contour n'est pas chargé */
   maxBounds: [
     [3.7, 35.9],
     [6.2, 37.3],
@@ -48,6 +63,9 @@ export const CONFIG = {
 
   /** Exagération du relief 3D */
   terrainExaggeration: 1,
+
+  /** Délai avant de recharger la page si le contexte WebGL ne revient pas (ms) */
+  contextLostReloadMs: 5_000,
 
   /** Tuiles gardées en mémoire par source */
   maxTileCacheSize: 150,

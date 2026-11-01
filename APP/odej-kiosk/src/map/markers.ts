@@ -1,5 +1,5 @@
 import type { ExpressionSpecification, FilterSpecification, Map as MlMap } from 'maplibre-gl';
-import type { Category, Establishment, Locale } from '../types';
+import type { Boundary, Category, Establishment, Locale } from '../types';
 import { titleOf } from '../data/model';
 import { CATEGORY_ICONS, svgString } from '../components/icons';
 import type { LngLat } from '../lib/geo';
@@ -8,6 +8,11 @@ export const MARKER_SOURCE = 'establishments';
 export const MARKER_LAYER = 'est-markers';
 export const SELECTED_LAYER = 'est-selected';
 const LABEL_LAYER = 'est-labels';
+const MASK_SOURCE = 'wilaya-mask';
+const LINE_SOURCE = 'wilaya-line';
+const MASK_COLOR = '#F7F6F1';
+const MASK_OPACITY = 0.45;
+const LINE_COLOR = '#1E6B3C';
 
 /** Dessin en pixels CSS, rasterisé à 2× */
 const SCALE = 2;
@@ -156,6 +161,27 @@ export function scaleMarkerLayers(map: MlMap) {
 /** Décalage de l'étiquette HTML du sélectionné, au-dessus de son anneau (px). */
 export function selectedLabelOffset(): [number, number] {
   return [0, -((PIN_CENTER + RING_RADIUS) * MAX_SIZE * SELECTED_SIZE * remScale() + 6)];
+}
+
+/** Monde troué par la wilaya : la couche de masque atténue tout ce qui est autour. */
+export function outsideMask(boundary: Boundary): GeoJSON.Feature<GeoJSON.Polygon> {
+  const world = [
+    [-30, 10],
+    [40, 10],
+    [40, 60],
+    [-30, 60],
+    [-30, 10],
+  ];
+  const holes = boundary.features.flatMap((f) => f.geometry.coordinates.map((polygon) => polygon[0]));
+  return { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [world, ...holes] } };
+}
+
+/** Masque et contour, sous les marqueurs. */
+export function addBoundaryLayers(map: MlMap, boundary: Boundary) {
+  map.addSource(MASK_SOURCE, { type: 'geojson', data: outsideMask(boundary) });
+  map.addSource(LINE_SOURCE, { type: 'geojson', data: boundary });
+  map.addLayer({ id: MASK_SOURCE, type: 'fill', source: MASK_SOURCE, paint: { 'fill-color': MASK_COLOR, 'fill-opacity': MASK_OPACITY } });
+  map.addLayer({ id: LINE_SOURCE, type: 'line', source: LINE_SOURCE, paint: { 'line-color': LINE_COLOR, 'line-width': 2 } });
 }
 
 export function addMarkerLayers(map: MlMap, images: MarkerImages) {

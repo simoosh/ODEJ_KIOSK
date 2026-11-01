@@ -53,11 +53,6 @@
       }
     ],
     "camera": {
-      "center": [
-        4.92,
-        36.61
-      ],
-      "zoom": 9.2,
       "pitch": 55,
       "bearing": -18
     }

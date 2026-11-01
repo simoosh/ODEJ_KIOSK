@@ -74,11 +74,11 @@ export interface Establishment {
 }
 
 export interface CameraSpec {
-  center: [number, number];
-  zoom: number;
   pitch: number;
   bearing: number;
 }
+
+export type Boundary = GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>;
 
 export interface KioskData {
   meta: { version: string; updatedAt: string; locales: Locale[]; defaultLocale: Locale; source?: string; notes?: string };

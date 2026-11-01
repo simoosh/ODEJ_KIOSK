@@ -71,11 +71,9 @@
         },
         "camera": {
           "type": "object",
-          "description": "Vue d'arrivée sur la carte après l'animation d'entrée",
-          "required": ["center", "zoom", "pitch", "bearing"],
+          "description": "Inclinaison et orientation de la vue d'arrivée. Le centre et le zoom viennent du contour de la wilaya.",
+          "required": ["pitch", "bearing"],
           "properties": {
-            "center": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
-            "zoom": { "type": "number" },
             "pitch": { "type": "number", "minimum": 0, "maximum": 85 },
             "bearing": { "type": "number" }
           }

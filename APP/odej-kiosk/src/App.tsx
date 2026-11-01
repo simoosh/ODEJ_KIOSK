@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { BasemapId, KioskData, Locale, MediaIndex } from './types';
+import type { BasemapId, Boundary, KioskData, Locale, MediaIndex } from './types';
 import { CONFIG, forcedQuality, nextQuality, QUALITY, type QualityLevel } from './config';
 import { I18nProvider, useI18n } from './i18n/I18n';
 import { MapView, type MapHandle } from './map/MapView';
@@ -25,6 +25,7 @@ const NO_FILTERS: Filters = { category: null, place: null, activity: null };
 
 export default function App() {
   const [data, setData] = useState<KioskData | null>(null);
+  const [boundary, setBoundary] = useState<Boundary | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -34,18 +35,26 @@ export default function App() {
         return r.json() as Promise<T>;
       });
     // Sans index, l'application s'affiche sans médias
-    Promise.all([load<KioskData>(CONFIG.dataUrl), load<MediaIndex>(CONFIG.mediaIndexUrl).catch(() => ({}))])
-      .then(([kiosk, media]) => setData(withMedia(kiosk, media)))
+    // Sans contour, la carte cadre sur les établissements, sans masque
+    Promise.all([
+      load<KioskData>(CONFIG.dataUrl),
+      load<MediaIndex>(CONFIG.mediaIndexUrl).catch(() => ({})),
+      load<Boundary>(CONFIG.boundaryUrl).catch(() => null),
+    ])
+      .then(([kiosk, media, outline]) => {
+        setData(withMedia(kiosk, media));
+        setBoundary(outline);
+      })
       .catch((e) => setError(String(e)));
   }, []);
 
   if (error) return <div className="boot">Impossible de charger {CONFIG.dataUrl} : {error}</div>;
   if (!data) return <div className="boot" aria-busy="true" />;
 
-  return <ScreenSimulator enabled={SIM_ENABLED}>{(size) => <Kiosk data={data} size={size} />}</ScreenSimulator>;
+  return <ScreenSimulator enabled={SIM_ENABLED}>{(size) => <Kiosk data={data} boundary={boundary} size={size} />}</ScreenSimulator>;
 }
 
-function Kiosk({ data, size }: { data: KioskData; size: { w: number; h: number } }) {
+function Kiosk({ data, boundary, size }: { data: KioskData; boundary: Boundary | null; size: { w: number; h: number } }) {
   const [locale, setLocale] = useState<Locale>(data.meta.defaultLocale ?? 'ar');
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -54,12 +63,22 @@ function Kiosk({ data, size }: { data: KioskData; size: { w: number; h: number }
 
   return (
     <I18nProvider locale={locale}>
-      <KioskScreen data={data} size={size} onToggleLang={() => setLocale((l) => (l === 'ar' ? 'en' : 'ar'))} />
+      <KioskScreen data={data} boundary={boundary} size={size} onToggleLang={() => setLocale((l) => (l === 'ar' ? 'en' : 'ar'))} />
     </I18nProvider>
   );
 }
 
-function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w: number; h: number }; onToggleLang(): void }) {
+function KioskScreen({
+  data,
+  boundary,
+  size,
+  onToggleLang,
+}: {
+  data: KioskData;
+  boundary: Boundary | null;
+  size: { w: number; h: number };
+  onToggleLang(): void;
+}) {
   const { locale, dir, t } = useI18n();
   useEffect(() => {
     if (DEBUG) perfCounters.renders += 1;
@@ -185,6 +204,7 @@ function KioskScreen({ data, size, onToggleLang }: { data: KioskData; size: { w:
       <MapView
         ref={mapRef}
         data={data}
+        boundary={boundary}
         locale={locale}
         basemap={basemap}
         terrain={terrain && screen === 'map'}

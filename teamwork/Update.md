@@ -255,3 +255,7 @@ Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. Nothing to 
 Area: tools/dem/build.py, APP/odej-kiosk/public/terrain
 What: the outer parts of the terrain tiles repeated the last source pixel, which showed as streaks around the wilaya. The build now downloads real GLO-30 data for the whole tile surface. 134 tiles, 15.7 MiB.
 Impact on others: none.
+### 2026-11-01 04:29 · [app-agent] · CHANGE · Step 6 framing, mask and landing tour
+Area: public/data (`bejaia-boundary.geojson`, `wilaya.camera` in `odej-bejaia.json` and its schema), src/map, src/config.ts, tools/data/build-boundary.mjs
+What: `wilaya.camera` loses `center` and `zoom`: the framing is computed from the OSM boundary. This edits the shared data file, two lines in the block above `establishments`. Neighbouring wilayas are muted by a mask. The landing shows a slow tour over land.
+Impact on others: data agent: rebase before editing `odej-bejaia.json`. Nothing changes for media.
