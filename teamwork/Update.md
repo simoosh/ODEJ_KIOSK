@@ -372,3 +372,10 @@ Area: src/map/fog.ts, src/lib/clouds.ts, src/components/Landing.tsx, src/styles/
 What: at the owner's request: the fog now thickens with the distance to the boundary, so the sea and part of the neighbouring wilayas stay visible. The landing is split horizontally: centered text over clouds, the map turning below. The button opens the clouds to the sides while the text leaves upwards.
 What: terrain and satellite now reach the neighbours: 224 tiles, 23.1 MiB. The landing card is reduced to the three figures: `wilaya.description` is no longer shown.
 Impact on others: none on data or media.
+
+### 2026-11-01 22:40 · [data-agent] · CHANGE · odej-028 to 038 added, caps raised
+Area: RESOURCES/ODEJ-Media/{028,029,030,031,032,033,034,035,036,038}-*, public/media, docs/media
+What: ten establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-028 49 photos, 3 videos, 35.7 MiB. odej-029 41 photos, 0 videos, 5.3 MiB. odej-030 35 photos, 1 video, 16.5 MiB. odej-031 1 photo, 0 videos, 0.2 MiB. odej-032 40 photos, 2 videos, 12.6 MiB. odej-033 48 photos, 2 videos, 17.5 MiB. odej-034 46 photos, 4 videos, 11.5 MiB. odej-035 32 photos, 0 videos, 4.3 MiB. odej-036 55 photos, 1 video, 11.6 MiB. odej-038 41 photos, 1 video, 9.4 MiB.
+What: caps raised for nine of them: photos over 15 for all but odej-031, videos over 3 for odej-034. All under 50 MiB. Reason: the colleague kept each reviewed set.
+What: odej-028 `video-01` was 31.5 MiB and `yuvj420p`, and the four odej-034 videos were `yuvj420p`. All five were rebuilt from the originals as `yuv420p`, limited range, with sizes and hashes updated in `docs/media`. odej-028 `video-01` is now 18.0 MiB and runs 121 s, over the 70 s default, like odej-038 `video-01` at 138 s.
+Impact on others: project total is 1278 files and 502.2 MiB of 3 GiB. The media under odej-033 appears to belong to odej-049: see `teamwork/Data.md`, sections 2 and 4. App agent: the same section 6 warning applies before running `tools/data/import-info.mjs`.

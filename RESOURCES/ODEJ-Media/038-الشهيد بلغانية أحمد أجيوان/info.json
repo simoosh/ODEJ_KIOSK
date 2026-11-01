@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T20:41:58Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 38,
+    "name": "الشهيد بلغانية أحمد أجيوان",
+    "pageUrl": "https://www.facebook.com/share/19i1Cr5fct/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/19i1Cr5fct/",
+    "pageRef": "61580009934707",
+    "title": "دار الشباب اجيوان -ولاية بجاية"
+  },
+  "email": "alloslt804@gmail.com",
+  "phone": null,
+  "address": "Bejaïa, Algeria",
+  "website": null,
+  "description": "دار الشباب \"الشهيد بلغانية أحمد\" أجيوان مؤسسة ذات طابع إجتماعي تربوي وتسلية تابعة للديوان وهي مخصصة لتنظيم أوقات فراغ الشباب وشغلها بصفة نافعة\nالمدير/ السيد مصواف (مستشار بيداغوجي للشباب ومدير المخيمات الصيفية)\nالعنوان/ مركز قرية أجيوان_ بلدية ذراع القائد",
+  "facebookCategory": "Organisme gouvernemental · Organisme jeunesse · Enfants et éducation",
+  "openingHours": "Toujours ouvert",
+  "followers": 218,
+  "sources": {
+    "email": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "phone",
+    "website"
+  ]
+}

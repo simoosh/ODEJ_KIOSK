@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T19:00:45Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 32,
+    "name": "الشهيد عمارة عمار سوق الإثنين",
+    "pageUrl": "https://www.facebook.com/complexesportifdeproximitesoukeltenine/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/complexesportifdeproximitesoukeltenine/",
+    "pageRef": "complexesportifdeproximitesoukeltenine",
+    "title": "المركب الرياضي الجواري سوق الاثنين- بجاية"
+  },
+  "email": "cspsoukeltenine@odejbejaia-dz.com",
+  "phone": "034 84 68 05",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Sports et loisirs",
+  "openingHours": null,
+  "followers": 427,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T18:49:53Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 30,
+    "name": "مركب رياضي جواري صدوق",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579996163422"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579996163422",
+    "pageRef": "61579996163422",
+    "title": "المركب الرياضي الجواري صدوق-ولاية بجاية"
+  },
+  "email": "cspseddouk@odejbejaia-dz.com",
+  "phone": "034 19 02 20",
+  "address": "صدوق المركز ولاية بجاية , Seddouk, Algeria, 6011",
+  "website": null,
+  "description": "asemlal anaddal amisi n sedduq-Aɣir n Bgayet",
+  "facebookCategory": "Sport · Sports et loisirs",
+  "openingHours": "Toujours ouvert",
+  "followers": 259,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "website"
+  ]
+}

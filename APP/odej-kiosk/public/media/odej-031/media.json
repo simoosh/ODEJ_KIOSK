@@ -1,0 +1,13 @@
+{
+  "$schema": "../../data/media.schema.json",
+  "cover": {
+    "src": "odej-031/cover.webp",
+    "kind": "image"
+  },
+  "gallery": [
+    {
+      "src": "odej-031/gallery/gallery-01.webp",
+      "kind": "image"
+    }
+  ]
+}

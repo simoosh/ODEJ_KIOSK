@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T18:53:01Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 29,
+    "name": "الشهيد عيوز سليمان درقينة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100064090062577"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100064090062577",
+    "pageRef": "100064090062577",
+    "title": "المركب الرياضي الجواري الشهيد عيوز سليمان درڤينة ولاية بجاية"
+  },
+  "email": "cspdarguina@odejbejaia-dz.com",
+  "phone": "034 39 80 20",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Blog personnel",
+  "openingHours": null,
+  "followers": 123,
+  "sources": {
+    "email": "odej-website",
+    "phone": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

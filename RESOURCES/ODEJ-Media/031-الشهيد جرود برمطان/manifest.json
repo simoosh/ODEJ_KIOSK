@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T18:48:42Z",
+  "institution": {
+    "id": 31,
+    "name": "الشهيد جرود برمطان",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579987524148",
+    "latitude": 36.6042586,
+    "longitude": 4.6832979
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579987524148",
+    "pageRef": "61579987524148",
+    "title": "المركب الرياضي الجواري سيدي عيش-ولاية بجاية"
+  },
+  "datasetWarnings": [],
+  "preview": "preview/preview.jpg",
+  "items": [
+    {
+      "file": "photos/photo-001.jpg",
+      "type": "photo",
+      "facebookId": "122094858578999584",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122094858578999584",
+      "postUrl": null,
+      "album": "Profile pictures",
+      "caption": null,
+      "postedAt": "2025-08-26T10:48:46Z",
+      "originalName": "537813376_122094858584999584_3757928078784873096_n.jpg",
+      "format": "jpeg",
+      "width": 1536,
+      "height": 1546,
+      "bytes": 137646,
+      "durationSec": null,
+      "sha256": "f13b00ebadc8d3ddcc17b6f765f3dc604187b8d0b89ee3c52ae532afbacef038",
+      "reviewDecision": "keep",
+      "downloadStatus": "done",
+      "duplicateOf": null,
+      "nearDuplicateOf": null,
+      "ownerMismatch": false,
+      "downloadedAt": "2026-11-01T18:48:37Z",
+      "tool": "gallery-dl 1.32.18"
+    },
+    {
+      "file": "photos/photo-002.jpg",
+      "type": "photo",
+      "facebookId": "122094280844999584",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122094280844999584",
+      "postUrl": null,
+      "album": "Cover photos",
+      "caption": null,
+      "postedAt": "2025-08-25T13:08:24Z",
+      "originalName": "537441010_122094280910999584_1868304119997709907_n.jpg",
+      "format": "jpeg",
+      "width": 2048,
+      "height": 1536,
+      "bytes": 331405,
+      "durationSec": null,
+      "sha256": "9f1989045be13d1694ad5257913a7b93155e6a43b9fbac3e60e4b82c5772539f",
+      "reviewDecision": "keep",
+      "downloadStatus": "done",
+      "duplicateOf": null,
+      "nearDuplicateOf": null,
+      "ownerMismatch": false,
+      "downloadedAt": "2026-11-01T18:48:42Z",
+      "tool": "gallery-dl 1.32.18"
+    }
+  ],
+  "failed": []
+}

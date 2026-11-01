@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T19:27:53Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 35,
+    "name": "الشهيد بركاني طاهر تيمزريت",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579418235780"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579418235780",
+    "pageRef": "61579418235780",
+    "title": "المركب الرياضي الجواري تيمزريت - ولاية بجاية"
+  },
+  "email": "csptimezrit06@gmail.com",
+  "phone": "0550 38 42 45",
+  "address": "المركب الرياضي الجواري بركاني طاهر تيمزريت , 06122",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 26,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "website"
+  ]
+}
