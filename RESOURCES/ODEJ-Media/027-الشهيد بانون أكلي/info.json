@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T15:32:40Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 27,
+    "name": "الشهيد بانون أكلي",
+    "pageUrl": "https://www.facebook.com/share/17Hdz56ACD/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/17Hdz56ACD/",
+    "pageRef": "61579680730159",
+    "title": "قاعة متعددة النشاطات جبلة ولاية بجاية"
+  },
+  "email": "spdjebla@odejbejaia-dz.com",
+  "phone": "034 86 73 60",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Création digitale",
+  "openingHours": null,
+  "followers": 228,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

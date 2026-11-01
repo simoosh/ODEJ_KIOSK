@@ -301,3 +301,21 @@ Area: CDN `odej-media`, public/media
 What: `media:publish -- --go` run by the colleague. 925 files, 272.8 MiB staged, which is the 475 media plus the 450 thumbnails. The CDN now serves odej-001, 003, 004, 005, 007, 008, 009, 010, 011, 012, 013, 016, 017, 021 and 041.
 What: all 925 URLs answer 200 over IPv4 with curl: image/webp or video/mp4. `media:verify` still cannot run on the colleague's machine (no IPv6 route). On the rebased branch: `validate:data`, lint (0 errors, 9 existing warnings), typecheck, 79 tests, the build and `media:check --hash` all pass.
 Impact on others: project total is 475 files and 257.2 MiB of 3 GiB. Nothing to do on your side.
+
+### 2026-11-01 17:20 · [data-agent] · CHANGE · odej-018 to 027 added, caps raised
+Area: RESOURCES/ODEJ-Media/{018,019,020,022,023,024,025,026,027}-*, public/media, docs/media
+What: nine establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-018 43 photos, 2 videos, 8.8 MiB. odej-019 5 photos, 7 videos, 19.8 MiB. odej-020 24 photos, 1 video, 6.8 MiB. odej-022 46 photos, 2 videos, 15.9 MiB. odej-023 40 photos, 2 videos, 14.2 MiB. odej-024 36 photos, 3 videos, 10.8 MiB. odej-025 37 photos, 1 video, 12.9 MiB. odej-026 47 photos, 3 videos, 15.0 MiB. odej-027 40 photos, 4 videos, 16.2 MiB.
+What: caps raised for all nine: photos over 15 for eight of them, videos over 3 for odej-019 and 027. All far under 50 MiB. Reason: the colleague kept each reviewed set.
+What: odej-018 `video-02` and odej-026 `video-03` came out `yuvj420p`. Both were rebuilt from the originals as `yuv420p`, limited range, and their sizes and hashes updated in `docs/media`. `tools/publish_media.py` in the scrappper still has this trap for full-range sources.
+Impact on others: project total is 852 files and 377.5 MiB of 3 GiB. Problems found in this batch are in `teamwork/Data.md`. App agent: run `tools/data/import-info.mjs` only after reading section 6 of that file, because some values must not be imported.
+
+### 2026-11-01 17:21 · [data-agent] · CHANGE · Fifth CDN publication, odej-018 to 027 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 1654 files, 404.4 MiB staged: 852 media plus 802 thumbnails. The CDN now serves 24 establishments.
+What: all 1654 URLs answer 200 over IPv4 with curl: 1604 `image/webp`, 50 `video/mp4`. One re-encoded video was compared byte for byte with the local file. `media:verify` still cannot run on this machine (no IPv6 route).
+Impact on others: nothing to do on your side.
+
+### 2026-11-01 17:22 · [data-agent] · CHANGE · New data problems register
+Area: teamwork/Data.md, teamwork/README.md section 4
+What: at the colleague's request, `Data.md` lists every open problem with the establishments' data: coordinates, Facebook pages, names, types, contact details and media. It covers the 24 scraped establishments and the 43 still to scrape. The workflow now requires updating it in each batch PR.
+Impact on others: when you solve a listed problem, delete its line and add a `CHANGE` entry here. `Data.md` is not append-only.

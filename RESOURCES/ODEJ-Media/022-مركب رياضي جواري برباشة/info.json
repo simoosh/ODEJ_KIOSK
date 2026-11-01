@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T14:34:43Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 22,
+    "name": "مركب رياضي جواري برباشة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579581283111"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579581283111",
+    "pageRef": "61579581283111",
+    "title": "المركب الرياضي الجواري برباشة - بجاية"
+  },
+  "email": "cspbarbacha@odejbejaia-dz.com",
+  "phone": "034 84 17 37",
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisation à but non lucratif",
+  "openingHours": null,
+  "followers": 123,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T15:29:19Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 26,
+    "name": "دار الشباب تيزي الواد",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579719070404&mibextid=ZbWKwL"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579719070404&mibextid=ZbWKwL",
+    "pageRef": "61579719070404",
+    "title": "دارالشباب تيزي الواد - ولاية بجاية"
+  },
+  "email": "mjtizieloued@odejbejaia-dz.com",
+  "phone": "034 15 67 79",
+  "address": "Coordonnées",
+  "website": null,
+  "description": "Institution étatique",
+  "facebookCategory": "Centre de loisirs",
+  "openingHours": null,
+  "followers": 433,
+  "sources": {
+    "email": "facebook",
+    "phone": "odej-website",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}
