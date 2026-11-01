@@ -225,3 +225,15 @@ Impact on others: data agent: no removal needed for odej-005. New media no longe
 Area: src/map, src/config.ts, src/i18n/strings.ts, .env.example
 What: only Plan and Satellite remain, with the 3D relief switch: OSM classic and OpenTopoMap are removed. Satellite source capped at z17, map at z18, so the "Map data not yet available" squares are gone. If a basemap fails, the app shows the fallback grid with the markers and a notice, including when the style itself never loads. Optional `VITE_SATELLITE_KEY` for an ArcGIS key (D3 still open).
 Impact on others: none on data or media.
+### 2026-11-01 02:56 · [data-agent] · CHANGE · odej-007, 008, 009 and 010 added, caps raised
+Area: RESOURCES/ODEJ-Media/{007,008,009,010}-*, public/media/odej-{007,008,009,010}, docs/media
+What: four establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-007 32 photos, 1 video, 12.3 MiB. odej-008 26 photos, 1 video, 20.5 MiB. odej-009 28 photos, 1 video, 8.4 MiB. odej-010 23 photos, 3 videos, 14.2 MiB. Every file is under 24 MiB.
+What: caps raised for these four, all far under 50 MiB. Reason: the colleague kept each reviewed set. The odej-008 video was 31.6 MiB, 1080x1920, 69.9 s in the original. It is now 15.6 MiB at 720 px wide, so it fits.
+What: the odej-008 cover is not from Facebook. The colleague supplied `IMG-20261101-WA0002.jpg` (1600x900, an aerial view of a stone building with a dark dome) and chose it as the cover. It is stored as `preview/preview-2.jpg` next to the original `preview.jpg`, which stays on disk, and `manifest.json` points at it. It appears to show the same building as `photo-026` in that folder. The scrappper rebuilds the manifest from its database, so a later rewrite of that manifest would put `preview.jpg` back.
+What: a light review found nothing that blocks publishing. Left in place, the colleague's call: odej-007 has 26 of 33 photos under 1000 px wide, a badminton poster (`photo-003`) and a photo of the Martyrs' Memorial in Algiers (`photo-002`). odej-008 `photo-001` is an advertising banner. odej-009 has three posters (`photo-003`, `photo-012`, `photo-026`). odej-010 has three low-resolution videos, 360 to 480 px wide, and several photos with a burned-in date stamp.
+Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. The children in these photos are covered by D10 as extended, so there is no per-file INFO entry. `info.json` has an e-mail for all four, and a telephone for odej-009 and odej-010. None of it is in `odej-bejaia.json` yet. odej-010 shares its coordinates with #32, a dataset warning that does not touch the media.
+
+### 2026-11-01 02:56 · [data-agent] · QUESTION · .gitignore does not ignore .avif
+Area: .gitignore
+What: `RESOURCES/**/*.heic` is ignored, `.avif` is not. Facebook served odej-007 `photo-001` and its preview as AVIF, and `git add` would have taken both. They were left out of the commit by staging explicit paths. They stay untracked, so a later `git add -A` would pick them up.
+Impact on others: app agent, this is your file. Please add `RESOURCES/**/*.avif` to `.gitignore`. Not blocking.
