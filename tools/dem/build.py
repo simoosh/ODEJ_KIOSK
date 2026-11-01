@@ -33,8 +33,6 @@ TILE_SIZE = 512
 BUDGET_BYTES = 50 * 1024 * 1024
 
 DEM_URL = "https://copernicus-dem-30m.s3.amazonaws.com/{name}/{name}.tif"
-# N37 n'existe pas sur le bucket : ces tuiles seraient entièrement en mer
-DEM_TILES = [(36, 4), (36, 5)]
 PIXELS_PER_DEGREE = 3600
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
@@ -58,21 +56,44 @@ MAX_RELIEF_M = 20
 QUANTIZE_M = 0.5
 
 
-def download_dem() -> tuple[np.ndarray, rasterio.Affine]:
-    CACHE.mkdir(exist_ok=True)
-    rows = []
-    for lat, lon in DEM_TILES:
-        name = f"Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM"
-        path = CACHE / f"{name}.tif"
-        if not path.exists():
-            print(f"download {name}")
-            response = requests.get(DEM_URL.format(name=name), timeout=300)
+def dem_extent() -> tuple[int, int, int, int]:
+    """Degrés entiers qui couvrent toutes les tuiles écrites, y compris leurs parties hors de l'emprise."""
+    zoom = ZOOMS.start
+    left, top, right, bottom = tile_range(zoom)
+    west = tile_bounds(zoom, left, top)[0]
+    north = tile_bounds(zoom, left, top)[3]
+    east = tile_bounds(zoom, right, bottom)[2]
+    south = tile_bounds(zoom, right, bottom)[1]
+    return math.floor(west), math.floor(south), math.ceil(east), math.ceil(north)
+
+
+def read_dem_tile(lat: int, lon: int) -> np.ndarray:
+    """Un degré carré de GLO-30. Le bucket n'a pas de fichier pour la pleine mer : altitude 0."""
+    name = f"Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM"
+    path = CACHE / f"{name}.tif"
+    missing = CACHE / f"{name}.missing"
+    if not path.exists() and not missing.exists():
+        print(f"download {name}")
+        response = requests.get(DEM_URL.format(name=name), timeout=300)
+        if response.status_code == 404:
+            missing.touch()
+        else:
             response.raise_for_status()
             path.write_bytes(response.content)
-        with rasterio.open(path) as source:
-            rows.append(source.read(1).astype(np.float32))
-    dem = np.hstack(rows)
-    return dem, from_origin(DEM_TILES[0][1], DEM_TILES[0][0] + 1, 1 / PIXELS_PER_DEGREE, 1 / PIXELS_PER_DEGREE)
+    if missing.exists():
+        return np.zeros((PIXELS_PER_DEGREE, PIXELS_PER_DEGREE), dtype=np.float32)
+    with rasterio.open(path) as source:
+        return source.read(1).astype(np.float32)
+
+
+def download_dem() -> tuple[np.ndarray, rasterio.Affine]:
+    CACHE.mkdir(exist_ok=True)
+    west, south, east, north = dem_extent()
+    rows = [
+        np.hstack([read_dem_tile(lat, lon) for lon in range(west, east)])
+        for lat in range(north - 1, south - 1, -1)
+    ]
+    return np.vstack(rows), from_origin(west, north, 1 / PIXELS_PER_DEGREE, 1 / PIXELS_PER_DEGREE)
 
 
 def closed_ring(points: list[list[float]]) -> bool:
@@ -212,7 +233,6 @@ def render_tile(dem: np.ndarray, transform: rasterio.Affine, zoom: int, x: int, 
     lon_grid, lat_grid = np.meshgrid(longitudes, latitudes)
     columns = (lon_grid - transform.c) / transform.a - 0.5
     lines = (lat_grid - transform.f) / transform.e - 0.5
-    # nearest au bord : pas de falaise là où la source s'arrête
     return map_coordinates(dem, [lines, columns], order=1, mode="nearest").astype(np.float32)
 
 

@@ -16,7 +16,7 @@ Ensuite, `build.py` seul suffit. Il réutilise `.cache/` (ignoré par git) et `d
 
 ## Ce qu'il fait
 
-1. Télécharge les tuiles Copernicus GLO-30 (30 m). `N37` n'existe pas sur le bucket : il n'y a que de la mer.
+1. Télécharge les tuiles Copernicus GLO-30 (30 m) qui couvrent toute la surface des tuiles écrites, pas seulement l'emprise : sinon les bords seraient étirés. Le bucket n'a pas de fichier pour la pleine mer : l'altitude y vaut 0.
 2. Lit les surfaces sportives d'OSM : `leisure=pitch|stadium|track|sports_centre` et `landuse=recreation_ground`.
 3. Applique un léger lissage gaussien.
 4. Remplace l'altitude de chaque surface par sa médiane, avec un raccord de 2 pixels. Les surfaces de plus de 200 000 m², ou avec plus de 20 m de dénivelé, ne sont pas aplaties.

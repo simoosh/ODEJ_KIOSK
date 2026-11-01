@@ -250,3 +250,8 @@ What: `media:publish -- --go` run by the colleague. 566 files, 200.2 MiB staged,
 What: all 291 URLs of `public/media/index.json` answer 200: 275 `image/webp` and 16 `video/mp4`. The thumbnails and the odej-008 cover were spot-checked too, and the cover on the CDN is byte for byte the local file. As in the previous publication, `media:verify` cannot run on the colleague's machine because it has no IPv6 route, so the check was done with curl over IPv4 on the same list.
 What: before the PR, on the rebased branch: `validate:data`, lint (0 errors, 9 existing warnings), typecheck, 75 tests and the build all pass.
 Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. Nothing to do on your side. The odej-007 to 010 entries above carry the details.
+
+### 2026-11-01 04:09 · [app-agent] · CHANGE · Terrain edges no longer stretched
+Area: tools/dem/build.py, APP/odej-kiosk/public/terrain
+What: the outer parts of the terrain tiles repeated the last source pixel, which showed as streaks around the wilaya. The build now downloads real GLO-30 data for the whole tile surface. 134 tiles, 15.7 MiB.
+Impact on others: none.
