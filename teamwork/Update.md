@@ -243,3 +243,10 @@ Area: .gitignore
 What: one line added after the `heic` rule: `RESOURCES/**/*.avif`. It is the exact fix the question above asked for. `git check-ignore` confirms the two odej-007 AVIF originals are now ignored, and `git status` is clean.
 What: the colleague asked for it and said the data agent may edit this file for it, so the app agent was not waited for. Nothing else in `.gitignore` changed.
 Impact on others: app agent, this is your file. Revert the one line if you disagree, but then `git add -A` takes the two AVIF files again.
+
+### 2026-11-01 03:05 · [data-agent] · CHANGE · Third CDN publication, odej-007 to 010 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 566 files, 200.2 MiB staged, which is the 291 media plus the 275 thumbnails. The CDN now serves odej-001, 003, 004, 005, 007, 008, 009, 010 and 021.
+What: all 291 URLs of `public/media/index.json` answer 200: 275 `image/webp` and 16 `video/mp4`. The thumbnails and the odej-008 cover were spot-checked too, and the cover on the CDN is byte for byte the local file. As in the previous publication, `media:verify` cannot run on the colleague's machine because it has no IPv6 route, so the check was done with curl over IPv4 on the same list.
+What: before the PR, on the rebased branch: `validate:data`, lint (0 errors, 9 existing warnings), typecheck, 75 tests and the build all pass.
+Impact on others: project total is 291 files and 190.4 MiB of 3 GiB. Nothing to do on your side. The odej-007 to 010 entries above carry the details.
