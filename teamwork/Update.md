@@ -355,3 +355,14 @@ What: updated table of the establishments with media on the map, after the fifth
 Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
 
 Impact on others: none. Remaining: 43 establishments with no media yet. Open problems are in `teamwork/Data.md`.
+
+### 2026-11-01 19:49 · [app-agent] · DECISION · Kiosk screen is 1080p at most
+Area: screens, performance
+What: the owner states that no 4K screen will be used. 1080p is the maximum, so 3840×2160 leaves the screen list in `CLAUDE.md`.
+Impact on others: none.
+
+### 2026-11-01 19:49 · [app-agent] · CHANGE · Map polish before step 7
+Area: src/map, src/config.ts, tools/dem, APP/odej-kiosk/public/terrain
+What: at the owner's request: fog replaces the outline and the mask, the zoom-out is limited to the wilaya, the landing turns 360° without stopping (it replaces the tour of step 6), satellite detail stays uniform in the whole view, and tiles are preloaded on the landing screen. Terrain now covers 35.9°N and up: 156 tiles, 18.5 MiB.
+What: about 6 000 tiles are fetched in the background, including from Esri. This adds to the open D3 question.
+Impact on others: none on data or media.

@@ -84,7 +84,7 @@ export default function DebugPanel({ map, quality }: { map: RefObject<MapHandle 
       const { frames, meanMs } = frameStats(deltas.current);
       deltas.current = [];
       const dpr = instance.getPixelRatio().toFixed(2);
-      setText(`${frames} fps · ${meanMs} ms · ${tileCount(instance)} tuiles · dpr ${dpr}${quality ? ` · ${quality}` : ''} · ${perfCounters.renders} rendus`);
+      setText(`${frames} fps · ${meanMs} ms · ${tileCount(instance)} tuiles · dpr ${dpr}${quality ? ` · ${quality}` : ''} · ${perfCounters.renders} rendus · ${perfCounters.preloaded} préchargées`);
     }, 1000);
     window.odejPerf = { map: instance, run: () => runScenario(instance), idle: () => idleFrames(instance) };
     return () => {

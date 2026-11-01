@@ -22,18 +22,15 @@ export const CONFIG = {
   /** Compte à rebours affiché avant le retour (ms) */
   idleWarningMs: 10_000,
 
-  /** Tour d'accueil : points de vue au-dessus des terres, regard vers l'intérieur pour éviter la mer */
-  tourViewpoints: [
-    { center: [4.72, 36.54] as [number, number], zoom: 10.6, pitch: 55, bearing: 60 },
-    { center: [4.5, 36.62] as [number, number], zoom: 10.8, pitch: 55, bearing: 150 },
-    { center: [5.02, 36.655] as [number, number], zoom: 11.4, pitch: 58, bearing: 345 },
-    { center: [5.2, 36.47] as [number, number], zoom: 10.8, pitch: 55, bearing: 200 },
-  ],
-  /** Durée d'un trajet et pause sur chaque point de vue (ms) */
-  tourFlightMs: 16_000,
-  tourPauseMs: 3_000,
+  /** Rotation continue derrière l'accueil */
+  orbit: { pitch: 50, degreesPerSecond: 3, flightMs: 2_400 },
+  /** Part de l'écran couverte par le voile de l'accueil : la wilaya tourne dans ce qui reste */
+  landingVeil: 0.42,
+  landingVeilPortrait: 0.5,
   /** Agrandissement de l'emprise du contour pour limiter le centre de la carte, sur chaque côté */
-  boundsMargin: 0.25,
+  boundsMargin: 0.15,
+  /** Dézoom permis au-delà du cadrage de la wilaya */
+  zoomOutMargin: 0.35,
   /** Marge autour de la wilaya dans le cadrage (px) */
   framePadding: 24,
   /** Vue d'un établissement sélectionné */
@@ -41,6 +38,7 @@ export const CONFIG = {
   focusPitch: 62,
 
   maxPitch: 70,
+  /** Remplacé dès que le cadrage de la wilaya est connu */
   minZoom: 7,
   /** Limites du centre de la carte tant que le contour n'est pas chargé */
   maxBounds: [
@@ -49,13 +47,21 @@ export const CONFIG = {
   ] as [[number, number], [number, number]],
 
   /** Tuiles de relief, relatives à la racine du site */
-  terrainTiles: 'terrain/{z}/{x}/{y}.webp',
+  /** ?v= à changer à chaque régénération : les tuiles restent 30 jours dans le cache du navigateur */
+  terrainTiles: 'terrain/{z}/{x}/{y}.webp?v=3',
+  terrainBounds: [4, 35.9, 5.9, 37.1] as [number, number, number, number],
   terrainAttribution:
     'Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. Sports areas © OpenStreetMap contributors',
 
   /** Au-delà du zoom 18, Esri renvoie un carré « Map data not yet available » : on sur-échantillonne le zoom 17 */
   satelliteSourceMaxZoom: 17,
   satelliteMaxZoom: 18,
+  /** Sous ce zoom, Esri passe à une imagerie générique d'une autre couleur : on ne la charge jamais à côté du détail */
+  satelliteDetailZoom: 12,
+  /** Sous-couche : quelques tuiles suffisent à couvrir la wilaya, le temps que le détail arrive */
+  satelliteUnderlayZoom: 9,
+  /** Au-delà, le brouillard est opaque : inutile de charger ce que personne ne voit */
+  satelliteBounds: [4.15, 36.05, 5.7, 37.05] as [number, number, number, number],
   /** Échecs de tuiles d'affilée avant de passer au fond de secours */
   basemapMaxErrors: 8,
   /** Délai maximal de chargement d'un style (ms) */
@@ -68,7 +74,40 @@ export const CONFIG = {
   contextLostReloadMs: 5_000,
 
   /** Tuiles gardées en mémoire par source */
-  maxTileCacheSize: 150,
+  maxTileCacheSize: 300,
+
+  /** Brouillard autour de la wilaya, peint au démarrage (map/fog.ts) */
+  fog: {
+    color: '#EDF1F3',
+    rgb: [237, 241, 243],
+    /** Zone peinte : emprise du contour agrandie de ce ratio de chaque côté */
+    regionMargin: 1,
+    /** Largeur du flou autour du contour */
+    blurKm: 10,
+    /** Couverture à laquelle le brouillard est opaque, puis celle à laquelle il disparaît */
+    opaqueAt: 0.03,
+    clearAt: 0.22,
+    noiseStrength: 0.3,
+    shade: 0.22,
+  },
+
+  /** Tuiles chargées en arrière-plan sur l'accueil (map/preload.ts) */
+  preload: {
+    concurrency: 4,
+    maxFailures: 5,
+    pauseMs: 1_000,
+    wilayaMargin: 0.1,
+    /** Abords d'un établissement, en degrés (~1,5 km) */
+    radiusDegrees: 0.015,
+    terrainZooms: [8, 9, 10, 11],
+    /** D'abord la vue d'ensemble des deux fonds, puis le détail */
+    planZooms: [8, 9, 10, 11],
+    satelliteZooms: [12],
+    planDetailZooms: [12, 13],
+    satelliteDetailZooms: [13],
+    aroundPlanZooms: [14],
+    aroundSatelliteZooms: [14, 15, 16],
+  },
   /** Demi-côté de la zone de toucher d'un marqueur (px) : au moins 44 × 44 */
   touchRadius: 22,
 

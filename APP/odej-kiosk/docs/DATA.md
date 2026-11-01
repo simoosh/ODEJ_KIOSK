@@ -66,4 +66,4 @@ Après une modification de `name`, de `category` ou de `placeId`, je relance `ap
 node tools/data/build-boundary.mjs
 ```
 
-Le cadrage de la carte part de ce contour : `wilaya.camera` ne garde que `pitch` et `bearing`.
+Le cadrage de la carte, la limite de dézoom et le brouillard partent de ce contour : `wilaya.camera` ne garde que `pitch` et `bearing`.

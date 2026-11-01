@@ -9,6 +9,11 @@ export function distanceKm(a: LngLat, b: LngLat): number {
   return 2 * R * Math.asin(Math.sqrt(x));
 }
 
+/** Position sur la carte du monde en Mercator, de 0 à 1. */
+export function mercator([lng, lat]: LngLat): [number, number] {
+  return [(lng + 180) / 360, (1 - Math.asinh(Math.tan((lat * Math.PI) / 180)) / Math.PI) / 2];
+}
+
 export function bounds(points: LngLat[]): [LngLat, LngLat] {
   let minX = Infinity,
     minY = Infinity,
@@ -76,9 +81,8 @@ const PERSPECTIVE_MARGIN = 1.12;
 export function frameCamera(points: LngLat[], pitch: number, bearing: number, width: number, height: number) {
   const b = (bearing * Math.PI) / 180;
   const tilt = Math.cos((pitch * Math.PI) / 180);
-  const projected = points.map(([lng, lat]) => {
-    const x = (lng + 180) / 360;
-    const y = (1 - Math.asinh(Math.tan((lat * Math.PI) / 180)) / Math.PI) / 2;
+  const projected = points.map((point) => {
+    const [x, y] = mercator(point);
     return [x * Math.cos(b) + y * Math.sin(b), (-x * Math.sin(b) + y * Math.cos(b)) * tilt];
   });
   const xs = projected.map((p) => p[0]);

@@ -114,7 +114,7 @@ function KioskScreen({
     return dir === 'rtl' ? { top, right: side, bottom: 0, left: 0 } : { top, right: 0, bottom: 0, left: side };
   }, [portrait, panelSize.w, panelSize.h, topSize.h, dir]);
 
-  // Vue d'attente derrière l'accueil
+  // Rotation continue derrière l'accueil
   useEffect(() => {
     const id = window.setTimeout(() => mapRef.current?.attract(), 400);
     return () => window.clearTimeout(id);
