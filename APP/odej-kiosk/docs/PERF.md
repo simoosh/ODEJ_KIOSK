@@ -12,7 +12,7 @@ Machine : portable sur secteur, AMD Radeon 780M (GPU intégré, confirmé par `W
 | FPS au 5ᵉ centile | ≥ 30 | 22,6 | 80 |
 | Rendus React pendant le scénario de 9 s | ≤ 5 par geste de 3 s | 167 | 0 (5 au plus) |
 | Frames au repos, sur la carte | 0 | 0 | 0 |
-| Frames en 3 s sur l'accueil, avant le tour de l'étape 6 | 0 | 28 à 85 | 0 à 5, le temps que les dernières tuiles arrivent |
+| Frames en 3 s sur l'accueil, avant la rotation continue | 0 | 28 à 85 | 0 à 5, le temps que les dernières tuiles arrivent |
 | Bundle JS initial (gzip) | pas plus de 10 % | 383,3 Ko | 385,4 Ko (+0,5 %) |
 
 Les cibles sont atteintes sur cette machine. Elles restent à confirmer sur la borne (D8).
@@ -29,7 +29,7 @@ Limites de ces mesures :
 
 - Chrome tournait sans écran et sans limite de cadence. Un écran à 60 Hz plafonne à 60 FPS : le chiffre utile est la marge, pas la valeur.
 - Le premier passage de `low` n'a pas fini dans le temps imparti (réseau instable) : le tableau donne la moyenne des deux autres.
-- Le 4K (3840×2160) n'a pas pu être mesuré : le scénario n'a pas abouti dans le temps imparti. Il faut le refaire sur la borne si son écran est en 4K.
+- La borne sera au plus en 1080p : le 4K n'est pas une cible.
 - Sur batterie, Chrome plafonne à 30 FPS (Économiseur d'énergie). Le niveau automatique descend alors à `medium`. Mesurez toujours sur secteur.
 
 ## Mesurer
@@ -62,14 +62,14 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 - Aucun `setState` pendant un mouvement : la boussole s'écrit directement dans le DOM, l'état 2D/3D attend `moveend`.
 - Les 67 marqueurs DOM sont remplacés par des couches WebGL (`src/map/markers.ts`). Les images sont rasterisées une fois au démarrage. Seule l'étiquette de l'établissement sélectionné est un élément HTML.
 - `pixelRatio` plafonné, antialiasing coupé, `fadeDuration` à 0, inclinaison limitée à 70°, relief sans exagération, ombrage coupé quand le relief est actif.
-- Accueil sans relief. Plus d'animation infinie sur la carte. Le tour de l'étape 6 rend la carte en continu derrière l'accueil, sans relief : c'est le seul rendu sans action de l'utilisateur.
+- Accueil sans relief. Plus d'animation infinie sur la carte. La rotation à 360° rend la carte en continu derrière l'accueil : c'est le seul rendu sans action de l'utilisateur, à la demande du propriétaire.
 
 ## À respecter
 
 - Ne jamais appeler `setState` depuis un écouteur `move`, `render` ou `zoom`.
 - Un `setStyle` efface les couches et les images : `installMarkers()` les remet à chaque `style.load`.
 - Le relief doit être retiré avant un `setStyle`, sinon le rendu plante pendant le chargement du nouveau style.
-- Une boucle `requestAnimationFrame` ne tourne que pendant une action demandée, comme la visite à 360°.
+- Une boucle `requestAnimationFrame` ne tourne que pendant une action demandée, comme la visite à 360°, ou derrière l'accueil.
 
 ## Relief auto-hébergé
 
@@ -78,3 +78,12 @@ Le relief vient de `public/terrain/` (`tools/dem`) : 134 tuiles, 13,8 Mio, zooms
 ## Perte du contexte WebGL
 
 Le contexte WebGL s'est perdu pendant le zoom vers un établissement : souvent dans Chrome sans limite de cadence, 1 fois sur 6 à cadence normale, avec un portable à court de mémoire. La cause exacte n'est pas établie. Le masque de la wilaya n'y est pour rien : la perte se produit aussi sans lui. Le contexte ne revient pas seul : la page se recharge après 5 s et repart de l'accueil.
+
+## Tuiles
+
+- **Satellite :** sous le zoom 12, Esri sert une imagerie générique d'une autre couleur. Le détail ne descend jamais sous ce zoom, même au loin. Une sous-couche légère évite un trou le temps qu'il arrive.
+- **Préchargement :** sur l'accueil, environ 6 000 tuiles entrent dans le cache du navigateur en 5 minutes : vue d'ensemble, puis abords des 67 établissements. Il s'arrête dès qu'on touche la carte et reprend au retour à l'accueil.
+- **Mesure :** 6 survols rapides en satellite, 1920×1080. Stabilisation à l'arrivée : plus de 15 s à cache vide, 2 s à cache plein, avec 83 % des tuiles lues dans le cache.
+- **Satellite sur le scénario :** 200 FPS en médiane, 143 au 5ᵉ centile, avec la même machine.
+
+Tant que les tuiles viennent d'internet, on ne peut pas garantir qu'aucune ne se charge sous les yeux, surtout hors des zones préchargées. Seul un fond hébergé localement le garantit : c'est l'étape 10.

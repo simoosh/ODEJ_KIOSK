@@ -15,7 +15,7 @@
 - **Attribution:** `.githooks/commit-msg` refuses attribution lines. `npm ci` activates it. `.claude/settings.json` turns attribution off.
 - **Deployment:** `main` must always deploy. Before a PR, from a clean clone: `npm ci && npm run lint && npm run typecheck && npm test && npm run build`. No `localhost` URL, no absolute Windows path, no secret in the code. Runtime resources use paths relative to the site root (`import.meta.env.BASE_URL`).
 - **Performance:** the kiosk is probably a weak machine (integrated GPU, 1080p or 4K). No React `setState` on every camera frame, no infinite CSS animation on many elements, no idle `requestAnimationFrame` loop. Thumbnails instead of full-size images. Videos: `preload="none"` or `"metadata"`, never several autoplaying. Justify every new dependency in the PR (gzip size, alternative).
-- **Screens:** every screen and component works in portrait and landscape (1920×1080, 1080×1920, 1280×1024, 1024×768, 3840×2160), RTL (Arabic, the default) and LTR (English). Logical CSS properties only.
+- **Screens:** every screen and component works in portrait and landscape (1920×1080, 1080×1920, 1280×1024, 1024×768), RTL (Arabic, the default) and LTR (English). Logical CSS properties only.
 - **Doubt:** ask about any missing content, product choice, account, key or hardware. Never invent data, and don't translate an official text without agreement. A technical assumption with no product impact is fine if you write it in your report.
 - **Code:** TypeScript `strict`. No `any` without a justifying comment. No dead code or `console.log` left in `main`. Displayed text lives in `i18n/strings.ts` or in the data. Settings live in `src/config.ts`.
 
