@@ -308,3 +308,9 @@ What: nine establishments collected and optimized. `media:check --hash` passes w
 What: caps raised for all nine: photos over 15 for eight of them, videos over 3 for odej-019 and 027. All far under 50 MiB. Reason: the colleague kept each reviewed set.
 What: odej-018 `video-02` and odej-026 `video-03` came out `yuvj420p`. Both were rebuilt from the originals as `yuv420p`, limited range, and their sizes and hashes updated in `docs/media`. `tools/publish_media.py` in the scrappper still has this trap for full-range sources.
 Impact on others: project total is 852 files and 377.5 MiB of 3 GiB. Problems found in this batch are in `teamwork/Data.md`. App agent: run `tools/data/import-info.mjs` only after reading section 6 of that file, because some values must not be imported.
+
+### 2026-11-01 17:21 · [data-agent] · CHANGE · Fifth CDN publication, odej-018 to 027 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 1654 files, 404.4 MiB staged: 852 media plus 802 thumbnails. The CDN now serves 24 establishments.
+What: all 1654 URLs answer 200 over IPv4 with curl: 1604 `image/webp`, 50 `video/mp4`. One re-encoded video was compared byte for byte with the local file. `media:verify` still cannot run on this machine (no IPv6 route).
+Impact on others: nothing to do on your side.
