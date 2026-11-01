@@ -218,6 +218,13 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     map.on('pitchstart', stopOnUser);
     map.on('rotatestart', stopOnUser);
 
+    // Une carte figée sur la borne ne se répare pas toute seule : sans contexte WebGL, on repart de l'accueil
+    let reload = 0;
+    map.on('webglcontextlost', () => {
+      reload = window.setTimeout(() => location.reload(), CONFIG.contextLostReloadMs);
+    });
+    map.on('webglcontextrestored', () => window.clearTimeout(reload));
+
     // Conteneur redimensionné (simulateur d'écran, rotation portrait/paysage)
     const ro = new ResizeObserver(() => {
       map.resize();

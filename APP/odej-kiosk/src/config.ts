@@ -64,6 +64,9 @@ export const CONFIG = {
   /** Exagération du relief 3D */
   terrainExaggeration: 1,
 
+  /** Délai avant de recharger la page si le contexte WebGL ne revient pas (ms) */
+  contextLostReloadMs: 5_000,
+
   /** Tuiles gardées en mémoire par source */
   maxTileCacheSize: 150,
   /** Demi-côté de la zone de toucher d'un marqueur (px) : au moins 44 × 44 */

@@ -74,3 +74,7 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 ## Relief auto-hébergé
 
 Le relief vient de `public/terrain/` (`tools/dem`) : 134 tuiles, 13,8 Mio, zooms 8 à 11, en `high` environ 200 FPS en médiane et 145 au 5ᵉ centile, sur la même machine.
+
+## Perte du contexte WebGL
+
+Le contexte WebGL s'est perdu pendant le zoom vers un établissement : souvent dans Chrome sans limite de cadence, 1 fois sur 6 à cadence normale, avec un portable à court de mémoire. La cause exacte n'est pas établie. Le masque de la wilaya n'y est pour rien : la perte se produit aussi sans lui. Le contexte ne revient pas seul : la page se recharge après 5 s et repart de l'accueil.
