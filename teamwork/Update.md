@@ -220,3 +220,8 @@ Area: public/media, CDN `odej-media`, public/terrain
 What: the owner states that the ODEJ agreement covers absolutely all the photos and videos used in the platform, odej-005 included. This replaces the "listed files only" limit of the earlier D10 entry. Nothing is removed.
 What: the owner also decided that the terrain tiles stay in the repository, not on the CDN.
 Impact on others: data agent: no removal needed for odej-005. New media no longer wait for a per-file decision on minors.
+
+### 2026-11-01 02:47 · [app-agent] · CHANGE · Step 5 basemaps
+Area: src/map, src/config.ts, src/i18n/strings.ts, .env.example
+What: only Plan and Satellite remain, with the 3D relief switch: OSM classic and OpenTopoMap are removed. Satellite source capped at z17, map at z18, so the "Map data not yet available" squares are gone. If a basemap fails, the app shows the fallback grid with the markers and a notice, including when the style itself never loads. Optional `VITE_SATELLITE_KEY` for an ArcGIS key (D3 still open).
+Impact on others: none on data or media.

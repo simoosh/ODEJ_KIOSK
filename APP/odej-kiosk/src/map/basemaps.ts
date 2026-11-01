@@ -18,6 +18,10 @@ const demSource = () => ({
 /** Polices des étiquettes de marqueurs sur les fonds raster (mêmes que le plan vectoriel) */
 const GLYPHS_URL = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
 
+/** Clé ArcGIS facultative, restreinte au domaine chez le fournisseur : elle reste visible côté client. */
+const SATELLITE_KEY = import.meta.env.VITE_SATELLITE_KEY;
+const SATELLITE_TOKEN = SATELLITE_KEY ? `?token=${encodeURIComponent(SATELLITE_KEY)}` : '';
+
 export const SKY = {
   'sky-color': '#CFE3EE',
   'horizon-color': '#F3F1EA',
@@ -39,8 +43,6 @@ export interface BasemapDef {
 export const BASEMAPS: BasemapDef[] = [
   { id: 'plan', swatch: ['#F2EFE6', '#CFE2C4', '#9CC6DD'], online: true, terrain: true },
   { id: 'satellite', swatch: ['#3D4B33', '#6E7A4F', '#20425A'], online: true, terrain: true },
-  { id: 'relief', swatch: ['#E9E3CF', '#C3D3A6', '#A98F6A'], online: true, terrain: true },
-  { id: 'osm', swatch: ['#F2EFE9', '#AAD3DF', '#F7C99B'], online: true, terrain: true },
   { id: 'preview', swatch: ['#ECEEE6', '#D3D9CC', '#1E6B3C'], online: false, terrain: false },
 ];
 
@@ -97,23 +99,10 @@ export function styleFor(id: BasemapId, locale: Locale):
       return {
         style: rasterStyle(
           'satellite',
-          ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+          [`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}${SATELLITE_TOKEN}`],
           'Imagerie © Esri, Maxar, Earthstar Geographics',
-          19,
+          CONFIG.satelliteSourceMaxZoom,
         ),
-      };
-    case 'relief':
-      return {
-        style: rasterStyle(
-          'relief',
-          ['a', 'b', 'c'].map((s) => `https://${s}.tile.opentopomap.org/{z}/{x}/{y}.png`),
-          '© OpenStreetMap contributors, SRTM · Style © OpenTopoMap (CC-BY-SA)',
-          17,
-        ),
-      };
-    case 'osm':
-      return {
-        style: rasterStyle('osm', ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], '© OpenStreetMap contributors', 19),
       };
     case 'preview':
       return { style: previewStyle() };
