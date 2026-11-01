@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T00:49:37Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 8,
+    "name": "المجاهد المرحوم محمد بوضياف أوقاس",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579809004668"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579809004668",
+    "pageRef": "61579809004668",
+    "title": "بيت الشباب اوقاس ولاية بجاية"
+  },
+  "email": "ajchateau@odejbejaia-dz.com",
+  "phone": null,
+  "address": null,
+  "website": null,
+  "description": null,
+  "facebookCategory": "Auberge de jeunesse",
+  "openingHours": null,
+  "followers": 190,
+  "sources": {
+    "email": "odej-website",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "description",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}

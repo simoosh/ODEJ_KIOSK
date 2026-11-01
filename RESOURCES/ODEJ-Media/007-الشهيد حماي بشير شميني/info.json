@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T00:31:48Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 7,
+    "name": "الشهيد حماي بشير شميني",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61580077104373"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61580077104373",
+    "pageRef": "61580077104373",
+    "title": "المركب الرياضي الجواري- شميني ولاية بجاية"
+  },
+  "email": "cspchemini@odejbejaia-dz.com",
+  "phone": null,
+  "address": "Agueni- chemini- bejaia",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 24,
+  "sources": {
+    "email": "odej-website",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}
