@@ -18,7 +18,7 @@ import type { StringKey } from './i18n/strings';
 
 const DebugPanel = lazy(() => import('./components/DebugPanel'));
 
-const SIM_ENABLED = __ARTIFACT__ || new URLSearchParams(location.search).has('sim');
+const SIM_ENABLED = new URLSearchParams(location.search).has('sim');
 const DEBUG = new URLSearchParams(location.search).has('debug');
 const FORCED_QUALITY = forcedQuality(location.search);
 const NO_FILTERS: Filters = { category: null, place: null, activity: null };
@@ -61,9 +61,17 @@ function Kiosk({ data, boundary, size }: { data: KioskData; boundary: Boundary |
     document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
   }, [locale]);
 
+  const onResetLang = useCallback(() => setLocale(data.meta.defaultLocale ?? 'ar'), [data]);
+
   return (
     <I18nProvider locale={locale}>
-      <KioskScreen data={data} boundary={boundary} size={size} onToggleLang={() => setLocale((l) => (l === 'ar' ? 'en' : 'ar'))} />
+      <KioskScreen
+        data={data}
+        boundary={boundary}
+        size={size}
+        onToggleLang={() => setLocale((l) => (l === 'ar' ? 'en' : 'ar'))}
+        onResetLang={onResetLang}
+      />
     </I18nProvider>
   );
 }
@@ -73,11 +81,13 @@ function KioskScreen({
   boundary,
   size,
   onToggleLang,
+  onResetLang,
 }: {
   data: KioskData;
   boundary: Boundary | null;
   size: { w: number; h: number };
   onToggleLang(): void;
+  onResetLang(): void;
 }) {
   const { locale, dir, t } = useI18n();
   useEffect(() => {
@@ -90,13 +100,15 @@ function KioskScreen({
   const [screen, setScreen] = useState<'landing' | 'map'>('landing');
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
-  const [basemap, setBasemap] = useState<BasemapId>(__ARTIFACT__ ? 'preview' : 'plan');
+  const [basemap, setBasemap] = useState<BasemapId>('plan');
   const [quality, setQuality] = useState<QualityLevel>(FORCED_QUALITY ?? 'high');
-  const [terrain, setTerrain] = useState(!__ARTIFACT__ && QUALITY[quality].terrain);
+  const [terrain, setTerrain] = useState(QUALITY[quality].terrain);
   const [is3d, setIs3d] = useState(false);
   const [orbiting, setOrbiting] = useState(false);
   const [sheetCollapsed, setSheetCollapsed] = useState(false);
-  const [notice, setNotice] = useState<StringKey | null>(__ARTIFACT__ ? 'offlineNotice' : null);
+  /** Clé de la recherche et des contrôles : l'incrémenter vide leurs états internes */
+  const [resets, setResets] = useState(0);
+  const [notice, setNotice] = useState<StringKey | null>(null);
 
   const portrait = size.h > size.w;
 
@@ -131,13 +143,19 @@ function KioskScreen({
     mapRef.current?.enter(id);
   };
 
+  /** Chaque visiteur retrouve la borne telle qu'au premier jour. */
   const goHome = useCallback(() => {
     setScreen('landing');
     setSelectedId(null);
     setFilters(NO_FILTERS);
     setSheetCollapsed(false);
+    setBasemap('plan');
+    setTerrain(QUALITY[quality].terrain);
+    setNotice(null);
+    setResets((n) => n + 1);
+    onResetLang();
     mapRef.current?.attract();
-  }, []);
+  }, [quality, onResetLang]);
 
   const idleLeft = useIdle(screen === 'map', CONFIG.idleTimeoutMs, CONFIG.idleWarningMs, goHome);
 
@@ -173,7 +191,7 @@ function KioskScreen({
       const next = nextQuality(quality, fps);
       if (next === quality) return;
       setQuality(next);
-      setTerrain(!__ARTIFACT__ && QUALITY[next].terrain);
+      setTerrain(QUALITY[next].terrain);
     },
     [quality],
   );
@@ -184,14 +202,6 @@ function KioskScreen({
     else if (p.kind === 'category') applyAndFit({ ...NO_FILTERS, category: p.id });
     else applyAndFit({ ...NO_FILTERS, activity: p.id });
     setSheetCollapsed(false);
-  };
-
-  const onBasemap = (id: BasemapId) => {
-    if (__ARTIFACT__ && id !== 'preview') {
-      setNotice('offlineNotice');
-      return;
-    }
-    setBasemap(id);
   };
 
   return (
@@ -231,7 +241,7 @@ function KioskScreen({
               <small>{data.wilaya.name[locale]}</small>
             </span>
           </button>
-          <SearchBox data={data} idx={idx} virtualKeyboard onPick={onPick} />
+          <SearchBox key={resets} data={data} idx={idx} virtualKeyboard onPick={onPick} />
           <button type="button" className="lang-btn" onClick={onToggleLang} aria-label={t('language')}>
             {t('language')}
           </button>
@@ -269,20 +279,21 @@ function KioskScreen({
         </aside>
 
         <MapControls
+          key={resets}
           map={mapRef}
           compass={compassRef}
           is3d={is3d}
           basemap={basemap}
           terrain={terrain}
           terrainLocked={quality === 'low'}
-          onBasemap={onBasemap}
+          onBasemap={setBasemap}
           onTerrain={setTerrain}
         />
 
         {notice && (
           <div className="notice" role="status">
             <span>{t(notice)}</span>
-            <button type="button" onClick={() => setNotice(null)} aria-label="OK">
+            <button type="button" onClick={() => setNotice(null)} aria-label={t('close')}>
               <Icon name="close" size="1em" />
             </button>
           </div>

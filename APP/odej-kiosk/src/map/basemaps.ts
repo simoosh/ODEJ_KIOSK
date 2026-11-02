@@ -47,15 +47,13 @@ export interface BasemapDef {
   id: BasemapId;
   /** Couleurs de la vignette dans le sélecteur (pas d'image distante) */
   swatch: [string, string, string];
-  /** Nécessite internet (tuiles distantes) */
-  online: boolean;
   terrain: boolean;
 }
 
 export const BASEMAPS: BasemapDef[] = [
-  { id: 'plan', swatch: ['#F2EFE6', '#CFE2C4', '#9CC6DD'], online: true, terrain: true },
-  { id: 'satellite', swatch: ['#3D4B33', '#6E7A4F', '#20425A'], online: true, terrain: true },
-  { id: 'preview', swatch: ['#ECEEE6', '#D3D9CC', '#1E6B3C'], online: false, terrain: false },
+  { id: 'plan', swatch: ['#F2EFE6', '#CFE2C4', '#9CC6DD'], terrain: true },
+  { id: 'satellite', swatch: ['#3D4B33', '#6E7A4F', '#20425A'], terrain: true },
+  { id: 'preview', swatch: ['#ECEEE6', '#D3D9CC', '#1E6B3C'], terrain: false },
 ];
 
 // Le relief (setTerrain) et le ciel (setSky) sont appliqués après le chargement du style, dans MapView :
