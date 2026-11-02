@@ -67,3 +67,7 @@ node tools/data/build-boundary.mjs
 ```
 
 Le cadrage de la carte, la limite de dézoom et le brouillard partent de ce contour : `wilaya.camera` ne garde que `pitch` et `bearing`.
+
+## Établissement phare
+
+`featured: true` dans `odej-bejaia.json` suffit : bouton de l'accueil, marqueur doré, tête de liste, recherche et galerie en tête de fiche suivent, sans toucher au code. Avec plusieurs phares, `featuredOrder` les classe, et l'accueil montre le premier.

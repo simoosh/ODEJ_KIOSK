@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Establishment, KioskData } from '../types';
-import { titleOf, type Indexes } from '../data/model';
+import { titleOf, videosFirst, type Indexes } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { distanceKm, toDms } from '../lib/geo';
 import { Icon } from './Icon';
@@ -34,6 +34,12 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
     .slice(0, 3);
   const description = tx(est.description);
   const fmtKm = (d: number) => t('km', { d: d < 10 ? d.toFixed(1) : Math.round(d) });
+  const gallery = est.media?.gallery ?? [];
+  // Établissement phare : la galerie passe en tête et remplace l'emplacement photo
+  const galleryFirst = !!est.featured && gallery.length > 0;
+  const galleryBlock = gallery.length > 0 && (
+    <MediaGallery key={est.id} items={est.featured ? videosFirst(gallery) : gallery} title={t('gallery')} />
+  );
 
   return (
     <article className="detail" style={{ ['--c' as string]: cat?.color }}>
@@ -48,6 +54,7 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
             <Icon name={cat?.icon ?? 'star'} size="1em" />
             {tx(cat?.label)}
           </span>
+          {est.featured && <em className="featured-tag">{t('standBadge')}</em>}
           <h2 className="display detail-name">{tx(titleOf(est))}</h2>
           {est.honoree && <p className="detail-alt">{tx(est.honoree)}</p>}
           {locale === 'en' && titleOf(est).ar && <p className="detail-alt" lang="ar" dir="rtl">{titleOf(est).ar}</p>}
@@ -58,6 +65,8 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
           </p>
         </header>
 
+        {galleryFirst && galleryBlock}
+
         {cover ? (
           <img
             className={`photo ${cover.fit === 'contain' ? 'is-contain' : ''}`}
@@ -66,15 +75,17 @@ export function EstablishmentDetail({ data, idx, est, orbiting, onBack, onSelect
             onError={() => setBrokenCover(cover.src)}
           />
         ) : (
-          <div className="photo is-slot">
-            <Icon name="frame" size="2em" />
-            <span>{t('photoSlot')}</span>
-          </div>
+          !galleryFirst && (
+            <div className="photo is-slot">
+              <Icon name="frame" size="2em" />
+              <span>{t('photoSlot')}</span>
+            </div>
+          )
         )}
 
         <p className={`detail-desc ${description ? '' : 'is-pending'}`}>{description || t('descriptionPending')}</p>
 
-        {!!est.media?.gallery.length && <MediaGallery key={est.id} items={est.media.gallery} title={t('gallery')} />}
+        {!galleryFirst && galleryBlock}
 
         {acts.length > 0 && (
           <section className="detail-block">

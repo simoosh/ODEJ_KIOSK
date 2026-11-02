@@ -76,11 +76,12 @@ export const EstablishmentList = memo(function EstablishmentList({ data, idx, it
           const p = e.placeId ? idx.places.get(e.placeId) : undefined;
           return (
             <li key={e.id}>
-              <button type="button" className="item" onClick={() => onSelect(e.id)}>
+              <button type="button" className={`item ${e.featured ? 'is-featured' : ''}`} onClick={() => onSelect(e.id)}>
                 <span className="badge" style={{ ['--c' as string]: c?.color }}>
                   <Icon name={c?.icon ?? 'star'} size="1.15em" />
                 </span>
                 <span className="item-text">
+                  {e.featured && <em className="featured-tag">{t('standBadge')}</em>}
                   <strong>{tx(titleOf(e))}</strong>
                   <small>
                     {e.honoree ? (

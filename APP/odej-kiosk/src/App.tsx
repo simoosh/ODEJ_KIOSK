@@ -125,9 +125,10 @@ function KioskScreen({
   const highlightIds = useMemo(() => (filtered ? new Set(items.map((e) => e.id)) : null), [filtered, items]);
   const selected = selectedId ? data.establishments.find((e) => e.id === selectedId) ?? null : null;
 
-  const start = () => {
+  const start = (id?: string) => {
     setScreen('map');
-    mapRef.current?.enter();
+    if (id) setSelectedId(id);
+    mapRef.current?.enter(id);
   };
 
   const goHome = useCallback(() => {

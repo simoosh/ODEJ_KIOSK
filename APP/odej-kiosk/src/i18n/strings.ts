@@ -7,6 +7,8 @@ const ar = {
   statEstablishments: 'مؤسسة على الخريطة',
   cta: 'اكتشف ولاية بجاية',
   ctaHint: 'المس الزر لبدء الجولة',
+  standInvite: 'على جناحنا: {name}',
+  standBadge: 'على جناحنا',
   logoSlot: 'شعار الديوان',
 
   searchPlaceholder: 'ابحث عن مؤسسة، بلدية أو نشاط',
@@ -86,6 +88,8 @@ const en: typeof ar = {
   statEstablishments: 'places on the map',
   cta: 'Discover Bejaia',
   ctaHint: 'Tap the button to start',
+  standInvite: 'On our stand: {name}',
+  standBadge: 'On our stand',
   logoSlot: 'ODEJ logo',
 
   searchPlaceholder: 'Search a place, commune or activity',

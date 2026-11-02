@@ -16,6 +16,7 @@
   --green-soft: #7dba83;
   --green-tint: #e5efe5;
   --red: #b42338;
+  --gold: #a9861b;
   --red-soft: #e0727a;
   --red-tint: #f6e1e1;
   --shadow: 0 0.5rem 1.6rem rgba(20, 33, 27, 0.12), 0 0.1rem 0.3rem rgba(20, 33, 27, 0.08);
@@ -507,6 +508,27 @@ input:focus-visible {
   transform: scale(0.97);
   box-shadow: 0 0.3rem 0.9rem rgba(31, 110, 62, 0.3);
 }
+.cta-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.2rem;
+  max-width: min(90vw, 40rem);
+  padding: 0 1.6rem;
+  border: 0.1rem solid var(--gold);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.cta-featured svg {
+  color: var(--gold);
+  flex: none;
+}
+.cta-featured:active {
+  transform: scale(0.97);
+}
 .cta-hint {
   display: inline-flex;
   align-items: center;
@@ -952,6 +974,17 @@ input:focus-visible {
   border-radius: var(--r-md);
   background: transparent;
   text-align: start;
+}
+.item.is-featured {
+  border-inline-start: 0.2rem solid var(--gold);
+  background: rgba(201, 162, 39, 0.1);
+}
+.featured-tag {
+  display: block;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 600;
 }
 .item:active {
   background: var(--paper-2);

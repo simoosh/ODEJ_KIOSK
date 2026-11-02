@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
-import type { KioskData } from '../types';
+import type { Establishment, KioskData } from '../types';
 import { useI18n } from '../i18n/I18n';
-import { search, titleOf, topPlaces, type Indexes } from '../data/model';
+import { featuredEstablishments, search, titleOf, topPlaces, type Indexes } from '../data/model';
 import { Icon } from './Icon';
 import { VirtualKeyboard } from './VirtualKeyboard';
 
@@ -32,6 +32,7 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
 
   const results = useMemo(() => search(data, idx, query), [data, idx, query]);
   const suggestions = useMemo(() => topPlaces(data, 6), [data]);
+  const featured = useMemo(() => featuredEstablishments(data.establishments), [data]);
   const empty = query.trim() === '';
   const nothing = !empty && !results.establishments.length && !results.places.length && !results.types.length;
 
@@ -44,6 +45,22 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
 
   const countFor = (kind: 'category' | 'activity', id: string) =>
     data.establishments.filter((e) => (kind === 'category' ? e.category === id : idx.activitiesOf(e).includes(id))).length;
+
+  const establishmentRow = (e: Establishment) => {
+    const c = idx.categories.get(e.category);
+    const p = e.placeId ? idx.places.get(e.placeId) : undefined;
+    return (
+      <button key={e.id} type="button" className="sr-item" onClick={() => pick({ kind: 'establishment', id: e.id })}>
+        <span className="badge" style={{ ['--c' as string]: c?.color }}>
+          <Icon name={c?.icon ?? 'star'} size="1.1em" />
+        </span>
+        <span className="sr-text">
+          <strong>{tx(titleOf(e))}</strong>
+          <small>{e.honoree ? tx(e.honoree) : `${tx(c?.label)}${p ? ` · ${tx(p.name)}` : ''}`}</small>
+        </span>
+      </button>
+    );
+  };
 
   return (
     <div className={`search ${open ? 'is-open' : ''}`}>
@@ -83,6 +100,13 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
         <>
           <button type="button" className="search-scrim" aria-label={t('keyboardHide')} onClick={() => setOpen(false)} />
           <div className="search-results" role="listbox">
+            {empty && featured.length > 0 && (
+              <div className="sr-group">
+                <h3>{t('standBadge')}</h3>
+                {featured.map(establishmentRow)}
+              </div>
+            )}
+
             {empty && (
               <div className="sr-group">
                 <h3>{t('searchSuggestions')}</h3>
@@ -112,22 +136,7 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
             {results.establishments.length > 0 && (
               <div className="sr-group">
                 <h3>{t('searchEstablishments')}</h3>
-                {results.establishments.map((h) => {
-                  const e = data.establishments.find((x) => x.id === h.id)!;
-                  const c = idx.categories.get(e.category);
-                  const p = e.placeId ? idx.places.get(e.placeId) : undefined;
-                  return (
-                    <button key={h.id} type="button" className="sr-item" onClick={() => pick({ kind: 'establishment', id: h.id })}>
-                      <span className="badge" style={{ ['--c' as string]: c?.color }}>
-                        <Icon name={c?.icon ?? 'star'} size="1.1em" />
-                      </span>
-                      <span className="sr-text">
-                        <strong>{tx(titleOf(e))}</strong>
-                        <small>{e.honoree ? tx(e.honoree) : `${tx(c?.label)}${p ? ` · ${tx(p.name)}` : ''}`}</small>
-                      </span>
-                    </button>
-                  );
-                })}
+                {results.establishments.map((h) => establishmentRow(data.establishments.find((x) => x.id === h.id)!))}
               </div>
             )}
 

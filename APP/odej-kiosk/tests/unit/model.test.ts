@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildIndexes, search, sortForList, titleOf, withMedia } from '../../src/data/model';
+import { buildIndexes, featuredEstablishments, search, sortForList, titleOf, videosFirst, withMedia } from '../../src/data/model';
 import type { Establishment, KioskData } from '../../src/types';
 
 const est = (id: string): Establishment => ({
@@ -67,5 +67,37 @@ describe('withMedia', () => {
   it("laisse sans médias un établissement absent de l'index", () => {
     const merged = withMedia(data, {}, '/media/');
     expect(merged.establishments[1].media).toBeUndefined();
+  });
+});
+
+describe('établissement phare', () => {
+  const places = [{ id: 'a', name: { ar: 'أ', en: 'A' } }, { id: 'z', name: { ar: 'ي', en: 'Z' } }];
+  const plain = { ...est('odej-001'), placeId: 'a', name: { ar: 'مركز', en: 'Center' } };
+  const star = { ...est('odej-002'), placeId: 'z', name: { ar: 'مركز', en: 'Center' }, featured: true };
+  const kiosk = { establishments: [plain, star], places, categories: [], activities: [] } as unknown as KioskData;
+  const idx = buildIndexes(kiosk);
+
+  it('suit featuredOrder', () => {
+    const first = { ...est('b'), featured: true, featuredOrder: 1 };
+    const second = { ...est('a'), featured: true, featuredOrder: 2 };
+    expect(featuredEstablishments([second, est('c'), first]).map((e) => e.id)).toEqual(['b', 'a']);
+  });
+
+  it('passe en tête de liste, même après les autres dans l\'alphabet', () => {
+    expect(sortForList([plain, star], idx, 'en').map((e) => e.id)).toEqual(['odej-002', 'odej-001']);
+  });
+
+  it('passe en tête de la recherche à score égal', () => {
+    expect(search(kiosk, idx, 'center').establishments[0].id).toBe('odej-002');
+  });
+
+  it('suit la donnée : sans featured, plus de mise en avant', () => {
+    const none = { ...star, featured: false };
+    expect(sortForList([plain, none], idx, 'en').map((e) => e.id)).toEqual(['odej-001', 'odej-002']);
+  });
+
+  it('montre les vidéos en premier', () => {
+    const items = [{ src: 'p', kind: 'image' }, { src: 'v', kind: 'video' }] as Parameters<typeof videosFirst>[0];
+    expect(videosFirst(items).map((i) => i.src)).toEqual(['v', 'p']);
   });
 });
