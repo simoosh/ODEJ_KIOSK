@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T18:43:43Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 31,
+    "name": "الشهيد جرود برمطان",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579987524148"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579987524148",
+    "pageRef": "61579987524148",
+    "title": "المركب الرياضي الجواري سيدي عيش-ولاية بجاية"
+  },
+  "email": "cspsidiaich@odejbejaia-dz.com",
+  "phone": "030 16 52 30",
+  "address": "Coordonnées",
+  "website": null,
+  "description": null,
+  "facebookCategory": "Musique/groupe",
+  "openingHours": null,
+  "followers": 31,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "description",
+    "openingHours",
+    "website"
+  ]
+}

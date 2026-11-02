@@ -372,3 +372,62 @@ Area: src/map/fog.ts, src/lib/clouds.ts, src/components/Landing.tsx, src/styles/
 What: at the owner's request: the fog now thickens with the distance to the boundary, so the sea and part of the neighbouring wilayas stay visible. The landing is split horizontally: centered text over clouds, the map turning below. The button opens the clouds to the sides while the text leaves upwards.
 What: terrain and satellite now reach the neighbours: 224 tiles, 23.1 MiB. The landing card is reduced to the three figures: `wilaya.description` is no longer shown.
 Impact on others: none on data or media.
+
+### 2026-11-01 22:40 · [data-agent] · CHANGE · odej-028 to 038 added, caps raised
+Area: RESOURCES/ODEJ-Media/{028,029,030,031,032,033,034,035,036,038}-*, public/media, docs/media
+What: ten establishments collected and optimized. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-028 49 photos, 3 videos, 35.7 MiB. odej-029 41 photos, 0 videos, 5.3 MiB. odej-030 35 photos, 1 video, 16.5 MiB. odej-031 1 photo, 0 videos, 0.2 MiB. odej-032 40 photos, 2 videos, 12.6 MiB. odej-033 48 photos, 2 videos, 17.5 MiB. odej-034 46 photos, 4 videos, 11.5 MiB. odej-035 32 photos, 0 videos, 4.3 MiB. odej-036 55 photos, 1 video, 11.6 MiB. odej-038 41 photos, 1 video, 9.4 MiB.
+What: caps raised for nine of them: photos over 15 for all but odej-031, videos over 3 for odej-034. All under 50 MiB. Reason: the colleague kept each reviewed set.
+What: odej-028 `video-01` was 31.5 MiB and `yuvj420p`, and the four odej-034 videos were `yuvj420p`. All five were rebuilt from the originals as `yuv420p`, limited range, with sizes and hashes updated in `docs/media`. odej-028 `video-01` is now 18.0 MiB and runs 121 s, over the 70 s default, like odej-038 `video-01` at 138 s.
+Impact on others: project total is 1278 files and 502.2 MiB of 3 GiB. The media under odej-033 appears to belong to odej-049: see `teamwork/Data.md`, sections 2 and 4. App agent: the same section 6 warning applies before running `tools/data/import-info.mjs`.
+
+### 2026-11-01 22:41 · [data-agent] · CHANGE · Sixth CDN publication, odej-028 to 038 included
+Area: CDN `odej-media`, public/media
+What: `media:publish -- --go` run by the colleague. 2492 files, 540.9 MiB staged: 1278 media plus 1214 thumbnails. The CDN now serves 34 establishments.
+What: all 2492 URLs answer 200 over IPv4 with curl: 2428 `image/webp`, 64 `video/mp4`. Two rebuilt videos were compared byte for byte with the local files. `media:verify` still cannot run on this machine (no IPv6 route).
+Impact on others: nothing to do on your side.
+
+### 2026-11-01 22:42 · [data-agent] · INFO · Establishments collected so far, 34 of 67
+Area: public/media, RESOURCES/ODEJ-Media
+What: updated table of the establishments with media on the map, after the sixth CDN publication. It replaces the 24-row table above. Refresh it with `python3 tools/media/collect/status_table.py`.
+
+| # | Establishment | Commune | Photos | Videos | MiB | Cover | Phone | E-mail | Address | Hours | Contact on map |
+|--:|---|---|--:|--:|--:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 001 | Adekar Local Sports Complex | Adekar | 23 | 2 | 16.2 | yes | yes | yes | - | - | yes |
+| 003 | Oued Ghir Science Leisure Centre | Oued Ghir | 35 | 6 | 98.9 | - | yes | yes | yes | yes | yes |
+| 004 | Hamia Mohand Cherif Local Sports Complex | Beni Maouche | 27 | 0 | 3.9 | yes | yes | yes | yes | - | yes |
+| 005 | Martyr Ouaglis Mohand Akli | Amizour | 27 | 0 | 5.7 | yes | yes | yes | - | - | - |
+| 007 | Martyr Hamai Bachir | Chemini | 32 | 1 | 12.3 | yes | - | yes | yes | - | - |
+| 008 | Mujahid Mohamed Boudiaf | Aokas | 26 | 1 | 20.5 | yes | - | yes | - | - | - |
+| 009 | El Kseur Local Sports Complex | El Kseur | 28 | 1 | 8.4 | yes | yes | yes | yes | - | - |
+| 010 | Martyr Bouhired Said | Souk El Tenine | 23 | 3 | 14.2 | yes | yes | yes | - | - | - |
+| 011 | Ait Salah Martyrs | Bejaia | 0 | 0 | 0.0 | yes | yes | yes | yes | - | - |
+| 012 | Martyr Khaldi Abdelkader | Senadla | 38 | 2 | 9.5 | yes | yes | yes | - | - | - |
+| 013 | Tibane Youth Centre | Tibane | 15 | 0 | 1.6 | yes | yes | yes | yes | yes | - |
+| 016 | Mouloud Feraoun | El Kseur | 38 | 2 | 18.9 | yes | yes | yes | - | - | - |
+| 017 | Martyr Abderrahmane Fares | Akbou | 33 | 3 | 29.0 | yes | yes | yes | - | - | - |
+| 018 | Takriets Youth Centre | Takriets | 43 | 2 | 8.8 | yes | yes | yes | yes | yes | - |
+| 019 | Martyr Maadaoui Bouelsaad | Guendouza | 5 | 7 | 19.8 | yes | yes | yes | yes | - | - |
+| 020 | Tifra Local Sports Complex | Tifra | 24 | 1 | 6.8 | yes | yes | yes | yes | - | - |
+| 021 | Martyr Chila Tayeb | Ouzellaguen | 30 | 2 | 10.3 | yes | yes | yes | - | - | yes |
+| 022 | Barbacha Local Sports Complex | Barbacha | 46 | 2 | 15.9 | yes | yes | yes | - | - | - |
+| 023 | Ait R'zine Youth Centre | Ait R'zine | 40 | 2 | 14.2 | yes | yes | yes | yes | - | - |
+| 024 | Martyr Bentedji Mohand Akli | Barbacha | 36 | 3 | 10.8 | yes | - | yes | yes | - | - |
+| 025 | 18 February Martyrs' Day | Tamridjet | 37 | 1 | 12.9 | yes | yes | yes | - | - | - |
+| 026 | Tizi El Oued Youth Centre | Tizi El Oued | 47 | 3 | 14.9 | yes | yes | yes | yes | - | - |
+| 027 | Martyr Banoun Akli | not known | 40 | 4 | 16.2 | yes | yes | yes | - | - | - |
+| 028 | Martyr Smail Ali Benaissa | Aokas | 49 | 3 | 35.7 | yes | yes | yes | - | - | - |
+| 029 | Martyr Aiouz Slimane | Darguina | 41 | 0 | 5.3 | yes | yes | yes | - | - | - |
+| 030 | Seddouk Local Sports Complex | Seddouk | 35 | 1 | 16.5 | yes | yes | yes | yes | yes | - |
+| 031 | Martyr Djeroud | Bermatane | 1 | 0 | 0.2 | yes | yes | yes | yes | - | - |
+| 032 | Martyr Amara Amar | Souk El Tenine | 40 | 2 | 12.6 | yes | yes | yes | - | - | - |
+| 033 | Martyr Ouchiha Lahlou | Tazmalt | 48 | 2 | 17.5 | yes | yes | yes | yes | yes | - |
+| 034 | Martyr Sebahi Mohand | Tichy | 46 | 4 | 11.5 | yes | yes | yes | yes | - | - |
+| 035 | Martyr Berkani Tahar | Timezrit | 32 | 0 | 4.3 | yes | yes | yes | yes | - | - |
+| 036 | Chaabane Amar | Tizi N'Berber | 55 | 1 | 11.6 | yes | yes | yes | - | - | - |
+| 038 | Martyr Belghania Ahmed | Adjiouane | 41 | 1 | 9.4 | yes | - | yes | yes | yes | - |
+| 041 | Chellata Youth Centre | Chellata | 36 | 2 | 7.8 | yes | yes | - | yes | - | - |
+| | **34 of 67 collected** | | **1117** | **64** | **502.2** | | | | | | |
+
+Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
+
+Impact on others: none. Remaining: 33 establishments with no media yet. Open problems are in `teamwork/Data.md`.

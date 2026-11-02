@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T19:30:43Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 33,
+    "name": "الشهيد أوشيحة لحلو تازمالت",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100064802464215"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100064802464215",
+    "pageRef": "100064802464215",
+    "title": "دار الشباب تازمالت- بجاية"
+  },
+  "email": "maisondejeunesdetazmalt@gmail.com",
+  "phone": "034 08 50 13",
+  "address": "rue titouah salem, , Tazmalt, Algeria, 06010",
+  "website": null,
+  "description": "Contribuer à l'éducation citoyenne des jeunes\nOrganiser des manifestations culturelles, scientifiques, sportives et de loisirs",
+  "facebookCategory": "Sports et loisirs",
+  "openingHours": "Toujours ouvert",
+  "followers": 4352,
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "facebook",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "website"
+  ]
+}

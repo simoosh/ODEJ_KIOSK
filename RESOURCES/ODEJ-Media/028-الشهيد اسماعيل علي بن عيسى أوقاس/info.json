@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-01T18:55:30Z",
+  "source": "Facebook page, as shown to a logged-out visitor",
+  "institution": {
+    "id": 28,
+    "name": "الشهيد اسماعيل علي بن عيسى أوقاس",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100048413726285&sk=about_details"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100048413726285&sk=about_details",
+    "pageRef": "100048413726285",
+    "title": "المركب الرياضي الجواري أوقاس -ولاية بجاية"
+  },
+  "email": "cspaokas@odejbejaia-dz.com",
+  "phone": "034 15 00 35",
+  "address": null,
+  "website": null,
+  "description": "Offrir aux jeunes des loisirs récréatifs et sportifs.\n- Promouvoir la pratique sportive de proximi",
+  "facebookCategory": "Centre de loisirs",
+  "openingHours": null,
+  "followers": 7633,
+  "sources": {
+    "email": "odej-website",
+    "phone": "odej-website",
+    "description": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook"
+  },
+  "notAvailable": [
+    "address",
+    "openingHours",
+    "website"
+  ]
+}
