@@ -431,3 +431,14 @@ What: updated table of the establishments with media on the map, after the sixth
 Phone, E-mail, Address and Hours come from `info.json` (scrappper). 'Contact on map' says whether `odej-bejaia.json` already shows a phone or e-mail. Sizes are the optimized files, cover included, without thumbnails.
 
 Impact on others: none. Remaining: 33 establishments with no media yet. Open problems are in `teamwork/Data.md`.
+
+### 2026-11-02 01:48 · [app-agent] · DECISION · D4 D5 flagship establishment
+Area: odej-003, product
+What: the owner decided. D4: the flagship keeps the name of the list until the ODEJ confirms another one. D5: a second button on the landing, a gold marker with its name always visible, pinned in the list, suggested in the search, gallery first in its detail sheet.
+Impact on others: none.
+
+### 2026-11-02 01:48 · [app-agent] · CHANGE · Step 7 flagship establishment
+Area: src/data/model.ts, src/map, Landing, EstablishmentList, EstablishmentDetail, SearchBox, docs/DATA.md
+What: everything follows `featured` and `featuredOrder` in `odej-bejaia.json`, with no id in the code. Tested by moving `featured` to another establishment.
+What: the new text "على جناحنا" / "On our stand" needs a review by the ODEJ.
+Impact on others: data agent: `featured` now changes what visitors see. Do not set it without the owner's agreement.
