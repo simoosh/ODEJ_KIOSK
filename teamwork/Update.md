@@ -442,3 +442,8 @@ Area: src/data/model.ts, src/map, Landing, EstablishmentList, EstablishmentDetai
 What: everything follows `featured` and `featuredOrder` in `odej-bejaia.json`, with no id in the code. Tested by moving `featured` to another establishment.
 What: the new text "على جناحنا" / "On our stand" needs a review by the ODEJ.
 Impact on others: data agent: `featured` now changes what visitors see. Do not set it without the owner's agreement.
+
+### 2026-11-02 02:18 · [app-agent] · CHANGE · Step 8 cleanup and polish
+Area: src/App.tsx, MediaGallery, MapControls, ScreenSimulator, map/basemaps.ts, map/MapView.tsx, lib/hooks.ts, lib/swipe.ts, config.ts, i18n/strings.ts, vite.config.ts, docs/PERF.md
+What: the gallery grid loads 480 px thumbnails, with the full image as a fallback. The viewer has swipe gestures. A playing video holds off the idle timer. Going home also resets the language, basemap, relief and banner. The simulator only opens with `?sim=1`. Dead code removed.
+Impact on others: data agent: the grid expects `thumbs/<name>-480.webp` next to each gallery folder, as `media:thumbs` writes it.

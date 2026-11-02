@@ -20,7 +20,7 @@ interface Props {
 export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocked, onBasemap, onTerrain }: Props) {
   const { t } = useI18n();
   const [layersOpen, setLayersOpen] = useState(false);
-  const visible = BASEMAPS.filter((b) => (__ARTIFACT__ ? true : b.id !== 'preview'));
+  const visible = BASEMAPS.filter((b) => b.id !== 'preview');
 
   return (
     <div className="controls">
@@ -83,7 +83,7 @@ export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocke
               <button
                 key={b.id}
                 type="button"
-                className={`layer-tile ${basemap === b.id ? 'is-on' : ''} ${__ARTIFACT__ && b.online ? 'is-offline' : ''}`}
+                className={`layer-tile ${basemap === b.id ? 'is-on' : ''}`}
                 onClick={() => onBasemap(b.id)}
                 aria-pressed={basemap === b.id}
               >
@@ -95,8 +95,8 @@ export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocke
               </button>
             ))}
           </div>
-          <label className={`switch ${__ARTIFACT__ || terrainLocked ? 'is-disabled' : ''}`}>
-            <input id="terrain-toggle" type="checkbox" checked={terrain} disabled={__ARTIFACT__ || terrainLocked} onChange={(e) => onTerrain(e.target.checked)} />
+          <label className={`switch ${terrainLocked ? 'is-disabled' : ''}`}>
+            <input id="terrain-toggle" type="checkbox" checked={terrain} disabled={terrainLocked} onChange={(e) => onTerrain(e.target.checked)} />
             <span className="switch-track" aria-hidden="true" />
             <span>{t('terrain3d')}</span>
           </label>

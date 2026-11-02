@@ -36,6 +36,8 @@ export function useIdle(active: boolean, timeoutMs: number, warningMs: number, o
     const events = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const;
     events.forEach((e) => window.addEventListener(e, bump, { passive: true, capture: true }));
     const id = window.setInterval(() => {
+      // Regarder une vidéo compte comme une présence : le minuteur repart à la fin ou à la pause
+      if ([...document.querySelectorAll('video')].some((video) => !video.paused && !video.ended)) last.current = Date.now();
       const remaining = timeoutMs - (Date.now() - last.current);
       if (remaining <= 0) {
         setLeft(null);

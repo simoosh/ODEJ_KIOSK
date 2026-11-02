@@ -69,9 +69,7 @@ const ar = {
   terrain3d: 'التضاريس ثلاثية الأبعاد',
   basemap_plan: 'خريطة',
   basemap_satellite: 'قمر صناعي',
-  basemap_preview: 'معاينة',
   basemapFallback: 'تعذّر تحميل الخريطة، يُعرض حاليًا تخطيط مبسّط.',
-  offlineNotice: 'معاينة: خلفية OpenStreetMap لا تُحمَّل داخل هذه الصفحة، وتظهر كاملة عند تشغيل المشروع على الشاشة.',
 
   home: 'الصفحة الرئيسية',
   language: 'English',
@@ -150,9 +148,7 @@ const en: typeof ar = {
   terrain3d: '3D terrain',
   basemap_plan: 'Map',
   basemap_satellite: 'Satellite',
-  basemap_preview: 'Preview',
   basemapFallback: 'The map could not load. A simplified view is shown for now.',
-  offlineNotice: 'Preview: the OpenStreetMap background cannot load inside this page. It appears in full when the project runs on the kiosk.',
 
   home: 'Home',
   language: 'العربية',

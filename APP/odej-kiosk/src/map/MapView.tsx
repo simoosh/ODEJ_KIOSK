@@ -166,7 +166,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     let stopPreload: (() => void) | undefined;
     const beginPreload = () => {
       const plan = (map.getSource(PLAN_SOURCE) as VectorTileSource | undefined)?.tiles?.[0];
-      if (!plan || stopPreload || __ARTIFACT__) return;
+      if (!plan || stopPreload) return;
       map.off('sourcedata', beginPreload);
       const { boundary, data } = live.current;
       const points = data.establishments.map((e) => [e.location.lng, e.location.lat] as LngLat);

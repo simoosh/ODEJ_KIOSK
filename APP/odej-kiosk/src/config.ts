@@ -11,6 +11,11 @@ export function mediaUrl(src: string, base: string = MEDIA_BASE): string {
   return base + src.replace(/^media\//, '');
 }
 
+/** Vignette de 480 px produite par media:thumbs : thumbs/<nom>-480.webp à côté du dossier de la source. */
+export function thumbUrl(src: string): string {
+  return src.replace(/\/[^/]+\/([^/]+)\.webp$/, '/thumbs/$1-480.webp');
+}
+
 /** Réglages de la borne. Tout ce qui est contenu (textes, établissements) vit dans public/data/odej-bejaia.json. */
 export const CONFIG = {
   dataUrl: 'data/odej-bejaia.json',
@@ -90,6 +95,9 @@ export const CONFIG = {
 
   /** Exagération du relief 3D */
   terrainExaggeration: 1,
+
+  /** Glissement minimal dans la visionneuse (px) */
+  swipeThreshold: 60,
 
   /** Délai avant de recharger la page si le contexte WebGL ne revient pas (ms) */
   contextLostReloadMs: 5_000,
