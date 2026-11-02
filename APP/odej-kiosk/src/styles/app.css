@@ -16,7 +16,7 @@
   --green-soft: #7dba83;
   --green-tint: #e5efe5;
   --red: #b42338;
-  --gold: #a9861b;
+  --gold: #86670c;
   --red-soft: #e0727a;
   --red-tint: #f6e1e1;
   --shadow: 0 0.5rem 1.6rem rgba(20, 33, 27, 0.12), 0 0.1rem 0.3rem rgba(20, 33, 27, 0.08);
@@ -913,6 +913,7 @@ input:focus-visible {
 .sheet-handle {
   flex: none;
   height: 2rem;
+  min-height: 44px;
   border: 0;
   background: transparent;
   display: grid;
@@ -1147,7 +1148,7 @@ input:focus-visible {
   border-color: transparent transparent transparent #fff;
 }
 .viewer {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 55;
   display: flex;
@@ -1158,6 +1159,7 @@ input:focus-visible {
   background: rgba(10, 16, 13, 0.95);
 }
 .viewer-stage {
+  touch-action: none;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -1386,9 +1388,6 @@ input:focus-visible {
 .layer-tile.is-on {
   border-color: var(--green);
   background: var(--green-tint);
-}
-.layer-tile.is-offline {
-  opacity: 0.55;
 }
 .layer-swatch {
   height: 3.4rem;
