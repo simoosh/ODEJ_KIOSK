@@ -1,9 +1,20 @@
 import type { Category, Establishment, I18nText, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
-import { MEDIA_BASE, mediaUrl } from '../config';
+import { CONFIG, MEDIA_BASE, mediaUrl } from '../config';
 import { matchScore, normalize } from '../lib/text';
 
 /** Titre affiché : type + commune quand il est connu, sinon le nom officiel. */
 export const titleOf = (e: Establishment): I18nText => e.displayName ?? e.name;
+
+/** Établissements phares, dans l'ordre de featuredOrder. Tout vient des données : aucun id dans le code. */
+export function featuredEstablishments(list: Establishment[]): Establishment[] {
+  const order = (e: Establishment) => e.featuredOrder ?? Number.MAX_SAFE_INTEGER;
+  return list.filter((e) => e.featured).sort((a, b) => order(a) - order(b));
+}
+
+/** Les vidéos d'abord, sans changer l'ordre à l'intérieur de chaque type. */
+export function videosFirst(items: MediaItem[]): MediaItem[] {
+  return [...items.filter((i) => i.kind === 'video'), ...items.filter((i) => i.kind !== 'video')];
+}
 
 /** Fusionne les médias dans les établissements, par id, avec leurs URL complètes. */
 export function withMedia(data: KioskData, index: MediaIndex, base: string = MEDIA_BASE): KioskData {
@@ -54,10 +65,11 @@ export function applyFilters(data: KioskData, idx: Indexes, f: Filters): Establi
 export function sortForList(list: Establishment[], idx: Indexes, locale: Locale): Establishment[] {
   const collator = new Intl.Collator(locale);
   const placeName = (e: Establishment) => (e.placeId ? idx.places.get(e.placeId)?.name[locale] ?? '' : '￿');
-  return [...list].sort(
-    (a, b) =>
-      collator.compare(placeName(a), placeName(b)) || collator.compare(titleOf(a)[locale] ?? '', titleOf(b)[locale] ?? ''),
-  );
+  const featured = featuredEstablishments(list);
+  const rest = list
+    .filter((e) => !e.featured)
+    .sort((a, b) => collator.compare(placeName(a), placeName(b)) || collator.compare(titleOf(a)[locale] ?? '', titleOf(b)[locale] ?? ''));
+  return [...featured, ...rest];
 }
 
 export type SearchHit =
@@ -84,7 +96,8 @@ export function search(data: KioskData, idx: Indexes, query: string): SearchResu
       const place = e.placeId ? idx.places.get(e.placeId) : undefined;
       const nameScore = best([e.name.ar, e.name.en, e.displayName?.ar, e.displayName?.en, e.honoree?.ar, e.honoree?.en]);
       const placeScore = best([place?.name.ar, place?.name.en]);
-      return { kind: 'establishment' as const, id: e.id, score: nameScore * 2 + placeScore };
+      const score = nameScore * 2 + placeScore;
+      return { kind: 'establishment' as const, id: e.id, score: e.featured ? score * CONFIG.featuredSearchBoost : score };
     })
     .filter((h) => h.score > 0)
     .sort((a, b) => b.score - a.score)
