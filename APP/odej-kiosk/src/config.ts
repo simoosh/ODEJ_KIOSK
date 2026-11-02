@@ -52,6 +52,8 @@ export const CONFIG = {
   zoomOutMargin: 0.35,
   /** Marge autour de la wilaya dans le cadrage (px) */
   framePadding: 24,
+  /** Bonus de classement d'un établissement phare dans la recherche */
+  featuredSearchBoost: 1.25,
   /** Vue d'un établissement sélectionné */
   focusZoom: 15.4,
   focusPitch: 62,

@@ -1,4 +1,5 @@
 import type { KioskData } from '../types';
+import { featuredEstablishments, titleOf } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
@@ -8,7 +9,7 @@ interface Props {
   data: KioskData;
   leaving: boolean;
   portrait: boolean;
-  onStart(): void;
+  onStart(id?: string): void;
   onToggleLang(): void;
 }
 
@@ -18,6 +19,8 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
     { value: data.establishments.length, label: t('statEstablishments'), strong: true },
     ...(data.wilaya.facts ?? []).map((f) => ({ value: f.value, label: tx(f.label), strong: false })),
   ];
+
+  const featured = featuredEstablishments(data.establishments)[0];
 
   return (
     <section className={`landing ${leaving ? 'is-leaving' : ''}`} aria-hidden={leaving}>
@@ -61,10 +64,16 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
           </dl>
 
           <div className="cta-row">
-            <button type="button" className="cta" onClick={onStart}>
+            <button type="button" className="cta" onClick={() => onStart()}>
               <span>{t('cta')}</span>
               <Icon name="arrow" className="flip-rtl" size="1.3em" />
             </button>
+            {featured && (
+              <button type="button" className="cta-featured" onClick={() => onStart(featured.id)}>
+                <Icon name="star" size="1.15em" />
+                <span>{t('standInvite', { name: tx(titleOf(featured)) })}</span>
+              </button>
+            )}
             <span className="cta-hint">
               <span className="pulse" aria-hidden="true" />
               {t('ctaHint')}

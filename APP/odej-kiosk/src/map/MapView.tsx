@@ -26,9 +26,9 @@ import {
   placeEstablishments,
   rasterizeMarkers,
   scaleMarkerLayers,
-  SELECTED_LAYER,
   selectedLabelOffset,
   syncMarkerLayers,
+  TOUCH_LAYERS,
   type MarkerImages,
   type PlacedEstablishment,
 } from './markers';
@@ -37,8 +37,8 @@ import { boundaryPoints, bounds, distanceKm, expandBounds, frameCamera, type Lng
 export interface MapHandle {
   /** Pour le panneau ?debug=1 */
   getMap(): MlMap | null;
-  /** Animation d'entrée : de la vue d'attente à la wilaya en 3D */
-  enter(): void;
+  /** Animation d'entrée : de la vue d'attente à la wilaya en 3D, ou directement à un établissement */
+  enter(id?: string): void;
   /** Retour à la vue d'attente (accueil) */
   attract(): void;
   focus(id: string): void;
@@ -222,7 +222,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
           [x - CONFIG.touchRadius, y - CONFIG.touchRadius],
           [x + CONFIG.touchRadius, y + CONFIG.touchRadius],
         ],
-        { layers: [MARKER_LAYER, SELECTED_LAYER] },
+        { layers: TOUCH_LAYERS },
       );
       const hits = features.map((feature) => {
         const id = String(feature.properties.id);
@@ -233,7 +233,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       const id = pickMarker(hits, live.current.selectedId);
       if (id) live.current.onSelect(id);
     });
-    for (const layer of [MARKER_LAYER, SELECTED_LAYER]) {
+    for (const layer of TOUCH_LAYERS) {
       map.on('mouseenter', layer, () => {
         map.getCanvas().style.cursor = 'pointer';
       });
@@ -440,6 +440,10 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     return { ...frameCamera(points, pitch, bearing, width, height), pitch, bearing };
   }
 
+  function focusCamera(map: MlMap, placed: PlacedEstablishment) {
+    return { center: placed.position, zoom: CONFIG.focusZoom, pitch: CONFIG.focusPitch, bearing: map.getBearing() - 20 };
+  }
+
   /** Assez pour voir la wilaya entière, pas au-delà. */
   function mapMinZoom(map: MlMap) {
     return wilayaCamera(map).zoom - CONFIG.zoomOutMargin;
@@ -484,13 +488,14 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   /* ------------------------------------------------------------- caméra API */
   useImperativeHandle(ref, () => ({
     getMap: () => mapRef.current,
-    enter() {
+    enter(id) {
       const map = mapRef.current;
       if (!map) return;
       moveSeq.current++;
       stopRotation();
-      const cam = wilayaCamera(map);
-      framedRef.current = true;
+      const target = placedRef.current.find((p) => p.est.id === id);
+      const cam = target ? focusCamera(map, target) : wilayaCamera(map);
+      framedRef.current = !target;
       map.once('moveend', () => map.setMinZoom(mapMinZoom(map)));
       map.flyTo({
         ...cam,
@@ -533,10 +538,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
       moveSeq.current++;
       stopRotation();
       map.flyTo({
-        center: placed.position,
-        zoom: CONFIG.focusZoom,
-        pitch: CONFIG.focusPitch,
-        bearing: map.getBearing() - 20,
+        ...focusCamera(map, placed),
         padding: live.current.padding,
         duration: reducedMotion() ? 0 : 2600,
         essential: true,
