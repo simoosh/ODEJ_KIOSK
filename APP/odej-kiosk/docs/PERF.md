@@ -89,3 +89,11 @@ Le contexte WebGL s'est perdu pendant le zoom vers un établissement : souvent d
 - **Satellite sur le scénario :** 200 FPS en médiane, 143 au 5ᵉ centile, avec la même machine.
 
 Tant que les tuiles viennent d'internet, on ne peut pas garantir qu'aucune ne se charge sous les yeux, surtout hors des zones préchargées. Seul un fond hébergé localement le garantit : c'est l'étape 10.
+
+## Mémoire sur la durée
+
+60 allers-retours accueil, fiche, galerie, accueil, en 1920×1080, avec un ramasse-miettes forcé tous les 10 cycles : le tas JavaScript passe de 47 Mo à 98 Mo, puis reste entre 105 et 108 Mo de 20 à 60 cycles. Le nombre de nœuds DOM ne bouge pas (1109). Aucune fuite visible sur ce parcours. Une session réelle de plusieurs heures reste à mesurer sur la borne.
+
+## Galerie
+
+La grille charge uniquement les vignettes de 480 px : 12 au premier affichage, aucune image pleine. Si une vignette manque, l'image pleine la remplace. Les vidéos sont en `preload="metadata"`, et une seule existe à la fois, dans la visionneuse.
