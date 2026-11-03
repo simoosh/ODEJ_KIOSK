@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" width="1280" height="380" role="img" aria-labelledby="title desc">
+  <title id="title">Équipe ODEJ_KIOSK</title>
+  <desc id="desc">Slimane Sahnoune et Adam Mila.</desc>
+  <style>
+    .card { fill: #f7f6f1; stroke: #dedbd1; }
+    .person { fill: #ffffff; stroke: #dedbd1; }
+    .contour { fill: none; stroke: #1f6e3e; stroke-opacity: 0.09; stroke-width: 2; }
+    .disc { fill: #e5efe5; }
+    .initials { fill: #1f6e3e; font-family: 'Marcellus', 'Cormorant Garamond', Georgia, serif; }
+    .name { fill: #14211b; font-family: 'Marcellus', 'Cormorant Garamond', Georgia, serif; }
+    .ar { fill: #48544e; font-family: 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', 'Segoe UI', serif; }
+    .ui { fill: #48544e; font-family: 'Readex Pro', 'Segoe UI', Tahoma, system-ui, sans-serif; }
+    .gold { fill: #86670c; }
+    .rule { stroke: #86670c; stroke-opacity: 0.45; }
+    @media (prefers-color-scheme: dark) {
+      .card { fill: #14211b; stroke: #2c3a33; }
+      .person { fill: #1a2a22; stroke: #2c3a33; }
+      .contour { stroke: #7dba83; stroke-opacity: 0.12; }
+      .disc { fill: #1f3a2a; }
+      .initials { fill: #a9d6ad; }
+      .name { fill: #f7f6f1; }
+      .ar, .ui { fill: #c9cfc9; }
+      .gold { fill: #d6b45a; }
+      .rule { stroke: #d6b45a; }
+    }
+  </style>
+
+  <rect class="card" x="1" y="1" width="1278" height="378" rx="28" stroke-width="2"/>
+
+  <g class="contour">
+    <path d="M-20 350 C 180 300, 320 360, 520 320 S 900 260, 1300 310"/>
+    <path d="M-20 320 C 200 265, 340 330, 540 286 S 900 226, 1300 276"/>
+    <path d="M-20 60 C 160 20, 320 80, 500 44 S 860 0, 1300 40"/>
+  </g>
+
+  <text class="ui gold" x="640" y="62" text-anchor="middle" font-size="18" letter-spacing="6">ÉQUIPE</text>
+  <line class="rule" x1="560" y1="80" x2="720" y2="80" stroke-width="2"/>
+  <circle class="gold" cx="640" cy="80" r="4"/>
+
+  <g transform="translate(400 0)">
+    <rect class="person" x="-190" y="104" width="380" height="186" rx="22" stroke-width="2"/>
+    <circle class="disc" cx="0" cy="170" r="44"/>
+    <path d="M -36 134 A 52 52 0 0 0 -36 206" fill="none" stroke="#b42338" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 36 134 A 52 52 0 0 1 36 206" fill="none" stroke="#1f6e3e" stroke-width="5" stroke-linecap="round"/>
+    <text class="initials" x="0" y="182" text-anchor="middle" font-size="34" letter-spacing="2">SS</text>
+    <text class="name" x="0" y="256" text-anchor="middle" font-size="32">Slimane Sahnoune</text>
+  </g>
+
+  <g transform="translate(880 0)">
+    <rect class="person" x="-190" y="104" width="380" height="186" rx="22" stroke-width="2"/>
+    <circle class="disc" cx="0" cy="170" r="44"/>
+    <path d="M -36 134 A 52 52 0 0 0 -36 206" fill="none" stroke="#b42338" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 36 134 A 52 52 0 0 1 36 206" fill="none" stroke="#1f6e3e" stroke-width="5" stroke-linecap="round"/>
+    <text class="initials" x="0" y="182" text-anchor="middle" font-size="34" letter-spacing="2">AM</text>
+    <text class="name" x="0" y="256" text-anchor="middle" font-size="32">Adam Mila</text>
+  </g>
+
+  <text class="ar" x="640" y="334" text-anchor="middle" direction="rtl" font-size="24">ديوان مؤسسات الشباب لولاية بجاية</text>
+  <text class="ui" x="640" y="362" text-anchor="middle" font-size="16" letter-spacing="1">ODEJ Béjaïa · Alger, 11 novembre 2026</text>
+</svg>

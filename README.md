@@ -234,15 +234,8 @@ Détails dans [docs/MEDIA.md](APP/odej-kiosk/docs/MEDIA.md).
 
 ## 👥 Équipe
 
-<table>
-  <tr>
-    <td align="center" width="50%"><b>Slimane Sahnoune</b></td>
-    <td align="center" width="50%"><b>Adam Mila</b></td>
-  </tr>
-</table>
-
 <div align="center">
 
-<sub>ديوان مؤسسات الشباب لولاية بجاية · ODEJ Béjaïa · 2026</sub>
+<img src=".github/assets/team.svg" alt="Équipe : Slimane Sahnoune et Adam Mila · ديوان مؤسسات الشباب لولاية بجاية · ODEJ Béjaïa" width="100%">
 
 </div>
