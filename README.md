@@ -56,7 +56,7 @@ _Au 3 novembre 2026._
 | 🟢 | **7.** Établissement phare | [#30](https://github.com/simoosh/ODEJ_KIOSK/pull/30) |
 | 🟢 | **8.** Nettoyage et finitions | [#31](https://github.com/simoosh/ODEJ_KIOSK/pull/31) |
 
-### Données et médias
+### Données
 
 | Catégorie | Établissements |
 |---|--:|
@@ -69,7 +69,31 @@ _Au 3 novembre 2026._
 | مركز الترفيه العلمي · Science leisure centre | 1 |
 | **Total** | **67** |
 
-**Médias collectés** : 34 établissements sur 67, soit 1117 photos, 64 vidéos et 502,2 MiB sur un budget de 3 GiB. Ils sont servis par le CDN depuis la sixième publication, le 1er novembre. Le tableau détaillé est dans [teamwork/Update.md](teamwork/Update.md), et les problèmes ouverts dans [teamwork/Data.md](teamwork/Data.md).
+### Collecte des médias
+
+**34 établissements sur 67** : 1117 photos, 64 vidéos, 502,2 MiB sur un budget de 3 GiB.
+
+```
+██████████░░░░░░░░░░  51 %
+```
+
+Chaque lot passe par les mêmes étapes : collecte depuis les pages officielles, sélection, optimisation (WebP 1600 px, MP4 ≤ 720p), contrôle `media:check --hash`, PR de données, puis publication sur le CDN.
+
+| Lot | Fusion | Établissements | Photos | Vidéos | MiB | Cumul | CDN | PR |
+|:-:|---|---|--:|--:|--:|:-:|---|:-:|
+| 1 | 30 oct. | odej-003 | 35 | 6 | 98,9 | 1 | 1re publication ([#11](https://github.com/simoosh/ODEJ_KIOSK/pull/11)) | [#1](https://github.com/simoosh/ODEJ_KIOSK/pull/1) |
+| 2 | 30 oct. | odej-001 | 23 | 2 | 16,2 | 2 | 1re publication ([#11](https://github.com/simoosh/ODEJ_KIOSK/pull/11)) | [#3](https://github.com/simoosh/ODEJ_KIOSK/pull/3) |
+| 3 | 31 oct. | odej-004, 021 | 57 | 2 | 14,2 | 4 | 1re publication ([#11](https://github.com/simoosh/ODEJ_KIOSK/pull/11)) | [#4](https://github.com/simoosh/ODEJ_KIOSK/pull/4), [#10](https://github.com/simoosh/ODEJ_KIOSK/pull/10) |
+| 4 | 1er nov. | odej-005 | 27 | 0 | 5,7 | 5 | 2e publication ([#18](https://github.com/simoosh/ODEJ_KIOSK/pull/18)) | [#17](https://github.com/simoosh/ODEJ_KIOSK/pull/17) |
+| 5 | 1er nov. | odej-007 à 010 | 109 | 6 | 55,4 | 9 | 3e publication | [#21](https://github.com/simoosh/ODEJ_KIOSK/pull/21) |
+| 6 | 1er nov. | odej-011, 012, 013, 016, 017, 041 | 160 | 9 | 66,8 | 15 | 4e publication | [#24](https://github.com/simoosh/ODEJ_KIOSK/pull/24) |
+| 7 | 1er nov. | odej-018 à 020, 022 à 027 | 318 | 25 | 120,3 | 24 | 5e publication | [#25](https://github.com/simoosh/ODEJ_KIOSK/pull/25) |
+| 8 | 2 nov. | odej-028 à 036, 038 | 388 | 14 | 124,6 | 34 | 6e publication | [#29](https://github.com/simoosh/ODEJ_KIOSK/pull/29) |
+| | | **Total** | **1117** | **64** | **502,2** | **34 / 67** | | |
+
+Les comptes de photos excluent la couverture, et les tailles incluent la couverture, sans les vignettes. Les tailles par lot sont arrondies : leur somme donne 502,1 MiB.
+
+Autres PR de données : contacts e-mail et site web ([#14](https://github.com/simoosh/ODEJ_KIOSK/pull/14)), tableau des établissements collectés ([#26](https://github.com/simoosh/ODEJ_KIOSK/pull/26)). Le tableau par établissement est dans [teamwork/Update.md](teamwork/Update.md), et les problèmes ouverts dans [teamwork/Data.md](teamwork/Data.md).
 
 ### Reste à faire
 
