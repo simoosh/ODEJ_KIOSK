@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 340" width="1280" height="340" role="img" aria-labelledby="title desc">
+  <title id="title">ODEJ_KIOSK</title>
+  <desc id="desc">Borne tactile de l'ODEJ Béjaïa : carte 3D de la wilaya et de ses 67 établissements de jeunesse.</desc>
+  <style>
+    .card { fill: #f7f6f1; stroke: #dedbd1; }
+    .contour { fill: none; stroke: #1f6e3e; stroke-opacity: 0.09; stroke-width: 2; }
+    .ar { fill: #14211b; font-family: 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', 'Segoe UI', serif; }
+    .lat { fill: #14211b; font-family: 'Marcellus', 'Cormorant Garamond', Georgia, serif; }
+    .ui { fill: #48544e; font-family: 'Readex Pro', 'Segoe UI', Tahoma, system-ui, sans-serif; }
+    .gold { fill: #86670c; }
+    .rule { stroke: #86670c; stroke-opacity: 0.45; }
+    .chip { fill: #e5efe5; }
+    .chip-text { fill: #1f6e3e; }
+    @media (prefers-color-scheme: dark) {
+      .card { fill: #14211b; stroke: #2c3a33; }
+      .contour { stroke: #7dba83; stroke-opacity: 0.12; }
+      .ar, .lat { fill: #f7f6f1; }
+      .ui { fill: #c9cfc9; }
+      .gold { fill: #d6b45a; }
+      .rule { stroke: #d6b45a; }
+      .chip { fill: #1f3a2a; }
+      .chip-text { fill: #a9d6ad; }
+    }
+  </style>
+
+  <rect class="card" x="1" y="1" width="1278" height="338" rx="28" stroke-width="2"/>
+
+  <g class="contour">
+    <path d="M-20 300 C 180 250, 320 310, 520 270 S 900 210, 1300 260"/>
+    <path d="M-20 270 C 200 215, 340 280, 540 236 S 900 176, 1300 226"/>
+    <path d="M-20 240 C 220 180, 360 250, 560 202 S 900 142, 1300 192"/>
+    <path d="M-20 80 C 160 40, 320 100, 500 64 S 860 20, 1300 60"/>
+    <path d="M-20 50 C 180 12, 340 70, 520 34 S 860 -8, 1300 30"/>
+  </g>
+
+  <path d="M 96 74 A 150 150 0 0 0 96 266" fill="none" stroke="#b42338" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 132 102 A 112 112 0 0 0 132 238" fill="none" stroke="#1f6e3e" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 1184 74 A 150 150 0 0 1 1184 266" fill="none" stroke="#b42338" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 1148 102 A 112 112 0 0 1 1148 238" fill="none" stroke="#1f6e3e" stroke-width="9" stroke-linecap="round"/>
+
+  <text class="ar" x="640" y="118" text-anchor="middle" direction="rtl" font-size="54" font-weight="700">ديوان مؤسسات الشباب لولاية بجاية</text>
+  <text class="lat" x="640" y="168" text-anchor="middle" font-size="30" letter-spacing="1">Youth Establishments Office of Bejaia</text>
+
+  <line class="rule" x1="470" y1="196" x2="810" y2="196" stroke-width="2"/>
+  <circle class="gold" cx="640" cy="196" r="5"/>
+
+  <text class="lat gold" x="640" y="240" text-anchor="middle" font-size="36" letter-spacing="6">ODEJ_KIOSK</text>
+
+  <rect class="chip" x="430" y="262" width="420" height="40" rx="20"/>
+  <text class="ui chip-text" x="640" y="289" text-anchor="middle" font-size="19" letter-spacing="0.5">Alger · 11 novembre 2026 · 67 établissements</text>
+</svg>

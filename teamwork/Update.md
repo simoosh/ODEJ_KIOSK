@@ -447,3 +447,8 @@ Impact on others: data agent: `featured` now changes what visitors see. Do not s
 Area: src/App.tsx, MediaGallery, MapControls, ScreenSimulator, map/basemaps.ts, map/MapView.tsx, lib/hooks.ts, lib/swipe.ts, config.ts, i18n/strings.ts, vite.config.ts, docs/PERF.md
 What: the gallery grid loads 480 px thumbnails, with the full image as a fallback. The viewer has swipe gestures. A playing video holds off the idle timer. Going home also resets the language, basemap, relief and banner. The simulator only opens with `?sim=1`. Dead code removed.
 Impact on others: data agent: the grid expects `thumbs/<name>-480.webp` next to each gallery folder, as `media:thumbs` writes it.
+
+### 2026-11-03 21:30 · [app-agent] · CHANGE · Root README refreshed
+Area: README.md, .github/assets/banner.svg
+What: at the owner's request: the README shows the project status on 3 Nov (steps 1 to 8, data by category, 34 of 67 with media, what is left), the features, a media diagram and the team names. A text SVG banner in the app colours replaces the title. The GitHub description and topics were set too.
+Impact on others: none. The ODEJ logo is not added yet: it is a binary, to be decided by the owner.
