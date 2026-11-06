@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T15:29:19Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 26,
     "name": "دار الشباب تيزي الواد",
@@ -14,19 +14,45 @@
   },
   "email": "mjtizieloued@odejbejaia-dz.com",
   "phone": "034 15 67 79",
-  "address": "Coordonnées",
+  "address": "بلدية ملبو بجاية",
   "website": null,
-  "description": "Institution étatique",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع ثقافي وتربوي واجتماعي ورياضي، تهدف إلى تنظيم أوقات فراغ الشباب وشغلها بشكل مفيد عبر توفير فضاءات للتعلم والتكوين والممارسة الفنية والرياضية. تعمل على تنمية مهاراتهم، وتوجيههم، وحمايتهم من الانحراف، وتنمية قدراتهم الإبداعية، وتشجيعهم على التفاعل الاجتماعي والمسؤولية",
   "facebookCategory": "Centre de loisirs",
   "openingHours": null,
   "followers": 433,
+  "foundedYear": 2015,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 224,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/224",
+    "name": "دار الشباب تيزي الواد",
+    "commune": "مالبو",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "tizieloued@odejbejaia-dz.com",
+        "facebook": "mjtizieloued@odejbejaia-dz.com"
+      },
+      "address": {
+        "youthConnect": "بلدية ملبو بجاية",
+        "replaced": "Coordonnées"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
-    "phone": "odej-website",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "phone": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "openingHours",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T15:32:40Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 27,
     "name": "الشهيد بانون أكلي",
@@ -14,21 +14,75 @@
   },
   "email": "spdjebla@odejbejaia-dz.com",
   "phone": "034 86 73 60",
-  "address": null,
+  "address": "قرية جبلة بلدية بني كسيلة",
   "website": null,
-  "description": null,
+  "description": "القاعة المتعددة النشاطات هي مرفق شبابي واجتماعي وتربوي، مخصص لتنظيم أوقات فراغ الشباب وشغلها بأنشطة متنوعة ومفيدة مثل الترفيه، الرياضة، الثقافة، التكوين، والأنشطة الفنية. كما أنها توفر الدعم والموارد للشباب في مجالات مثل التوجيه التربوي والمهني وتوفير المعلومات",
   "facebookCategory": "Création digitale",
   "openingHours": null,
   "followers": 228,
+  "foundedYear": 2018,
+  "capacity": 118,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 8585,
+      "title": "الرسم والاشغال اليدوية",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "upcoming"
+    },
+    {
+      "id": 10475,
+      "title": "تنس الطاولة",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "upcoming"
+    },
+    {
+      "id": 10482,
+      "title": "نشاط البيار",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "upcoming"
+    },
+    {
+      "id": 10494,
+      "title": "نشاط البابي فوت",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "upcoming"
+    },
+    {
+      "id": 62292,
+      "title": "نشاط الاعلام الالي",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "upcoming"
+    },
+    {
+      "id": 62294,
+      "title": "نادي اللغات",
+      "dates": "07 نوفمبر 2026 — 31 أغسطس 2027 · برنامج اللغات وفن التواصل",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 230,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/230",
+    "name": "الشهيد بانون أكلي",
+    "commune": "بني كسيلة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T03:53:39Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 41,
     "name": "دار الشباب شلاطة",
@@ -12,23 +12,58 @@
     "pageRef": "100089213300258",
     "title": "دار الشباب شلاطة-ديوان مؤسسات الشباب ولاية بجاية"
   },
-  "email": null,
+  "email": "mjchelata@odejbejaia-dz.com",
   "phone": "0698 31 85 82",
-  "address": "ayris Chellata",
+  "address": "بلدية شلاطة بجاية",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم",
   "facebookCategory": "Organisme jeunesse",
   "openingHours": null,
   "followers": 182,
+  "foundedYear": 2018,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 29208,
+      "title": "معا لنحمي شبابنا من افة المخذرات",
+      "dates": "07 مارس 2026 — 31 ديسمبر 2026 · نشاط وقاية صحة الشباب",
+      "status": "ongoing"
+    },
+    {
+      "id": 36279,
+      "title": "DZ Young leaders",
+      "dates": "30 أبريل 2026 — 01 أبريل 2027 · برامج قادة المستقبل",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 568,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/568",
+    "name": "دار الشباب شلاطة",
+    "commune": "شلاطة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية شلاطة بجاية",
+        "replaced": "ayris Chellata"
+      }
+    }
+  },
   "sources": {
     "phone": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
-    "email",
     "openingHours",
     "website"
   ]

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T20:41:58Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 38,
     "name": "الشهيد بلغانية أحمد أجيوان",
@@ -14,19 +14,52 @@
   },
   "email": "alloslt804@gmail.com",
   "phone": null,
-  "address": "Bejaïa, Algeria",
+  "address": "بلدية ذراع القايد أجيوان بجاية",
   "website": null,
-  "description": "دار الشباب \"الشهيد بلغانية أحمد\" أجيوان مؤسسة ذات طابع إجتماعي تربوي وتسلية تابعة للديوان وهي مخصصة لتنظيم أوقات فراغ الشباب وشغلها بصفة نافعة\nالمدير/ السيد مصواف (مستشار بيداغوجي للشباب ومدير المخيمات الصيفية)\nالعنوان/ مركز قرية أجيوان_ بلدية ذراع القائد",
+  "description": "دار الشباب هي مؤسسة تربوية وثقافية واجتماعية تهدف إلى تنظيم أوقات فراغ الشباب، وتقديم خدمات متنوعة لهم في مجالات ثقافية، فنية، ترفيهية، وتربوية، للمساهمة في تنمية مهاراتهم وتشكيل شخصيتهم. تسعى إلى توفير مساحة للشباب للالتقاء، التعلم، وتنمية مواهبهم، بالإضافة إلى توجيههم ومساعدتهم على التعامل مع التحديات التي يواجهونها.",
   "facebookCategory": "Organisme gouvernemental · Organisme jeunesse · Enfants et éducation",
   "openingHours": "Toujours ouvert",
   "followers": 218,
+  "foundedYear": 2010,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 55081,
+      "title": "دورة تكوينية للفتيات",
+      "dates": "22 أغسطس 2026 — 03 يوليو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 272,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/272",
+    "name": "الشهيد بلغانية أحمد أجيوان",
+    "commune": "ذراع القايد",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "mjadjioune@odejbejaia-dz.com",
+        "facebook": "alloslt804@gmail.com"
+      },
+      "address": {
+        "youthConnect": "بلدية ذراع القايد أجيوان بجاية",
+        "replaced": "Bejaïa, Algeria"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
     "openingHours": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "phone",

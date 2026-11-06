@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T15:06:35Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 24,
     "name": "الشهيد بن تحي محند أكلي برباشة",
@@ -13,23 +13,92 @@
     "title": "دار الشباب برباشة-ولاية بجاية"
   },
   "email": "azeddinekendira900@gmail.com",
-  "phone": null,
-  "address": "برباشة, Bejaïa, Algeria, 06096",
+  "phone": "034 84 17 09",
+  "address": "بلدية برباشة بجاية",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع ثقافي وتربوي واجتماعي ورياضي، تهدف إلى تنظيم أوقات فراغ الشباب وشغلها بشكل مفيد عبر توفير فضاءات للتعلم والتكوين والممارسة الفنية والرياضية. تعمل على تنمية مهاراتهم، وتوجيههم، وحمايتهم من الانحراف، وتنمية قدراتهم الإبداعية، وتشجيعهم على التفاعل الاجتماعي والمسؤولية",
   "facebookCategory": "Centre culturel",
   "openingHours": null,
   "followers": 1311,
+  "foundedYear": 2010,
+  "capacity": 80,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9119,
+      "title": "الموسيقي",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9157,
+      "title": "المسرح",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · نشاط الفنون الدرامية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9493,
+      "title": "الاعلام الالي",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9610,
+      "title": "التحسيس",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · نشاط وقاية صحة الشباب",
+      "status": "ongoing"
+    },
+    {
+      "id": 9618,
+      "title": "المطالعة والمكتبة",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · مكتبة الوسائط المتعددة",
+      "status": "ongoing"
+    },
+    {
+      "id": 9836,
+      "title": "الرسم والتلوين",
+      "dates": "10 أكتوبر 2026 — 10 أكتوبر 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "ongoing"
+    },
+    {
+      "id": 9634,
+      "title": "الخياطة",
+      "dates": "01 يناير 2027 — 30 مايو 2027 · نشاط تمكين الفتاة",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 221,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/221",
+    "name": "الشهيد بن تحي محند أكلي برباشة",
+    "commune": "برباشة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "mjbarbacha@odejbejaia-dz.com",
+        "facebook": "azeddinekendira900@gmail.com"
+      },
+      "address": {
+        "youthConnect": "بلدية برباشة بجاية",
+        "replaced": "برباشة, Bejaïa, Algeria, 06096"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
-    "phone",
     "website"
   ]
 }

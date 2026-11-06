@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T14:11:13Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 20,
     "name": "مركب رياضي جواري تيفرة",
@@ -14,21 +14,68 @@
   },
   "email": "csptifra@odejbejaia-dz.com",
   "phone": "034 14 21 43",
-  "address": "Tifra, Algeria, 06028",
+  "address": "بلدية تيفرة",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو منشأة رياضية عامة تتبع مؤسسات الشباب، وتهدف إلى توفير مساحة لمختلف الأنشطة الرياضية والشبابية والترفيهية والثقافية في الأحياء السكنية. يساهم هذا المركب في ترقية المواهب الشبابية واكتشافها وتوجيهها، وتوفير بيئة مناسبة لهم لممارسة الرياضة والأنشطة المختلفة، مما يساهم في تنميتهم البدنية والاجتماعية",
   "facebookCategory": "Musique/groupe",
   "openingHours": null,
   "followers": 137,
+  "foundedYear": 2018,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 58228,
+      "title": "البلياردو",
+      "dates": "01 يناير 2026 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58226,
+      "title": "فنون قنتالية",
+      "dates": "01 أكتوبر 2026 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58227,
+      "title": "رياضة قتالية",
+      "dates": "01 أكتوبر 2026 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58453,
+      "title": "PlayStation",
+      "dates": "06 أكتوبر 2026 — 31 يوليو 2027 · أنشطة الرياضات الإلكترونية المبتكرة",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 172,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/172",
+    "name": "مركب رياضي جواري تيفرة",
+    "commune": "تيفرة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية تيفرة",
+        "replaced": "Tifra, Algeria, 06028"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
     "phone": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
     "website"
   ]

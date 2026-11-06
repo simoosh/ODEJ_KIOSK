@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T01:31:38Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 10,
     "name": "الشهيد بوحيرد السعيد سوق الإثنين",
@@ -13,22 +13,39 @@
     "title": "دار الشباب الشهيد بوحيرد سعيد سوق الاثنين -ولاية بجاية-"
   },
   "email": "mjsoukeltenine@odejbejaia-dz.com",
-  "phone": "034 26 03 04",
-  "address": null,
+  "phone": "034 84 71 69",
+  "address": "سوق الاثننين",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي وثقافي واجتماعي تهدف إلى استغلال وقت فراغ الشباب بشكل إيجابي عبر تقديم أنشطة ثقافية، فنية، رياضية، وترفيهية، إلى جانب توفير خدمات توجيهية وتكوينية. تشمل مهامها توفير معلومات للشباب في مختلف المجالات مثل الشغل، التعليم، والصحة، وتوجيههم لحل مشاكلهم، وتنمية مهاراتهم وكفاءاتهم.",
   "facebookCategory": "Organisation à but non lucratif",
   "openingHours": null,
   "followers": 208,
+  "foundedYear": 1986,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 87,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/87",
+    "name": "الشهيد بوحيرد السعيد سوق الإثنين",
+    "commune": "سوق لإثنين",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

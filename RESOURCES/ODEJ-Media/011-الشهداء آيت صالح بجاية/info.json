@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T02:32:01Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 11,
     "name": "الشهداء آيت صالح بجاية",
@@ -14,21 +14,47 @@
   },
   "email": "cspighil31@gmail.com",
   "phone": "034 16 73 54",
-  "address": "ighil ouzoug , 06000",
+  "address": "بلدية بجاية",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية تنشأ في الأحياء بهدف ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية للشباب. تعمل هذه المراكز تحت إشراف الهيئات المختصة، وتهدف إلى اكتشاف المواهب وتنميتها ودعمها من خلال توجيه الشباب نحو الأنشطة التي تتناسب مع قدراتهم.",
   "facebookCategory": "Services publics & administration",
   "openingHours": null,
   "followers": 114,
+  "foundedYear": 2000,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 89,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/89",
+    "name": "الشهداء آيت صالح بجاية",
+    "commune": "بجاية",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "cspighilouazoug@odejbejaia-dz.com",
+        "facebook": "cspighil31@gmail.com"
+      },
+      "address": {
+        "youthConnect": "بلدية بجاية",
+        "replaced": "ighil ouzoug , 06000"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
     "website"
   ]

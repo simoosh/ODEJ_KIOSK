@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T01:12:44Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 9,
     "name": "مركب رياضي جواري القصر",
@@ -14,19 +14,94 @@
   },
   "email": "cspelkseur@odejbejaia-dz.com",
   "phone": "030 16 75 42",
-  "address": "برشيش - القصر, 06300",
+  "address": "بلدية القصر",
   "website": null,
-  "description": "المركب الرياضي الجواري القصر.",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي وثقافي واجتماعي تهدف إلى استغلال وقت فراغ الشباب بشكل إيجابي عبر تقديم أنشطة ثقافية، فنية، رياضية، وترفيهية، إلى جانب توفير خدمات توجيهية وتكوينية. تشمل مهامها توفير معلومات للشباب في مختلف المجالات مثل الشغل، التعليم، والصحة، وتوجيههم لحل مشاكلهم، وتنمية مهاراتهم وكفاءاتهم.",
   "facebookCategory": "Organisme gouvernemental",
   "openingHours": null,
   "followers": 5314,
+  "foundedYear": 1998,
+  "capacity": 90,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 48740,
+      "title": "دورة ترفيهية في رياضة الكرة الحديدية",
+      "dates": "01 يناير 2026 — 31 ديسمبر 2026 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 57211,
+      "title": "البرنامج السنوي للاندية الرياضية",
+      "dates": "23 سبتمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 57882,
+      "title": "النادي الرياضي لكرة اليد rcek",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58273,
+      "title": "النادي الرياضي لكرة الطائرة OEK",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58265,
+      "title": "RCBالنادي الرياضي لكرة القدم داخل القاعة",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 8512,
+      "title": "الاشغال اليدوية",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "ongoing"
+    },
+    {
+      "id": 62287,
+      "title": "مبارة ودية بين النادي الرياضي chek &ES Sedouk",
+      "dates": "07 نوفمبر 2026 — 07 نوفمبر 2026 · الرياضة الترفيهية",
+      "status": "upcoming"
+    },
+    {
+      "id": 62152,
+      "title": "مبراة ودية في كرة اليد",
+      "dates": "07 نوفمبر 2026 — 07 نوفمبر 2026 · الرياضة الترفيهية",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 85,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/85",
+    "name": "مركب رياضي جواري القصر",
+    "commune": "القصر",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "phone": {
+        "youthConnect": "034 13 31 62",
+        "facebook": "030 16 75 42"
+      },
+      "address": {
+        "youthConnect": "بلدية القصر",
+        "replaced": "برشيش - القصر, 06300"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "openingHours",

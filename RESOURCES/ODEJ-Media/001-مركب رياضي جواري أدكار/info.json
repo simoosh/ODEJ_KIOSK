@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T02:14:32Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 1,
     "name": "مركب رياضي جواري أدكار",
@@ -12,23 +12,40 @@
     "pageRef": "61580052382503",
     "title": "المركب الرياضي الجواري أدكار - ولاية بجاية"
   },
-  "email": "cspadekar@odejbejaia-dz.com",
+  "email": "cspadekar@odegbejaia-dz.com",
   "phone": "034 86 31 98",
-  "address": null,
+  "address": "المركب الرياضي الجواري أدكار",
   "website": null,
-  "description": null,
+  "description": "مؤسسة تابعة إالى وزارة الشباب تقوم بتأطير الشباب في الرياضة الجماعية والفردية",
   "facebookCategory": "Organisation à but non lucratif",
   "openingHours": null,
   "followers": 112,
+  "foundedYear": 1999,
+  "capacity": 80,
+  "accessible": null,
+  "activities": [],
+  "youthConnect": {
+    "id": 2900,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/2900",
+    "name": "المركب الرياضي الجواري أدكار",
+    "commune": "أدكار",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
+    "accessible",
     "openingHours",
     "website"
   ]

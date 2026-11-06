@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T02:45:22Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 12,
     "name": "الشهيد خالدي عبد القادر  صنادلة",
@@ -13,22 +13,58 @@
     "title": "دار الشباب الصنادلة-ولاية بحاية"
   },
   "email": "mjsnadela@odejbejaia-dz.com",
-  "phone": "034 39 25 05",
-  "address": null,
+  "phone": "034 96 31 98",
+  "address": "ذراع القائد",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي وثقافي واجتماعي تهدف إلى استغلال وقت فراغ الشباب بشكل إيجابي عبر تقديم أنشطة ثقافية، فنية، رياضية، وترفيهية، إلى جانب توفير خدمات توجيهية وتكوينية. تشمل مهامها توفير معلومات للشباب في مختلف المجالات مثل الشغل، التعليم، والصحة، وتوجيههم لحل مشاكلهم، وتنمية مهاراتهم وكفاءاتهم.",
   "facebookCategory": "Décoration d’intérieur · Création digitale",
   "openingHours": null,
   "followers": 24,
+  "foundedYear": 2018,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 55900,
+      "title": "دورات التكوين في الاعلام الألي",
+      "dates": "21 أكتوبر 2026 — 30 يونيو 2027 · برنامج حاضنات المواهب.",
+      "status": "ongoing"
+    },
+    {
+      "id": 57811,
+      "title": "فيتنس",
+      "dates": "01 نوفمبر 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 55906,
+      "title": "دورة في التكوين المسرحي",
+      "dates": "21 ديسمبر 2026 — 30 يونيو 2027 · نشاط فنون الأداء الاستعراضي",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 90,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/90",
+    "name": "الشهيد خالدي عبد القادر صنادلة",
+    "commune": "ذراع القايد",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

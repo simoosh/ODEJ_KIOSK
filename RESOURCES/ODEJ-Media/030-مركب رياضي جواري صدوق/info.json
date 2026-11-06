@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T18:49:53Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 30,
     "name": "مركب رياضي جواري صدوق",
@@ -14,20 +14,79 @@
   },
   "email": "cspseddouk@odejbejaia-dz.com",
   "phone": "034 19 02 20",
-  "address": "صدوق المركز ولاية بجاية , Seddouk, Algeria, 6011",
+  "address": "بلدية صدوق بجاية",
   "website": null,
-  "description": "asemlal anaddal amisi n sedduq-Aɣir n Bgayet",
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Sport · Sports et loisirs",
   "openingHours": "Toujours ouvert",
   "followers": 259,
+  "foundedYear": 2006,
+  "capacity": 80,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 10291,
+      "title": "ايروبيك 1",
+      "dates": "01 أكتوبر 2025 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10087,
+      "title": "كمال الاجسام",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10096,
+      "title": "ايروبيك",
+      "dates": "01 أكتوبر 2026 — 30 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10341,
+      "title": "ايام تحسيسية",
+      "dates": "01 أكتوبر 2026 — 30 سبتمبر 2027 · نشاط وقاية صحة الشباب",
+      "status": "ongoing"
+    },
+    {
+      "id": 52430,
+      "title": "الكونغ فو (أو الووشو)",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10065,
+      "title": "الكرتي دو",
+      "dates": "15 أكتوبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 241,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/241",
+    "name": "مركب رياضي جواري صدوق",
+    "commune": "صدوق",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية صدوق بجاية",
+        "replaced": "صدوق المركز ولاية بجاية , Seddouk, Algeria, 6011"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
     "openingHours": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "website"

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T03:33:25Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 17,
     "name": "الشهيد عبد الرحمان فارس أقبو",
@@ -14,21 +14,87 @@
   },
   "email": "mjakbou@odejbejaia-dz.com",
   "phone": "034 33 45 85",
-  "address": null,
+  "address": "بلدية أقبو بجاية",
   "website": null,
-  "description": "دار الشباب اقبو- ولاية بجاية",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي واجتماعي وثقافي، تهدف إلى تنظيم وقت فراغ الشباب وتنمية مهاراتهم وقدراتهم في مجالات متنوعة مثل الفن والرياضة والثقافة والمعلوماتية. تعمل هذه المؤسسات على توفير أنشطة ترفيهية وتكوينية متنوعة، وتوجيه الشباب في حياتهم، وحمايتهم من الانحراف",
   "facebookCategory": "Sports et loisirs",
   "openingHours": null,
   "followers": 6019,
+  "foundedYear": 2010,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 11408,
+      "title": "مكتبة دار الشباب",
+      "dates": "01 أكتوبر 2025 — 31 يوليو 2027 · النشاط الفكري الأدبي",
+      "status": "ongoing"
+    },
+    {
+      "id": 10007,
+      "title": "نادي الايروبيك",
+      "dates": "04 نوفمبر 2025 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 8787,
+      "title": "نادي التطوع",
+      "dates": "01 سبتمبر 2026 — 31 يوليو 2027 · الأنشطة الإجتماعية والتطوع",
+      "status": "ongoing"
+    },
+    {
+      "id": 48919,
+      "title": "نادي موسيقى الهواة للشباب",
+      "dates": "03 سبتمبر 2026 — 31 أغسطس 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9918,
+      "title": "جلسات الاصغاء والحوار",
+      "dates": "05 سبتمبر 2026 — 31 يوليو 2027 · برنامج جلسات الإصغاء والحوار",
+      "status": "ongoing"
+    },
+    {
+      "id": 9999,
+      "title": "خلية الاصغاء وصحة الشباب",
+      "dates": "05 سبتمبر 2026 — 31 يوليو 2027 · نشاط الإصغاء والإرشاد النفسي",
+      "status": "ongoing"
+    },
+    {
+      "id": 10068,
+      "title": "الدعم المدرسي",
+      "dates": "07 نوفمبر 2026 — 01 يونيو 2027 · برنامج اللغات وفن التواصل",
+      "status": "upcoming"
+    },
+    {
+      "id": 48939,
+      "title": "نادي الاشغال اليدوية للاطفال",
+      "dates": "01 يونيو 2027 — 31 يوليو 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 166,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/166",
+    "name": "الشهيد عبد الرحمان فارس أقبو",
+    "commune": "أقبو",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
     "phone": "facebook",
-    "description": "facebook",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "address": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
     "openingHours",
     "website"
   ]

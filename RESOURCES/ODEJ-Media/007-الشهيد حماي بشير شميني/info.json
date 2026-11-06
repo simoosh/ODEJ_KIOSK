@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T00:31:48Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 7,
     "name": "الشهيد حماي بشير شميني",
@@ -13,23 +13,45 @@
     "title": "المركب الرياضي الجواري- شميني ولاية بجاية"
   },
   "email": "cspchemini@odejbejaia-dz.com",
-  "phone": null,
-  "address": "Agueni- chemini- bejaia",
+  "phone": "034 17 91 75",
+  "address": "بلدية شميني",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية تنشأ في الأحياء بهدف ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية للشباب. تعمل هذه المراكز تحت إشراف الهيئات المختصة، وتهدف إلى اكتشاف المواهب وتنميتها ودعمها من خلال توجيه الشباب نحو الأنشطة التي تتناسب مع قدراتهم",
   "facebookCategory": "Organisme jeunesse",
   "openingHours": null,
   "followers": 24,
+  "foundedYear": 2018,
+  "capacity": 110,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 70,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/70",
+    "name": "الشهيد حماي بشير شميني",
+    "commune": "شميني",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية شميني",
+        "replaced": "Agueni- chemini- bejaia"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
-    "phone",
     "website"
   ]
 }

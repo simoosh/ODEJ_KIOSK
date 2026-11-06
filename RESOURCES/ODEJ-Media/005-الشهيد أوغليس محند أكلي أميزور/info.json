@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T23:04:12Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 5,
     "name": "الشهيد أوغليس محند أكلي أميزور",
@@ -14,21 +14,81 @@
   },
   "email": "cspamizour@odejbejaia-dz.com",
   "phone": "034 30 75 91",
-  "address": null,
+  "address": "أميزور",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية تنشأ في الأحياء بهدف ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية للشباب. تعمل هذه المراكز تحت إشراف الهيئات المختصة، وتهدف إلى اكتشاف المواهب وتنميتها ودعمها من خلال توجيه الشباب نحو الأنشطة التي تتناسب مع قدراتهم",
   "facebookCategory": "Restaurant",
   "openingHours": null,
   "followers": 161,
+  "foundedYear": 2012,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9875,
+      "title": "نادي الحلويات",
+      "dates": "06 أكتوبر 2025 — 05 يوليو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    },
+    {
+      "id": 9463,
+      "title": "كرة القدم للمبتدئين",
+      "dates": "15 سبتمبر 2026 — 05 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9469,
+      "title": "الكاراتي",
+      "dates": "29 سبتمبر 2026 — 05 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 7660,
+      "title": "النادي البيئي",
+      "dates": "01 أكتوبر 2026 — 05 يوليو 2027 · نشاط الرسكلة وتربية المائيات",
+      "status": "ongoing"
+    },
+    {
+      "id": 7663,
+      "title": "المجموعة الصوتية",
+      "dates": "06 أكتوبر 2026 — 05 يوليو 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 7698,
+      "title": "النشاطات النسوية",
+      "dates": "06 أكتوبر 2026 — 05 يوليو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    },
+    {
+      "id": 7383,
+      "title": "الجوال الصغير",
+      "dates": "22 ديسمبر 2026 — 05 يوليو 2027 · الشباب الجوال (التخييم Bivouac والتجوال).",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 66,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/66",
+    "name": "الشهيد أوغليس محند أكلي أميزور",
+    "commune": "أميزور",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T18:55:30Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 28,
     "name": "الشهيد اسماعيل علي بن عيسى أوقاس",
@@ -14,21 +14,38 @@
   },
   "email": "cspaokas@odejbejaia-dz.com",
   "phone": "034 15 00 35",
-  "address": null,
+  "address": "بلدية أوقاس بجاية",
   "website": null,
-  "description": "Offrir aux jeunes des loisirs récréatifs et sportifs.\n- Promouvoir la pratique sportive de proximi",
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Centre de loisirs",
   "openingHours": null,
   "followers": 7633,
+  "foundedYear": 2000,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 233,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/233",
+    "name": "الشهيد اسماعيل علي بن عيسى أوقاس",
+    "commune": "أوقاس",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
-    "description": "facebook",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
     "openingHours",
     "website"
   ]
