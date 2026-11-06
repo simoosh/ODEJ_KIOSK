@@ -452,3 +452,14 @@ Impact on others: data agent: the grid expects `thumbs/<name>-480.webp` next to 
 Area: README.md, .github/assets/banner.svg
 What: at the owner's request: the README shows the project status on 3 Nov (steps 1 to 8, data by category, 34 of 67 with media, what is left), the features, a media diagram and the team names. A text SVG banner in the app colours replaces the title. The GitHub description and topics were set too.
 Impact on others: none. The ODEJ logo is not added yet: it is a binary, to be decided by the owner.
+
+### 2026-11-07 00:40 · [data-agent] · DECISION · Sources for contacts and descriptions
+Area: RESOURCES/ODEJ-Media/*/info.json, teamwork/Data.md
+What: the owner decided. E-mail and phone: the Facebook page first, Youth Connect (youthconnect.mjeunesse.gov.dz) fills a gap. Address, description, founding year, capacity, accessibility and activities: Youth Connect. The ODEJ website is no longer a source (hacked, taken down): its values are removed. Coordinates: only the ODEJ's PDF of 6 Nov, not Youth Connect's points.
+Impact on others: app agent: nothing changes in the data file yet. `tools/data/import-info.mjs` should read these `info.json` fields once the owner agrees.
+
+### 2026-11-07 00:45 · [data-agent] · CHANGE · Youth Connect data in the 34 info.json files
+Area: RESOURCES/ODEJ-Media/*/info.json
+What: the scrapper (local, not in the repo) now reads the 67 establishment pages of Youth Connect and writes them into `info.json`: new fields `foundedYear`, `capacity`, `accessible`, `activities` and a `youthConnect` block (page, read date, conflicts). Placeholder phones (all zeros) are dropped. 22 e-mails and 18 phones now come from Youth Connect, 12 and 15 stay from Facebook. 20 of the 34 files have activities. Problems found are in Data.md section 6.
+Impact on others: app agent: `info.json` has new fields, and `sources.*` no longer contains `odej-website`. The 33 establishments not collected yet get the same fields at their first scrape.
+

@@ -1,6 +1,6 @@
 # Data.md: known data problems
 
-Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-01, after the batch odej-028 to 038.
+Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-07, after the Youth Connect import into the 34 `info.json` files.
 
 ## How to use this file
 
@@ -151,17 +151,29 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 30 | Description | Written in Tamazight, in Latin letters. Needs a translation before it can be shown. |
 | 3, 21 | Text | Description and hours translations are unverified. |
 
-**Source of the values.** A value marked `odej-website` in `info.json` comes from the ODEJ's list, not from the establishment's page. Most e-mails and many phones are in this group, and they should be confirmed.
+**Source of the values (rule of 7 Nov 2026).** E-mail and phone: the Facebook page first, and Youth Connect (the Ministry's platform) only when Facebook shows nothing. Address, description, founding year, capacity, accessibility and activities: Youth Connect. The ODEJ website is not a source any more, because it was hacked and taken down: no value from it remains. `sources` in each `info.json` says where each value comes from, and `youthConnect.conflicts` keeps the Youth Connect value when it differs from the one we use. The coordinates of Youth Connect are not read: the ODEJ's PDF of 6 Nov replaces them.
 
-**Missing, among the 24 scraped**
+**Youth Connect import: what to check**
+
+| # | Problem |
+|---|---|
+| 1 | The e-mail `cspadekar@odegbejaia-dz.com` has a typo in the domain (`odegbejaia`). Other pages use `odejbejaia-dz.com`. Confirm it. |
+| 38 | No phone: Youth Connect only has a placeholder, `000 00 00 00`, so the phone stays empty. The same placeholder was dropped for #41, 43, 61, 63. |
+| 11, 13, 18, 24, 26, 31, 33, 34, 35, 38 | The Facebook e-mail is kept, but Youth Connect gives a different one. For #24, 33 and 35 the Facebook one is a private-looking Gmail address and Youth Connect gives an ODEJ one. Ask the ODEJ which is right. |
+| 3, 9, 33, 35 | The Facebook phone is kept, but Youth Connect gives a different number. |
+| 3, 7 | Youth Connect gives the same phone, `034 17 91 75`, to both. For #3 the Facebook mobile is kept. Confirm #7. |
+| 13, 15 | Youth Connect writes the e-mail domain as `odejbejaia-de.com` (#13) and `idejbejaia-dz.com` (#15): typos, not used for #13, and #15 is not collected yet. |
+| All | Youth Connect has only about 20 different descriptions for 67 establishments: they are text per type, not about each place. 20 of the 34 files have activities. |
+
+**Missing, among the 34 scraped**
 
 | Field | Missing for |
 |---|---|
-| Phone | #7, 8, 24, 38 |
-| E-mail | #41 |
-| Address | #1, 5, 8, 10, 12, 16, 17, 21, 22, 25, 27, 28, 29, 32, 36 |
+| Phone | #38 |
+| E-mail | none |
+| Address | none (from Youth Connect), but #18, 26, 31 and 38 had a bad Facebook address, now replaced |
 | Opening hours | all except #3, 13, 18, 30, 33 and 38, and those six are doubtful |
-| Description | #1, 4, 5, 7, 8, 10, 11, 12, 16, 18, 20, 22, 24, 25, 27, 29, 31, 32, 35, 36, 41 |
+| Description | none, but see the generic texts above |
 
 **Whole dataset.** No establishment has activities. Only #3 and #21 show a description, and only #3 shows hours.
 
