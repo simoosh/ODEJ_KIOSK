@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T02:14:32Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 3,
     "name": "مركز الترفيه العلمي واد غير",
@@ -14,22 +14,48 @@
   },
   "email": "clsouedghir@odejbejaia-dz.com",
   "phone": "0661 89 04 11",
-  "address": "oued ghir , Bejaïa, Algeria",
+  "address": "واد غير",
   "website": null,
-  "description": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
+  "description": "مركز الترفيه العلمي هو مرفق تعليمي وترفيهي يهدف إلى تبسيط العلوم وتشجيع التفاعل معها من خلال تجارب تفاعلية وأنشطة ممتعة، وذلك بهدف تنمية الإبداع والمهارات العلمية لدى مختلف الفئات العمرية. يدمج هذا المفهوم بين الترفيه والتعليم لخلق بيئة تعلم مشوقة تخرج عن الطرق التقليدية وتستثمر في بناء المعرفة.",
   "facebookCategory": "Scientifique · Science et technologie · Organisme jeunesse",
   "openingHours": "Toujours ouvert",
   "followers": 1567,
+  "foundedYear": 2012,
+  "capacity": 100,
+  "accessible": null,
+  "activities": [],
+  "youthConnect": {
+    "id": 60,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/60",
+    "name": "مركز الترفيه العلمي واد غير",
+    "commune": "وادي غير",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "phone": {
+        "youthConnect": "034 17 91 75",
+        "facebook": "0661 89 04 11"
+      },
+      "address": {
+        "youthConnect": "واد غير",
+        "replaced": "oued ghir , Bejaïa, Algeria"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
     "openingHours": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
+    "accessible",
     "website"
   ]
 }

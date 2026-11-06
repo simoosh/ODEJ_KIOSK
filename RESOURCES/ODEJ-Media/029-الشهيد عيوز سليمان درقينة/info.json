@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T18:53:01Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 29,
     "name": "الشهيد عيوز سليمان درقينة",
@@ -14,21 +14,63 @@
   },
   "email": "cspdarguina@odejbejaia-dz.com",
   "phone": "034 39 80 20",
-  "address": null,
+  "address": "بلدية درقينة بجاية",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Blog personnel",
   "openingHours": null,
   "followers": 123,
+  "foundedYear": 2008,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 16610,
+      "title": "البلياردو",
+      "dates": "01 يناير 2026 — 31 ديسمبر 2026 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 58015,
+      "title": "الافتتاح الرسمي للدخول الدراسي لأقسام محو الأمية وتعليم الكبار للموسم الدراسي 2026/2027",
+      "dates": "01 أكتوبر 2026 — 02 يوليو 2027 · برامج قادة المستقبل",
+      "status": "ongoing"
+    },
+    {
+      "id": 59007,
+      "title": "ورشة تكوينية في فن التصوير الفوتوغرافي.",
+      "dates": "16 أكتوبر 2026 — 16 أكتوبر 2027 · نشاط التصوير الفوتوغرافي والصناعة السنيمائية.",
+      "status": "ongoing"
+    },
+    {
+      "id": 59824,
+      "title": "إحياء اليوم العالمي للسكري – 14 نوفمبر",
+      "dates": "14 نوفمبر 2026 — 14 نوفمبر 2026 · نشاط وقاية صحة الشباب",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 236,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/236",
+    "name": "الشهيد عيوز سليمان درقينة",
+    "commune": "درقينة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
     "phone": "facebook",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

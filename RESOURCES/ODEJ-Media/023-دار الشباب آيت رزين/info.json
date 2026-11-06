@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T14:34:43Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 23,
     "name": "دار الشباب آيت رزين",
@@ -14,19 +14,54 @@
   },
   "email": "mjaitrzine@odejbejaia-dz.com",
   "phone": "034 36 49 33",
-  "address": "Ait R'zine, 06000",
+  "address": "بلدية أيت رزين بجاية",
   "website": null,
-  "description": "la Maison de Jeunes d'Ait R'zine. Etablissement de jeunes. ODEJ DJS Bejaia",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع ثقافي وتربوي واجتماعي ورياضي، تهدف إلى تنظيم أوقات فراغ الشباب وشغلها بشكل مفيد عبر توفير فضاءات للتعلم والتكوين والممارسة الفنية والرياضية. تعمل على تنمية مهاراتهم، وتوجيههم، وحمايتهم من الانحراف، وتنمية قدراتهم الإبداعية، وتشجيعهم على التفاعل الاجتماعي والمسؤولية",
   "facebookCategory": "Sports et loisirs",
   "openingHours": null,
   "followers": 3832,
+  "foundedYear": 2010,
+  "capacity": 88,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 56513,
+      "title": "تعلم اللغات / محو الأمية",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · برنامج اللغات وفن التواصل",
+      "status": "ongoing"
+    },
+    {
+      "id": 56514,
+      "title": "رياضة الآيكي جوجوتسو",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 220,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/220",
+    "name": "دار الشباب آيت رزين",
+    "commune": "أيت رزين",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية أيت رزين بجاية",
+        "replaced": "Ait R'zine, 06000"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "openingHours",

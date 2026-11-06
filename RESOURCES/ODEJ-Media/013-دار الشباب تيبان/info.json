@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T02:56:12Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 13,
     "name": "دار الشباب تيبان",
@@ -14,20 +14,46 @@
   },
   "email": "mjtibane@odejbejaia-dz.com",
   "phone": "034 14 11 54",
-  "address": "tibane, Bejaïa, Algeria, 06087",
+  "address": "تيبان",
   "website": null,
-  "description": "دار شباب",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي وثقافي واجتماعي تهدف إلى استغلال وقت فراغ الشباب بشكل إيجابي عبر تقديم أنشطة ثقافية، فنية، رياضية، وترفيهية، إلى جانب توفير خدمات توجيهية وتكوينية. تشمل مهامها توفير معلومات للشباب في مختلف المجالات مثل الشغل، التعليم، والصحة، وتوجيههم لحل مشاكلهم، وتنمية مهاراتهم وكفاءاتهم.",
   "facebookCategory": "Organisme jeunesse · Sport",
   "openingHours": "Toujours ouvert",
   "followers": 19,
+  "foundedYear": 2006,
+  "capacity": 80,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 93,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/93",
+    "name": "دار الشباب تيبان",
+    "commune": "الفلاي",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "mjtibane@odejbejaia-de.com",
+        "facebook": "mjtibane@odejbejaia-dz.com"
+      },
+      "address": {
+        "youthConnect": "تيبان",
+        "replaced": "tibane, Bejaïa, Algeria, 06087"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
     "openingHours": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "website"

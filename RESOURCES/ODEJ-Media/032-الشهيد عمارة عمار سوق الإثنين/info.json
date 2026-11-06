@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T19:00:45Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 32,
     "name": "الشهيد عمارة عمار سوق الإثنين",
@@ -14,21 +14,75 @@
   },
   "email": "cspsoukeltenine@odejbejaia-dz.com",
   "phone": "034 84 68 05",
-  "address": null,
+  "address": "بلدية سوق الإثنين بجاية",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Sports et loisirs",
   "openingHours": null,
   "followers": 427,
+  "foundedYear": 2010,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9706,
+      "title": "نادي الخياطة",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    },
+    {
+      "id": 9623,
+      "title": "نادي الإعلام الآلي",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9632,
+      "title": "نادي الرسم والأشغال اليدوية",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "ongoing"
+    },
+    {
+      "id": 9637,
+      "title": "نادي اللغات",
+      "dates": "01 أكتوبر 2026 — 01 أكتوبر 2027 · برنامج اللغات وفن التواصل",
+      "status": "ongoing"
+    },
+    {
+      "id": 9649,
+      "title": "نادي السوروبان",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · نشاط الحساب الذهني وألعاب الذكاء",
+      "status": "ongoing"
+    },
+    {
+      "id": 9661,
+      "title": "نادى الشطرنج",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · نشاط الحساب الذهني وألعاب الذكاء",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 258,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/258",
+    "name": "الشهيد عمارة عمار سوق الإثنين",
+    "commune": "سوق لإثنين",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

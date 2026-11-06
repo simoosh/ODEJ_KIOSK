@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T19:27:53Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 35,
     "name": "الشهيد بركاني طاهر تيمزريت",
@@ -14,21 +14,51 @@
   },
   "email": "csptimezrit06@gmail.com",
   "phone": "0550 38 42 45",
-  "address": "المركب الرياضي الجواري بركاني طاهر تيمزريت , 06122",
+  "address": "بلدية تيمزريت بجاية",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Organisme jeunesse",
   "openingHours": null,
   "followers": 26,
+  "foundedYear": 2009,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 264,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/264",
+    "name": "الشهيد بركاني طاهر تيمزريت",
+    "commune": "تيمزريت",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "csptimezrit@odejbejaia-dz.com",
+        "facebook": "csptimezrit06@gmail.com"
+      },
+      "phone": {
+        "youthConnect": "034 26 32 42",
+        "facebook": "0550 38 42 45"
+      },
+      "address": {
+        "youthConnect": "بلدية تيمزريت بجاية",
+        "replaced": "المركب الرياضي الجواري بركاني طاهر تيمزريت , 06122"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
     "website"
   ]

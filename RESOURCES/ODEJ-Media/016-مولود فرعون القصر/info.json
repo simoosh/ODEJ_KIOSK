@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T03:13:56Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 16,
     "name": "مولود فرعون القصر",
@@ -14,21 +14,93 @@
   },
   "email": "mjelkseur@odejbejaia-dz.com",
   "phone": "034 82 13 04",
-  "address": null,
+  "address": "بلدية القصر",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي واجتماعي وثقافي، تهدف إلى تنظيم وقت فراغ الشباب وتنمية مهاراتهم وقدراتهم في مجالات متنوعة مثل الفن والرياضة والثقافة والمعلوماتية. تعمل هذه المؤسسات على توفير أنشطة ترفيهية وتكوينية متنوعة، وتوجيه الشباب في حياتهم، وحمايتهم من الانحراف",
   "facebookCategory": "Organisme jeunesse · Lieu de sport et de loisirs",
   "openingHours": null,
   "followers": 1115,
+  "foundedYear": 1996,
+  "capacity": 125,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 61788,
+      "title": "الاصغاء و الارشاد",
+      "dates": "01 سبتمبر 2026 — 31 يوليو 2027 · نشاط الإصغاء والإرشاد النفسي",
+      "status": "ongoing"
+    },
+    {
+      "id": 58096,
+      "title": "دورة الشطرنج",
+      "dates": "21 سبتمبر 2026 — 30 أغسطس 2027 · برنامج مهارات التعلم الذاتي",
+      "status": "ongoing"
+    },
+    {
+      "id": 595,
+      "title": "الحساب الذهني",
+      "dates": "01 أكتوبر 2026 — 30 أغسطس 2027 · نشاط الحساب الذهني وألعاب الذكاء",
+      "status": "ongoing"
+    },
+    {
+      "id": 60663,
+      "title": "نشاط محو الامية",
+      "dates": "01 أكتوبر 2026 — 15 مايو 2027 · برنامج مهارات التعلم الذاتي",
+      "status": "ongoing"
+    },
+    {
+      "id": 58256,
+      "title": "دورة تكوينية في الاعلام الالي",
+      "dates": "15 أكتوبر 2026 — 14 يناير 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "ongoing"
+    },
+    {
+      "id": 60660,
+      "title": "نشاط الاشغال اليدوية",
+      "dates": "20 أكتوبر 2026 — 31 مايو 2027 · برنامج مهارات التعلم الذاتي",
+      "status": "ongoing"
+    },
+    {
+      "id": 60826,
+      "title": "يوم تحسيسي توعوي حول مخاطر مواقع التواصل الاجتماعي",
+      "dates": "10 نوفمبر 2026 — 10 نوفمبر 2026 · نشاط وقاية صحة الشباب",
+      "status": "upcoming"
+    },
+    {
+      "id": 61790,
+      "title": "ورشة صنع اطباق بالمرايا",
+      "dates": "20 نوفمبر 2026 — 20 فبراير 2027 · برنامج مهارات التعلم الذاتي",
+      "status": "upcoming"
+    },
+    {
+      "id": 60821,
+      "title": "اليوم العاللمي لحقوق الطفل",
+      "dates": "20 نوفمبر 2026 — 20 نوفمبر 2026 · نشاط التطوير الذاتي",
+      "status": "upcoming"
+    }
+  ],
+  "youthConnect": {
+    "id": 155,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/155",
+    "name": "مولود فرعون القصر",
+    "commune": "القصر",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

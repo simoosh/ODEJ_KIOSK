@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T00:49:37Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 8,
     "name": "المجاهد المرحوم محمد بوضياف أوقاس",
@@ -13,23 +13,47 @@
     "title": "بيت الشباب اوقاس ولاية بجاية"
   },
   "email": "ajchateau@odejbejaia-dz.com",
-  "phone": null,
-  "address": null,
+  "phone": "034 12 96 66",
+  "address": "بلدية أوقاس",
   "website": null,
-  "description": null,
+  "description": "بيت الشباب هو منشأة لإيواء الشباب المسافرين بتكلفة منخفضة، حيث يوفر أسِرَّة في غرف مشتركة وغالباً ما تشمل المرافق المشتركة مثل الحمامات والمطابخ والصالات. كما تهدف بيوت الشباب إلى توفير بيئة آمنة ومناسبة للشباب لاستئجار مكان للإقامة، وتوفر أحيانًا أنشطة ثقافية ورياضية وترفيهية لضيوفها.",
   "facebookCategory": "Auberge de jeunesse",
   "openingHours": null,
   "followers": 190,
+  "foundedYear": 2018,
+  "capacity": 85,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 440,
+      "title": "اكتشف بلدك",
+      "dates": "12 يناير 2026 — 11 ديسمبر 2026 · الشباب الجوال (التخييم Bivouac والتجوال).",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 74,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/74",
+    "name": "المجاهد المرحوم محمد بوضياف أوقاس",
+    "commune": "أوقاس",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
-    "phone",
     "website"
   ]
 }

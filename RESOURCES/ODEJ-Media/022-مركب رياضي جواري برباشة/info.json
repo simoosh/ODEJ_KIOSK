@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T14:34:43Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 22,
     "name": "مركب رياضي جواري برباشة",
@@ -14,21 +14,75 @@
   },
   "email": "cspbarbacha@odejbejaia-dz.com",
   "phone": "034 84 17 37",
-  "address": null,
+  "address": "بلدية برباشة بجاية",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة رياضية وشبابية متكاملة تهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية في منطقة معينة. تعتمد هذه المؤسسات على قوانين ودواوين مؤسسات الشباب، وتعمل على اكتشاف المواهب الشابة ودعمها وتوجيهها في مختلف المجالات لبناء جيل قادر على مواجهة تحديات المجتمع. كما أنها تمثل مرافق رياضية متنوعة لتمارس فيها مختلف الرياضات الفردية والجماعية تحت إدارة متخصصة",
   "facebookCategory": "Organisation à but non lucratif",
   "openingHours": null,
   "followers": 123,
+  "foundedYear": 2008,
+  "capacity": 88,
+  "accessible": null,
+  "activities": [
+    {
+      "id": 8835,
+      "title": "الاصغاء والارشاد النفسي",
+      "dates": "01 أكتوبر 2026 — 31 يوليو 2027 · نشاط الإصغاء والإرشاد النفسي",
+      "status": "ongoing"
+    },
+    {
+      "id": 9735,
+      "title": "رياضة الكاراتي دو",
+      "dates": "01 أكتوبر 2026 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 57944,
+      "title": "التجوال صحة بدنية وبصرية",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · الشباب الجوال (التخييم Bivouac والتجوال).",
+      "status": "ongoing"
+    },
+    {
+      "id": 8912,
+      "title": "كورة السلة",
+      "dates": "16 أكتوبر 2026 — 31 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 7658,
+      "title": "نادي الموسيقى",
+      "dates": "01 نوفمبر 2026 — 31 مايو 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9773,
+      "title": "الفكر الادبي",
+      "dates": "01 نوفمبر 2026 — 15 يوليو 2027 · النشاط الفكري الأدبي",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 218,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/218",
+    "name": "مركب رياضي جواري برباشة",
+    "commune": "برباشة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
+    "accessible",
     "openingHours",
     "website"
   ]

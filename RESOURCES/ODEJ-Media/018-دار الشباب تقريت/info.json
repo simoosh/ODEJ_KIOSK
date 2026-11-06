@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T14:00:29Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 18,
     "name": "دار الشباب تقريت",
@@ -14,22 +14,48 @@
   },
   "email": "mjttakariat@gmail.com",
   "phone": "034 26 61 19",
-  "address": "https://maps.app.goo.gl/Ud4uMK5ftQiPrcCF8, Bougie, Algeria, 06036",
+  "address": "تقريت سوق أوفلا",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي واجتماعي وثقافي، تهدف إلى تنظيم وقت فراغ الشباب وتنمية مهاراتهم وقدراتهم في مجالات متنوعة مثل الفن والرياضة والثقافة والمعلوماتية. تعمل هذه المؤسسات على توفير أنشطة ترفيهية وتكوينية متنوعة، وتوجيه الشباب في حياتهم، وحمايتهم من الانحراف",
   "facebookCategory": "Site web d’actualités",
   "openingHours": "Ferme bientôt",
   "followers": 347,
+  "foundedYear": 2011,
+  "capacity": 88,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 169,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/169",
+    "name": "دار الشباب تقريت",
+    "commune": "سوق اوفلا",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "mjtakerietz@odejbejaia-dz.com",
+        "facebook": "mjttakariat@gmail.com"
+      },
+      "address": {
+        "youthConnect": "تقريت سوق أوفلا",
+        "replaced": "https://maps.app.goo.gl/Ud4uMK5ftQiPrcCF8, Bougie, Algeria, 06036"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
     "openingHours": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "website"
   ]
 }

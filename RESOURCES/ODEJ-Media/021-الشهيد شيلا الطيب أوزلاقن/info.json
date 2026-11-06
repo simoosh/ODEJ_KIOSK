@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T02:14:32Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 21,
     "name": "الشهيد شيلا الطيب أوزلاقن",
@@ -12,23 +12,77 @@
     "pageRef": "cspouzellaguenn",
     "title": "المركب الرياضي الجواري أوزلاقن - ولاية بجاية"
   },
-  "email": "cspighzeramokrane@odejbejaia-dz.com",
+  "email": "cspighzeramoukrane@odejbejaia-dz.com",
   "phone": "044 21 26 97",
-  "address": null,
+  "address": "أوزلاقن بجاية",
   "website": null,
-  "description": "CSP Ouzellaguen est un espace dédié à l'épanouissement des jeunes à travers une diversité d'activités éducatives et de loisirs. Notre mission est d'occuper le temps libre des jeunes de manière constructive et enrichissante.",
+  "description": "المركب الرياضي الجواري هو منشأة رياضية عامة تتبع مؤسسات الشباب، وتهدف إلى توفير مساحة لمختلف الأنشطة الرياضية والشبابية والترفيهية والثقافية في الأحياء السكنية. يساهم هذا المركب في ترقية المواهب الشبابية واكتشافها وتوجيهها، وتوفير بيئة مناسبة لهم لممارسة الرياضة والأنشطة المختلفة، مما يساهم في تنميتهم البدنية والاجتماعية",
   "facebookCategory": "Centre de loisirs",
   "openingHours": null,
   "followers": 193,
+  "foundedYear": 2010,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 49299,
+      "title": "ياضة فوجي-تسو / الجوجيتسو (Fuji Tsu / Jujitsu)",
+      "dates": "21 يوليو 2026 — 10 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 49295,
+      "title": "رياضة\" جيدو \"",
+      "dates": "22 يوليو 2026 — 10 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 49301,
+      "title": "ياضة الملاكمة (Boxe)",
+      "dates": "01 سبتمبر 2026 — 10 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 56459,
+      "title": "ورشة موسيقى للاطفال",
+      "dates": "06 سبتمبر 2026 — 30 يونيو 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 56464,
+      "title": "رياضة جيدو \" JUDO\" & JIU TIJSU\" لموسم 2026-2027",
+      "dates": "11 سبتمبر 2026 — 20 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 56461,
+      "title": "نشاط رياضي ترفيهي \"ممارسة الكرة الحديدية\"",
+      "dates": "23 سبتمبر 2026 — 25 ديسمبر 2026 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 176,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/176",
+    "name": "الشهيد شيلا الطيب أوزلاقن",
+    "commune": "أوزلاقن",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
-    "description": "facebook",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
     "openingHours",
     "website"
   ]

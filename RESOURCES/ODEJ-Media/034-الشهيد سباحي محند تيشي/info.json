@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T20:24:32Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 34,
     "name": "الشهيد سباحي محند تيشي",
@@ -14,19 +14,45 @@
   },
   "email": "sebbahimohcspt@gmail.com",
   "phone": "034 81 52 90",
-  "address": "تيشي مركز   ولاياية بجاية, 06023",
+  "address": "بلدية تيشي بجاية",
   "website": null,
-  "description": "هذا مجتمع تعليمي مُهتم، محترف، ومُبتكر، أدعوكم لاكتشافه.\nخبرة مُعلمينا وممارساتنا التعليمية المُبتكرة تضمن لكم جودة التعليم.",
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
   "facebookCategory": "Services publics & administration",
   "openingHours": null,
   "followers": 542,
+  "foundedYear": 2010,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 263,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/263",
+    "name": "الشهيد سباحي محند تيشي",
+    "commune": "تيشي",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "csptichy@odejbejaia-dz.com",
+        "facebook": "sebbahimohcspt@gmail.com"
+      },
+      "address": {
+        "youthConnect": "بلدية تيشي بجاية",
+        "replaced": "تيشي مركز   ولاياية بجاية, 06023"
+      }
+    }
+  },
   "sources": {
     "email": "facebook",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "openingHours",

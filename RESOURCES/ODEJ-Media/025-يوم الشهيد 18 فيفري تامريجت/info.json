@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T15:09:54Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 25,
     "name": "يوم الشهيد 18 فيفري تامريجت",
@@ -14,21 +14,38 @@
   },
   "email": "mjtameridjet@odejbejaia-dz.com",
   "phone": "034 15 13 92",
-  "address": null,
+  "address": "بلدية تامريجت بجاية",
   "website": null,
-  "description": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع ثقافي وتربوي واجتماعي ورياضي، تهدف إلى تنظيم أوقات فراغ الشباب وشغلها بشكل مفيد عبر توفير فضاءات للتعلم والتكوين والممارسة الفنية والرياضية. تعمل على تنمية مهاراتهم، وتوجيههم، وحمايتهم من الانحراف، وتنمية قدراتهم الإبداعية، وتشجيعهم على التفاعل الاجتماعي والمسؤولية",
   "facebookCategory": "Produit/service",
   "openingHours": null,
   "followers": 361,
+  "foundedYear": 2010,
+  "capacity": 90,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 223,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/223",
+    "name": "يوم الشهيد 18 فيفري تامريجت",
+    "commune": "تامريجت",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "address",
-    "description",
     "openingHours",
     "website"
   ]

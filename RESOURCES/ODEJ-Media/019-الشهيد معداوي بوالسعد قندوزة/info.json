@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T13:48:17Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 19,
     "name": "الشهيد معداوي بوالسعد قندوزة",
@@ -14,19 +14,54 @@
   },
   "email": "mjguendouza@odejbejaia-dz.com",
   "phone": "034 36 52 00",
-  "address": "cité sidi abederhman  guendouza  Akbou , Akbou, Algeria, 06001",
+  "address": "قندوزة أقبو",
   "website": null,
-  "description": "دار الشباب قندوزة فضاء للابداع والثقافة نرافق شبابنا نحو مستقبل أفضل",
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي واجتماعي وثقافي، تهدف إلى تنظيم وقت فراغ الشباب وتنمية مهاراتهم وقدراتهم في مجالات متنوعة مثل الفن والرياضة والثقافة والمعلوماتية. تعمل هذه المؤسسات على توفير أنشطة ترفيهية وتكوينية متنوعة، وتوجيه الشباب في حياتهم، وحمايتهم من الانحراف",
   "facebookCategory": "Centre culturel · Musique/groupe · Centre de loisirs",
   "openingHours": null,
   "followers": 468,
+  "foundedYear": 2010,
+  "capacity": 100,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 59328,
+      "title": "نشاط المجموعة الصوتية",
+      "dates": "13 أكتوبر 2026 — 01 سبتمبر 2027 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10716,
+      "title": "النشاطات الترفيهية",
+      "dates": "15 أكتوبر 2026 — 01 يناير 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 170,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/170",
+    "name": "الشهيد معداوي بوالسعد قندوزة",
+    "commune": "أقبو",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "قندوزة أقبو",
+        "replaced": "cité sidi abederhman  guendouza  Akbou , Akbou, Algeria, 06001"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
     "phone": "facebook",
-    "address": "facebook",
-    "description": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
     "openingHours",

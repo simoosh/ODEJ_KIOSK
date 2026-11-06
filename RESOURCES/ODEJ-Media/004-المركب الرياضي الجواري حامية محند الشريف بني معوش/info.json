@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T02:14:32Z",
-  "source": "Facebook page, as shown to a logged-out visitor",
+  "updatedAt": "2026-11-06T23:29:35Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
   "institution": {
     "id": 4,
     "name": "المركب الرياضي الجواري  حامية محند الشريف بني معوش",
@@ -14,21 +14,43 @@
   },
   "email": "cspbenimaouche@odejbejaia-dz.com",
   "phone": "034 89 03 16",
-  "address": "Beni Maouche Bejaia , 06124",
+  "address": "بني معوش",
   "website": null,
-  "description": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية تنشأ في الأحياء بهدف ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية للشباب. تعمل هذه المراكز تحت إشراف الهيئات المختصة، وتهدف إلى اكتشاف المواهب وتنميتها ودعمها من خلال توجيه الشباب نحو الأنشطة التي تتناسب مع قدراتهم",
   "facebookCategory": "Musique/groupe · Santé/beauté",
   "openingHours": null,
   "followers": 69,
+  "foundedYear": 2018,
+  "capacity": 80,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 64,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/64",
+    "name": "المركب الرياضي الجواري بني معوش، حامية محند الشريف بني معوش",
+    "commune": "بني معوش",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بني معوش",
+        "replaced": "Beni Maouche Bejaia , 06124"
+      }
+    }
+  },
   "sources": {
-    "email": "odej-website",
-    "phone": "odej-website",
-    "address": "facebook",
+    "address": "youth-connect",
     "facebookCategory": "facebook",
-    "followers": "facebook"
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
   },
   "notAvailable": [
-    "description",
     "openingHours",
     "website"
   ]
