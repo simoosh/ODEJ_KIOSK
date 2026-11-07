@@ -1541,3 +1541,88 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* fiche : cartes d'information (contact, détails, programme) */
+.info-card {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--r-md);
+  background: var(--card);
+  box-shadow: 0 0 0 0.06rem var(--line);
+  border-inline-start: 0.28rem solid var(--c, var(--green));
+}
+.info-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.info-list {
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+.info-list > div {
+  display: grid;
+  gap: 0.1rem;
+}
+.info-list dt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+.info-list dt svg {
+  color: var(--c, var(--green));
+}
+.info-list dd {
+  margin: 0;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+.info-flag {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.7rem;
+  background: var(--paper-2);
+  font-size: 0.95rem;
+}
+.info-flag svg {
+  flex: none;
+  color: var(--c, var(--green));
+}
+.programme {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.programme li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding-block-end: 0.8rem;
+  border-block-end: 0.06rem solid var(--line);
+}
+.programme li:last-child {
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+.programme strong {
+  font-weight: 600;
+  line-height: 1.5;
+}
+.programme-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.8rem;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+}

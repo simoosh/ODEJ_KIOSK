@@ -20,6 +20,7 @@ export function thumbUrl(src: string): string {
 export const CONFIG = {
   dataUrl: 'data/odej-bejaia.json',
   mediaIndexUrl: 'media/index.json',
+  detailsIndexUrl: 'data/details.json',
   boundaryUrl: 'data/bejaia-boundary.geojson',
 
   /** Retour automatique à l'accueil après inactivité (ms) */
