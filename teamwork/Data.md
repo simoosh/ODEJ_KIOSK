@@ -1,6 +1,6 @@
 # Data.md: known data problems
 
-Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-07, after the Youth Connect import into the 34 `info.json` files.
+Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-07, after the Youth Connect import into the 34 `info.json` files and the new coordinates from the ODEJ.
 
 ## How to use this file
 
@@ -17,7 +17,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | Collected and on the CDN | 34 of 67 | section 8 |
 | Not scraped yet | 33 of 67 | section 9 |
 | No usable Facebook page | 4 | #2, 14, 37, 49 |
-| Pin in the wrong place, or shared with another establishment | 5 | #10, 16, 24, 32, 42 |
+| Pin to confirm with the ODEJ (its table has a doubtful value) | 2 | #48, 67 |
 | No commune known | 7 | #27, 46, 48, 51, 53, 56, 60 |
 | Page may belong to another place or name | 10 | #11, 27, 31, 33, 39, 46, 48, 51, 53, 56 |
 | Contact details collected but not on the map | 30 | section 6 |
@@ -39,26 +39,16 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 ## 3. Coordinates and geography
 
-**Wrong or shared points: fix before the exhibition**
+**Source of the coordinates (7 Nov 2026).** The ODEJ sent a table of GPS points after we reported the wrong ones. It replaces our pins for 65 of the 67 establishments, matched to each one by type, commune and name. The wrong or shared points listed before (#10 and 32, #16 and 42, #16, #24, #46 and 57, and the close pairs) are solved by it. Youth Connect's own points are wrong and are not used.
+
+**Still open: the ODEJ's table has a doubtful value** (the pin was left as it was)
 
 | # | Problem |
 |---|---|
-| 10, 32 | Identical coordinates. Both are in Souk El Tenine. |
-| 16, 42 | Identical coordinates, in Béjaïa city. |
-| 16 | The name and the page say El Kseur, but the point is about 21 km away in Béjaïa city. The pin is probably wrong. |
-| 24 | The name says Barbacha, but the point is about 14 km north, near El Kseur. The page's address says Barbacha. |
-| 46 | The page says Messissna, but the point is 150 m from #57 in Seddouk. #58 is also listed in M'Cisna. |
+| 48 | The table says latitude 36.8830289, about 25 km out at sea. Our pin has the same problem. Probably 36.68, but ask the ODEJ. |
+| 67 | The table gives the Adekar hostel's latitude, 36.6922415, which is offshore. Our old pin, in Darguina, stays. |
 
-**Very close points: same site, or copied coordinates?**
-
-| # | Distance |
-|---|---|
-| 34, 50 | 68 m (Tichy) |
-| 44, 54 | 105 m (Kherrata) |
-| 6, 19 | 143 m (Akbou and Guendouza) |
-| 46, 57 | 152 m (Seddouk) |
-| 21, 60 | 355 m (Ouzellaguen) |
-| 29, 67 | 1.6 km (Darguina), same name |
+**Pins now very close (the table says so):** #29 and 67 (6 m, Darguina), #10 and 53 (29 m, Souk El Tenine), #13 and 59 (30 m, Tibane and El Flay), #44 and 54 (94 m, Kherrata), #34 and 50 (211 m, Tichy). Probably the same sites, but worth a look on the map.
 
 **No commune in the data** (`placeId` is empty, so these do not appear under any commune)
 
@@ -74,7 +64,9 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 **Place names that are not communes:** #12 Senadla, 18 Takriets, 19 Guendouza, 26 Tizi El Oued, 31 Bermatane, 38 Adjiouane, 63 Laalam. Their parent commune needs confirming. The #38 page says Draa El Kaid.
 
-**Limit of this check:** the data has no centre point for each commune, so a pin can't be measured against its commune automatically. Only the cases above were found, and other pins may still be off. Check each pin by eye on the map.
+**Hints for the missing communes.** Youth Connect gives one for each: #27 Beni Ksila, #46 M'Cisna, #48 Beni Ksila, #51 and 53 Souk El Tenine, #56 Ighil Ali, #60 Ouzellaguen. The ODEJ's table says Djebla for #27. `placeId` is not changed yet: it needs the owner's agreement.
+
+**Limit of this check:** the data has no centre point for each commune, so a pin can't be measured against its commune automatically. Check a few pins by eye on the map.
 
 ## 4. Facebook pages
 

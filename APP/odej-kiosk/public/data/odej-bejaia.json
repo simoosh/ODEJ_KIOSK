@@ -570,8 +570,8 @@
       "category": "sports-complex",
       "placeId": "adekar",
       "location": {
-        "lat": 36.6910753,
-        "lng": 4.6815183
+        "lat": 36.6910379,
+        "lng": 4.682523
       },
       "description": {
         "ar": null,
@@ -608,7 +608,7 @@
       "category": "hostel",
       "placeId": "adekar",
       "location": {
-        "lat": 36.6923379,
+        "lat": 36.6922415,
         "lng": 4.6862273
       },
       "description": {
@@ -646,8 +646,8 @@
       "category": "science-centre",
       "placeId": "oued-ghir",
       "location": {
-        "lat": 36.7087263,
-        "lng": 4.9728224
+        "lat": 36.7088364,
+        "lng": 4.9538722
       },
       "description": {
         "ar": "يوفر المركز الترفيه العلمي مجموعة متنوعة من الأنشطة التفاعلية التي تهدف إلى تنمية المهارات العلمية والتكنولوجية لدى الشباب بطريقة ممتعة ومبتكرة.",
@@ -740,8 +740,8 @@
       "category": "sports-complex",
       "placeId": "amizour",
       "location": {
-        "lat": 36.6471708,
-        "lng": 4.9045869
+        "lat": 36.6472042,
+        "lng": 4.9059099
       },
       "description": {
         "ar": null,
@@ -786,8 +786,8 @@
       "category": "hostel",
       "placeId": "akbou",
       "location": {
-        "lat": 36.4532417,
-        "lng": 4.540312
+        "lat": 36.4524958,
+        "lng": 4.5407584
       },
       "description": {
         "ar": null,
@@ -820,8 +820,8 @@
       "category": "sports-complex",
       "placeId": "chemini",
       "location": {
-        "lat": 36.5954608,
-        "lng": 4.6155892
+        "lat": 36.5949209,
+        "lng": 4.614314
       },
       "description": {
         "ar": null,
@@ -862,8 +862,8 @@
       "category": "hostel",
       "placeId": "aokas",
       "location": {
-        "lat": 36.6448061,
-        "lng": 5.2070208
+        "lat": 36.6449339,
+        "lng": 5.2090794
       },
       "description": {
         "ar": null,
@@ -904,8 +904,8 @@
       "category": "sports-complex",
       "placeId": "el-kseur",
       "location": {
-        "lat": 36.6848118,
-        "lng": 4.8540982
+        "lat": 36.6844103,
+        "lng": 4.8543357
       },
       "description": {
         "ar": null,
@@ -933,8 +933,8 @@
       "category": "youth-centre",
       "placeId": "souk-el-tenine",
       "location": {
-        "lat": 36.6280037,
-        "lng": 5.3283004
+        "lat": 36.6310186,
+        "lng": 5.3339099
       },
       "description": {
         "ar": null,
@@ -983,8 +983,8 @@
       "category": "sports-complex",
       "placeId": "bejaia",
       "location": {
-        "lat": 36.7721416,
-        "lng": 4.9812182
+        "lat": 36.733346,
+        "lng": 5.0606827
       },
       "description": {
         "ar": null,
@@ -1079,8 +1079,8 @@
       "category": "youth-centre",
       "placeId": "tibane",
       "location": {
-        "lat": 36.6134987,
-        "lng": 4.6510702
+        "lat": 36.6077011,
+        "lng": 4.6662084
       },
       "description": {
         "ar": null,
@@ -1108,8 +1108,8 @@
       "category": "youth-facility",
       "placeId": "sidi-ayad",
       "location": {
-        "lat": 36.6101635,
-        "lng": 4.7220455
+        "lat": 36.6098015,
+        "lng": 4.7188461
       },
       "description": {
         "ar": null,
@@ -1150,8 +1150,8 @@
       "category": "youth-centre",
       "placeId": "sidi-aich",
       "location": {
-        "lat": 36.6275021,
-        "lng": 4.6853343
+        "lat": 36.6072228,
+        "lng": 4.679762
       },
       "description": {
         "ar": null,
@@ -1196,8 +1196,8 @@
       "category": "youth-centre",
       "placeId": "el-kseur",
       "location": {
-        "lat": 36.7584523,
-        "lng": 5.0748202
+        "lat": 36.6765376,
+        "lng": 4.8578987
       },
       "description": {
         "ar": null,
@@ -1250,8 +1250,8 @@
       "category": "youth-centre",
       "placeId": "akbou",
       "location": {
-        "lat": 36.4581245,
-        "lng": 4.5238714
+        "lat": 36.4579865,
+        "lng": 4.5230868
       },
       "description": {
         "ar": null,
@@ -1292,8 +1292,8 @@
       "category": "youth-centre",
       "placeId": "takriets",
       "location": {
-        "lat": 36.5797599,
-        "lng": 4.6519033
+        "lat": 36.5798086,
+        "lng": 4.6513207
       },
       "description": {
         "ar": null,
@@ -1330,8 +1330,8 @@
       "category": "youth-centre",
       "placeId": "guendouza",
       "location": {
-        "lat": 36.4532283,
-        "lng": 4.5387089
+        "lat": 36.4535078,
+        "lng": 4.5341723
       },
       "description": {
         "ar": null,
@@ -1380,8 +1380,8 @@
       "category": "sports-complex",
       "placeId": "tifra",
       "location": {
-        "lat": 36.6910821,
-        "lng": 4.6136683
+        "lat": 36.6510346,
+        "lng": 4.6725302
       },
       "description": {
         "ar": null,
@@ -1409,8 +1409,8 @@
       "category": "sports-complex",
       "placeId": "ouzellaguen",
       "location": {
-        "lat": 36.5475007,
-        "lng": 4.608137
+        "lat": 36.5473322,
+        "lng": 4.6137795
       },
       "description": {
         "ar": "المركب الرياضي الجواري أوزلاقن فضاء مخصص لتفتح الشباب من خلال أنشطة تربوية وترفيهية متنوعة. مهمتنا شغل أوقات فراغ الشباب بطريقة بناءة ومفيدة.",
@@ -1467,8 +1467,8 @@
       "category": "sports-complex",
       "placeId": "barbacha",
       "location": {
-        "lat": 36.5733686,
-        "lng": 4.9538247
+        "lat": 36.5737358,
+        "lng": 4.9538105
       },
       "description": {
         "ar": null,
@@ -1496,8 +1496,8 @@
       "category": "youth-centre",
       "placeId": "ait-rzine",
       "location": {
-        "lat": 36.3700588,
-        "lng": 4.4853711
+        "lat": 36.3971127,
+        "lng": 4.5193919
       },
       "description": {
         "ar": null,
@@ -1525,8 +1525,8 @@
       "category": "youth-centre",
       "placeId": "barbacha",
       "location": {
-        "lat": 36.6813495,
-        "lng": 4.8938108
+        "lat": 36.5741787,
+        "lng": 4.9595526
       },
       "description": {
         "ar": null,
@@ -1575,8 +1575,8 @@
       "category": "youth-centre",
       "placeId": "tamridjet",
       "location": {
-        "lat": 36.5746785,
-        "lng": 5.3712439
+        "lat": 36.5746234,
+        "lng": 5.3685527
       },
       "description": {
         "ar": null,
@@ -1617,8 +1617,8 @@
       "category": "youth-centre",
       "placeId": "tizi-el-oued",
       "location": {
-        "lat": 36.6225038,
-        "lng": 5.3383037
+        "lat": 36.6225277,
+        "lng": 5.3404417
       },
       "description": {
         "ar": null,
@@ -1651,8 +1651,8 @@
       "category": "multipurpose-hall",
       "placeId": null,
       "location": {
-        "lat": 36.7898198,
-        "lng": 4.7486935
+        "lat": 36.7900321,
+        "lng": 4.7484719
       },
       "description": {
         "ar": null,
@@ -1693,8 +1693,8 @@
       "category": "sports-complex",
       "placeId": "aokas",
       "location": {
-        "lat": 36.6411292,
-        "lng": 5.2121214
+        "lat": 36.637116,
+        "lng": 5.2489765
       },
       "description": {
         "ar": null,
@@ -1739,8 +1739,8 @@
       "category": "sports-complex",
       "placeId": "darguina",
       "location": {
-        "lat": 36.5505346,
-        "lng": 5.3226613
+        "lat": 36.5646979,
+        "lng": 5.3175245
       },
       "description": {
         "ar": null,
@@ -1789,8 +1789,8 @@
       "category": "sports-complex",
       "placeId": "seddouk",
       "location": {
-        "lat": 36.5487502,
-        "lng": 4.6851653
+        "lat": 36.5486026,
+        "lng": 4.6868637
       },
       "description": {
         "ar": null,
@@ -1869,8 +1869,8 @@
       "category": "sports-complex",
       "placeId": "souk-el-tenine",
       "location": {
-        "lat": 36.6280037,
-        "lng": 5.3283004
+        "lat": 36.6282291,
+        "lng": 5.330615
       },
       "description": {
         "ar": null,
@@ -1919,8 +1919,8 @@
       "category": "youth-centre",
       "placeId": "tazmalt",
       "location": {
-        "lat": 36.3906026,
-        "lng": 4.3869728
+        "lat": 36.3907527,
+        "lng": 4.389305
       },
       "description": {
         "ar": null,
@@ -1961,8 +1961,8 @@
       "category": "sports-complex",
       "placeId": "tichy",
       "location": {
-        "lat": 36.6699679,
-        "lng": 5.1551098
+        "lat": 36.6698794,
+        "lng": 5.1574571
       },
       "description": {
         "ar": null,
@@ -2007,8 +2007,8 @@
       "category": "sports-complex",
       "placeId": "timezrit",
       "location": {
-        "lat": 36.6277852,
-        "lng": 4.7790634
+        "lat": 36.627811,
+        "lng": 4.7800545
       },
       "description": {
         "ar": null,
@@ -2049,8 +2049,8 @@
       "category": "sports-complex",
       "placeId": "tizi-nberber",
       "location": {
-        "lat": 36.595048,
-        "lng": 5.1539945
+        "lat": 36.5962936,
+        "lng": 5.2218984
       },
       "description": {
         "ar": null,
@@ -2095,8 +2095,8 @@
       "category": "sports-complex",
       "placeId": "tamokra",
       "location": {
-        "lat": 36.3911194,
-        "lng": 4.6617983
+        "lat": 36.3911076,
+        "lng": 4.6638532
       },
       "description": {
         "ar": null,
@@ -2137,8 +2137,8 @@
       "category": "youth-centre",
       "placeId": "adjiouane",
       "location": {
-        "lat": 36.4587928,
-        "lng": 5.2025838
+        "lat": 36.4552546,
+        "lng": 5.196379
       },
       "description": {
         "ar": null,
@@ -2225,8 +2225,8 @@
       "category": "youth-centre",
       "placeId": "aokas",
       "location": {
-        "lat": 36.6348539,
-        "lng": 5.2420048
+        "lat": 36.6361902,
+        "lng": 5.2413828
       },
       "description": {
         "ar": null,
@@ -2271,8 +2271,8 @@
       "category": "youth-centre",
       "placeId": "chellata",
       "location": {
-        "lat": 36.5103023,
-        "lng": 4.5029374
+        "lat": 36.5104443,
+        "lng": 4.501584
       },
       "description": {
         "ar": null,
@@ -2300,8 +2300,8 @@
       "category": "youth-centre",
       "placeId": "bejaia",
       "location": {
-        "lat": 36.7584523,
-        "lng": 5.0748202
+        "lat": 36.7585057,
+        "lng": 5.0768728
       },
       "description": {
         "ar": null,
@@ -2350,8 +2350,8 @@
       "category": "youth-centre",
       "placeId": "feraoun",
       "location": {
-        "lat": 36.5766615,
-        "lng": 4.8556261
+        "lat": 36.5769793,
+        "lng": 4.8559472
       },
       "description": {
         "ar": null,
@@ -2384,8 +2384,8 @@
       "category": "youth-centre",
       "placeId": "kherrata",
       "location": {
-        "lat": 36.4949338,
-        "lng": 5.2727484
+        "lat": 36.4956884,
+        "lng": 5.2721999
       },
       "description": {
         "ar": null,
@@ -2430,8 +2430,8 @@
       "category": "youth-centre",
       "placeId": "melbou",
       "location": {
-        "lat": 36.6400904,
-        "lng": 5.3564036
+        "lat": 36.6395876,
+        "lng": 5.3610869
       },
       "description": {
         "ar": null,
@@ -2472,8 +2472,8 @@
       "category": "youth-centre",
       "placeId": null,
       "location": {
-        "lat": 36.547249,
-        "lng": 4.6848725
+        "lat": 36.56191,
+        "lng": 4.7100823
       },
       "description": {
         "ar": null,
@@ -2518,8 +2518,8 @@
       "category": "hostel",
       "placeId": "ouzellaguen",
       "location": {
-        "lat": 36.5094212,
-        "lng": 4.5848573
+        "lat": 36.5094578,
+        "lng": 4.5827285
       },
       "description": {
         "ar": null,
@@ -2589,8 +2589,8 @@
       "category": "youth-facility",
       "placeId": "tazmalt",
       "location": {
-        "lat": 36.3869599,
-        "lng": 4.383969
+        "lat": 36.3869557,
+        "lng": 4.3990964
       },
       "description": {
         "ar": null,
@@ -2635,8 +2635,8 @@
       "category": "hostel",
       "placeId": "tichy",
       "location": {
-        "lat": 36.6693679,
-        "lng": 5.154953
+        "lat": 36.6692529,
+        "lng": 5.1552261
       },
       "description": {
         "ar": null,
@@ -2681,8 +2681,8 @@
       "category": "youth-camp",
       "placeId": null,
       "location": {
-        "lat": 36.6362766,
-        "lng": 5.3459527
+        "lat": 36.6409734,
+        "lng": 5.3516744
       },
       "description": {
         "ar": null,
@@ -2769,8 +2769,8 @@
       "category": "hostel",
       "placeId": null,
       "location": {
-        "lat": 36.6310171,
-        "lng": 5.3341274
+        "lat": 36.6308954,
+        "lng": 5.3341966
       },
       "description": {
         "ar": null,
@@ -2807,8 +2807,8 @@
       "category": "hostel",
       "placeId": "kherrata",
       "location": {
-        "lat": 36.4943368,
-        "lng": 5.2718335
+        "lat": 36.4951096,
+        "lng": 5.2729634
       },
       "description": {
         "ar": null,
@@ -2853,8 +2853,8 @@
       "category": "youth-centre",
       "placeId": "amizour",
       "location": {
-        "lat": 36.6364745,
-        "lng": 4.9011422
+        "lat": 36.6364162,
+        "lng": 4.9018329
       },
       "description": {
         "ar": null,
@@ -2895,8 +2895,8 @@
       "category": "youth-centre",
       "placeId": null,
       "location": {
-        "lat": 36.3382106,
-        "lng": 4.4709018
+        "lat": 36.3382255,
+        "lng": 4.465894
       },
       "description": {
         "ar": null,
@@ -2937,8 +2937,8 @@
       "category": "youth-centre",
       "placeId": "seddouk",
       "location": {
-        "lat": 36.5468231,
-        "lng": 4.6832606
+        "lat": 36.5468563,
+        "lng": 4.6854715
       },
       "description": {
         "ar": null,
@@ -2983,8 +2983,8 @@
       "category": "multipurpose-hall",
       "placeId": "mcisna",
       "location": {
-        "lat": 36.5623324,
-        "lng": 4.7086703
+        "lat": 36.5603608,
+        "lng": 4.7166281
       },
       "description": {
         "ar": null,
@@ -3017,8 +3017,8 @@
       "category": "youth-centre",
       "placeId": "leflaye",
       "location": {
-        "lat": 36.6079017,
-        "lng": 4.6647906
+        "lat": 36.6078974,
+        "lng": 4.6659779
       },
       "description": {
         "ar": null,
@@ -3059,8 +3059,8 @@
       "category": "youth-centre",
       "placeId": null,
       "location": {
-        "lat": 36.5458879,
-        "lng": 4.6115662
+        "lat": 36.5460357,
+        "lng": 4.610769
       },
       "description": {
         "ar": null,
@@ -3097,8 +3097,8 @@
       "category": "youth-centre",
       "placeId": "semaoun",
       "location": {
-        "lat": 36.6031819,
-        "lng": 4.8269213
+        "lat": 36.6046951,
+        "lng": 4.8225277
       },
       "description": {
         "ar": null,
@@ -3126,8 +3126,8 @@
       "category": "youth-centre",
       "placeId": "fenaia-ilmaten",
       "location": {
-        "lat": 36.6469208,
-        "lng": 4.772744
+        "lat": 36.6471719,
+        "lng": 4.7716141
       },
       "description": {
         "ar": null,
@@ -3155,8 +3155,8 @@
       "category": "youth-centre",
       "placeId": "laalam",
       "location": {
-        "lat": 36.5858271,
-        "lng": 5.4416143
+        "lat": 36.5862993,
+        "lng": 5.4409754
       },
       "description": {
         "ar": null,
@@ -3193,8 +3193,8 @@
       "category": "youth-centre",
       "placeId": "taourirt-ighil",
       "location": {
-        "lat": 36.6975255,
-        "lng": 4.7053256
+        "lat": 36.7017387,
+        "lng": 4.6961141
       },
       "description": {
         "ar": null,
@@ -3239,8 +3239,8 @@
       "category": "youth-centre",
       "placeId": "timezrit",
       "location": {
-        "lat": 36.6155207,
-        "lng": 4.7387094
+        "lat": 36.6155147,
+        "lng": 4.7737285
       },
       "description": {
         "ar": null,
@@ -3281,8 +3281,8 @@
       "category": "youth-centre",
       "placeId": "draa-el-kaid",
       "location": {
-        "lat": 36.4418633,
-        "lng": 5.2401718
+        "lat": 36.4169085,
+        "lng": 5.2197586
       },
       "description": {
         "ar": null,
