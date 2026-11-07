@@ -31,7 +31,7 @@ en arabe et en anglais, en portrait et en paysage.
 |---|---|
 | 🏛️ **Organisme** | ديوان مؤسسات الشباب لولاية بجاية · Youth Establishments Office of Bejaia |
 | 📅 **Événement** | Salon des établissements de jeunesse, Alger, 11 novembre 2026 |
-| 🗺️ **Contenu** | 67 établissements · 7 catégories · 43 communes et lieux-dits |
+| 🗺️ **Contenu** | 67 établissements · 7 catégories · 46 communes et lieux-dits |
 | 🌐 **Langues** | arabe (par défaut, RTL) et anglais (LTR) |
 | 🖥️ **Écrans** | portrait et paysage : 1920×1080, 1080×1920, 1280×1024, 1024×768 |
 | ☁️ **Hébergement** | Netlify pour l'application, Cloudflare Pages pour les médias, pack local sur la borne |
