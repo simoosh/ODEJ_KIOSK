@@ -18,7 +18,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | Not scraped yet | 33 of 67 | section 9 |
 | No usable Facebook page | 4 | #2, 14, 37, 49 |
 | Pin to confirm with the ODEJ (its table has a doubtful value) | 2 | #48, 67 |
-| No commune known | 7 | #27, 46, 48, 51, 53, 56, 60 |
+| Commune to confirm | 4 | #13, 51, 64 and the English names of 3 new communes |
 | Page may belong to another place or name | 10 | #11, 27, 31, 33, 39, 46, 48, 51, 53, 56 |
 | Contact details collected but not on the map | 30 | section 6 |
 | No activities in the data | 67 | all |
@@ -50,21 +50,15 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 **Pins now very close (the table says so):** #29 and 67 (6 m, Darguina), #10 and 53 (29 m, Souk El Tenine), #13 and 59 (30 m, Tibane and El Flay), #44 and 54 (94 m, Kherrata), #34 and 50 (211 m, Tichy). Probably the same sites, but worth a look on the map.
 
-**No commune in the data** (`placeId` is empty, so these do not appear under any commune)
+**Communes (7 Nov 2026).** Every establishment has a place now. The commune of #27 and 48 (Beni Ksila), #46 (M'Cisna), #53 (Souk El Tenine), #56 (Ighil Ali) and #60 (Ouzellaguen) comes from Youth Connect and agrees with its address and the ODEJ's table. Three communes were added to `places`: Beni Ksila, Ighil Ali and Souk Oufella. Their Arabic names come from Youth Connect and their English spellings are unverified, like the others. The seven localities (Senadla, Takriets, Guendouza, Tizi El Oued, Bermatane, Adjiouane, Laalam) keep their names and now have a `communeId` (Draa El Kaid, Souk Oufella, Akbou, Melbou, Sidi Aich, Draa El Kaid, Tamridjet), taken from Youth Connect.
 
-| # | What we know |
+**Still to confirm with the ODEJ**
+
+| # | Problem |
 |---|---|
-| 27 | Between Adekar, Toudja and Beni Ksila. The page says Djebla. |
-| 46 | Beside Seddouk. The page says Messissna. |
-| 48 | On the coast, Beni Ksila sector. |
-| 51 | Near Souk El Tenine and Melbou. |
-| 53 | Near Souk El Tenine. |
-| 56 | South of the wilaya, Ait R'zine and Ighil Ali sector. |
-| 60 | 355 m from #21, Ouzellaguen. |
-
-**Place names that are not communes:** #12 Senadla, 18 Takriets, 19 Guendouza, 26 Tizi El Oued, 31 Bermatane, 38 Adjiouane, 63 Laalam. Their parent commune needs confirming. The #38 page says Draa El Kaid.
-
-**Hints for the missing communes.** Youth Connect gives one for each: #27 Beni Ksila, #46 M'Cisna, #48 Beni Ksila, #51 and 53 Souk El Tenine, #56 Ighil Ali, #60 Ouzellaguen. The ODEJ's table says Djebla for #27. `placeId` is not changed yet: it needs the owner's agreement.
+| 51 | Youth Connect's commune field says Souk El Tenine, but its address and the ODEJ's table say Melbou. We use Melbou. |
+| 13 | Our place is Tibane, which is listed as a commune. Youth Connect says El Flay (Leflaye). |
+| 64 | Our place is Taourirt Ighil, as in the ODEJ's table. Youth Connect says Adekar. |
 
 **Limit of this check:** the data has no centre point for each commune, so a pin can't be measured against its commune automatically. Check a few pins by eye on the map.
 

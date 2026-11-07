@@ -503,12 +503,37 @@
       "kind": "commune"
     },
     {
+      "id": "beni-ksila",
+      "name": {
+        "ar": "بني كسيلة",
+        "en": "Beni Ksila"
+      },
+      "kind": "commune"
+    },
+    {
+      "id": "ighil-ali",
+      "name": {
+        "ar": "إغيل علي",
+        "en": "Ighil Ali"
+      },
+      "kind": "commune"
+    },
+    {
+      "id": "souk-oufella",
+      "name": {
+        "ar": "سوق أوفلا",
+        "en": "Souk Oufella"
+      },
+      "kind": "commune"
+    },
+    {
       "id": "senadla",
       "name": {
         "ar": "صنادلة",
         "en": "Senadla"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "draa-el-kaid"
     },
     {
       "id": "takriets",
@@ -516,7 +541,8 @@
         "ar": "تقريت",
         "en": "Takriets"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "souk-oufella"
     },
     {
       "id": "guendouza",
@@ -524,7 +550,8 @@
         "ar": "قندوزة",
         "en": "Guendouza"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "akbou"
     },
     {
       "id": "tizi-el-oued",
@@ -532,7 +559,8 @@
         "ar": "تيزي الواد",
         "en": "Tizi El Oued"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "melbou"
     },
     {
       "id": "bermatane",
@@ -540,7 +568,8 @@
         "ar": "برمطان",
         "en": "Bermatane"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "sidi-aich"
     },
     {
       "id": "adjiouane",
@@ -548,7 +577,8 @@
         "ar": "أجيوان",
         "en": "Adjiouane"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "draa-el-kaid"
     },
     {
       "id": "laalam",
@@ -556,7 +586,8 @@
         "ar": "لعلام",
         "en": "Laalam"
       },
-      "kind": "locality"
+      "kind": "locality",
+      "communeId": "tamridjet"
     }
   ],
   "establishments": [
@@ -1649,7 +1680,7 @@
         "en": "Martyr Banoun Akli"
       },
       "category": "multipurpose-hall",
-      "placeId": null,
+      "placeId": "beni-ksila",
       "location": {
         "lat": 36.7900321,
         "lng": 4.7484719
@@ -2470,7 +2501,7 @@
         "en": "Martyr Bouhaddou Abdelhamid"
       },
       "category": "youth-centre",
-      "placeId": null,
+      "placeId": "mcisna",
       "location": {
         "lat": 36.56191,
         "lng": 4.7100823
@@ -2545,7 +2576,7 @@
         "en": "Martyr Touati Amar"
       },
       "category": "youth-camp",
-      "placeId": null,
+      "placeId": "beni-ksila",
       "location": {
         "lat": 36.8822041,
         "lng": 4.6594334
@@ -2679,7 +2710,7 @@
         "en": "Martyr Dehamla Mouloud"
       },
       "category": "youth-camp",
-      "placeId": null,
+      "placeId": "melbou",
       "location": {
         "lat": 36.6409734,
         "lng": 5.3516744
@@ -2767,7 +2798,7 @@
         "en": "Martyr Bouhraoua Amar"
       },
       "category": "hostel",
-      "placeId": null,
+      "placeId": "souk-el-tenine",
       "location": {
         "lat": 36.6308954,
         "lng": 5.3341966
@@ -2893,7 +2924,7 @@
         "en": "Mouloud Kacem Nait Belkacem"
       },
       "category": "youth-centre",
-      "placeId": null,
+      "placeId": "ighil-ali",
       "location": {
         "lat": 36.3382255,
         "lng": 4.465894
@@ -3057,7 +3088,7 @@
         "en": "Martyr Maouche Hadj Laamara"
       },
       "category": "youth-centre",
-      "placeId": null,
+      "placeId": "ouzellaguen",
       "location": {
         "lat": 36.5460357,
         "lng": 4.610769

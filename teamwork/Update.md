@@ -468,3 +468,8 @@ Area: APP/odej-kiosk/public/data/odej-bejaia.json (shared file), teamwork/Data.m
 What: the ODEJ sent a PDF of GPS points (6 Nov), after we reported the wrong ones. Each row was matched to an establishment by type, commune and name, and `location` was replaced for 65 of the 67 (60 values changed). #48 and #67 keep their old pins: the table's latitude is offshore for both. Only `location` changed: names, communes (`placeId`) and categories are the same.
 Impact on others: app agent: pins move, some by several km (#16 21 km, #24 13 km, #11 8 km), so check the framing and the mask on the map. `validate:data`, lint, typecheck and the 100 tests pass.
 
+### 2026-11-07 02:10 · [data-agent] · CHANGE · Communes for every establishment
+Area: APP/odej-kiosk/public/data/odej-bejaia.json (shared file), teamwork/Data.md, README.md
+What: `placeId` filled for #27, 46, 48, 51, 53, 56 and 60. Three communes added to `places` (beni-ksila, ighil-ali, souk-oufella). `communeId` set on the seven localities. Source: Youth Connect, checked against its address and the ODEJ's table. #51 uses Melbou, where Youth Connect's field says Souk El Tenine. Only `places` and `placeId` changed.
+Impact on others: app agent: the seven establishments now appear under a commune in the search and the filters. `validate:data` and the 100 tests pass. This branch sits on top of the coordinates PR.
+
