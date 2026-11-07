@@ -1,9 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { BasemapId, Boundary, KioskData, Locale, MediaIndex } from './types';
+import type { BasemapId, Boundary, DetailsIndex, KioskData, Locale, MediaIndex } from './types';
 import { CONFIG, forcedQuality, nextQuality, QUALITY, type QualityLevel } from './config';
 import { I18nProvider, useI18n } from './i18n/I18n';
 import { MapView, type MapHandle } from './map/MapView';
-import { applyFilters, buildIndexes, sortForList, withMedia, type Filters } from './data/model';
+import { applyFilters, buildIndexes, sortForList, withDetails, withMedia, type Filters } from './data/model';
 import { Landing } from './components/Landing';
 import { SearchBox, type SearchPick } from './components/SearchBox';
 import { EstablishmentList } from './components/EstablishmentList';
@@ -34,15 +34,16 @@ export default function App() {
         if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
         return r.json() as Promise<T>;
       });
-    // Sans index, l'application s'affiche sans médias
+    // Sans index, l'application s'affiche sans médias, et sans détails avec les seules données du JSON
     // Sans contour, la carte cadre sur les établissements, sans masque
     Promise.all([
       load<KioskData>(CONFIG.dataUrl),
       load<MediaIndex>(CONFIG.mediaIndexUrl).catch(() => ({})),
+      load<DetailsIndex>(CONFIG.detailsIndexUrl).catch(() => ({})),
       load<Boundary>(CONFIG.boundaryUrl).catch(() => null),
     ])
-      .then(([kiosk, media, outline]) => {
-        setData(withMedia(kiosk, media));
+      .then(([kiosk, media, details, outline]) => {
+        setData(withDetails(withMedia(kiosk, media), details));
         setBoundary(outline);
       })
       .catch((e) => setError(String(e)));

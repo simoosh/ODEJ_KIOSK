@@ -189,6 +189,7 @@ APP/odej-kiosk/public/media/**/*.gif
 APP/odej-kiosk/public/media/**/*.mp4
 APP/odej-kiosk/public/media/**/*.webm
 APP/odej-kiosk/public/media/index.json
+APP/odej-kiosk/public/data/details.json
 .media-stage/
 kiosk-pack/
 

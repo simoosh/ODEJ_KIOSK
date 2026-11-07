@@ -1,4 +1,4 @@
-import type { Category, Establishment, I18nText, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
+import type { Category, DetailsIndex, Establishment, I18nText, KioskData, Locale, MediaIndex, MediaItem, Place } from '../types';
 import { CONFIG, MEDIA_BASE, mediaUrl } from '../config';
 import { matchScore, normalize } from '../lib/text';
 
@@ -29,6 +29,36 @@ export function withMedia(data: KioskData, index: MediaIndex, base: string = MED
       const media = index[e.id];
       if (!media) return e;
       return { ...e, media: { cover: media.cover ? resolve(media.cover) : null, gallery: media.gallery.map(resolve) } };
+    }),
+  };
+}
+
+/**
+ * Fusionne data/details.json (les info.json) dans les établissements, par id.
+ * Contact : l'info.json prime, il porte la règle de source (Facebook d'abord, Youth Connect en complément).
+ * Description : celle des données, relue et traduite, prime ; sinon le texte arabe de l'info.json.
+ * Les horaires ne viennent jamais de là : ceux de Facebook sont des états du moment, pas un horaire.
+ */
+export function withDetails(data: KioskData, index: DetailsIndex): KioskData {
+  return {
+    ...data,
+    establishments: data.establishments.map((e) => {
+      const d = index[e.id];
+      if (!d) return e;
+      const hasText = !!(e.description?.ar || e.description?.en);
+      const facts = { foundedYear: d.foundedYear, capacity: d.capacity, accessible: d.accessible };
+      return {
+        ...e,
+        contact: {
+          ...e.contact,
+          phone: d.phone ?? e.contact?.phone ?? null,
+          email: d.email ?? e.contact?.email ?? null,
+          address: d.address ?? e.contact?.address ?? null,
+        },
+        ...(!hasText && d.description ? { description: { ar: d.description, en: null } } : {}),
+        ...(Object.values(facts).some((v) => v !== undefined) ? { facts } : {}),
+        ...(d.programme?.length ? { programme: d.programme } : {}),
+      };
     }),
   };
 }

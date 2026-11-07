@@ -32,6 +32,11 @@ export const UI_ICONS = {
   facebook: '<path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H7v3h2v9h3v-9h2.5l.5-3H12V7a1 1 0 0 1 1-1h2z"/>',
   chevronUp: '<path d="m6 15 6-6 6 6"/>',
   chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  people: '<circle cx="9" cy="8.5" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9.5" r="2.3"/><path d="M16.5 14.4A5 5 0 0 1 21 19.5"/>',
+  access: '<circle cx="12" cy="4.5" r="1.8"/><path d="M12 8v6l3.5 5M12 11H7.5M9.2 14.6A4.5 4.5 0 1 0 15 19"/>',
   compass: '<path d="M12 2.5 15 12h-6z" fill="currentColor" stroke="none"/><path d="M12 21.5 9 12h6z"/>',
 } as const;
 

@@ -23,6 +23,31 @@ export interface EstablishmentMedia {
 /** Contenu de media/index.json : les media.json de tous les établissements, par id */
 export type MediaIndex = Record<string, EstablishmentMedia>;
 
+/** Une activité du programme réel d'un établissement (Youth Connect). Texte en arabe seulement. */
+export interface ProgrammeItem {
+  title: string;
+  /** Dates ISO (AAAA-MM-JJ), null si le format n'a pas été reconnu */
+  from: string | null;
+  to: string | null;
+  theme: string | null;
+}
+
+/** Une entrée de data/details.json : ce que dit l'info.json d'un établissement, assemblé par scripts/build-details-index.mjs */
+export interface DetailEntry {
+  phone?: string;
+  email?: string;
+  address?: string;
+  /** Texte arabe seulement : il passe après la description des données, qui est bilingue */
+  description?: string;
+  foundedYear?: number;
+  capacity?: number;
+  accessible?: true;
+  programme?: ProgrammeItem[];
+}
+
+/** Contenu de data/details.json, par id */
+export type DetailsIndex = Record<string, DetailEntry>;
+
 export interface Category {
   id: string;
   label: I18nText;
@@ -69,6 +94,9 @@ export interface Establishment {
   contact?: { phone?: string | null; address?: string | null; email?: string | null; facebook?: string | null };
   /** Absent du JSON : fusionné au chargement depuis media/index.json */
   media?: EstablishmentMedia;
+  /** Absents du JSON : fusionnés au chargement depuis data/details.json */
+  facts?: { foundedYear?: number; capacity?: number; accessible?: boolean };
+  programme?: ProgrammeItem[];
   openingHours?: I18nText | null;
   verification?: { status: 'ok' | 'to_check'; issues: Issue[] };
 }

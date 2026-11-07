@@ -112,7 +112,7 @@ Autres PR de données : contacts e-mail et site web ([#14](https://github.com/si
 | 🏔️ **Carte 3D** | relief auto-hébergé, brouillard qui s'épaissit hors de la wilaya, fonds « carte » et « satellite » avec un tracé simplifié de secours |
 | 🌥️ **Accueil** | texte centré sur des nuages, carte qui tourne en dessous, deuxième bouton vers l'établissement phare |
 | 🔎 **Recherche** | clavier virtuel, suggestions par établissement, commune, type ou activité |
-| 📋 **Fiche** | description, activités, contacts, horaires, galerie photos et vidéos avec gestes de balayage, QR code |
+| 📋 **Fiche** | nom, photo, description, galerie photos et vidéos avec gestes de balayage, puis cartes : contact, année de création, capacité, accessibilité, programme des activités, QR code Facebook. Tout vient des `info.json`, sans import manuel |
 | ⭐ **Établissement phare** | marqueur doré avec son nom, en tête de liste et de la recherche. Il suit le champ `featured` des données, aucun identifiant n'est dans le code |
 | ⏱️ **Veille** | après 2 minutes sans contact, un avertissement de 10 secondes, puis retour à l'accueil avec réinitialisation de la langue, du fond et du relief. Une vidéo en cours de lecture retarde la veille |
 | 🧪 **Outils** | `?sim=1` simulateur d'écrans, `?debug=1` panneau de performance, `?quality=low` niveau de qualité imposé (voir [docs/PERF.md](APP/odej-kiosk/docs/PERF.md)) |
