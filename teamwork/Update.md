@@ -463,3 +463,8 @@ Area: RESOURCES/ODEJ-Media/*/info.json
 What: the scrapper (local, not in the repo) now reads the 67 establishment pages of Youth Connect and writes them into `info.json`: new fields `foundedYear`, `capacity`, `accessible`, `activities` and a `youthConnect` block (page, read date, conflicts). Placeholder phones (all zeros) are dropped. 22 e-mails and 18 phones now come from Youth Connect, 12 and 15 stay from Facebook. 20 of the 34 files have activities. Problems found are in Data.md section 6.
 Impact on others: app agent: `info.json` has new fields, and `sources.*` no longer contains `odej-website`. The 33 establishments not collected yet get the same fields at their first scrape.
 
+### 2026-11-07 01:20 · [data-agent] · CHANGE · Coordinates from the ODEJ table
+Area: APP/odej-kiosk/public/data/odej-bejaia.json (shared file), teamwork/Data.md
+What: the ODEJ sent a PDF of GPS points (6 Nov), after we reported the wrong ones. Each row was matched to an establishment by type, commune and name, and `location` was replaced for 65 of the 67 (60 values changed). #48 and #67 keep their old pins: the table's latitude is offshore for both. Only `location` changed: names, communes (`placeId`) and categories are the same.
+Impact on others: app agent: pins move, some by several km (#16 21 km, #24 13 km, #11 8 km), so check the framing and the mask on the map. `validate:data`, lint, typecheck and the 100 tests pass.
+
