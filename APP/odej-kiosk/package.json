@@ -15,6 +15,7 @@
     "preview": "vite preview",
     "media:check": "node ../../tools/media/pipeline/check.mjs",
     "media:thumbs": "node ../../tools/media/pipeline/thumbs.mjs",
+    "media:landing": "node ../../tools/media/pipeline/landing.mjs",
     "media:publish": "node ../../tools/media/pipeline/publish.mjs",
     "media:verify": "node ../../tools/media/pipeline/verify.mjs",
     "kiosk:pack": "node ../../tools/media/pipeline/kiosk-pack.mjs",

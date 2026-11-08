@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { copyFileSync, cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { appDir, defaultMediaDir, establishmentIds, readMedia, references, repoRoot } from './lib/media-files.mjs';
+import { appDir, defaultMediaDir, establishmentIds, landingFiles, readMedia, references, repoRoot } from './lib/media-files.mjs';
 
 const kioskDir = fileURLToPath(new URL('./kiosk/', import.meta.url));
 const pack = resolve(repoRoot, 'kiosk-pack');
@@ -30,6 +30,9 @@ for (const file of ['serve.mjs', 'start-kiosk.bat', 'LISEZMOI.txt']) copyFileSyn
 rmSync(resolve(appDir, 'dist'), { recursive: true, force: true });
 
 console.log(`kiosk:pack: ${pack}`);
+if (landingFiles(defaultMediaDir).length === 0) {
+  console.log('kiosk:pack: WARNING, no landing photos in public/media/landing/: the home screen will have no landscapes');
+}
 if (missing.length > 0) {
   console.log(`kiosk:pack: WARNING, ${missing.length} media files are missing from this pack:`);
   for (const path of missing.slice(0, 8)) console.log(`  - ${path}`);

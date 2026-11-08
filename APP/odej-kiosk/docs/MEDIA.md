@@ -26,9 +26,10 @@ Ouvrez ensuite un nouveau terminal : le PATH n'est pas mis à jour dans ceux dé
 
 | Commande | Rôle |
 |---|---|
-| `npm run media:check` | contrôle `public/media/odej-*` |
+| `npm run media:check` | contrôle `public/media/odej-*` et `public/media/landing/` |
 | `npm run media:check -- --hash` | compare aussi les sha256 à `docs/media/odej-NNN.json` |
 | `npm run media:thumbs` | crée `thumbs/<nom>-480.webp` pour chaque photo et chaque poster |
+| `npm run media:landing -- "<dossier>"` | prépare les paysages détourés de l'accueil dans `public/media/landing/` |
 | `npm run media:publish` | prépare `.media-stage/`, sans rien envoyer |
 | `npm run media:publish -- --go` | publie sur le CDN |
 | `npm run media:verify -- --base <url>` | contrôle les URL publiées |
@@ -43,6 +44,8 @@ Sort en erreur sur une limite dure : fichier de plus de 24 Mio, extension autre 
 Une vidéo muette est acceptée. Les plafonds par établissement, la durée de 70 s, le total de fichiers et le total de 3 Gio ne donnent que des avertissements. `odej-003` est exempté des plafonds par établissement, pas des limites dures. Les couvertures ne comptent pas dans le nombre de photos.
 
 `--hash` révèle une copie locale en retard sur le collègue : un fichier qui diffère de `docs/media`.
+
+Les paysages de l'accueil (`landing`) n'ont que les limites par fichier : ni `media.json`, ni plafond d'établissement.
 
 ### `media:thumbs`
 
@@ -79,6 +82,14 @@ kiosk-pack/
 Le PC de la borne doit avoir Node.js et Google Chrome. Les médias sont locaux, mais les fonds de carte viennent encore d'internet : voir l'étape 10 du plan.
 
 Le pack retire `dist/` à la fin, pour qu'un dossier plein de médias ne parte jamais dans un déploiement.
+
+## Paysages de l'accueil
+
+Quatre paysages de Béjaïa détourés composent l'accueil. Ce sont des photos : elles restent hors de git, dans `public/media/landing/`, et partent sur le CDN avec `media:publish`. `kiosk:pack` prévient s'ils manquent. Sans eux, l'accueil s'affiche sans paysages, rien ne casse.
+
+Le propriétaire fournit les PNG transparents, nommés `haut gauche.png`, `haut droite.png`, `bas gauche.png` et `bas droite.png`. `media:landing` retire leurs marges transparentes, les ramène à 1400 px au plus et les écrit en WebP transparent : `top-left.webp`, `top-right.webp`, `bottom-left.webp`, `bottom-right.webp`. Il ne modifie jamais une source.
+
+Leur place à l'écran est dans `app.css` (`.scene-*`), leur liste dans `landingScenes` (`src/config.ts`). La source des quatre photos et le droit de les utiliser restent à noter ici.
 
 ## Comment l'application trouve les médias
 
