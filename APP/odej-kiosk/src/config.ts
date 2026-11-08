@@ -133,8 +133,24 @@ export const CONFIG = {
   /**
    * Ruban de motifs de l'accueil (lib/ribbon.ts), dans un repère étiré sur toute la largeur de l'écran.
    * gap : écart entre les deux ondes, où se posent les motifs. waves : nombre d'ondulations sur la largeur.
+   * clouds : nuages gris clair qui dépassent du ruban, [position de 0 à 1, côté : -1 au-dessus, 1 en dessous].
    */
-  motifRibbon: { width: 1200, height: 64, amplitude: 10, gap: 34, waves: 1.5, phase: 0.4, samples: 96 },
+  motifRibbon: {
+    width: 1200,
+    height: 64,
+    amplitude: 10,
+    gap: 34,
+    waves: 1.5,
+    phase: 0.4,
+    samples: 96,
+    clouds: [
+      [0.09, 1],
+      [0.3, -1],
+      [0.55, 1],
+      [0.76, -1],
+      [0.95, 1],
+    ],
+  },
   /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
   sceneDecodeWaitMs: 600,
 

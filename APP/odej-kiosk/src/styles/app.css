@@ -512,13 +512,16 @@ input:focus-visible {
   transform: translateY(-115%);
   opacity: 0;
 }
-/* Ruban de motifs : deux ondes claires, les motifs au milieu. Il reste sous l'en-tête et au-dessus des paysages */
+/*
+ * Ruban de motifs : le ciel et la mer, communs aux paysages. Onde du haut bleu ciel, onde du bas bleu mer, toujours
+ * clairs, et quelques nuages gris clair qui dépassent. Il reste sous l'en-tête et au-dessus des paysages.
+ */
 .motif-band {
   position: absolute;
   inset-inline: 0;
   top: var(--motif-top);
   height: var(--motif-height);
-  color: #a3ae9f;
+  color: #86b4cf;
   pointer-events: none;
 }
 .motif-wave {
@@ -527,17 +530,26 @@ input:focus-visible {
   width: 100%;
   height: 100%;
 }
-.motif-fill {
-  fill: rgba(255, 255, 255, 0.45);
-}
 .motif-line {
   fill: none;
-  stroke: #c8b99e;
-  stroke-width: 1.4;
+  stroke: #9fcbe8;
+  stroke-width: 1.6;
   vector-effect: non-scaling-stroke;
 }
 .motif-line.is-low {
-  stroke: #b5cbb0;
+  stroke: #8fd0d8;
+}
+/* Nuages peints une fois en dégradé : rien ne bouge */
+.motif-cloud {
+  position: absolute;
+  width: 9rem;
+  height: 2.8rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side at 34% 62%, rgba(201, 208, 215, 0.85), transparent),
+    radial-gradient(closest-side at 60% 42%, rgba(212, 218, 224, 0.85), transparent),
+    radial-gradient(closest-side at 80% 64%, rgba(206, 213, 220, 0.7), transparent);
 }
 .motif {
   position: absolute;

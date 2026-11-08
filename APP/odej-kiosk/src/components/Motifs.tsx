@@ -26,14 +26,28 @@ const BOTTOM = ribbonPath(1);
 const FILL = `${TOP} ${ribbonPath(1, true).replace(/^M/, 'L')} Z`;
 
 /**
- * Ruban ondulé entre deux sinusoïdes, les motifs posés au milieu. dir="ltr" : l'onde est un dessin, elle ne se
- * retourne pas en arabe.
+ * Ruban ondulé entre deux sinusoïdes, du bleu ciel au bleu mer, les motifs posés au milieu et des nuages gris clair
+ * qui en dépassent. dir="ltr" : l'onde est un dessin, elle ne se retourne pas en arabe.
  */
 export function MotifBand({ count = 14, className = '' }: { count?: number; className?: string }) {
   return (
     <div className={`motif-band ${className}`} dir="ltr" aria-hidden="true">
+      {RIBBON.clouds.map(([t, side]) => (
+        <span
+          key={t}
+          className="motif-cloud"
+          style={{ insetInlineStart: `${t * 100}%`, top: `${((waveY(t) + (side * RIBBON.gap) / 2) / RIBBON.height) * 100}%` }}
+        />
+      ))}
       <svg className="motif-wave" viewBox={`0 0 ${RIBBON.width} ${RIBBON.height}`} preserveAspectRatio="none">
-        <path className="motif-fill" d={FILL} />
+        <defs>
+          {/* Du bleu ciel au bleu mer, très clairs */}
+          <linearGradient id="motif-sky-sea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e4f1fb" stopOpacity="0.85" />
+            <stop offset="1" stopColor="#dcf2f4" stopOpacity="0.85" />
+          </linearGradient>
+        </defs>
+        <path d={FILL} fill="url(#motif-sky-sea)" />
         <path className="motif-line" d={TOP} />
         <path className="motif-line is-low" d={BOTTOM} />
       </svg>
