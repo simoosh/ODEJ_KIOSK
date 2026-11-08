@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
-import { puffLayer, puffOpacity } from '../../src/lib/clouds';
+import { framePuffs, puffLayer, puffOpacity } from '../../src/lib/clouds';
 import { maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
@@ -51,6 +51,13 @@ describe("nuages de l'accueil", () => {
   it('partent du côté de leur centre, au premier ou au second plan', () => {
     expect(puffLayer(puff)).toBe('back-left');
     expect(puffLayer({ ...puff, x: 0.7, front: true })).toBe('front-right');
+  });
+
+  it("gardent leur place sur un paysage quand le canevas déborde de son cadre", () => {
+    const [edge] = framePuffs([{ x: 0, y: 1, w: 0.5, h: 0.5 }], 0.25);
+    expect(edge.x).toBeCloseTo(0.25 / 1.5);
+    expect(edge.y).toBeCloseTo(1.25 / 1.5);
+    expect(edge.w).toBeCloseTo(0.5 / 1.5);
   });
 });
 

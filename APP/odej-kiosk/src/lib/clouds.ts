@@ -25,7 +25,13 @@ export function puffOpacity(puff: Puff, u: number, v: number, noise: number) {
   return 1 - smoothstep(core, 1, Math.hypot(dx, dy) + (noise - 0.5) * tear);
 }
 
-function paint(canvas: HTMLCanvasElement, puffs: readonly Puff[], width: number, height: number, noises: Uint8ClampedArray[]) {
+/** Bouffées données dans le cadre d'un paysage, ramenées au canevas qui déborde ce cadre de `margin` de chaque côté. */
+export function framePuffs(puffs: readonly Puff[], margin: number): Puff[] {
+  const span = 1 + 2 * margin;
+  return puffs.map((puff) => ({ ...puff, x: (puff.x + margin) / span, y: (puff.y + margin) / span, w: puff.w / span, h: puff.h / span }));
+}
+
+export function paintPuffs(canvas: HTMLCanvasElement, puffs: readonly Puff[], width: number, height: number, noises: Uint8ClampedArray[]) {
   const ctx = canvasContext(canvas, width, height);
   const image = ctx.createImageData(width, height);
   const [body, detail] = noises;
@@ -68,6 +74,6 @@ export function paintClouds(canvases: Record<string, HTMLCanvasElement>, portrai
   const noises = [fractalNoise(width, height, 1962, noiseCells), fractalNoise(width, height, 54, noiseCells)];
   for (const [layer, canvas] of Object.entries(canvases)) {
     const own = puffs.filter((puff) => puffLayer(puff) === layer);
-    paint(canvas, own, width, height, layer.startsWith('front') ? [...noises].reverse() : noises);
+    paintPuffs(canvas, own, width, height, layer.startsWith('front') ? [...noises].reverse() : noises);
   }
 }

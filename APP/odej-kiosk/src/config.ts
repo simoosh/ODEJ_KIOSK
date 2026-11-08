@@ -38,13 +38,32 @@ export const CONFIG = {
    * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
    * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
    * Dans l'ordre de peinture : le dernier passe au-dessus.
+   * clouds : bouffées accrochées au paysage, dans son cadre (0 à 1, elles peuvent en déborder). Elles le suivent sur
+   * chaque écran et passent au-dessus de tous les paysages.
    */
   landingScenes: [
     { id: 'bottom-left', src: 'landing/bottom-left.webp' },
-    { id: 'bottom-right', src: 'landing/bottom-right.webp' },
+    {
+      id: 'bottom-right',
+      src: 'landing/bottom-right.webp',
+      // Bord extérieur de la mer, contre la carte
+      clouds: [
+        { x: 0.2, y: 0.05, w: 0.4, h: 0.14 },
+        { x: 0.27, y: 0.18, w: 0.34, h: 0.13 },
+        { x: 0.15, y: 0.32, w: 0.34, h: 0.14 },
+        { x: 0.05, y: 0.47, w: 0.34, h: 0.15 },
+        { x: -0.01, y: 0.62, w: 0.32, h: 0.15 },
+        { x: 0.04, y: 0.78, w: 0.32, h: 0.15 },
+        { x: 0.1, y: 0.93, w: 0.34, h: 0.14 },
+      ],
+    },
     { id: 'top-left', src: 'landing/top-left.webp' },
     { id: 'top-right', src: 'landing/top-right.webp' },
   ],
+  /** Débord du canevas des nuages d'un paysage autour de son cadre, de chaque côté (app.css, .scene-veil canvas) */
+  sceneCloudMargin: 0.25,
+  /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
+  sceneDecodeWaitMs: 600,
 
   /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {

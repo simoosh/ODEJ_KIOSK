@@ -319,7 +319,10 @@ input:focus-visible {
 .is-leaving .landing-haze {
   opacity: 0;
 }
-/* Paysages : chacun part vers son côté, un peu moins vite que les nuages de devant */
+/*
+ * Paysages. Au chargement, chacun entre depuis son côté en se dézoomant vers son coin, une fois décodé : l'animation
+ * porte sur translate et scale, pour ne jamais gêner le transform de la sortie et du retour.
+ */
 .scenes {
   position: absolute;
   inset: 0;
@@ -327,18 +330,52 @@ input:focus-visible {
 }
 .scene {
   position: absolute;
-  display: block;
-  height: auto;
   user-select: none;
+  opacity: 0;
   will-change: transform;
-  transition:
-    transform 1.35s var(--settle),
-    scale 0.35s ease,
-    filter 0.35s ease;
+  transition: transform 1.35s var(--settle);
+}
+.scene.is-in {
+  opacity: 1;
+  animation: scene-in-start 2.2s var(--settle) 0.1s backwards;
+}
+.scene-top-right.is-in,
+.scene-bottom-right.is-in {
+  animation-name: scene-in-end;
+}
+.scene-bottom-left.is-in,
+.scene-bottom-right.is-in {
+  animation-delay: 0.3s;
+}
+/* Le fondu finit tôt : le paysage est déjà net quand il ralentit en se posant */
+@keyframes scene-in-start {
+  0% {
+    opacity: 0;
+    translate: -24% 0;
+    scale: 1.22;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+@keyframes scene-in-end {
+  0% {
+    opacity: 0;
+    translate: 24% 0;
+    scale: 1.22;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 .is-leaving .scene {
+  transition: transform 1.4s var(--leave);
+}
+.scene-img {
+  display: block;
+  width: 100%;
+  height: auto;
   transition:
-    transform 1.4s var(--leave),
     scale 0.35s ease,
     filter 0.35s ease;
 }
@@ -354,20 +391,26 @@ input:focus-visible {
   width: min(42cqw, 76cqh);
   transform-origin: 100% 50%;
 }
-/* Le bord droit de cette photo est une coupe droite : il se fond dans la brume */
 .scene-bottom-left {
-  inset-inline-start: -3cqw;
-  bottom: -4cqh;
-  width: min(42cqw, 75cqh);
+  inset-inline-start: -2cqw;
+  bottom: -3cqh;
+  height: min(60cqh, 34cqw);
   transform-origin: 0 100%;
-  mask-image: linear-gradient(to left, transparent, #000 22%);
 }
 .scene-bottom-right {
   inset-inline-end: -1cqw;
   bottom: -3cqh;
-  width: auto;
   height: min(64cqh, 36cqw);
   transform-origin: 100% 100%;
+}
+.scene-bottom-left .scene-img,
+.scene-bottom-right .scene-img {
+  width: auto;
+  height: 100%;
+}
+/* Le haut de cette photo, un ciel, est une coupe droite : il se fond dans les nuages */
+.scene-bottom-left .scene-img {
+  mask-image: linear-gradient(to bottom, transparent, #000 16%);
 }
 .is-portrait .scene-top-left {
   top: 9cqh;
@@ -379,9 +422,9 @@ input:focus-visible {
   width: 56cqw;
 }
 .is-portrait .scene-bottom-left {
-  inset-inline-start: -8cqw;
+  inset-inline-start: -4cqw;
   bottom: -2cqh;
-  width: 64cqw;
+  height: 30cqh;
 }
 .is-portrait .scene-bottom-right {
   bottom: -2cqh;
@@ -398,7 +441,7 @@ input:focus-visible {
     width: 32cqw;
   }
   .scene-bottom-left {
-    width: 36cqw;
+    height: 48cqh;
   }
   .scene-bottom-right {
     height: 50cqh;
@@ -408,6 +451,7 @@ input:focus-visible {
     padding-top: 21cqh;
   }
 }
+/* Sortie et retour : chacun vers son côté, ceux du bas un peu plus lents */
 .is-leaving .scene-top-left,
 .is-leaving .scene-bottom-left {
   transform: translateX(-108%);
@@ -418,14 +462,25 @@ input:focus-visible {
 }
 .scene-bottom-left,
 .scene-bottom-right {
-  transition-duration: 1.5s, 0.35s, 0.35s;
+  transition-duration: 1.5s;
 }
 .is-leaving .scene-bottom-left,
 .is-leaving .scene-bottom-right {
-  transition-duration: 1.55s, 0.35s, 0.35s;
+  transition-duration: 1.55s;
+}
+/* Nuages accrochés à un paysage : leur canevas déborde son cadre de CONFIG.sceneCloudMargin de chaque côté */
+.scene-veil {
+  pointer-events: none;
+}
+.scene-veil canvas {
+  position: absolute;
+  inset-inline-start: -25%;
+  top: -25%;
+  width: 150%;
+  height: 150%;
 }
 /* Premier toucher : le bord du paysage s'allume. drop-shadow suit le détourage, pas le cadre de l'image */
-.scene.is-lit {
+.scene.is-lit .scene-img {
   scale: 1.015;
   filter: drop-shadow(0 0 0.15rem #fff) drop-shadow(0 0 0.5rem rgba(255, 214, 110, 0.95)) drop-shadow(0 0 1.6rem rgba(236, 170, 40, 0.75));
 }
