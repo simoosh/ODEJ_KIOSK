@@ -162,10 +162,10 @@ export const CONFIG = {
     /** Part du rayon pleinement opaque, puis effilochage du bord par le bruit */
     core: 0.3,
     tear: 0.6,
-    /** Ombre sous chaque bouffée, pour le volume */
-    underside: 0.45,
-    light: [251, 251, 248],
-    shadow: [222, 229, 234],
+    /** Ombre sous chaque bouffée, pour le volume : un gris clair, jamais foncé */
+    underside: 0.55,
+    light: [250, 251, 252],
+    shadow: [204, 211, 218],
     /** Centre x, y et taille w, h en part de l'écran. front : plan avant, qui part plus vite à la sortie */
     landscape: [
       { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
