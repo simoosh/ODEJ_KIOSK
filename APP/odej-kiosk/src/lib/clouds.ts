@@ -27,10 +27,14 @@ export function puffOpacity(puff: Puff, u: number, v: number, noise: number) {
 
 type Point = readonly [number, number];
 
-/** Nuage d'un seul tenant qui suit le bord d'un paysage : points dans son cadre (0 à 1), width en part de sa largeur. */
+/**
+ * Nuage d'un seul tenant qui suit le bord d'un paysage : points dans son cadre (0 à 1), width en part de sa largeur.
+ * core : part opaque de sa demi-largeur, CONFIG.clouds.core par défaut.
+ */
 export interface CloudBand {
   points: readonly Point[];
   width: number;
+  core?: number;
 }
 
 /** Distance d'un point à une ligne brisée. */
@@ -55,7 +59,8 @@ export function paintBand(canvas: HTMLCanvasElement, band: CloudBand, margin: nu
   const ctx = canvasContext(canvas, width, height);
   const image = ctx.createImageData(width, height);
   const [body, detail] = noises;
-  const { light, shadow, core, tear, underside } = CONFIG.clouds;
+  const { light, shadow, tear, underside } = CONFIG.clouds;
+  const core = band.core ?? CONFIG.clouds.core;
   const span = 1 + 2 * margin;
   const points = band.points.map(([x, y]): Point => [((x + margin) / span) * width, ((y + margin) / span) * height]);
   const half = ((band.width / span) * width) / 2;

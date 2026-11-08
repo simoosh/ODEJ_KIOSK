@@ -474,10 +474,10 @@ input:focus-visible {
 }
 .scene-veil canvas {
   position: absolute;
-  inset-inline-start: -25%;
-  top: -25%;
-  width: 150%;
-  height: 150%;
+  inset-inline-start: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
 }
 /* Premier toucher : le bord du paysage s'allume. drop-shadow suit le détourage, pas le cadre de l'image */
 .scene.is-lit .scene-img {

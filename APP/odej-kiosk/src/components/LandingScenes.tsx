@@ -15,7 +15,7 @@ function SceneCloud({ band }: { band: CloudBand }) {
     const target = canvas.current;
     const box = target?.getBoundingClientRect();
     if (!target || !box?.width) return;
-    const width = 256;
+    const width = 320;
     const height = Math.max(1, Math.round((width * box.height) / box.width));
     const { noiseCells } = CONFIG.clouds;
     paintBand(target, band, CONFIG.sceneCloudMargin, width, height, [

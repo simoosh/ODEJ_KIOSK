@@ -91,11 +91,26 @@ export const CONFIG = {
         ],
       },
     },
-    { id: 'top-left', src: 'landing/top-left.webp' },
+    {
+      id: 'top-left',
+      src: 'landing/top-left.webp',
+      // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
+      clouds: {
+        width: 0.32,
+        core: 0.55,
+        points: [
+          [-0.2, 0.93],
+          [0.1, 0.95],
+          [0.35, 0.94],
+          [0.55, 0.91],
+          [0.72, 0.86],
+        ],
+      },
+    },
     { id: 'top-right', src: 'landing/top-right.webp' },
   ],
   /** Débord du canevas des nuages d'un paysage autour de son cadre, de chaque côté (app.css, .scene-veil canvas) */
-  sceneCloudMargin: 0.25,
+  sceneCloudMargin: 0.5,
   /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
   sceneDecodeWaitMs: 600,
 
