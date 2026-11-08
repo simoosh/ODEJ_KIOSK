@@ -248,7 +248,15 @@ input:focus-visible {
   pointer-events: none;
   transition: visibility 0s linear 1.7s;
 }
-/* Sortie en parallaxe : le plan avant part plus vite et plus loin. Seul transform bouge, sur quatre calques */
+/*
+ * Parallaxe : nuages de devant, paysages, puis nuages de derrière, chacun vers son côté et à sa vitesse.
+ * Seuls transform et opacity bougent. La transition du rang .is-leaving sert à la sortie : départ lent, puis tout file.
+ * Celle du rang de base sert au retour : tout revient des côtés et ralentit en se posant, la brume et le texte ensuite.
+ */
+.landing {
+  --leave: cubic-bezier(0.55, 0, 0.25, 1);
+  --settle: cubic-bezier(0.16, 0.8, 0.3, 1);
+}
 .clouds {
   position: absolute;
   inset: 0;
@@ -261,17 +269,24 @@ input:focus-visible {
   width: 100%;
   height: 100%;
   will-change: transform;
-  transition: transform 1.6s cubic-bezier(0.55, 0, 0.25, 1);
+  transition: transform 1.5s var(--settle);
 }
 .cloud-front-left,
 .cloud-front-right {
+  transition-duration: 1.2s;
+}
+.is-leaving .cloud-layer {
+  transition: transform 1.6s var(--leave);
+}
+.is-leaving .cloud-front-left,
+.is-leaving .cloud-front-right {
   transition-duration: 1.25s;
 }
 .is-leaving .cloud-back-left {
-  transform: translateX(-75%);
+  transform: translateX(-95%);
 }
 .is-leaving .cloud-back-right {
-  transform: translateX(75%);
+  transform: translateX(95%);
 }
 .is-leaving .cloud-front-left {
   transform: translateX(-110%);
@@ -279,10 +294,159 @@ input:focus-visible {
 .is-leaving .cloud-front-right {
   transform: translateX(110%);
 }
+/* Ciel clair derrière les paysages, puis brume qui les fond vers le texte. Elles s'effacent à la sortie */
+.landing-sky,
+.landing-haze {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease 0.35s;
+}
+.is-leaving .landing-sky,
+.is-leaving .landing-haze {
+  transition: opacity 0.9s ease;
+}
+.landing-sky {
+  background: linear-gradient(to bottom, var(--paper) 0, var(--paper) 30%, rgba(247, 246, 241, 0) 58%);
+}
+.landing-haze {
+  background: radial-gradient(ellipse 36% 50% at 50% 40%, rgba(247, 246, 241, 0.97) 45%, rgba(247, 246, 241, 0) 100%);
+}
+.is-portrait .landing-haze {
+  background: radial-gradient(ellipse 62% 26% at 50% 46%, rgba(247, 246, 241, 0.97) 50%, rgba(247, 246, 241, 0) 100%);
+}
+.is-leaving .landing-sky,
+.is-leaving .landing-haze {
+  opacity: 0;
+}
+/* Paysages : chacun part vers son côté, un peu moins vite que les nuages de devant */
+.scenes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.scene {
+  position: absolute;
+  display: block;
+  height: auto;
+  user-select: none;
+  will-change: transform;
+  transition:
+    transform 1.35s var(--settle),
+    scale 0.35s ease,
+    filter 0.35s ease;
+}
+.is-leaving .scene {
+  transition:
+    transform 1.4s var(--leave),
+    scale 0.35s ease,
+    filter 0.35s ease;
+}
+.scene-top-left {
+  inset-inline-start: -2cqw;
+  top: 15cqh;
+  width: min(40cqw, 72cqh);
+  transform-origin: 0 50%;
+}
+.scene-top-right {
+  inset-inline-end: -2cqw;
+  top: 13cqh;
+  width: min(42cqw, 76cqh);
+  transform-origin: 100% 50%;
+}
+/* Le bord droit de cette photo est une coupe droite : il se fond dans la brume */
+.scene-bottom-left {
+  inset-inline-start: -3cqw;
+  bottom: -4cqh;
+  width: min(42cqw, 75cqh);
+  transform-origin: 0 100%;
+  mask-image: linear-gradient(to left, transparent, #000 22%);
+}
+.scene-bottom-right {
+  inset-inline-end: -1cqw;
+  bottom: -3cqh;
+  width: auto;
+  height: min(64cqh, 36cqw);
+  transform-origin: 100% 100%;
+}
+.is-portrait .scene-top-left {
+  top: 9cqh;
+  width: 58cqw;
+}
+.is-portrait .scene-top-right {
+  inset-inline-end: -6cqw;
+  top: 12cqh;
+  width: 56cqw;
+}
+.is-portrait .scene-bottom-left {
+  inset-inline-start: -8cqw;
+  bottom: -2cqh;
+  width: 64cqw;
+}
+.is-portrait .scene-bottom-right {
+  bottom: -2cqh;
+  height: 30cqh;
+}
+/* Écrans 4:3 et 5:4 : le titre prend plus de place en largeur, les paysages se font plus petits et le texte descend */
+@container (orientation: landscape) and (aspect-ratio < 3 / 2) {
+  .scene-top-left {
+    top: 12cqh;
+    width: 30cqw;
+  }
+  .scene-top-right {
+    top: 11cqh;
+    width: 32cqw;
+  }
+  .scene-bottom-left {
+    width: 36cqw;
+  }
+  .scene-bottom-right {
+    height: 50cqh;
+  }
+  /* .landing devant : la règle de base de .landing-body vient plus bas */
+  .landing .landing-body {
+    padding-top: 21cqh;
+  }
+}
+.is-leaving .scene-top-left,
+.is-leaving .scene-bottom-left {
+  transform: translateX(-108%);
+}
+.is-leaving .scene-top-right,
+.is-leaving .scene-bottom-right {
+  transform: translateX(108%);
+}
+.scene-bottom-left,
+.scene-bottom-right {
+  transition-duration: 1.5s, 0.35s, 0.35s;
+}
+.is-leaving .scene-bottom-left,
+.is-leaving .scene-bottom-right {
+  transition-duration: 1.55s, 0.35s, 0.35s;
+}
+/* Premier toucher : le bord du paysage s'allume. drop-shadow suit le détourage, pas le cadre de l'image */
+.scene.is-lit {
+  scale: 1.015;
+  filter: drop-shadow(0 0 0.15rem #fff) drop-shadow(0 0 0.5rem rgba(255, 214, 110, 0.95)) drop-shadow(0 0 1.6rem rgba(236, 170, 40, 0.75));
+}
+.landing-inner {
+  pointer-events: none;
+}
+.landing-inner button {
+  pointer-events: auto;
+}
 .landing-inner,
 .landing-motifs {
   will-change: transform;
-  transition: transform 1.05s cubic-bezier(0.6, 0, 0.3, 1), opacity 0.8s ease;
+  transition:
+    transform 1.05s var(--settle) 0.3s,
+    opacity 0.8s ease 0.4s;
+}
+.is-leaving .landing-inner,
+.is-leaving .landing-motifs {
+  transition:
+    transform 1.05s cubic-bezier(0.6, 0, 0.3, 1),
+    opacity 0.8s ease;
 }
 .is-leaving .landing-inner,
 .is-leaving .landing-motifs {
@@ -392,8 +556,8 @@ input:focus-visible {
   padding-bottom: 15cqh;
 }
 .is-portrait .landing-body {
-  padding-top: 7rem;
-  padding-bottom: 34cqh;
+  padding-top: 22cqh;
+  padding-bottom: 36cqh;
   gap: 1.5rem;
 }
 .is-portrait .landing-title {

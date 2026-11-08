@@ -34,21 +34,59 @@ export const CONFIG = {
   landingMapTop: 0.58,
   landingMapTopPortrait: 0.62,
 
-  /** Nuages de l'accueil (lib/clouds.ts). Bord opaque en part de la hauteur : côtés, puis centre */
+  /**
+   * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
+   * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
+   * Dans l'ordre de peinture : le dernier passe au-dessus.
+   */
+  landingScenes: [
+    { id: 'bottom-left', src: 'landing/bottom-left.webp' },
+    { id: 'bottom-right', src: 'landing/bottom-right.webp' },
+    { id: 'top-left', src: 'landing/top-left.webp' },
+    { id: 'top-right', src: 'landing/top-right.webp' },
+  ],
+
+  /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {
     canvas: [640, 360],
-    landscape: { side: 0.52, center: 0.66 },
-    portrait: { side: 0.56, center: 0.64 },
     /** Grilles du bruit, de la plus large à la plus fine : de grandes masses, pas un grain */
     noiseCells: [4, 8, 16, 32],
-    fade: 0.2,
-    tear: 0.2,
-    seam: 0.05,
-    light: [250, 250, 247],
-    shadow: [232, 237, 240],
-    wispLow: 0.5,
-    wispHigh: 0.68,
-    wispDrop: 0.05,
+    /** Part du rayon pleinement opaque, puis effilochage du bord par le bruit */
+    core: 0.3,
+    tear: 0.6,
+    /** Ombre sous chaque bouffée, pour le volume */
+    underside: 0.45,
+    light: [251, 251, 248],
+    shadow: [222, 229, 234],
+    /** Centre x, y et taille w, h en part de l'écran. front : plan avant, qui part plus vite à la sortie */
+    landscape: [
+      { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
+      { x: 0.84, y: 0.05, w: 0.46, h: 0.16 },
+      { x: 0.1, y: 0.56, w: 0.34, h: 0.2 },
+      { x: 0.31, y: 0.5, w: 0.2, h: 0.17 },
+      { x: 0.37, y: 0.33, w: 0.12, h: 0.22 },
+      { x: 0.66, y: 0.42, w: 0.17, h: 0.17 },
+      { x: 0.85, y: 0.47, w: 0.32, h: 0.18 },
+      { x: 0.2, y: 0.97, w: 0.5, h: 0.2, front: true },
+      { x: 0.41, y: 1.02, w: 0.3, h: 0.14, front: true },
+      { x: 0.8, y: 0.97, w: 0.5, h: 0.2, front: true },
+      { x: 0.6, y: 1.02, w: 0.3, h: 0.14, front: true },
+    ],
+    portrait: [
+      { x: 0.2, y: 0.04, w: 0.6, h: 0.09 },
+      { x: 0.8, y: 0.04, w: 0.6, h: 0.09 },
+      { x: 0.15, y: 0.25, w: 0.45, h: 0.06 },
+      { x: 0.44, y: 0.22, w: 0.3, h: 0.06 },
+      { x: 0.85, y: 0.29, w: 0.45, h: 0.06 },
+      // Horizon de la carte qui tourne
+      { x: 0.12, y: 0.635, w: 0.5, h: 0.07 },
+      { x: 0.4, y: 0.65, w: 0.45, h: 0.06 },
+      { x: 0.62, y: 0.65, w: 0.45, h: 0.06 },
+      { x: 0.9, y: 0.63, w: 0.5, h: 0.07 },
+      { x: 0.3, y: 0.82, w: 0.4, h: 0.05 },
+      { x: 0.2, y: 0.99, w: 0.7, h: 0.08, front: true },
+      { x: 0.8, y: 0.99, w: 0.7, h: 0.08, front: true },
+    ],
   },
   /** Durée du recentrement de la caméra après le bouton de l'accueil (ms) */
   enterFlightMs: 3_600,
