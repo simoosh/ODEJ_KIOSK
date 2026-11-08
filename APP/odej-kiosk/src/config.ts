@@ -42,7 +42,22 @@ export const CONFIG = {
    * chaque écran et passent au-dessus de tous les paysages.
    */
   landingScenes: [
-    { id: 'bottom-left', src: 'landing/bottom-left.webp' },
+    {
+      id: 'bottom-left',
+      src: 'landing/bottom-left.webp',
+      // Tout le bord droit, contre la carte
+      clouds: [
+        { x: 0.72, y: 0.1, w: 0.3, h: 0.14 },
+        { x: 0.86, y: 0.2, w: 0.28, h: 0.14 },
+        { x: 0.92, y: 0.33, w: 0.26, h: 0.14 },
+        { x: 0.97, y: 0.46, w: 0.26, h: 0.14 },
+        { x: 0.97, y: 0.58, w: 0.26, h: 0.14 },
+        { x: 0.87, y: 0.68, w: 0.26, h: 0.13 },
+        { x: 0.75, y: 0.77, w: 0.26, h: 0.13 },
+        { x: 0.84, y: 0.88, w: 0.28, h: 0.14 },
+        { x: 0.9, y: 0.99, w: 0.3, h: 0.14 },
+      ],
+    },
     {
       id: 'bottom-right',
       src: 'landing/bottom-right.webp',
@@ -81,7 +96,6 @@ export const CONFIG = {
     landscape: [
       { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
       { x: 0.84, y: 0.05, w: 0.46, h: 0.16 },
-      { x: 0.1, y: 0.56, w: 0.34, h: 0.2 },
       { x: 0.31, y: 0.5, w: 0.2, h: 0.17 },
       { x: 0.37, y: 0.33, w: 0.12, h: 0.22 },
       { x: 0.66, y: 0.42, w: 0.17, h: 0.17 },

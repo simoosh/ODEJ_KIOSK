@@ -394,7 +394,7 @@ input:focus-visible {
 .scene-bottom-left {
   inset-inline-start: -2cqw;
   bottom: -3cqh;
-  height: min(60cqh, 34cqw);
+  height: min(52cqh, 30cqw);
   transform-origin: 0 100%;
 }
 .scene-bottom-right {
@@ -408,7 +408,7 @@ input:focus-visible {
   width: auto;
   height: 100%;
 }
-/* Le haut de cette photo, un ciel, est une coupe droite : il se fond dans les nuages */
+/* Le haut de cette photo se fond dans la brume */
 .scene-bottom-left .scene-img {
   mask-image: linear-gradient(to bottom, transparent, #000 16%);
 }
@@ -424,7 +424,7 @@ input:focus-visible {
 .is-portrait .scene-bottom-left {
   inset-inline-start: -4cqw;
   bottom: -2cqh;
-  height: 30cqh;
+  height: 24cqh;
 }
 .is-portrait .scene-bottom-right {
   bottom: -2cqh;
@@ -441,7 +441,7 @@ input:focus-visible {
     width: 32cqw;
   }
   .scene-bottom-left {
-    height: 48cqh;
+    height: 42cqh;
   }
   .scene-bottom-right {
     height: 50cqh;
