@@ -38,39 +38,58 @@ export const CONFIG = {
    * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
    * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
    * Dans l'ordre de peinture : le dernier passe au-dessus.
-   * clouds : bouffées accrochées au paysage, dans son cadre (0 à 1, elles peuvent en déborder). Elles le suivent sur
-   * chaque écran et passent au-dessus de tous les paysages.
+   * clouds : un nuage d'un seul tenant le long d'un bord du paysage, tracé dans son cadre (0 à 1, il peut en déborder).
+   * Il suit le paysage sur chaque écran et passe au-dessus de tous les paysages.
    */
   landingScenes: [
     {
       id: 'bottom-left',
       src: 'landing/bottom-left.webp',
       // Tout le bord droit, contre la carte
-      clouds: [
-        { x: 0.72, y: 0.1, w: 0.3, h: 0.14 },
-        { x: 0.86, y: 0.2, w: 0.28, h: 0.14 },
-        { x: 0.92, y: 0.33, w: 0.26, h: 0.14 },
-        { x: 0.97, y: 0.46, w: 0.26, h: 0.14 },
-        { x: 0.97, y: 0.58, w: 0.26, h: 0.14 },
-        { x: 0.87, y: 0.68, w: 0.26, h: 0.13 },
-        { x: 0.75, y: 0.77, w: 0.26, h: 0.13 },
-        { x: 0.84, y: 0.88, w: 0.28, h: 0.14 },
-        { x: 0.9, y: 0.99, w: 0.3, h: 0.14 },
-      ],
+      clouds: {
+        width: 0.3,
+        points: [
+          [0.6, 0.05],
+          [0.8, 0.11],
+          [0.88, 0.2],
+          [0.92, 0.3],
+          [0.96, 0.4],
+          [0.99, 0.5],
+          [0.99, 0.57],
+          [0.94, 0.63],
+          [0.84, 0.68],
+          [0.73, 0.73],
+          [0.79, 0.8],
+          [0.86, 0.88],
+          [0.91, 0.96],
+          [0.93, 1.06],
+        ],
+      },
     },
     {
       id: 'bottom-right',
       src: 'landing/bottom-right.webp',
       // Bord extérieur de la mer, contre la carte
-      clouds: [
-        { x: 0.2, y: 0.05, w: 0.4, h: 0.14 },
-        { x: 0.27, y: 0.18, w: 0.34, h: 0.13 },
-        { x: 0.15, y: 0.32, w: 0.34, h: 0.14 },
-        { x: 0.05, y: 0.47, w: 0.34, h: 0.15 },
-        { x: -0.01, y: 0.62, w: 0.32, h: 0.15 },
-        { x: 0.04, y: 0.78, w: 0.32, h: 0.15 },
-        { x: 0.1, y: 0.93, w: 0.34, h: 0.14 },
-      ],
+      clouds: {
+        width: 0.28,
+        points: [
+          [0.18, -0.04],
+          [0.12, 0.06],
+          [0.19, 0.12],
+          [0.3, 0.18],
+          [0.24, 0.25],
+          [0.2, 0.33],
+          [0.12, 0.43],
+          [0.06, 0.54],
+          [0.01, 0.6],
+          [0.05, 0.66],
+          [0.16, 0.72],
+          [0.18, 0.82],
+          [0.14, 0.9],
+          [0.07, 0.97],
+          [0.05, 1.06],
+        ],
+      },
     },
     { id: 'top-left', src: 'landing/top-left.webp' },
     { id: 'top-right', src: 'landing/top-right.webp' },

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
-import { framePuffs, puffLayer, puffOpacity } from '../../src/lib/clouds';
+import { polylineDistance, puffLayer, puffOpacity } from '../../src/lib/clouds';
 import { maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
@@ -53,12 +53,13 @@ describe("nuages de l'accueil", () => {
     expect(puffLayer({ ...puff, x: 0.7, front: true })).toBe('front-right');
   });
 
-  it("gardent leur place sur un paysage quand le canevas déborde de son cadre", () => {
-    const [edge] = framePuffs([{ x: 0, y: 1, w: 0.5, h: 0.5 }], 0.25);
-    expect(edge.x).toBeCloseTo(0.25 / 1.5);
-    expect(edge.y).toBeCloseTo(1.25 / 1.5);
-    expect(edge.w).toBeCloseTo(0.5 / 1.5);
+  it("suivent le bord d'un paysage d'un seul tenant : la distance vaut jusqu'au segment le plus proche", () => {
+    const edge = [[0, 0], [0, 1], [1, 1]] as const;
+    expect(polylineDistance(edge, 0.3, 0.5)).toBeCloseTo(0.3);
+    expect(polylineDistance(edge, 0.5, 1.2)).toBeCloseTo(0.2);
+    expect(polylineDistance(edge, -0.3, -0.4)).toBeCloseTo(0.5);
   });
+
 });
 
 describe("paysages de l'accueil", () => {

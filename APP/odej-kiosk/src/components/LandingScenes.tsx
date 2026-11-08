@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { CONFIG, mediaUrl } from '../config';
-import { framePuffs, paintPuffs, type Puff } from '../lib/clouds';
+import { paintBand, type CloudBand } from '../lib/clouds';
 import { fractalNoise } from '../lib/noise';
 import { alphaMask, maskHit, type AlphaMask } from '../lib/scenes';
 
 type Scene = (typeof CONFIG.landingScenes)[number];
-const cloudsOf = (scene: Scene): readonly Puff[] | undefined => ('clouds' in scene ? scene.clouds : undefined);
+const cloudOf = (scene: Scene): CloudBand | undefined => ('clouds' in scene ? scene.clouds : undefined);
 
-/** Nuages accrochés à un paysage : peints une fois, à la taille de son cadre agrandi de CONFIG.sceneCloudMargin. */
-function SceneClouds({ puffs }: { puffs: readonly Puff[] }) {
+/** Nuage accroché à un paysage : peint une fois, à la taille de son cadre agrandi de CONFIG.sceneCloudMargin. */
+function SceneCloud({ band }: { band: CloudBand }) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ function SceneClouds({ puffs }: { puffs: readonly Puff[] }) {
     const width = 256;
     const height = Math.max(1, Math.round((width * box.height) / box.width));
     const { noiseCells } = CONFIG.clouds;
-    paintPuffs(target, framePuffs(puffs, CONFIG.sceneCloudMargin), width, height, [
+    paintBand(target, band, CONFIG.sceneCloudMargin, width, height, [
       fractalNoise(width, height, 7, noiseCells),
       fractalNoise(width, height, 1871, noiseCells),
     ]);
-  }, [puffs]);
+  }, [band]);
 
   return <canvas ref={canvas} />;
 }
@@ -95,10 +95,10 @@ export function LandingScenes({ leaving }: { leaving: boolean }) {
       ))}
       {/* Les nuages des paysages passent au-dessus de tous les paysages, mais suivent chacun le sien */}
       {scenes.map((scene) => {
-        const puffs = cloudsOf(scene);
-        return puffs && arrived.has(scene.id) ? (
-          <div key={`${scene.id}-clouds`} className={`scene scene-${scene.id} scene-veil is-in`} style={frame(scene.id)}>
-            <SceneClouds puffs={puffs} />
+        const band = cloudOf(scene);
+        return band && arrived.has(scene.id) ? (
+          <div key={`${scene.id}-cloud`} className={`scene scene-${scene.id} scene-veil is-in`} style={frame(scene.id)}>
+            <SceneCloud band={band} />
           </div>
         ) : null;
       })}

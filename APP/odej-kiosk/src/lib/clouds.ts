@@ -25,13 +25,56 @@ export function puffOpacity(puff: Puff, u: number, v: number, noise: number) {
   return 1 - smoothstep(core, 1, Math.hypot(dx, dy) + (noise - 0.5) * tear);
 }
 
-/** Bouffées données dans le cadre d'un paysage, ramenées au canevas qui déborde ce cadre de `margin` de chaque côté. */
-export function framePuffs(puffs: readonly Puff[], margin: number): Puff[] {
-  const span = 1 + 2 * margin;
-  return puffs.map((puff) => ({ ...puff, x: (puff.x + margin) / span, y: (puff.y + margin) / span, w: puff.w / span, h: puff.h / span }));
+type Point = readonly [number, number];
+
+/** Nuage d'un seul tenant qui suit le bord d'un paysage : points dans son cadre (0 à 1), width en part de sa largeur. */
+export interface CloudBand {
+  points: readonly Point[];
+  width: number;
 }
 
-export function paintPuffs(canvas: HTMLCanvasElement, puffs: readonly Puff[], width: number, height: number, noises: Uint8ClampedArray[]) {
+/** Distance d'un point à une ligne brisée. */
+export function polylineDistance(points: readonly Point[], x: number, y: number) {
+  let best = Infinity;
+  for (let i = 1; i < points.length; i++) {
+    const [ax, ay] = points[i - 1];
+    const [bx, by] = points[i];
+    const dx = bx - ax;
+    const dy = by - ay;
+    const t = Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / (dx * dx + dy * dy || 1)));
+    best = Math.min(best, Math.hypot(x - ax - t * dx, y - ay - t * dy));
+  }
+  return best;
+}
+
+/**
+ * Peint le nuage d'un bord sur un canevas qui déborde le cadre du paysage de `margin` de chaque côté.
+ * Le canevas a les proportions du cadre : la distance se mesure en pixels, la même dans les deux sens.
+ */
+export function paintBand(canvas: HTMLCanvasElement, band: CloudBand, margin: number, width: number, height: number, noises: Uint8ClampedArray[]) {
+  const ctx = canvasContext(canvas, width, height);
+  const image = ctx.createImageData(width, height);
+  const [body, detail] = noises;
+  const { light, shadow, core, tear, underside } = CONFIG.clouds;
+  const span = 1 + 2 * margin;
+  const points = band.points.map(([x, y]): Point => [((x + margin) / span) * width, ((y + margin) / span) * height]);
+  const half = ((band.width / span) * width) / 2;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      const n = body[i] / 255;
+      // Le bruit gonfle et creuse le bord : une seule masse aux contours irréguliers
+      const alpha = 1 - smoothstep(core, 1, polylineDistance(points, x, y) / half + (n - 0.5) * tear);
+      if (alpha <= 0) continue;
+      const shade = smoothstep(0.3, 0.75, n * 0.6 + (detail[i] / 255) * 0.4) * (1 - underside * 0.5 * (1 - alpha));
+      for (let channel = 0; channel < 3; channel++) image.data[i + channel] = shadow[channel] + (light[channel] - shadow[channel]) * shade;
+      image.data[i + 3] = alpha * 255;
+    }
+  }
+  ctx.putImageData(image, 0, 0);
+}
+
+function paintPuffs(canvas: HTMLCanvasElement, puffs: readonly Puff[], width: number, height: number, noises: Uint8ClampedArray[]) {
   const ctx = canvasContext(canvas, width, height);
   const image = ctx.createImageData(width, height);
   const [body, detail] = noises;
