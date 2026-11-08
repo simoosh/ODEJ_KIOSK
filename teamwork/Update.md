@@ -484,3 +484,9 @@ What: four establishments collected and optimized with the scrappper's `publish_
 What: photo caps raised for all four, and the 70 s video default for odej-042 `video-01` (161 s, 5.7 MB). All under 50 MiB. Reason: the colleague kept each reviewed set. The AV1 and VP9 sources of #39, 40 and 43 are now H.264 `yuv420p` with faststart.
 What: odej-043 had no cover. The colleague supplied a photo of the building, set by hand in its manifest (see Data.md, section 7).
 Impact on others: project total is 1426 files and 545.2 MiB of 3 GiB. Not on the CDN yet: a human must run `media:publish -- --go`. New problems are in `teamwork/Data.md` (sections 4, 6 and 7), among them #39 football photos that may be #37's and #40's two Facebook pages.
+### 2026-11-08 03:57 · [app-agent] · CHANGE · Landing with four Béjaïa landscapes
+Area: src/components/Landing.tsx, LandingScenes.tsx, src/lib/clouds.ts, src/lib/scenes.ts, src/config.ts, src/styles/app.css, tools/media/pipeline, docs/MEDIA.md, docs/PERF.md
+What: at the owner's request, the landing shows four cut-out landscapes in its corners, joined by clouds over the turning map. Entering the map, landscapes and clouds slide out to their side at different speeds; going home, they slide back in. A first touch on a landscape lights its edge. The 360° view of the second touch is not built yet.
+What: the four photos live in public/media/landing/ (not in git, 1.2 MiB). `npm run media:landing` prepares them from the owner's PNG files. media:check checks them, media:publish sends them, kiosk:pack warns if they are missing. Their source and usage rights are still to be confirmed by the owner.
+Impact on others: data agent: copy public/media/landing/ from the owner before the next media:publish, or the Netlify site shows the landing without landscapes. Do not rename these files without telling the app agent.
+

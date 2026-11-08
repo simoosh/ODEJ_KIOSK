@@ -70,7 +70,9 @@ La carte démarre en `high`. Le FPS est mesuré pendant les 3 s qui suivent l'en
 - Ne jamais appeler `setState` depuis un écouteur `move`, `render` ou `zoom`.
 - Un `setStyle` efface les couches et les images : `installMarkers()` les remet à chaque `style.load`.
 - Le relief doit être retiré avant un `setStyle`, sinon le rendu plante pendant le chargement du nouveau style.
-- La sortie de l'accueil n'anime que `transform`, sur quatre calques : elle reste fluide même si la carte charge.
+- L'entrée dans la carte et le retour n'animent que `transform` et `opacity` : quatre paysages, quatre calques de nuages, la brume et le texte. Ils restent fluides même si la carte charge.
+- Les nuages de l'accueil sont peints une fois, en petit, à chaque changement d'orientation. Les paysages pèsent 1,2 Mio en tout.
+- La lueur d'un paysage touché est un `drop-shadow` sur une seule image, fixe une fois allumée : aucune animation ne tourne.
 - Une boucle `requestAnimationFrame` ne tourne que pendant une action demandée, comme la visite à 360°, ou derrière l'accueil.
 
 ## Relief auto-hébergé
