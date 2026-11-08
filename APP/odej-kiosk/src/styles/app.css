@@ -254,6 +254,10 @@ input:focus-visible {
  * Celle du rang de base sert au retour : tout revient des côtés et ralentit en se posant, la brume et le texte ensuite.
  */
 .landing {
+  /* Ruban de motifs, et bord haut minimal des paysages du haut pour ne jamais le toucher */
+  --motif-top: 5.8rem;
+  --motif-height: 3.4rem;
+  --below-motifs: calc(var(--motif-top) + var(--motif-height) + 0.3rem);
   --leave: cubic-bezier(0.55, 0, 0.25, 1);
   --settle: cubic-bezier(0.16, 0.8, 0.3, 1);
 }
@@ -381,13 +385,13 @@ input:focus-visible {
 }
 .scene-top-left {
   inset-inline-start: -2cqw;
-  top: 15cqh;
+  top: max(15cqh, var(--below-motifs));
   width: min(40cqw, 72cqh);
   transform-origin: 0 50%;
 }
 .scene-top-right {
   inset-inline-end: -2cqw;
-  top: 13cqh;
+  top: max(13cqh, var(--below-motifs));
   width: min(42cqw, 76cqh);
   transform-origin: 100% 50%;
 }
@@ -413,12 +417,12 @@ input:focus-visible {
   mask-image: linear-gradient(to bottom, transparent, #000 16%);
 }
 .is-portrait .scene-top-left {
-  top: 9cqh;
+  top: max(9cqh, var(--below-motifs));
   width: 58cqw;
 }
 .is-portrait .scene-top-right {
   inset-inline-end: -6cqw;
-  top: 12cqh;
+  top: max(12cqh, var(--below-motifs));
   width: 56cqw;
 }
 .is-portrait .scene-bottom-left {
@@ -433,11 +437,11 @@ input:focus-visible {
 /* Écrans 4:3 et 5:4 : le titre prend plus de place en largeur, les paysages se font plus petits et le texte descend */
 @container (orientation: landscape) and (aspect-ratio < 3 / 2) {
   .scene-top-left {
-    top: 12cqh;
+    top: max(12cqh, var(--below-motifs));
     width: 30cqw;
   }
   .scene-top-right {
-    top: 11cqh;
+    top: max(11cqh, var(--below-motifs));
     width: 32cqw;
   }
   .scene-bottom-left {
@@ -508,13 +512,13 @@ input:focus-visible {
   transform: translateY(-115%);
   opacity: 0;
 }
+/* Ruban de motifs : deux ondes claires, les motifs au milieu. Il reste sous l'en-tête et au-dessus des paysages */
 .motif-band {
   position: absolute;
   inset-inline: 0;
-  top: 5.6rem;
-  height: 4rem;
-  color: #b9c3b5;
-  opacity: 0.8;
+  top: var(--motif-top);
+  height: var(--motif-height);
+  color: #a3ae9f;
   pointer-events: none;
 }
 .motif-wave {
@@ -523,20 +527,23 @@ input:focus-visible {
   width: 100%;
   height: 100%;
 }
-.motif-wave path {
-  stroke: #cdd5c9;
-  stroke-width: 1.5;
+.motif-fill {
+  fill: rgba(255, 255, 255, 0.45);
+}
+.motif-line {
+  fill: none;
+  stroke: #c8b99e;
+  stroke-width: 1.4;
   vector-effect: non-scaling-stroke;
 }
-.motif-row {
-  position: absolute;
-  inset: 0.6rem 2rem 0;
-  display: flex;
-  justify-content: space-between;
+.motif-line.is-low {
+  stroke: #b5cbb0;
 }
-.motif-row svg {
-  width: 2rem;
-  height: 2rem;
+.motif {
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  translate: -50% -50%;
 }
 .landing-inner {
   position: relative;

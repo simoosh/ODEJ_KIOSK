@@ -52,24 +52,30 @@ export function polylineDistance(points: readonly Point[], x: number, y: number)
 }
 
 /**
- * Peint le nuage d'un bord sur un canevas qui déborde le cadre du paysage de `margin` de chaque côté.
+ * Peint les nuages des bords d'un paysage sur un canevas qui déborde son cadre de `margin` de chaque côté.
  * Le canevas a les proportions du cadre : la distance se mesure en pixels, la même dans les deux sens.
+ * Deux nuages qui se touchent ne font qu'une masse : chaque pixel prend le plus opaque des deux.
  */
-export function paintBand(canvas: HTMLCanvasElement, band: CloudBand, margin: number, width: number, height: number, noises: Uint8ClampedArray[]) {
+export function paintBands(canvas: HTMLCanvasElement, bands: readonly CloudBand[], margin: number, width: number, height: number, noises: Uint8ClampedArray[]) {
   const ctx = canvasContext(canvas, width, height);
   const image = ctx.createImageData(width, height);
   const [body, detail] = noises;
   const { light, shadow, tear, underside } = CONFIG.clouds;
-  const core = band.core ?? CONFIG.clouds.core;
   const span = 1 + 2 * margin;
-  const points = band.points.map(([x, y]): Point => [((x + margin) / span) * width, ((y + margin) / span) * height]);
-  const half = ((band.width / span) * width) / 2;
+  const shapes = bands.map((band) => ({
+    core: band.core ?? CONFIG.clouds.core,
+    points: band.points.map(([x, y]): Point => [((x + margin) / span) * width, ((y + margin) / span) * height]),
+    half: ((band.width / span) * width) / 2,
+  }));
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const i = (y * width + x) * 4;
       const n = body[i] / 255;
       // Le bruit gonfle et creuse le bord : une seule masse aux contours irréguliers
-      const alpha = 1 - smoothstep(core, 1, polylineDistance(points, x, y) / half + (n - 0.5) * tear);
+      let alpha = 0;
+      for (const { core, points, half } of shapes) {
+        alpha = Math.max(alpha, 1 - smoothstep(core, 1, polylineDistance(points, x, y) / half + (n - 0.5) * tear));
+      }
       if (alpha <= 0) continue;
       const shade = smoothstep(0.3, 0.75, n * 0.6 + (detail[i] / 255) * 0.4) * (1 - underside * 0.5 * (1 - alpha));
       for (let channel = 0; channel < 3; channel++) image.data[i + channel] = shadow[channel] + (light[channel] - shadow[channel]) * shade;

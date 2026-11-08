@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { CONFIG, mediaUrl } from '../config';
-import { paintBand, type CloudBand } from '../lib/clouds';
+import { paintBands, type CloudBand } from '../lib/clouds';
 import { fractalNoise } from '../lib/noise';
 import { alphaMask, maskHit, type AlphaMask } from '../lib/scenes';
 
 type Scene = (typeof CONFIG.landingScenes)[number];
-const cloudOf = (scene: Scene): CloudBand | undefined => ('clouds' in scene ? scene.clouds : undefined);
+const cloudsOf = (scene: Scene): readonly CloudBand[] => ('clouds' in scene ? scene.clouds : []);
 
-/** Nuage accroché à un paysage : peint une fois, à la taille de son cadre agrandi de CONFIG.sceneCloudMargin. */
-function SceneCloud({ band }: { band: CloudBand }) {
+/** Nuages accrochés à un paysage : peints une fois, à la taille de son cadre agrandi de CONFIG.sceneCloudMargin. */
+function SceneCloud({ bands }: { bands: readonly CloudBand[] }) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ function SceneCloud({ band }: { band: CloudBand }) {
     const width = 320;
     const height = Math.max(1, Math.round((width * box.height) / box.width));
     const { noiseCells } = CONFIG.clouds;
-    paintBand(target, band, CONFIG.sceneCloudMargin, width, height, [
+    paintBands(target, bands, CONFIG.sceneCloudMargin, width, height, [
       fractalNoise(width, height, 7, noiseCells),
       fractalNoise(width, height, 1871, noiseCells),
     ]);
-  }, [band]);
+  }, [bands]);
 
   return <canvas ref={canvas} />;
 }
@@ -95,10 +95,10 @@ export function LandingScenes({ leaving }: { leaving: boolean }) {
       ))}
       {/* Les nuages des paysages passent au-dessus de tous les paysages, mais suivent chacun le sien */}
       {scenes.map((scene) => {
-        const band = cloudOf(scene);
-        return band && arrived.has(scene.id) ? (
+        const bands = cloudsOf(scene);
+        return bands.length > 0 && arrived.has(scene.id) ? (
           <div key={`${scene.id}-cloud`} className={`scene scene-${scene.id} scene-veil is-in`} style={frame(scene.id)}>
-            <SceneCloud band={band} />
+            <SceneCloud bands={bands} />
           </div>
         ) : null;
       })}

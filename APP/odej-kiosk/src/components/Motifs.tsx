@@ -1,3 +1,5 @@
+import { ribbonPath, waveY, RIBBON } from '../lib/ribbon';
+
 /** Frise de motifs géométriques kabyles (poterie, tissage), en trait fin, comme la bande de motifs de Tiwizi. */
 const MOTIFS = [
   // losange pointé
@@ -18,19 +20,41 @@ const MOTIFS = [
   <g key="h"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></g>,
 ];
 
+const TOP = ribbonPath(-1);
+const BOTTOM = ribbonPath(1);
+// Le ruban entre les deux ondes : l'onde du haut, puis celle du bas parcourue à l'envers
+const FILL = `${TOP} ${ribbonPath(1, true).replace(/^M/, 'L')} Z`;
+
+/**
+ * Ruban ondulé entre deux sinusoïdes, les motifs posés au milieu. dir="ltr" : l'onde est un dessin, elle ne se
+ * retourne pas en arabe.
+ */
 export function MotifBand({ count = 14, className = '' }: { count?: number; className?: string }) {
   return (
-    <div className={`motif-band ${className}`} aria-hidden="true">
-      <svg className="motif-wave" viewBox="0 0 1200 40" preserveAspectRatio="none">
-        <path d="M0 26 C 200 6, 400 6, 600 22 S 1000 38, 1200 14" fill="none" />
+    <div className={`motif-band ${className}`} dir="ltr" aria-hidden="true">
+      <svg className="motif-wave" viewBox={`0 0 ${RIBBON.width} ${RIBBON.height}`} preserveAspectRatio="none">
+        <path className="motif-fill" d={FILL} />
+        <path className="motif-line" d={TOP} />
+        <path className="motif-line is-low" d={BOTTOM} />
       </svg>
-      <div className="motif-row">
-        {Array.from({ length: count }, (_, i) => (
-          <svg key={i} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+      {Array.from({ length: count }, (_, i) => {
+        const t = (i + 0.5) / count;
+        return (
+          <svg
+            key={i}
+            className="motif"
+            style={{ insetInlineStart: `${t * 100}%`, top: `${(waveY(t) / RIBBON.height) * 100}%` }}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             {MOTIFS[i % MOTIFS.length]}
           </svg>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }

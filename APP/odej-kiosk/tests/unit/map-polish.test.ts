@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
 import { polylineDistance, puffLayer, puffOpacity } from '../../src/lib/clouds';
+import { RIBBON, ribbonPath, waveY } from '../../src/lib/ribbon';
 import { maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
@@ -60,6 +61,24 @@ describe("nuages de l'accueil", () => {
     expect(polylineDistance(edge, -0.3, -0.4)).toBeCloseTo(0.5);
   });
 
+});
+
+describe("ruban de motifs de l'accueil", () => {
+  const ys = (path: string) => [...path.matchAll(/[ML][\d.]+ ([\d.]+)/g)].map((m) => Number(m[1]));
+
+  it('garde ses deux ondes dans son cadre, à écart constant, avec les motifs entre elles', () => {
+    const top = ys(ribbonPath(-1));
+    const bottom = ys(ribbonPath(1));
+    expect(Math.min(...top)).toBeGreaterThanOrEqual(0);
+    expect(Math.max(...bottom)).toBeLessThanOrEqual(RIBBON.height);
+    top.forEach((y, i) => expect(bottom[i] - y).toBeCloseTo(RIBBON.gap, 1));
+    expect(waveY(0)).toBeGreaterThan(top[0]);
+    expect(waveY(0)).toBeLessThan(bottom[0]);
+  });
+
+  it('se referme en parcourant le bas à l’envers', () => {
+    expect(ys(ribbonPath(1, true))).toEqual(ys(ribbonPath(1)).reverse());
+  });
 });
 
 describe("paysages de l'accueil", () => {

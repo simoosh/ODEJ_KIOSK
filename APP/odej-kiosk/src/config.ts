@@ -38,79 +38,103 @@ export const CONFIG = {
    * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
    * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
    * Dans l'ordre de peinture : le dernier passe au-dessus.
-   * clouds : un nuage d'un seul tenant le long d'un bord du paysage, tracé dans son cadre (0 à 1, il peut en déborder).
-   * Il suit le paysage sur chaque écran et passe au-dessus de tous les paysages.
+   * clouds : des nuages d'un seul tenant le long des bords du paysage, tracés dans son cadre (0 à 1, ils peuvent en
+   * déborder). Ils suivent le paysage sur chaque écran et passent au-dessus de tous les paysages.
    */
   landingScenes: [
     {
       id: 'bottom-left',
       src: 'landing/bottom-left.webp',
       // Tout le bord droit, contre la carte
-      clouds: {
-        width: 0.3,
-        points: [
-          [0.6, 0.05],
-          [0.8, 0.11],
-          [0.88, 0.2],
-          [0.92, 0.3],
-          [0.96, 0.4],
-          [0.99, 0.5],
-          [0.99, 0.57],
-          [0.94, 0.63],
-          [0.84, 0.68],
-          [0.73, 0.73],
-          [0.79, 0.8],
-          [0.86, 0.88],
-          [0.91, 0.96],
-          [0.93, 1.06],
-        ],
-      },
+      clouds: [
+        {
+          width: 0.3,
+          points: [
+            [0.6, 0.05],
+            [0.8, 0.11],
+            [0.88, 0.2],
+            [0.92, 0.3],
+            [0.96, 0.4],
+            [0.99, 0.5],
+            [0.99, 0.57],
+            [0.94, 0.63],
+            [0.84, 0.68],
+            [0.73, 0.73],
+            [0.79, 0.8],
+            [0.86, 0.88],
+            [0.91, 0.96],
+            [0.93, 1.06],
+          ],
+        },
+      ],
     },
     {
       id: 'bottom-right',
       src: 'landing/bottom-right.webp',
       // Bord extérieur de la mer, contre la carte
-      clouds: {
-        width: 0.28,
-        points: [
-          [0.18, -0.04],
-          [0.12, 0.06],
-          [0.19, 0.12],
-          [0.3, 0.18],
-          [0.24, 0.25],
-          [0.2, 0.33],
-          [0.12, 0.43],
-          [0.06, 0.54],
-          [0.01, 0.6],
-          [0.05, 0.66],
-          [0.16, 0.72],
-          [0.18, 0.82],
-          [0.14, 0.9],
-          [0.07, 0.97],
-          [0.05, 1.06],
-        ],
-      },
+      clouds: [
+        {
+          width: 0.28,
+          points: [
+            [0.18, -0.04],
+            [0.12, 0.06],
+            [0.19, 0.12],
+            [0.3, 0.18],
+            [0.24, 0.25],
+            [0.2, 0.33],
+            [0.12, 0.43],
+            [0.06, 0.54],
+            [0.01, 0.6],
+            [0.05, 0.66],
+            [0.16, 0.72],
+            [0.18, 0.82],
+            [0.14, 0.9],
+            [0.07, 0.97],
+            [0.05, 1.06],
+          ],
+        },
+      ],
     },
     {
       id: 'top-left',
       src: 'landing/top-left.webp',
-      // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
-      clouds: {
-        width: 0.32,
-        core: 0.55,
-        points: [
-          [-0.2, 0.93],
-          [0.1, 0.95],
-          [0.35, 0.94],
-          [0.55, 0.91],
-          [0.72, 0.86],
-        ],
-      },
+      clouds: [
+        // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
+        {
+          width: 0.32,
+          core: 0.55,
+          points: [
+            [-0.2, 0.93],
+            [0.1, 0.95],
+            [0.35, 0.94],
+            [0.55, 0.91],
+            [0.72, 0.86],
+          ],
+        },
+        // Reste de ciel le long de la falaise, entre elle et le détourage
+        {
+          width: 0.16,
+          core: 0.5,
+          points: [
+            [0.36, -0.04],
+            [0.52, 0.15],
+            [0.63, 0.3],
+            [0.73, 0.45],
+            [0.82, 0.58],
+            [0.88, 0.64],
+          ],
+        },
+      ],
     },
     { id: 'top-right', src: 'landing/top-right.webp' },
   ],
   /** Débord du canevas des nuages d'un paysage autour de son cadre, de chaque côté (app.css, .scene-veil canvas) */
   sceneCloudMargin: 0.5,
+  /**
+   * Ruban de motifs de l'accueil (lib/ribbon.ts), dans un repère étiré sur toute la largeur de l'écran.
+   * gap : écart entre les deux ondes, où se posent les motifs. waves : nombre d'ondulations sur la largeur.
+   */
+  motifRibbon: { width: 1200, height: 64, amplitude: 10, gap: 34, waves: 1.5, phase: 0.4, samples: 96 },
   /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
   sceneDecodeWaitMs: 600,
 
