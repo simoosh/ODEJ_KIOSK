@@ -151,12 +151,12 @@ export const CONFIG = {
   /** Attente avant le tracé du titre, comptée depuis l'explosion du grand logo (ms) */
   wordmarkDelayMs: 0,
   /** Chiffres de l'accueil : durée de leur montée en compteur, et départ du premier puis écart entre deux (ms) */
-  countUpMs: 1400,
+  countUpMs: 2200,
   /** Grand logo de l'ouverture : attente avant son dessin (ms) et sa taille (part de la hauteur de l'accueil). Il explose ensuite et le titre se trace */
   logoDelayMs: 300,
   logoIntroShare: 0.3,
   countUpDelayMs: 600,
-  countUpStepMs: 180,
+  countUpStepMs: 140,
 
   /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {

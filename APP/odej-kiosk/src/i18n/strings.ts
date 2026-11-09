@@ -2,7 +2,6 @@ import type { Locale } from '../types';
 
 const ar = {
   landingTitle: 'ديوان مؤسسات الشباب بجاية',
-  statEstablishments: 'مؤسسة على الخريطة',
   cta: 'اكتشف ولاية بجاية',
   ctaHint: 'المس الزر لبدء الجولة',
   standInvite: 'على جناحنا: {name}',
@@ -86,7 +85,6 @@ const ar = {
 
 const en: typeof ar = {
   landingTitle: 'ODEJ of Béjaia',
-  statEstablishments: 'places on the map',
   cta: 'Discover Bejaia',
   ctaHint: 'Tap the button to start',
   standInvite: 'On our stand: {name}',

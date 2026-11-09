@@ -680,29 +680,63 @@ input:focus-visible {
   line-height: 1.75;
   color: var(--ink-2);
 }
+/* Chiffres de l'accueil : des cartes de verre, le total plus grand, un liseré de couleur sur chacune */
 .facts {
-  margin: 0;
+  margin: 0.4rem 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.6rem 3rem;
+  align-items: stretch;
+  gap: 0.8rem;
 }
-.facts div {
+.facts > div {
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
+  justify-content: center;
+  min-width: 7.5rem;
+  padding: 0.7rem 1.1rem 0.75rem;
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 0.6rem 1.6rem rgba(20, 33, 27, 0.08),
+    inset 0 0 0 0.06rem rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(0.6rem);
+  overflow: hidden;
+}
+.facts > div::before {
+  content: '';
+  position: absolute;
+  inset-inline: 1.1rem;
+  top: 0;
+  height: 0.2rem;
+  border-radius: 0 0 0.2rem 0.2rem;
+  background: var(--green);
+  opacity: 0.7;
 }
 .facts dt {
-  font-size: 0.9rem;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
   color: var(--ink-3);
+  white-space: nowrap;
 }
 .facts dd {
   margin: 0;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.facts .is-strong {
+  min-width: 9.5rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+.facts .is-strong::before {
+  background: var(--red);
 }
 .facts .is-strong dd {
+  font-size: 2.6rem;
   color: var(--red);
 }
 .cta-row {
@@ -821,13 +855,19 @@ input:focus-visible {
   animation: land-in 0.8s var(--settle) 0.75s backwards;
 }
 .facts > div {
-  animation: land-in 0.8s var(--settle) 0.85s backwards;
+  animation: land-in 1s var(--settle) 0.85s backwards;
 }
 .facts > div:nth-child(2) {
   animation-delay: 0.95s;
 }
 .facts > div:nth-child(3) {
   animation-delay: 1.05s;
+}
+.facts > div:nth-child(4) {
+  animation-delay: 1.15s;
+}
+.facts > div:nth-child(5) {
+  animation-delay: 1.25s;
 }
 .cta-featured {
   animation: land-in 0.8s var(--settle) 1.25s backwards;

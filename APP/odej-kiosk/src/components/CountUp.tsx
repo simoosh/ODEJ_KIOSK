@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { CONFIG } from '../config';
 
-const easeOut = (u: number) => 1 - (1 - u) ** 3;
+/** Départ vif, arrivée très lente : le compteur se pose sur sa valeur */
+const easeOut = (u: number) => (u >= 1 ? 1 : 1 - 2 ** (-10 * u));
 
 /**
  * Nombre qui monte de 0 à sa valeur, comme un compteur, chaque fois que `run` passe à vrai. Le texte est écrit

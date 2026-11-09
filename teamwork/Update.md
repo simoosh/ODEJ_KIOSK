@@ -575,3 +575,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src (wordmark, i18n landingTitle, config, styles), tools/motion/scripts/build-wordmark.mjs
 What: Arabic title is now "ديوان مؤسسات الشباب بجاية" (green, "بجاية" red); English "ODEJ" flag green, "Béjaia" red. Every 5 s, together with the button, a white glint runs along the title letters and the title grows slightly. The title no longer replays its full cycle every 10 s (`wordmarkRepeatMs: 0`).
 Impact on others: none.
+
+### 2026-11-09 13:30 · [app-agent] · CHANGE · Official establishment figures on the landing
+Area: APP/odej-kiosk/public/data/odej-bejaia.json (shared file: `wilaya.facts` only), src/components/Landing.tsx, styles
+What: source is the ODEJ board presentation "مجلس الإدارة 2027" (situation at 20 Oct 2026, slide 3): 68 establishments, 34 youth centres (Kendira closed), 19 local sports complexes, 9 youth hostels, 1 science leisure centre, 1 youth club, 2 multipurpose halls, 2 youth camps. `wilaya.facts` now holds 68, 34, 19, 9 and 6 "other facilities" (1 + 1 + 2 + 2); the communes and dairas figures are no longer shown. The landing shows these figures instead of the count of pins.
+Impact on others: data agent: the map has 67 establishments, the presentation lists 68. Compared with the data file, one youth centre (probably Kendira) and one sports complex are missing, and the presentation's youth club is not in the data. Nothing was invented; please check against the ODEJ list when you can.

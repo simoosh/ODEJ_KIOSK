@@ -31,8 +31,8 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
   }
   const replay = `${locale}-${visit}`;
   const facts = [
-    { value: data.establishments.length, label: t('statEstablishments'), strong: true },
-    ...(data.wilaya.facts ?? []).map((f) => ({ value: f.value, label: tx(f.label), strong: false })),
+    // Chiffres officiels du ODEJ (data : wilaya.facts), le total en premier
+    ...(data.wilaya.facts ?? []).map((f, i) => ({ value: f.value, label: tx(f.label), strong: i === 0 })),
   ];
 
   const featured = featuredEstablishments(data.establishments)[0];
