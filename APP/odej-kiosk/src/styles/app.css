@@ -508,42 +508,36 @@ input:focus-visible {
 .is-portrait .landing-inner {
   padding: 2rem 3rem;
 }
+/* En-tête : le logo et le nom au centre, la langue sur le côté */
 .landing-head {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+}
+.landing-head .lang-btn {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block: 0;
+  margin-block: auto;
+  height: fit-content;
 }
 .brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.4rem;
 }
 .brand-logo {
-  width: 5.4rem;
-  height: 5.4rem;
+  width: 6.4rem;
+  height: 6.4rem;
   border-radius: var(--r-md);
   object-fit: contain;
 }
 /* Logo vectoriel animé (components/LandingLogo.tsx) */
-.brand-logo.is-drawn {
-  width: 4.6rem;
-  height: 4.6rem;
-}
 .brand-logo.is-drawn svg {
   display: block;
   width: 100%;
   height: 100%;
-}
-.brand-logo.is-slot {
-  display: grid;
-  place-items: center;
-  border: 0.12rem dashed #a7b0aa;
-  color: var(--ink-3);
-  font-size: 0.6rem;
-  text-align: center;
-  line-height: 1.2;
-  padding: 0.2rem;
 }
 .brand-text {
   display: flex;
@@ -551,12 +545,12 @@ input:focus-visible {
   line-height: 1.25;
 }
 .brand-text strong {
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 .brand-text span {
   color: var(--ink-3);
-  font-size: 0.95rem;
+  font-size: 1.3rem;
 }
 .lang-btn {
   min-height: var(--tap);
@@ -589,45 +583,6 @@ input:focus-visible {
 }
 .is-portrait .landing-lead {
   font-size: 1.35rem;
-}
-.eyebrow {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  color: var(--red);
-  font-weight: 600;
-  font-size: 1rem;
-}
-.kiosk[lang='en'] .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-}
-.eyebrow-date {
-  color: var(--ink-2);
-  font-weight: 500;
-}
-.flag-rule {
-  display: inline-flex;
-  width: 3.2rem;
-  height: 0.28rem;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 0 0 0.06rem #c9cfc6;
-}
-.flag-rule span {
-  flex: 1;
-}
-.flag-rule span:first-child {
-  background: var(--green);
-}
-.flag-rule span:last-child {
-  background: #fff;
-}
-[dir='rtl'] .flag-rule {
-  flex-direction: row-reverse;
 }
 /* Titre vectoriel animé (components/LandingTitle.tsx) : sa hauteur fixe sa taille, sa largeur suit ses proportions */
 .landing-title {
@@ -784,9 +739,6 @@ input:focus-visible {
 }
 .landing-head > :last-child {
   animation-delay: 0.3s;
-}
-.landing-body > .eyebrow {
-  animation: land-in 0.8s var(--settle) 0.35s backwards;
 }
 .landing-body > .landing-lead {
   animation: land-in 0.8s var(--settle) 0.75s backwards;

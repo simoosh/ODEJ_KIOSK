@@ -1,8 +1,6 @@
 import type { Locale } from '../types';
 
 const ar = {
-  eventLine: 'معرض مؤسسات الشباب · قصر المعارض، الجزائر',
-  eventDate: '11 نوفمبر 2026',
   landingTitle: 'ديوان مؤسسات الشباب',
   statEstablishments: 'مؤسسة على الخريطة',
   cta: 'اكتشف ولاية بجاية',
@@ -87,8 +85,6 @@ const ar = {
 };
 
 const en: typeof ar = {
-  eventLine: 'Youth Establishments Exhibition · Palais des Expositions, Algiers',
-  eventDate: '11 November 2026',
   landingTitle: 'ODEJ of Béjaia',
   statEstablishments: 'places on the map',
   cta: 'Discover Bejaia',

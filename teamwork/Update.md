@@ -555,3 +555,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/logo/** (new), src/components/LandingLogo.tsx, Landing.tsx, config.ts, styles, tools/motion
 What: the owner supplied the official logo as an SVG (kept outside the repo). `tools/motion` splits it into groups and lightens it into `src/logo/logo.json`. The landing header shows it instead of the empty logo slot: rings, arcs and texts draw themselves, then the central emblem fades in, on every arrival on the landing and language change. If `organization.logo` is set in the data file, that image still wins. Remotion composition `Logo` renders the same animation.
 Impact on others: data agent: nothing to do. The logo slot in `odej-bejaia.json` can stay empty.
+
+### 2026-11-09 10:30 · [app-agent] · CHANGE · Landing header centred, event line removed
+Area: APP/odej-kiosk/src/components (Landing, Motifs removed), i18n/strings.ts (eventLine, eventDate removed), styles
+What: on the owner's request, the logo and the office name are larger and centred, the language button stays on the side. The event line ("Youth Establishments Exhibition · Palais des Expositions, Algiers · 11 November 2026") is removed from the landing, with its strings and the flag rule.
+Impact on others: none.

@@ -9,7 +9,6 @@ import { LandingClouds } from './LandingClouds';
 import { LandingLogo } from './LandingLogo';
 import { LandingScenes } from './LandingScenes';
 import { LandingTitle } from './LandingTitle';
-import { FlagRule } from './Motifs';
 
 interface Props {
   data: KioskData;
@@ -62,11 +61,6 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
         </header>
 
         <div key={`body-${replay}`} className="landing-body">
-          <p className="eyebrow">
-            <FlagRule />
-            <span>{t('eventLine')}</span>
-            <span className="eyebrow-date">{t('eventDate')}</span>
-          </p>
           <LandingTitle leaving={leaving} />
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
