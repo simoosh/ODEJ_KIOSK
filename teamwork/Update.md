@@ -545,3 +545,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/components (Landing, CountUp), config.ts, styles
 What: every 5 s a golden glow runs around the green button while it grows slightly. The figures count up from 0 each time the landing appears.
 Impact on others: none.
+
+### 2026-11-09 09:20 · [app-agent] · CHANGE · Landing replays its animations, keeps the language from the map
+Area: APP/odej-kiosk/src/App.tsx (goHome), src/components/Landing.tsx, styles
+What: the home button no longer resets the language: a visitor who switched to English comes back to an English landing. Only the idle timeout (next visitor) resets it. The landing content is redrawn on each return and language change, so the title, the counters and the button glow replay. The button glow is now white with a light sweep across it; the other landing items rise in one after the other.
+Impact on others: none.

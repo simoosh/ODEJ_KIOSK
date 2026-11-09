@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { KioskData } from '../types';
 import { featuredEstablishments, titleOf } from '../data/model';
 import { useI18n } from '../i18n/I18n';
@@ -18,7 +19,15 @@ interface Props {
 }
 
 export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Props) {
-  const { t, tx } = useI18n();
+  const { locale, t, tx } = useI18n();
+  // Chaque retour sur l'accueil, et chaque changement de langue, redessine son contenu : ses animations d'entrée rejouent
+  const [visit, setVisit] = useState(0);
+  const [wasLeaving, setWasLeaving] = useState(leaving);
+  if (leaving !== wasLeaving) {
+    setWasLeaving(leaving);
+    if (!leaving) setVisit((v) => v + 1);
+  }
+  const replay = `${locale}-${visit}`;
   const facts = [
     { value: data.establishments.length, label: t('statEstablishments'), strong: true },
     ...(data.wilaya.facts ?? []).map((f) => ({ value: f.value, label: tx(f.label), strong: false })),
@@ -34,7 +43,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
       <LandingClouds portrait={portrait} />
 
       <div className="landing-inner">
-        <header className="landing-head">
+        <header key={`head-${replay}`} className="landing-head">
           <div className="brand">
             {data.organization.logo ? (
               <img className="brand-logo" src={`${import.meta.env.BASE_URL}${data.organization.logo}`} alt="" />
@@ -51,7 +60,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
           </button>
         </header>
 
-        <div className="landing-body">
+        <div key={`body-${replay}`} className="landing-body">
           <p className="eyebrow">
             <FlagRule />
             <span>{t('eventLine')}</span>
