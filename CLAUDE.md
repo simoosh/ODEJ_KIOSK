@@ -23,7 +23,7 @@
 
 | Area | Owner | Others |
 |---|---|---|
-| `APP/odej-kiosk/src/**`, `scripts/**`, config, CI, Netlify, `tools/media/pipeline/**`, `tools/dem/**`, `tools/data/**` | app agent | read only, ask first |
+| `APP/odej-kiosk/src/**`, `scripts/**`, config, CI, Netlify, `tools/media/pipeline/**`, `tools/dem/**`, `tools/data/**`, `tools/motion/**` | app agent | read only, ask first |
 | `RESOURCES/**`, `tools/media/collect/**`, `APP/odej-kiosk/docs/media/**`, `APP/odej-kiosk/public/media/odej-NNN/**` (files and `media.json`) | data agent | read only, ask first |
 | `APP/odej-kiosk/public/data/odej-bejaia.json` and its schema | shared, until media blocks move to `media.json` | tell the other agent in `Update.md` before editing |
 | `teamwork/**` | everyone | `Update.md` is append-only |
@@ -53,7 +53,7 @@ ODEJ_KIOSK/
 │  ├─ src/
 │  ├─ tests/unit/, tests/e2e/
 │  └─ docs/                         VERIFICATION.md, PERF.md, DATA.md, media/
-├─ tools/                           never deployed: dem/, data/, media/collect/, media/pipeline/
+├─ tools/                           never deployed: dem/, data/, media/collect/, media/pipeline/, motion/ (Remotion videos, own CLAUDE.md)
 └─ RESOURCES/ODEJ-Media/NNN-<name>/ raw media: only info.json and manifest.json are tracked
 ```
 
