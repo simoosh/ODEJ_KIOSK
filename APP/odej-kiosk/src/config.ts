@@ -40,7 +40,8 @@ export const CONFIG = {
    * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
    * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
    * Dans l'ordre de peinture : le dernier passe au-dessus.
-   * solid : côtés du cadre collés au bord de l'écran, qui restent nets. Les autres s'effacent dans la brume (sceneFeather).
+   * solid : côtés du cadre collés au bord de l'écran, qui restent nets. Les autres s'effacent dans la brume, sur
+   * feather (part du petit côté de l'image, sceneFeather par défaut).
    * clouds : des nuages d'un seul tenant le long des bords du paysage, tracés dans son cadre (0 à 1, ils peuvent en
    * déborder). Ils suivent le paysage sur chaque écran et passent au-dessus de tous les paysages.
    */
@@ -107,14 +108,14 @@ export const CONFIG = {
       clouds: [
         // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
         {
-          width: 0.32,
-          core: 0.55,
+          width: 0.28,
+          core: 0.4,
           points: [
-            [-0.2, 0.93],
-            [0.1, 0.95],
-            [0.35, 0.94],
-            [0.55, 0.91],
-            [0.72, 0.86],
+            [-0.2, 0.99],
+            [0.1, 1.01],
+            [0.35, 1],
+            [0.55, 0.96],
+            [0.72, 0.9],
           ],
         },
         // Reste de ciel le long de la falaise, entre elle et le détourage
@@ -132,7 +133,8 @@ export const CONFIG = {
         },
       ],
     },
-    { id: 'top-right', src: 'landing/top-right.webp', solid: ['right'] as Side[] },
+    // Fondu plus court : son haut reste dégagé
+    { id: 'top-right', src: 'landing/top-right.webp', solid: ['right'] as Side[], feather: 0.14 },
   ],
   /** Longueur du fondu des bords des paysages, en part du petit côté de chaque image (lib/scenes.ts) */
   sceneFeather: 0.28,
@@ -158,7 +160,7 @@ export const CONFIG = {
     /** Centre x, y et taille w, h en part de l'écran. front : plan avant, qui part plus vite à la sortie */
     landscape: [
       { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
-      { x: 0.84, y: 0.05, w: 0.46, h: 0.16 },
+      { x: 0.84, y: 0.02, w: 0.46, h: 0.1 },
       { x: 0.2, y: 0.97, w: 0.5, h: 0.2, front: true },
       { x: 0.41, y: 1.02, w: 0.3, h: 0.14, front: true },
       { x: 0.8, y: 0.97, w: 0.5, h: 0.2, front: true },

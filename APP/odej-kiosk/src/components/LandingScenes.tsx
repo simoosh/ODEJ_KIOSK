@@ -5,6 +5,7 @@ import { fractalNoise } from '../lib/noise';
 import { alphaMask, featherMask, maskHit, type AlphaMask } from '../lib/scenes';
 
 type Scene = (typeof CONFIG.landingScenes)[number];
+const featherOf = (scene: Scene): number => ('feather' in scene ? scene.feather : CONFIG.sceneFeather);
 const cloudsOf = (scene: Scene): readonly CloudBand[] => ('clouds' in scene ? scene.clouds : []);
 
 /** Nuages accrochés à un paysage : peints une fois, à la taille de son cadre agrandi de CONFIG.sceneCloudMargin. */
@@ -67,9 +68,10 @@ export function LandingScenes({ leaving }: { leaving: boolean }) {
     setLit(hit?.id ?? null);
   };
 
-  const onLoad = (id: string, solid: Scene['solid'], image: HTMLImageElement) => {
+  const onLoad = (scene: Scene, image: HTMLImageElement) => {
+    const { id, solid } = scene;
     masks.current.set(id, alphaMask(image));
-    const feather = featherMask(image, solid, CONFIG.sceneFeather);
+    const feather = featherMask(image, solid, featherOf(scene));
     if (feather) setFeathers((prev) => new Map(prev).set(id, feather));
     const arrive = () =>
       setArrived((prev) => (prev.has(id) ? prev : new Map(prev).set(id, image.naturalWidth / image.naturalHeight)));
@@ -92,32 +94,35 @@ export function LandingScenes({ leaving }: { leaving: boolean }) {
 
   return (
     <div className="scenes" dir="ltr" aria-hidden="true" onPointerUp={onPointerUp}>
-      {scenes.map(({ id, src, solid }) => (
-        <div
-          key={id}
-          className={`scene scene-${id}${arrived.has(id) ? ' is-in' : ''}${lit === id ? ' is-lit' : ''}`}
-          style={frame(id)}
-        >
-          {/* La lueur est sur l'enveloppe : posée sur l'image, le masque de fondu l'effacerait */}
-          <div className="scene-art">
-            <img
-              ref={(image) => {
-                if (image) images.current.set(id, image);
-                else images.current.delete(id);
-              }}
-              className="scene-img"
-              style={fade(id)}
-              src={mediaUrl(src)}
-              alt=""
-              crossOrigin="anonymous"
-              decoding="async"
-              draggable={false}
-              onLoad={(event) => onLoad(id, solid, event.currentTarget)}
-              onError={() => setMissing((prev) => new Set(prev).add(id))}
-            />
+      {scenes.map((scene) => {
+        const { id, src } = scene;
+        return (
+          <div
+            key={id}
+            className={`scene scene-${id}${arrived.has(id) ? ' is-in' : ''}${lit === id ? ' is-lit' : ''}`}
+            style={frame(id)}
+          >
+            {/* La lueur est sur l'enveloppe : posée sur l'image, le masque de fondu l'effacerait */}
+            <div className="scene-art">
+              <img
+                ref={(image) => {
+                  if (image) images.current.set(id, image);
+                  else images.current.delete(id);
+                }}
+                className="scene-img"
+                style={fade(id)}
+                src={mediaUrl(src)}
+                alt=""
+                crossOrigin="anonymous"
+                decoding="async"
+                draggable={false}
+                onLoad={(event) => onLoad(scene, event.currentTarget)}
+                onError={() => setMissing((prev) => new Set(prev).add(id))}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       {/* Les nuages des paysages passent au-dessus de tous les paysages, mais suivent chacun le sien */}
       {scenes.map((scene) => {
         const bands = cloudsOf(scene);
