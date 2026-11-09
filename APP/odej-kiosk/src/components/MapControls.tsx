@@ -1,9 +1,7 @@
-import { useState, type RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { BasemapId } from '../types';
 import type { MapHandle } from '../map/MapView';
-import { BASEMAPS } from '../map/basemaps';
 import { useI18n } from '../i18n/I18n';
-import type { StringKey } from '../i18n/strings';
 import { Icon } from './Icon';
 
 interface Props {
@@ -17,10 +15,10 @@ interface Props {
   onTerrain(on: boolean): void;
 }
 
+/** Colonne de contrôles en verre, côté fin de ligne. Le fond plan / satellite est un interrupteur à deux positions. */
 export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocked, onBasemap, onTerrain }: Props) {
   const { t } = useI18n();
-  const [layersOpen, setLayersOpen] = useState(false);
-  const visible = BASEMAPS.filter((b) => b.id !== 'preview');
+  const satellite = basemap === 'satellite';
 
   return (
     <div className="controls">
@@ -42,6 +40,17 @@ export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocke
       </div>
 
       <div className="ctrl-group">
+        <button
+          type="button"
+          className={`ctrl ctrl-3d ${is3d ? 'is-on' : ''}`}
+          onClick={() => map.current?.toggle3d()}
+          aria-label={is3d ? t('view2d') : t('view3d')}
+          title={is3d ? t('view2d') : t('view3d')}
+        >
+          <Icon name="cube" />
+          {/* Mode affiché : la pastille verte et « 3D » quand la vue est inclinée */}
+          <span className="ctrl-tag">{is3d ? '3D' : '2D'}</span>
+        </button>
         <button type="button" className="ctrl" onClick={() => map.current?.tiltBy(12)} aria-label={t('tiltUp')} title={t('tiltUp')}>
           <Icon name="tiltUp" />
         </button>
@@ -57,51 +66,39 @@ export function MapControls({ map, compass, is3d, basemap, terrain, terrainLocke
       </div>
 
       <div className="ctrl-group">
-        <button type="button" className="ctrl ctrl-text" onClick={() => map.current?.toggle3d()} aria-label={is3d ? t('view2d') : t('view3d')} title={is3d ? t('view2d') : t('view3d')}>
-          {is3d ? '2D' : '3D'}
-        </button>
         <button type="button" className="ctrl" onClick={() => map.current?.whole()} aria-label={t('wholeWilaya')} title={t('wholeWilaya')}>
           <Icon name="frame" />
         </button>
         <button
           type="button"
-          className={`ctrl ${layersOpen ? 'is-on' : ''}`}
-          onClick={() => setLayersOpen((v) => !v)}
-          aria-label={t('layers')}
-          aria-expanded={layersOpen}
-          title={t('layers')}
+          className={`ctrl ${terrain ? 'is-on' : ''}`}
+          onClick={() => onTerrain(!terrain)}
+          disabled={terrainLocked}
+          aria-pressed={terrain}
+          aria-label={t('terrain3d')}
+          title={t('terrain3d')}
         >
-          <Icon name="layers" />
+          <Icon name="mountain" />
         </button>
       </div>
 
-      {layersOpen && (
-        <div className="layers-pop" role="dialog" aria-label={t('layers')}>
-          <h3>{t('layers')}</h3>
-          <div className="layer-grid">
-            {visible.map((b) => (
-              <button
-                key={b.id}
-                type="button"
-                className={`layer-tile ${basemap === b.id ? 'is-on' : ''}`}
-                onClick={() => onBasemap(b.id)}
-                aria-pressed={basemap === b.id}
-              >
-                <span
-                  className="layer-swatch"
-                  style={{ background: `linear-gradient(135deg, ${b.swatch[0]} 0 45%, ${b.swatch[1]} 45% 75%, ${b.swatch[2]} 75%)` }}
-                />
-                <span>{t(`basemap_${b.id}` as StringKey)}</span>
-              </button>
-            ))}
-          </div>
-          <label className={`switch ${terrainLocked ? 'is-disabled' : ''}`}>
-            <input id="terrain-toggle" type="checkbox" checked={terrain} disabled={terrainLocked} onChange={(e) => onTerrain(e.target.checked)} />
-            <span className="switch-track" aria-hidden="true" />
-            <span>{t('terrain3d')}</span>
-          </label>
-        </div>
-      )}
+      <button
+        type="button"
+        role="switch"
+        className={`basemap-switch ${satellite ? 'is-satellite' : ''}`}
+        aria-checked={satellite}
+        aria-label={t('basemap_satellite')}
+        title={satellite ? t('basemap_satellite') : t('basemap_plan')}
+        onClick={() => onBasemap(satellite ? 'plan' : 'satellite')}
+      >
+        <span className="basemap-knob" aria-hidden="true" />
+        <span className="basemap-icon is-plan" aria-hidden="true">
+          <Icon name="map" />
+        </span>
+        <span className="basemap-icon is-satellite" aria-hidden="true">
+          <Icon name="globe" />
+        </span>
+      </button>
     </div>
   );
 }
