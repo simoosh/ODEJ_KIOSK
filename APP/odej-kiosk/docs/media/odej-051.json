@@ -1,0 +1,20 @@
+{
+  "establishment": "odej-051",
+  "files": [
+    {
+      "file": "media/odej-051/cover.webp",
+      "bytes": 193430,
+      "sha256": "15cf392b50f8e4909ce3a480991851d22e675c25293b36452712eb2fc318425c",
+      "original": "preview/preview.jpg"
+    },
+    {
+      "file": "media/odej-051/gallery/gallery-01.webp",
+      "bytes": 92612,
+      "sha256": "1a0e209f64c1de3c2e51c6a3bc9f5b263fdedeb56d113e6c669545ab667dfda9",
+      "original": "photos/photo-001.jpg",
+      "originalSha256": "1695e4da67da1b8b0d741246f48ac7b638e53071af32e2e118dea50073d7adfc",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122101684472991294",
+      "postedAt": "2025-08-26T09:46:12Z"
+    }
+  ]
+}

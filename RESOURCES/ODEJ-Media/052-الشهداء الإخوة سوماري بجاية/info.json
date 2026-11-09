@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:25:37Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 52,
+    "name": "الشهداء الإخوة سوماري بجاية",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579719040563"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579719040563",
+    "pageRef": "61579719040563",
+    "title": "بيت الشباب الاخوة سوماري- ولاية بجاية"
+  },
+  "email": "ajsoummari@odejbejaia-dz.com",
+  "phone": "034 16 57 34",
+  "address": "بلدية بجاية",
+  "website": null,
+  "description": "بيت الشباب هو مرفق إيواء مخصص للشباب المسافرين، يوفر أسرّة في غرف مشتركة بتكلفة منخفضة، وغالباً ما يحتوي على مرافق مشتركة مثل المطابخ والصالات. بالإضافة إلى الإقامة، تهدف بيوت الشباب إلى توفير مكان للتعارف وتبادل الخبرات والأنشطة الثقافية والترفيهية، مما يشجع على تنمية السياحة الشبابية والتعاون بين الشباب من مختلف الدول",
+  "facebookCategory": "Office du tourisme",
+  "openingHours": null,
+  "followers": 36,
+  "foundedYear": 2010,
+  "capacity": 70,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 735,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/735",
+    "name": "الشهداء الإخوة سوماري بجاية",
+    "commune": "بجاية",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية بجاية",
+        "replaced": "حي الاخوة سوماري, Bejaïa, Algeria"
+      }
+    }
+  },
+  "sources": {
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

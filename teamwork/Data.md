@@ -1,6 +1,6 @@
 # Data.md: known data problems
 
-Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-09, after the scrape of #44 to 48 and the copy of #33 as #49.
+Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-09, after the scrape of #50, 51, 53, 54 and 55.
 
 ## How to use this file
 
@@ -14,16 +14,16 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 | Topic | Count | Establishments |
 |---|---|---|
-| Collected (on the CDN after the next publication) | 44 of 67 | section 8 |
-| Not scraped yet | 23 of 67 | section 9 |
+| Collected (on the CDN after the next publication) | 49 of 67 | section 8 |
+| Not scraped yet | 18 of 67 | section 9 |
 | No usable Facebook page | 4 | #2, 14, 37, 49 |
 | Pin to confirm with the ODEJ (its table has a doubtful value) | 2 | #48, 67 |
 | Commune to confirm | 4 | #13, 51, 64 and the English names of 3 new communes |
 | Page may belong to another place or name | 11 | #11, 27, 31, 33, 39, 40, 46, 48, 51, 53, 56 |
-| Contact details collected but not on the map | 40 | section 6 |
+| Contact details collected but not on the map | 46 | section 6 |
 | No activities in the data | 67 | all |
 | Description shown on the map | 2 of 67 | #3, 21 |
-| Very little media | 5 | #11, 13, 19, 31, 51 |
+| Very little media | 6 | #11, 13, 19, 31, 51, 52 |
 
 ## 2. Questions for the ODEJ, most urgent first
 
@@ -122,14 +122,14 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 ## 6. Contact details and page information
 
-**Not on the map yet.** `info.json` has contact details for #5, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 and 49, but the map shows contact details only for #1, 3, 4 and 21. `tools/data/import-info.mjs` still has to run. Fix the bad values below first.
+**Not on the map yet.** `info.json` has contact details for #5, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54 and 55, but the map shows contact details only for #1, 3, 4 and 21. `tools/data/import-info.mjs` still has to run. Fix the bad values below first.
 
 **Bad or doubtful values** (they must not reach the map as they are)
 
 | # | Field | Value or problem |
 |---|---|---|
 | 3 | Hours | "Toujours ouvert" is on the map as "Always open", which is unlikely to be true. |
-| 13, 30, 33, 38, 49 | Hours | "Toujours ouvert", same doubt. |
+| 13, 30, 33, 38, 49, 51, 53 | Hours | "Toujours ouvert", same doubt. |
 | 18 | Hours | "Ferme bientôt" is Facebook's live status, not a schedule. Do not import it. |
 | 42 | Hours | "Fermé en ce moment" is Facebook's live status, not a schedule. Do not import it. |
 | 39 | Address | Youth Connect's «بلدية أكفادو بجاية» is kept. The Facebook value was the page's title, not an address. |
@@ -141,7 +141,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 11, 33, 34, 35, 39 | E-mail | A Gmail address, not an ODEJ one. Confirm it. |
 | 24, 38 | E-mail | Looks like a person's private Gmail address. Confirm it before showing it on a public kiosk. |
 | 21, 47 | Phone | Starts with 044; other landlines here start with 034. The e-mail says Ighzer Amokrane while the establishment is Ouzellaguen. |
-| 9, 31 | Phone | Starts with 030. Confirm it. |
+| 9, 31, 55 | Phone | Starts with 030. Confirm it. |
 | 3, 35, 41 | Phone | Mobile numbers. Confirm they are official, not personal. |
 | 34 | Description | Reads like a generic template about an education community, not this sports complex. Do not import it. |
 | 30 | Description | Written in Tamazight, in Latin letters. Needs a translation before it can be shown. |
@@ -164,15 +164,15 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 13, 15 | Youth Connect writes the e-mail domain as `odejbejaia-de.com` (#13) and `idejbejaia-dz.com` (#15): typos, not used for #13, and #15 is not collected yet. |
 | All | Youth Connect has only about 20 different descriptions for 67 establishments: they are text per type, not about each place. 20 of the 34 files have activities. |
 
-**Missing, among the 44 scraped**
+**Missing, among the 49 scraped**
 
 | Field | Missing for |
 |---|---|
 | Phone | #38, 43 (Youth Connect has only the placeholder for #43, and Facebook shows none) |
 | E-mail | none |
 | Address | none (from Youth Connect), but #18, 26, 31 and 38 had a bad Facebook address, now replaced |
-| Opening hours | all except #3, 13, 18, 30, 33, 38 and 42, and those seven are doubtful |
-| Activities | 24 of the 38 files have some |
+| Opening hours | all except #3, 13, 18, 30, 33, 38, 42, 49, 51 and 53, and those ten are doubtful |
+| Activities | 29 of the 50 `info.json` files have some. #50, 51, 53 (only one), 54 and 55 (six) are the new ones |
 | Description | none, but see the generic texts above |
 
 **Whole dataset.** No establishment has activities. Only #3 and #21 show a description, and only #3 shows hours.
@@ -188,7 +188,8 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 11 | Only one image: a cover 200 px wide. No gallery and no video. |
 | 13 | 15 photos and no video. Its newest post is from October 2025. |
 | 19 | Only 5 photos, but 7 videos. |
-| 51 | The page has only 3 images, and they are the same view of the building under flag bunting: the cover, `photo-001` (the scrappper marks it a duplicate of the cover) and `photo-002`. No video. The colleague searched for another page and found none. Ask the ODEJ for photos, or for a better page. |
+| 51 | The page has only 3 images, and they are the same view of the building under flag bunting: the cover, `photo-001` (the scrappper marks it a duplicate of the cover) and `photo-002`. No video. The colleague searched for another page and found none. Published: the cover and one gallery photo, so the kiosk gallery shows a single picture. Ask the ODEJ for photos, or for a better page. |
+| 52 | Nothing at all: no photo, no video and no manifest (section 4). Its cover and gallery are empty. |
 | 31 | The page has only 2 images: the building, used as the cover, and a flag, the only gallery photo. Its newest post is from August 2025. |
 | 4, 5, 29, 31, 35 | No video on the page. |
 
@@ -223,6 +224,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 10 | Three low-resolution videos, 360 to 480 px wide. |
 | 42 | `video-01` runs 161 s, over the 70 s default. It is only 540 px wide and 5.7 MB. |
 | 40 | `video-01` comes from the numeric page, not the scraped one (section 4). |
+| 53 | `video-01` runs 164 s, over the 70 s default, and is only 464 px wide. |
 | 45 | `video-01` runs 115 s, over the 70 s default. VP9 source, optimized to 3.3 MB. |
 | 47 | `video-01` runs 105 s, over the 70 s default, and is only 480 px wide. |
 | 48 | `video-02` came out at 28.7 MiB after the standard encode, over the 24 MiB limit. It was rebuilt harder (CRF 29, 2 Mbit/s cap) to 14.7 MiB. Check its quality. `video-01` and `video-02` are portrait and run 68 s and 70 s. |
@@ -252,6 +254,8 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 | 40 | 018 (590 px), 020 (461 px) |
 | 44 | 013 (548 px), 017 (585 px), 019 (499 px) |
 | 41 | 012, 025, 026, 027, 036, 037 |
+| 50 | 002 |
+| 53 | 017, 035 |
 
 **Near-duplicates kept**
 
@@ -320,6 +324,8 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 
 The colleague kept all of these. The list is here so the choice can be reviewed before the exhibition.
 
+**Not reviewed.** The media of #50, 51, 53, 54 and 55 went straight to optimization: no visual check of near-duplicates, posters or off-topic photos was done for this batch.
+
 **Unused raw file.** `photos/photo-009.jpg` in the #35 folder was left by a crash of the scrappper. It is the same picture as `photo-010`, is not in the manifest and is not published.
 
 **Damaged raw files (9 Nov 2026).** Five raw files were overwritten by contact sheets during an automatic review: #46 `photo-020`, and #48 `photo-008`, `016`, `024` and `031`. Their sha256 no longer match the manifest, and the gallery images made from them are the contact sheets. The colleague chose to publish them as they are. To fix: re-download each from the `sourceUrl` in its manifest, check the sha256, delete the matching `gallery-NN.webp` (its number is in `docs/media/odej-046.json` or `odej-048.json`; the optimizer skips files that exist), rerun the optimizer, and publish again.
@@ -378,20 +384,25 @@ Photos and videos count what is published, without the cover. "Contact gaps" lis
 | 47 | Helouane Youth Hostel | 30 | 1 | none | 6, 7 |
 | 48 | Martyr Touati Amar | 30 | 2 | none | 3, 4, 6, 7 |
 | 49 | Martyrs Assem Tayeb and his son Hamimi (copy of #33) | 48 | 2 | none | 4, 6, 7 |
+| 50 | Martyr Saadli Laid | 38 | 1 | none | 6, 7 |
+| 51 | Martyr Dehamla Mouloud | 1 | 0 | none | 3, 4, 6, 7 |
+| 53 | Martyr Bouhraoua Amar | 36 | 2 | none | 3, 4, 6, 7 |
+| 54 | Martyr Messaoudi Rabah | 15 | 1 | none | 3, 6, 7 |
+| 55 | Mujahid Abdoune Mohand | 47 | 2 | none | 6, 7 |
 
 ## 9. Not scraped yet
 
 **Cannot be scraped until a page is found (3):** #2, 14, 37. #49 shares #33's page and uses a copy of its folder (section 4).
 
-**Ready to scrape (20).** The problems already known are in the sections above.
+**Ready to scrape (15).** The problems already known are in the sections above.
 
 | Numbers | Known problems |
 |---|---|
 | 63 | Posts labelled as machine-generated (section 4) |
-| 6, 50, 54, 57, 60 | Coordinates (section 3) |
-| 51, 53, 56 | Page, name or commune (sections 3 and 4) |
+| 6, 57, 60 | Coordinates (section 3) |
+| 56 | Page, name or commune (sections 3 and 4) |
 | 15, 64 | Spelling (section 5) |
 | 52 | Tried twice, nothing found (section 4) |
 | 58 | Weak page (section 4) |
 | 59 | Type from the link only (section 5) |
-| 55, 61, 62, 65, 66, 67 | None except #67, which shares its name with #29 |
+| 61, 62, 65, 66, 67 | None except #67, which shares its name with #29 |

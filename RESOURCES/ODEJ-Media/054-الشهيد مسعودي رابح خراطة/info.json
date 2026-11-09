@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:30:05Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 54,
+    "name": "الشهيد مسعودي رابح خراطة",
+    "pageUrl": "https://www.facebook.com/share/1LvkvvzC7k/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/1LvkvvzC7k/",
+    "pageRef": "61579855020926",
+    "title": "بيت الشباب خراطة - ولاية بجاية"
+  },
+  "email": "ajkherrata@odejbejaia-dz.com",
+  "phone": "034 18 51 16",
+  "address": "خراطة مركز",
+  "website": null,
+  "description": "بيت الشباب هو منشأة لإيواء الشباب المسافرين بتكلفة منخفضة، حيث يوفر أسِرَّة في غرف مشتركة وغالباً ما تشمل المرافق المشتركة مثل الحمامات والمطابخ والصالات. كما تهدف بيوت الشباب إلى توفير بيئة آمنة ومناسبة للشباب لاستئجار مكان للإقامة، وتوفر أحيانًا أنشطة ثقافية ورياضية وترفيهية لضيوفها.",
+  "facebookCategory": "Hôtel et hébergement",
+  "openingHours": null,
+  "followers": 55,
+  "foundedYear": 2006,
+  "capacity": 40,
+  "accessible": null,
+  "activities": [],
+  "youthConnect": {
+    "id": 758,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/758",
+    "name": "الشهيد مسعودي رابح خراطة",
+    "commune": "خراطة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
+  "sources": {
+    "phone": "facebook",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "accessible",
+    "openingHours",
+    "website"
+  ]
+}
