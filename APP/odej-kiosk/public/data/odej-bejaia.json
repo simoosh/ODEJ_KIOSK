@@ -1970,6 +1970,10 @@
           {
             "code": "TYPE_FROM_PAGE_NAME",
             "message": "Type déduit du nom de la page Facebook (« دار الشباب تازمالت- بجاية »), à confirmer par l'ODEJ."
+          },
+          {
+            "code": "DUPLICATE_LINK",
+            "message": "Same Facebook page as #49 (profile.php?id=100064802464215). The building banner on this page names #49."
           }
         ]
       },
@@ -2652,6 +2656,10 @@
           {
             "code": "AUDIT_NOTE",
             "message": "Link opens the Tazmalt youth centre, which is #33"
+          },
+          {
+            "code": "DUPLICATE_LINK",
+            "message": "Same Facebook page as #33 (profile.php?id=100064802464215). The media and info.json of #49 are a copy of #33's: no separate scrape."
           }
         ]
       }

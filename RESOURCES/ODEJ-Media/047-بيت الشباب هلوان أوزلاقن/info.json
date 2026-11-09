@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T02:25:08Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 47,
+    "name": "بيت الشباب هلوان أوزلاقن",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61567478515020"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61567478515020",
+    "pageRef": "61567478515020",
+    "title": "بيت الشباب أوزلاڨن - ولاية بجاية -"
+  },
+  "email": "aubergeouzellaguen@gmail.com",
+  "phone": "044 21 29 12",
+  "address": "قرية هلوان أوزلاقن",
+  "website": null,
+  "description": "بيت الشباب هو منشأة لإيواء الشباب المسافرين بتكلفة منخفضة، حيث يوفر أسِرَّة في غرف مشتركة وغالباً ما تشمل المرافق المشتركة مثل الحمامات والمطابخ والصالات. كما تهدف بيوت الشباب إلى توفير بيئة آمنة ومناسبة للشباب لاستئجار مكان للإقامة، وتوفر أحيانًا أنشطة ثقافية ورياضية وترفيهية لضيوفها.",
+  "facebookCategory": "Auberge",
+  "openingHours": null,
+  "followers": 395,
+  "foundedYear": 2024,
+  "capacity": 70,
+  "accessible": null,
+  "activities": [],
+  "youthConnect": {
+    "id": 662,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/662",
+    "name": "بيت الشباب هلوان أوزلاقن",
+    "commune": "أوزلاقن",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "ajouzellaguen@odejbejaia-dz.com",
+        "facebook": "aubergeouzellaguen@gmail.com"
+      },
+      "address": {
+        "youthConnect": "قرية هلوان أوزلاقن",
+        "replaced": ", 06010"
+      }
+    }
+  },
+  "sources": {
+    "email": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "phone": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "accessible",
+    "openingHours",
+    "website"
+  ]
+}

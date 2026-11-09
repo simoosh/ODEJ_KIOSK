@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T01:55:41Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 45,
+    "name": "الشهيد بوفرورة محمد بن علي ملبو",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100091665812577"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100091665812577",
+    "pageRef": "100091665812577",
+    "title": "دار الشباب الشهيد بوفرورة محمد بن علي ملبو- ولاية بجاية"
+  },
+  "email": "mjmelbou@odejbejaia-dz.com",
+  "phone": "034 84 85 23",
+  "address": "بلدية ملبو بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم.",
+  "facebookCategory": "Musique/groupe",
+  "openingHours": null,
+  "followers": 270,
+  "foundedYear": 2010,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 10565,
+      "title": "الكاراتي-دو",
+      "dates": "01 سبتمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 11425,
+      "title": "نصائح - إرشادات وتحسيس",
+      "dates": "01 سبتمبر 2026 — 31 أغسطس 2027 · نشاط وقاية صحة الشباب",
+      "status": "ongoing"
+    },
+    {
+      "id": 10648,
+      "title": "الملاكمة والكيك بوكسنغ",
+      "dates": "15 سبتمبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 8755,
+      "title": "المطالعة الموجهة و فهم النصوص باللغتين الإنجليزية و الفرنسية",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · النشاط الفكري الأدبي",
+      "status": "ongoing"
+    },
+    {
+      "id": 8807,
+      "title": "السمعي البصري",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · نشاط التصوير الفوتوغرافي والصناعة السنيمائية.",
+      "status": "ongoing"
+    },
+    {
+      "id": 8820,
+      "title": "الأيروبيك والرياضة النسوية",
+      "dates": "01 أكتوبر 2026 — 31 أغسطس 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 613,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/613",
+    "name": "الشهيد بوفرورة محمد بن علي ملبو",
+    "commune": "مالبو",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
+  "sources": {
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

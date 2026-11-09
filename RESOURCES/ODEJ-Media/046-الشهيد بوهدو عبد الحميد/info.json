@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T02:33:48Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 46,
+    "name": "الشهيد بوهدو عبد الحميد",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579585817575"
+  },
+  "scrapedPage": {
+    "url": "https://web.facebook.com/MJMCISNA/?_rdc=1&_rdr#",
+    "pageRef": "MJMCISNA",
+    "title": "دار الشباب مسيسنة-ولاية بجاية"
+  },
+  "email": "mjmcisna@odejbejaia-dz.com",
+  "phone": "034 89 62 54",
+  "address": "بلدية مسيسنة بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم.",
+  "facebookCategory": "Musique/groupe",
+  "openingHours": null,
+  "followers": 1580,
+  "foundedYear": 2010,
+  "capacity": 125,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 661,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/661",
+    "name": "الشهيد بوهدو عبد الحميد",
+    "commune": "مسيسنة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
+  "sources": {
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

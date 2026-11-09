@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T01:50:04Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 44,
+    "name": "الشهيد مسالي علي خراطة",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100088918610901"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100088918610901",
+    "pageRef": "100088918610901",
+    "title": "دار الشباب خراطة - ولاية بجاية"
+  },
+  "email": "mjkherrata@odejbejaia-dz.com",
+  "phone": "034 18 51 45",
+  "address": "بلدية خراطة بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم.",
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 1794,
+  "foundedYear": 2010,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 8098,
+      "title": "اعلامي/ رقمي",
+      "dates": "01 يناير 2026 — 01 يناير 2027 · نشاط صناع المحتوى",
+      "status": "ongoing"
+    },
+    {
+      "id": 8549,
+      "title": "الرسم والأشغال اليدوية",
+      "dates": "01 يناير 2026 — 01 يناير 2027 · نشاط الفن التشكيلي المعاصر",
+      "status": "ongoing"
+    },
+    {
+      "id": 8558,
+      "title": "النادي الصحي للشباب",
+      "dates": "01 يناير 2026 — 01 يناير 2027 · نشاط وقاية صحة الشباب",
+      "status": "ongoing"
+    },
+    {
+      "id": 9443,
+      "title": "نادي البليار دو",
+      "dates": "01 يناير 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 34437,
+      "title": "نادي الحلاقة",
+      "dates": "30 مارس 2026 — 07 يوليو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    },
+    {
+      "id": 9440,
+      "title": "النادي الأخضر",
+      "dates": "01 سبتمبر 2026 — 01 سبتمبر 2027 · الأنشطة الإجتماعية والتطوع",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 610,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/610",
+    "name": "الشهيد مسالي علي خراطة",
+    "commune": "خراطة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية خراطة بجاية",
+        "replaced": "kherrata , Kherrata, Algeria, 06004"
+      }
+    }
+  },
+  "sources": {
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T02:45:17Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 48,
+    "name": "الشهيد تواتي اعمر",
+    "pageUrl": "https://www.facebook.com/share/1CVVweqTfs/"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/1CVVweqTfs/",
+    "pageRef": "100063768363183",
+    "title": "مخيم الشباب بني كسيلة - ولاية بجاية"
+  },
+  "email": "cjbeniksila@odejbejaia-dz.com",
+  "phone": "0776 76 64 17",
+  "address": "بني كسيلة",
+  "website": null,
+  "description": "مخيمات الشباب هي برامج منظمة تُقام في بيئة آمنة لتنمية الشباب خلال أوقات فراغهم، خاصة في العطلات. تهدف إلى توفير تجارب تعليمية وترفيهية متنوعة مثل الرياضة والفنون والرحلات، وتنمية مهاراتهم وقدراتهم الشخصية والاجتماعية، وتعزيز روح التعاون والتواصل بينهم، بالإضافة إلى اكتشاف مواهبهم وصقل شخصياتهم.",
+  "facebookCategory": null,
+  "openingHours": null,
+  "followers": null,
+  "foundedYear": 2018,
+  "capacity": 40,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 715,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/715",
+    "name": "الشهيد تواتي اعمر",
+    "commune": "بني كسيلة",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "phone": {
+        "youthConnect": "034 28 31 51",
+        "facebook": "0776 76 64 17"
+      },
+      "address": {
+        "youthConnect": "بني كسيلة",
+        "replaced": "camp de jeunes béni ksila, 06027"
+      }
+    }
+  },
+  "sources": {
+    "phone": "facebook",
+    "address": "youth-connect",
+    "email": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "facebookCategory",
+    "followers",
+    "openingHours",
+    "website"
+  ]
+}

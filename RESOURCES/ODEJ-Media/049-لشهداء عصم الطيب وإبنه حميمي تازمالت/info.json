@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-06T23:29:36Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 49,
+    "name": "الشهداء عصم الطيب وابنه حميمي تازمالت",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100064802464215"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100064802464215",
+    "pageRef": "100064802464215",
+    "title": "دار الشباب تازمالت- بجاية"
+  },
+  "email": "maisondejeunesdetazmalt@gmail.com",
+  "phone": "034 08 50 13",
+  "address": "بلدية تازمالت بجاية",
+  "website": null,
+  "description": "المركب الرياضي الجواري هو مؤسسة شبابية رياضية تتبع دواوين مؤسسات الشباب، وتهدف إلى ترقية الأنشطة الرياضية والثقافية والعلمية والإبداعية لدى الشباب في محيطهم القريب (الجوار). يعمل على اكتشاف المواهب ورعايتها ودعمها وتوجيهها، بهدف بناء مواطنين قادرين على تحمل مسؤولية المجتمع",
+  "facebookCategory": "Sports et loisirs",
+  "openingHours": "Toujours ouvert",
+  "followers": 4352,
+  "foundedYear": 1998,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 41168,
+      "title": "منصة الانخراط في المؤسسات الشباب",
+      "dates": "30 أبريل 2026 — 31 ديسمبر 2026 · برنامج مهارات التعلم الرقمي",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 260,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/260",
+    "name": "الشهيد أوشيحة لحلو تازمالت",
+    "commune": "تازمالت",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "csptazmalt@odejbejaia-dz.com",
+        "facebook": "maisondejeunesdetazmalt@gmail.com"
+      },
+      "phone": {
+        "youthConnect": "034 31 23 40",
+        "facebook": "034 08 50 13"
+      },
+      "address": {
+        "youthConnect": "بلدية تازمالت بجاية",
+        "replaced": "rue titouah salem, , Tazmalt, Algeria, 06010"
+      }
+    }
+  },
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "website"
+  ],
+  "copiedFrom": 33
+}
