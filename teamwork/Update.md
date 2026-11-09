@@ -511,3 +511,8 @@ What: five establishments optimized with the scrappper's `publish_media.py`. `me
 What: photo caps raised for odej-050, 053 and 055, and the 70 s video default for odej-053 `video-01` (164 s, 464 px wide). All under 50 MiB. Reason: the colleague kept each set. No media check was run on this batch (no review of duplicates, posters or minors), and nothing was removed.
 What: odej-051 has only a cover and one gallery photo, all the same view. odej-052 has no media at all: its scrapes found nothing, so it is not published. Both are in Data.md, section 7.
 Impact on others: project total is 1833 files and 707.2 MiB of 3 GiB, 49 of 67 establishments. App agent: nothing to run.
+
+### 2026-11-09 07:05 · [app-agent] · CHANGE · ODEJ logo on the landing
+Area: public/brand/odej-logo.webp, public/data/odej-bejaia.json (shared file), src/components/Landing.tsx, src/styles/app.css, README.md
+What: at the owner's request, the landing header shows the ODEJ logo in the slot that was reserved. `organization.logo` is now `brand/odej-logo.webp` (was null), read relative to `import.meta.env.BASE_URL`. The file (512 px, 143 KB, transparent) comes from the owner's JPG of the logo: its flat grey background was keyed out. It is the one image of the site tracked in git, because the local kiosk pack and Netlify both need it from the app. The logo slot grew from 3.6 to 5.4 rem so the lettering stays legible. The README no longer lists the logo as to do.
+Impact on others: data agent: nothing. `odej-bejaia.json`: only `organization.logo` changed. The logo's usage rights are the owner's to confirm.
