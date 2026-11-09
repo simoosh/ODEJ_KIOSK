@@ -151,16 +151,14 @@ export const CONFIG = {
     tear: 0.6,
     /** Ombre sous chaque bouffée, pour le volume : un gris clair, jamais foncé */
     underside: 0.55,
+    /** Opacité maximale des nuages accrochés aux paysages : une brume légère, les paysages respirent */
+    bandOpacity: 0.45,
     light: [250, 251, 252],
     shadow: [204, 211, 218],
     /** Centre x, y et taille w, h en part de l'écran. front : plan avant, qui part plus vite à la sortie */
     landscape: [
       { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
       { x: 0.84, y: 0.05, w: 0.46, h: 0.16 },
-      { x: 0.31, y: 0.5, w: 0.2, h: 0.17 },
-      { x: 0.37, y: 0.33, w: 0.12, h: 0.22 },
-      { x: 0.66, y: 0.42, w: 0.17, h: 0.17 },
-      { x: 0.85, y: 0.47, w: 0.32, h: 0.18 },
       { x: 0.2, y: 0.97, w: 0.5, h: 0.2, front: true },
       { x: 0.41, y: 1.02, w: 0.3, h: 0.14, front: true },
       { x: 0.8, y: 0.97, w: 0.5, h: 0.2, front: true },
@@ -169,15 +167,11 @@ export const CONFIG = {
     portrait: [
       { x: 0.2, y: 0.04, w: 0.6, h: 0.09 },
       { x: 0.8, y: 0.04, w: 0.6, h: 0.09 },
-      { x: 0.15, y: 0.25, w: 0.45, h: 0.06 },
-      { x: 0.44, y: 0.22, w: 0.3, h: 0.06 },
-      { x: 0.85, y: 0.29, w: 0.45, h: 0.06 },
       // Horizon de la carte qui tourne
       { x: 0.12, y: 0.635, w: 0.5, h: 0.07 },
       { x: 0.4, y: 0.65, w: 0.45, h: 0.06 },
       { x: 0.62, y: 0.65, w: 0.45, h: 0.06 },
       { x: 0.9, y: 0.63, w: 0.5, h: 0.07 },
-      { x: 0.3, y: 0.82, w: 0.4, h: 0.05 },
       { x: 0.2, y: 0.99, w: 0.7, h: 0.08, front: true },
       { x: 0.8, y: 0.99, w: 0.7, h: 0.08, front: true },
     ],

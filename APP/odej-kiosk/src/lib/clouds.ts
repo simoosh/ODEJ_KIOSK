@@ -60,7 +60,7 @@ export function paintBands(canvas: HTMLCanvasElement, bands: readonly CloudBand[
   const ctx = canvasContext(canvas, width, height);
   const image = ctx.createImageData(width, height);
   const [body, detail] = noises;
-  const { light, shadow, tear, underside } = CONFIG.clouds;
+  const { light, shadow, tear, underside, bandOpacity } = CONFIG.clouds;
   const span = 1 + 2 * margin;
   const shapes = bands.map((band) => ({
     core: band.core ?? CONFIG.clouds.core,
@@ -79,7 +79,7 @@ export function paintBands(canvas: HTMLCanvasElement, bands: readonly CloudBand[
       if (alpha <= 0) continue;
       const shade = smoothstep(0.3, 0.75, n * 0.6 + (detail[i] / 255) * 0.4) * (1 - underside * 0.5 * (1 - alpha));
       for (let channel = 0; channel < 3; channel++) image.data[i + channel] = shadow[channel] + (light[channel] - shadow[channel]) * shade;
-      image.data[i + 3] = alpha * 255;
+      image.data[i + 3] = alpha * bandOpacity * 255;
     }
   }
   ctx.putImageData(image, 0, 0);

@@ -317,10 +317,10 @@ input:focus-visible {
   background: linear-gradient(to bottom, var(--sky) 0, var(--sky-pale) 30%, rgba(230, 241, 248, 0) 58%, rgba(var(--sea), 0) 66%, rgba(var(--sea), 0.6) 100%);
 }
 .landing-haze {
-  background: radial-gradient(ellipse 36% 50% at 50% 40%, rgba(var(--haze), 0.97) 45%, rgba(var(--haze), 0) 100%);
+  background: radial-gradient(ellipse 30% 44% at 50% 40%, rgba(var(--haze), 0.85) 35%, rgba(var(--haze), 0) 100%);
 }
 .is-portrait .landing-haze {
-  background: radial-gradient(ellipse 62% 26% at 50% 46%, rgba(var(--haze), 0.97) 50%, rgba(var(--haze), 0) 100%);
+  background: radial-gradient(ellipse 56% 22% at 50% 46%, rgba(var(--haze), 0.85) 40%, rgba(var(--haze), 0) 100%);
 }
 .is-leaving .landing-sky,
 .is-leaving .landing-haze {

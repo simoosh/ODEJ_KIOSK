@@ -1,5 +1,4 @@
 import { distanceField } from '../map/fog';
-import { smoothstep } from './noise';
 
 /** Masque d'opacité réduit d'un paysage détouré : un toucher ne compte que sur le paysage, pas sur son fond transparent. */
 export interface AlphaMask {
@@ -57,6 +56,15 @@ export function edgeDistance(alpha: Uint8ClampedArray, width: number, height: nu
 }
 
 /**
+ * Opacité du fondu à `distance` du bord découpé, sur `span` : nulle au bord, elle remonte vite puis s'adoucit, pour que
+ * le paysage reste visible jusque près de son bord sans cassure.
+ */
+export function featherAlpha(distance: number, span: number) {
+  const t = Math.min(1, Math.max(0, distance / span));
+  return 1 - (1 - t) * (1 - t);
+}
+
+/**
  * Masque de fondu d'un paysage, en data URL pour mask-image : opaque au cœur, il s'efface lentement jusqu'au bord
  * découpé, sur `reach` (part du petit côté). Le paysage sort de la brume au lieu d'être collé. null si l'image ne se
  * lit pas (CORS) : il reste alors net.
@@ -78,7 +86,7 @@ export function featherMask(image: HTMLImageElement, solid: readonly Side[], rea
     const span = reach * Math.min(width, height);
     for (let i = 0; i < alpha.length; i++) {
       pixels.data[i * 4] = pixels.data[i * 4 + 1] = pixels.data[i * 4 + 2] = 255;
-      pixels.data[i * 4 + 3] = smoothstep(0, span, distance[i]) * 255;
+      pixels.data[i * 4 + 3] = featherAlpha(distance[i], span) * 255;
     }
     ctx.putImageData(pixels, 0, 0);
     return canvas.toDataURL('image/png');

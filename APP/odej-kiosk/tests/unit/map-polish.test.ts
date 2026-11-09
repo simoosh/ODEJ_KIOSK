@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
 import { polylineDistance, puffLayer, puffOpacity } from '../../src/lib/clouds';
-import { edgeDistance, maskHit } from '../../src/lib/scenes';
+import { edgeDistance, featherAlpha, maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
 import type { LngLat } from '../../src/lib/geo';
@@ -79,6 +79,12 @@ describe("paysages de l'accueil", () => {
     expect([...open]).toEqual([1, 1, 1, 1, 0]);
     const pinned = edgeDistance(alpha, 5, 1, ['left', 'top', 'bottom']);
     expect([...pinned]).toEqual([4, 3, 2, 1, 0]);
+  });
+
+  it('restent bien visibles dans leur fondu, sans cassure au bord', () => {
+    expect(featherAlpha(0, 10)).toBe(0);
+    expect(featherAlpha(5, 10)).toBeGreaterThan(0.5);
+    expect(featherAlpha(12, 10)).toBe(1);
   });
 
   it("ignorent un toucher hors de l'image, et retombent sur le cadre sans masque", () => {
