@@ -71,10 +71,10 @@ _Au 3 novembre 2026._
 
 ### Collecte des médias
 
-**44 établissements sur 67** : 1466 photos, 83 vidéos, 650,8 MiB sur un budget de 3 GiB.
+**49 établissements sur 67** : 1603 photos, 89 vidéos, 706,4 MiB sur un budget de 3 GiB.
 
 ```
-█████████████░░░░░░░  66 %
+███████████████░░░░░  73 %
 ```
 
 Chaque lot passe par les mêmes étapes : collecte depuis les pages officielles, sélection, optimisation (WebP 1600 px, MP4 ≤ 720p), contrôle `media:check --hash`, PR de données, puis publication sur le CDN.
@@ -91,15 +91,16 @@ Chaque lot passe par les mêmes étapes : collecte depuis les pages officielles,
 | 8 | 2 nov. | odej-028 à 036, 038 | 388 | 14 | 124,6 | 34 | 6e publication | [#29](https://github.com/simoosh/ODEJ_KIOSK/pull/29) |
 | 9 | 9 nov. | odej-039, 040, 042, 043 | 128 | 8 | 42,9 | 38 | 7e publication | [#39](https://github.com/simoosh/ODEJ_KIOSK/pull/39) |
 | 10 | 9 nov. | odej-044 à 049 (049 copié de 033) | 221 | 11 | 105,7 | 44 | 8e et 9e publications | [#41](https://github.com/simoosh/ODEJ_KIOSK/pull/41) |
-| | | **Total** | **1466** | **83** | **650,8** | **44 / 67** | | |
+| 11 | 9 nov. | odej-050, 051, 053, 054, 055 | 137 | 6 | 55,6 | 49 | publiée | [#42](https://github.com/simoosh/ODEJ_KIOSK/pull/42) |
+| | | **Total** | **1603** | **89** | **706,4** | **49 / 67** | | |
 
-Les comptes de photos excluent la couverture, et les tailles incluent la couverture, sans les vignettes. Les tailles par lot sont arrondies : leur somme donne 650,7 MiB.
+Les comptes de photos excluent la couverture, et les tailles incluent la couverture, sans les vignettes. Les tailles par lot sont arrondies : leur somme donne 706,3 MiB.
 
 Autres PR de données : contacts e-mail et site web ([#14](https://github.com/simoosh/ODEJ_KIOSK/pull/14)), tableau des établissements collectés ([#26](https://github.com/simoosh/ODEJ_KIOSK/pull/26)). Le tableau par établissement est dans [teamwork/Update.md](teamwork/Update.md), et les problèmes ouverts dans [teamwork/Data.md](teamwork/Data.md).
 
 ### Reste à faire
 
-- [ ] Collecter les médias des 23 établissements restants (dont 3 sans page Facebook exploitable : n° 2, 14 et 37).
+- [ ] Collecter les médias des 18 établissements restants (dont 3 sans page Facebook exploitable : n° 2, 14 et 37, et n° 52 dont la page n'a rien donné).
 - [ ] Faire valider par l'ODEJ les graphies anglaises des noms, translittérées pour l'instant.
 - [ ] Faire relire par l'ODEJ le texte « على جناحنا » / « On our stand ».
 - [ ] Recevoir le programme réel des activités. D'ici là, les activités affichées viennent du type d'établissement.
