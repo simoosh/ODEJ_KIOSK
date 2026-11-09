@@ -34,7 +34,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
         <header className="landing-head">
           <div className="brand">
             {data.organization.logo ? (
-              <img className="brand-logo" src={data.organization.logo} alt="" />
+              <img className="brand-logo" src={`${import.meta.env.BASE_URL}${data.organization.logo}`} alt="" />
             ) : (
               <span className="brand-logo is-slot">{t('logoSlot')}</span>
             )}

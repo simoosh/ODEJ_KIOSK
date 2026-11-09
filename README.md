@@ -104,7 +104,6 @@ Autres PR de données : contacts e-mail et site web ([#14](https://github.com/si
 - [ ] Faire valider par l'ODEJ les graphies anglaises des noms, translittérées pour l'instant.
 - [ ] Faire relire par l'ODEJ le texte « على جناحنا » / « On our stand ».
 - [ ] Recevoir le programme réel des activités. D'ici là, les activités affichées viennent du type d'établissement.
-- [ ] Ajouter le logo de l'ODEJ : l'accueil lui réserve déjà un emplacement (`organization.logo`).
 
 ---
 
