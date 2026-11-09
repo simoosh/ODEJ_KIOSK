@@ -38,17 +38,38 @@
     },
     "facts": [
       {
-        "value": 52,
+        "value": 68,
         "label": {
-          "ar": "بلدية",
-          "en": "communes"
+          "ar": "مؤسسة شبانية",
+          "en": "youth establishments"
+        }
+      },
+      {
+        "value": 34,
+        "label": {
+          "ar": "دار الشباب",
+          "en": "youth centres"
         }
       },
       {
         "value": 19,
         "label": {
-          "ar": "دائرة",
-          "en": "dairas"
+          "ar": "مركب رياضي جواري",
+          "en": "local sports complexes"
+        }
+      },
+      {
+        "value": 9,
+        "label": {
+          "ar": "بيت الشباب",
+          "en": "youth hostels"
+        }
+      },
+      {
+        "value": 6,
+        "label": {
+          "ar": "مؤسسات أخرى",
+          "en": "other facilities"
         }
       }
     ],

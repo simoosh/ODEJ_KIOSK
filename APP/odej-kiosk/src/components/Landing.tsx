@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import type { KioskData } from '../types';
 import { featuredEstablishments, titleOf } from '../data/model';
 import { useI18n } from '../i18n/I18n';
+import { CONFIG } from '../config';
+import { CountUp } from './CountUp';
 import { Icon } from './Icon';
+import { LandingBand } from './LandingBand';
 import { LandingClouds } from './LandingClouds';
+import { LandingIntroLogo } from './LandingIntroLogo';
+import { LandingLogo } from './LandingLogo';
 import { LandingScenes } from './LandingScenes';
-import { FlagRule } from './Motifs';
+import { LandingTitle } from './LandingTitle';
 
 interface Props {
   data: KioskData;
@@ -15,10 +21,18 @@ interface Props {
 }
 
 export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Props) {
-  const { t, tx } = useI18n();
+  const { locale, t, tx } = useI18n();
+  // Chaque retour sur l'accueil, et chaque changement de langue, redessine son contenu : ses animations d'entrée rejouent
+  const [visit, setVisit] = useState(0);
+  const [wasLeaving, setWasLeaving] = useState(leaving);
+  if (leaving !== wasLeaving) {
+    setWasLeaving(leaving);
+    if (!leaving) setVisit((v) => v + 1);
+  }
+  const replay = `${locale}-${visit}`;
   const facts = [
-    { value: data.establishments.length, label: t('statEstablishments'), strong: true },
-    ...(data.wilaya.facts ?? []).map((f) => ({ value: f.value, label: tx(f.label), strong: false })),
+    // Chiffres officiels du ODEJ (data : wilaya.facts), le total en premier
+    ...(data.wilaya.facts ?? []).map((f, i) => ({ value: f.value, label: tx(f.label), strong: i === 0 })),
   ];
 
   const featured = featuredEstablishments(data.establishments)[0];
@@ -26,21 +40,22 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
   return (
     <section className={`landing ${leaving ? 'is-leaving' : ''}`} aria-hidden={leaving}>
       <div className="landing-sky" aria-hidden="true" />
+      <LandingBand />
       <LandingScenes leaving={leaving} />
       <div className="landing-haze" aria-hidden="true" />
+      <div className="landing-wisp" aria-hidden="true" />
       <LandingClouds portrait={portrait} />
 
       <div className="landing-inner">
-        <header className="landing-head">
+        <header key={`head-${replay}`} className="landing-head">
           <div className="brand">
             {data.organization.logo ? (
               <img className="brand-logo" src={`${import.meta.env.BASE_URL}${data.organization.logo}`} alt="" />
             ) : (
-              <span className="brand-logo is-slot">{t('logoSlot')}</span>
+              <LandingLogo />
             )}
             <span className="brand-text">
               <strong>{tx(data.organization.shortName)}</strong>
-              <span>{tx(data.wilaya.name)}</span>
             </span>
           </div>
           <button type="button" className="lang-btn" onClick={onToggleLang}>
@@ -48,20 +63,18 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
           </button>
         </header>
 
-        <div className="landing-body">
-          <p className="eyebrow">
-            <FlagRule />
-            <span>{t('eventLine')}</span>
-            <span className="eyebrow-date">{t('eventDate')}</span>
-          </p>
-          <h1 className="display landing-title">{t('landingTitle')}</h1>
+        <div key={`body-${replay}`} className="landing-body">
+          {!data.organization.logo && <LandingIntroLogo />}
+          <LandingTitle leaving={leaving} />
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
           <dl className="facts">
-            {facts.map((f) => (
+            {facts.map((f, i) => (
               <div key={f.label} className={f.strong ? 'is-strong' : ''}>
                 <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
+                <dd>
+                  <CountUp value={f.value} run={!leaving} delay={CONFIG.countUpDelayMs + i * CONFIG.countUpStepMs} />
+                </dd>
               </div>
             ))}
           </dl>

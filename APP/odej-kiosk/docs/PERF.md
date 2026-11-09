@@ -107,3 +107,13 @@ Le carrousel 3D charge uniquement les vignettes de 480 px, et ne rend que 7 cart
 Au niveau de qualité `low`, aucun élément n'a de flou : le verre devient opaque (`.quality-low`). Le coût réel reste à mesurer sur la borne : FPS du survol avec la liste ouverte, puis masquée.
 
 Les animations de l'écran carte jouent une seule fois par geste (ouverture d'un panneau, d'une fenêtre, d'une liste), en `transform`, `opacity` et `clip-path`. Aucune n'est infinie.
+
+## Titre animé de l'accueil
+
+- Le titre est un SVG dessiné une fois (`src/wordmark`). Pendant sa construction, environ 2,5 s, une boucle `requestAnimationFrame` change seulement les attributs `stroke-dashoffset` et `fill-opacity` de ses lettres (une trentaine), sans rendu React. Elle s'arrête ensuite et reprend toutes les `CONFIG.wordmarkRepeatMs` (10 s), ou jamais si la valeur vaut 0.
+- Le titre anglais a deux dégradés fixes (vert vers blanc, blanc vers rouge) et une ombre fine en filtre SVG.
+- `prefers-reduced-motion` : le titre s'affiche complet, sans animation.
+- Bouton vert : sa lueur blanche tourne, un reflet le traverse et il grossit un peu toutes les 5 s, en CSS sur ce seul élément (`@property --cta-angle`, `scale`, `background-position`). Arrêté à la sortie vers la carte et avec `prefers-reduced-motion`.
+- Chiffres : ils montent en compteur à chaque arrivée sur l'accueil (`CountUp`), en écrivant le texte directement, pendant 1,4 s seulement.
+- Entrée de l'accueil : en-tête, ligne de l'événement, texte, chiffres et boutons montent l'un après l'autre (`land-in`, `translate` et `opacity` seulement, une fois chacun). Le contenu est redessiné à chaque retour sur l'accueil et à chaque changement de langue, ce qui rejoue toutes ses animations.
+- Logo : celui de l'en-tête est fixe. Le grand logo de l'ouverture (44 Kio) se dessine en 2,3 s (`stroke-dashoffset`, `fill-opacity`, sans rendu React), puis éclate : ses cercles et arcs en 120 bouts (secteurs découpés par clipPath), textes et emblème en environ 150 éclats. Une seule transition CSS sur `transform` et `opacity`, 1,1 s. Ensuite il ne coûte plus rien.
