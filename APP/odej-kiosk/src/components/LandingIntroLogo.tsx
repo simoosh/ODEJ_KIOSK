@@ -1,15 +1,18 @@
 import { useEffect, useRef, type CSSProperties } from 'react';
 import { CONFIG } from '../config';
-import { SHARDS } from '../logo/burst';
+import { RING_SHARDS, SHARDS, WEDGES } from '../logo/burst';
 import { OdejLogo } from '../logo/OdejLogo';
 import { paintLogo } from '../logo/paint';
 import { LOGO_END, LOGO_VIEWBOX } from '../logo/timeline';
 
+const vars = (dx: number, dy: number, rotate: number) =>
+  ({ '--dx': `${dx}px`, '--dy': `${dy}px`, '--rot': `${rotate}deg` }) as CSSProperties;
+
 /**
- * Grand logo de l'ouverture : il se dessine au-dessus du titre, puis explose en éclats qui s'envolent, et le titre se
- * trace à sa place (LandingTitle part à CONFIG.logoBurstAtMs). Il rejoue à chaque arrivée sur l'accueil et changement
- * de langue, comme tout le contenu de l'accueil. La boucle requestAnimationFrame ne tourne que pendant le dessin ;
- * l'explosion est une transition CSS sur transform et opacity, une seule fois.
+ * Grand logo de l'ouverture : il se dessine au-dessus du titre, puis éclate : ses cercles et ses arcs se brisent en
+ * bouts qui partent dans toutes les directions, avec les textes et l'emblème, et le titre se trace à sa place. Il
+ * rejoue à chaque arrivée sur l'accueil et changement de langue. La boucle requestAnimationFrame ne tourne que pendant
+ * le dessin ; l'éclatement est une transition CSS sur transform et opacity, une seule fois.
  */
 export function LandingIntroLogo() {
   const host = useRef<HTMLDivElement>(null);
@@ -55,15 +58,32 @@ export function LandingIntroLogo() {
   return (
     <div ref={host} className="intro-logo" aria-hidden="true">
       <OdejLogo t={0} className="intro-draw" />
-      {/* Les éclats remplacent le logo dessiné au moment de l'explosion */}
+      {/* Les éclats remplacent le logo dessiné au moment où il éclate */}
       <svg className="intro-shards" viewBox={LOGO_VIEWBOX}>
+        <defs>
+          {WEDGES.map((points, s) => (
+            <clipPath key={s} id={`intro-wedge-${s}`}>
+              <polygon points={points} />
+            </clipPath>
+          ))}
+        </defs>
+        {RING_SHARDS.map((s) => (
+          <g
+            key={`${s.group}-${s.sector}`}
+            className="shard is-ring"
+            style={{ ...vars(s.dx, s.dy, s.rotate), transformOrigin: `${s.origin[0]}px ${s.origin[1]}px` }}
+          >
+            <path d={s.d} fill={s.color} fillRule="evenodd" clipPath={`url(#intro-wedge-${s.sector})`} />
+          </g>
+        ))}
         {SHARDS.map((s, i) => (
           <path
             key={i}
+            className="shard"
             d={s.d}
             fill={s.color}
             fillRule="evenodd"
-            style={{ '--dx': `${s.dx}px`, '--dy': `${s.dy}px`, '--rot': `${s.rotate}deg` } as CSSProperties}
+            style={vars(s.dx, s.dy, s.rotate)}
           />
         ))}
       </svg>

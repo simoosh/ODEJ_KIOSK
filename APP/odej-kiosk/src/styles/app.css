@@ -582,14 +582,18 @@ input:focus-visible {
 .intro-logo.is-burst .intro-shards {
   visibility: visible;
 }
-.intro-shards path {
+.intro-shards .shard {
   transform-box: fill-box;
   transform-origin: center;
   transition:
     transform 1.1s cubic-bezier(0.16, 0.8, 0.3, 1),
     opacity 0.9s ease-in 0.15s;
 }
-.intro-logo.is-burst .intro-shards path {
+/* Bouts de cercles et d'arcs : leur point d'appui est sur le cercle, en coordonnées du logo */
+.intro-shards .shard.is-ring {
+  transform-box: view-box;
+}
+.intro-logo.is-burst .intro-shards .shard {
   transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.35);
   opacity: 0;
 }
