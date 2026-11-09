@@ -1,0 +1,272 @@
+{
+  "establishment": "odej-042",
+  "files": [
+    {
+      "file": "media/odej-042/cover.webp",
+      "bytes": 34852,
+      "sha256": "b99d52a2ca8dbb77774e3841a076075afe6c7a254bafbcaa4f651d0fcbfe66b2",
+      "original": "preview/preview.jpg"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-01.webp",
+      "bytes": 359866,
+      "sha256": "c84f0f897d189a49533765a1bd50215fbc8598fad9b180aaae64b31622598957",
+      "original": "photos/photo-002.jpg",
+      "originalSha256": "d5d094c8e9a7831131ddb6cb633254c3fb044419b28f0dbda91c421e49b2d1f4",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165999594992763",
+      "postedAt": "2026-11-07T09:29:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-02.webp",
+      "bytes": 308288,
+      "sha256": "16657279bacba1a2509730d40c5512fcbd9851b700e6c81e04c1244810ae8841",
+      "original": "photos/photo-003.jpg",
+      "originalSha256": "29bd0050b3bc09397d84b5baa128d08b6419f7c1cebb3bfeebb28931c0b950ae",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165999156992763",
+      "postedAt": "2026-11-07T09:29:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-03.webp",
+      "bytes": 122582,
+      "sha256": "678b74e64d7c4c5575c8afcd6fc39ba22f2907e6ab3acb2141d459ab91221c8b",
+      "original": "photos/photo-004.jpg",
+      "originalSha256": "35a8d46b4abd15476c5f555e9ac68ec32640548a321ed875162ffa50a831bdd6",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165998358992763",
+      "postedAt": "2026-11-07T09:29:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-04.webp",
+      "bytes": 137508,
+      "sha256": "32f525189ca76f4399b5b25419dcab4447e36b2ef9c5e38d1df265ace077c125",
+      "original": "photos/photo-005.jpg",
+      "originalSha256": "743b3e5b9a8d54cce25db244ae342af7f3c48dc66a75e095cf1ee5e6c9bb004f",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165995562992763",
+      "postedAt": "2026-11-07T09:23:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-05.webp",
+      "bytes": 127782,
+      "sha256": "43a970a275a4c225b08f9f07b4449ff24dd40a7e60b1edfed962aee3f2cbfba9",
+      "original": "photos/photo-006.jpg",
+      "originalSha256": "900852604015f1e01ef203428ef534b2007f8bad06d1368fbc0b134c4585dcf1",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165994620992763",
+      "postedAt": "2026-11-07T09:23:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-06.webp",
+      "bytes": 182054,
+      "sha256": "361372c6c31da45282cca081e1ac2f77af3aa018846a2aa3deb4db3d6e1a63b3",
+      "original": "photos/photo-007.jpg",
+      "originalSha256": "595f09dbde4fce4eefc0afb0e14cd7f1098b1685e44b5159813b7407176e04a0",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165993834992763",
+      "postedAt": "2026-11-07T09:23:34Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-07.webp",
+      "bytes": 163794,
+      "sha256": "53ce944d1022fde1ad9755b0e71b155a3722952764bfc6ecf215df842ddcc775",
+      "original": "photos/photo-008.jpg",
+      "originalSha256": "7ad68539504fdac75fc00834302b41683b36ed0dc8f39094da531552c0c195a8",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165403542992763",
+      "postedAt": "2026-11-03T13:14:20Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-08.webp",
+      "bytes": 107632,
+      "sha256": "81cd12b8ea85cdb8129a8b67706473743a7630e6c99cb8d9ec293fb314c0b3ae",
+      "original": "photos/photo-009.jpg",
+      "originalSha256": "008b16157c5707e3c6c2e393bc5549758c90db70759f0a0dc5f4d3368b74e9bb",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165402726992763",
+      "postedAt": "2026-11-03T13:14:20Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-09.webp",
+      "bytes": 102040,
+      "sha256": "1eea68b243b4b4b3785aef8c7c97284689fea042ececa9eb1640a0a39c167737",
+      "original": "photos/photo-010.jpg",
+      "originalSha256": "502c23ba1e19fc3497cdcbd16aafc4ecb4d9cd220f452d3565429243e98c8927",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165400968992763",
+      "postedAt": "2026-11-03T13:14:20Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-10.webp",
+      "bytes": 144228,
+      "sha256": "d81162ccaeb288b48d5acd80d00b5c14d41b23a2cab9706a3a1d33894f5d1d14",
+      "original": "photos/photo-011.jpg",
+      "originalSha256": "7e1fff87403f24a957f7ca30ed186dbae83cd018759a21c11f2ef49ce31fb588",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165213360992763",
+      "postedAt": "2026-11-02T08:55:17Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-11.webp",
+      "bytes": 150578,
+      "sha256": "b3086c722ba292681adbd7f15d9f987a4d303f86b8204685745604c6b0935393",
+      "original": "photos/photo-012.jpg",
+      "originalSha256": "795c51e60b479d777c667e480c95ce9d016f8df3de5c376ab34e7aa221b57050",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165207216992763",
+      "postedAt": "2026-11-02T08:55:17Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-12.webp",
+      "bytes": 211686,
+      "sha256": "b67f19d5cf01e0477400cfb9c3774cdb76803415f6decbe23950861ce5bdfa02",
+      "original": "photos/photo-013.jpg",
+      "originalSha256": "511efe48311273272caa6959e40c038ee06c5930827bc2c376c5b9208d006130",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165202530992763",
+      "postedAt": "2026-11-02T08:55:17Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-13.webp",
+      "bytes": 105470,
+      "sha256": "dc22de67d6bbba536b66679915e8bb1e7dab3ae4abdfa7da16235cdcc70a121c",
+      "original": "photos/photo-014.jpg",
+      "originalSha256": "b4a58999a15b9f08b2a66ecc8bd835974b06f2a81bd4efa20432f7dc6280fc24",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122165201882992763",
+      "postedAt": "2026-11-02T08:55:17Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-14.webp",
+      "bytes": 118608,
+      "sha256": "cf2a27c539e9af4d13a048076cc800844aee75349753223d5e9b62fcb0a731c4",
+      "original": "photos/photo-015.jpg",
+      "originalSha256": "6d85113de99ffc140d695c18dd903329ca65963612b02e245593de168e8bc1da",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163708602992763",
+      "postedAt": "2026-10-21T10:26:41Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-15.webp",
+      "bytes": 127758,
+      "sha256": "11017ef718f1a0c91eede180ea0e3f8cc7c512b8f529b179bb782aa551d46e2f",
+      "original": "photos/photo-016.jpg",
+      "originalSha256": "e77e2e9832ec4ad8d488b7ef66cdf644e8a9280f096bd4531ee347908f0026f2",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163706616992763",
+      "postedAt": "2026-10-21T10:26:41Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-16.webp",
+      "bytes": 70882,
+      "sha256": "85d486b3576b48e1243dc81eb543ffb572774456a166d71235298e6786f4a8a4",
+      "original": "photos/photo-017.jpg",
+      "originalSha256": "a377d649190b79fa605353ccc1c8e42e3d5ca91f49628722d8dc9e1f7f44a87b",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163324512992763",
+      "postedAt": "2026-10-18T09:42:54Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-17.webp",
+      "bytes": 115388,
+      "sha256": "f7a2bbb79395914db624c230ce579611a281c3f2f1850c42b865a2f2bbb4a967",
+      "original": "photos/photo-018.jpg",
+      "originalSha256": "e70e816c048b013a71a0a3051a1ac809e1df75e875d50f8dc0b60a49de502e02",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163323624992763",
+      "postedAt": "2026-10-18T09:42:54Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-18.webp",
+      "bytes": 99144,
+      "sha256": "8a08eadb531aa1938c80f7f70614c3dc4e9b2fba586bb2ccda2aebcfe9557920",
+      "original": "photos/photo-019.jpg",
+      "originalSha256": "e595c47d4725f4fcf8c2ad9d14eed184cf8ac286902f9d46063ed94947208425",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163323276992763",
+      "postedAt": "2026-10-18T09:42:54Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-19.webp",
+      "bytes": 85956,
+      "sha256": "c4ffdc5abacde4c3883bfc5ec5d3128637b98db9fdf543ee3a10fb6f19cf3c7b",
+      "original": "photos/photo-020.jpg",
+      "originalSha256": "5c2201ffe9f4236c01329ffc74af4e34cb015cda71207c65b8428b0cfe79a10f",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163313838992763",
+      "postedAt": "2026-10-18T09:12:44Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-20.webp",
+      "bytes": 74332,
+      "sha256": "e5c6127c0879c5819478722cffff8c74904adf8a3b3322de96d3df202fabd3de",
+      "original": "photos/photo-021.jpg",
+      "originalSha256": "a19c48309ce27dd8b5f63e3843f30e4120cbb7a1f5e780219565a92bb4c1ed9d",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163313568992763",
+      "postedAt": "2026-10-18T09:12:44Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-21.webp",
+      "bytes": 95762,
+      "sha256": "0d1251cd6518e377114456ce6b424e28fd3c2fb140473e5fb6e14e10d3d4594f",
+      "original": "photos/photo-022.jpg",
+      "originalSha256": "50063d91a03345b6c7a8ba5d7591fef2bdd8185c63e7e7fbb804ef7965f8187f",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122163313286992763",
+      "postedAt": "2026-10-18T09:12:44Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-22.webp",
+      "bytes": 100856,
+      "sha256": "40b88de5176e3750701f64531534170ec7a6d6005341766c340f5a6ea1ebbfa0",
+      "original": "photos/photo-023.jpg",
+      "originalSha256": "8eeca4b88c375e02e0e7ec670167d314f65017d8a01aab55c13748ffd3376e13",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162712140992763",
+      "postedAt": "2026-10-13T12:52:06Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-23.webp",
+      "bytes": 44180,
+      "sha256": "a0d163f5d552b89affcf737e393aa9ef5d3380bd0a241eca974b589b432ce128",
+      "original": "photos/photo-024.jpg",
+      "originalSha256": "4e97cb3d0a5fe30ef04fa587958f429d9d0320d4abbd9e340d30646e3a82b0ca",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162712098992763",
+      "postedAt": "2026-10-13T12:52:06Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-24.webp",
+      "bytes": 43490,
+      "sha256": "817418795a6720c01ce66fb9e73d7493a41ecee18eeeed088584cb015209f579",
+      "original": "photos/photo-025.jpg",
+      "originalSha256": "1e6c038d91d642834458e440f361d285136eda29361d7b491628da5152751879",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162711654992763",
+      "postedAt": "2026-10-13T12:52:06Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-25.webp",
+      "bytes": 87562,
+      "sha256": "2b6e645c90f2257192b72b5ccd3826ae01c63f0b8d397ba2d4b5ffb202d23c98",
+      "original": "photos/photo-026.jpg",
+      "originalSha256": "f75198d32459ec93b4ec6a50ac28ba78eaac914d33c7c4c8c41cfa384040350e",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162711486992763",
+      "postedAt": "2026-10-13T12:52:06Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-26.webp",
+      "bytes": 105308,
+      "sha256": "eb81e0bdf9f55681a4375b2c87ba22c87ded506595a833a631520ae6cd746167",
+      "original": "photos/photo-027.jpg",
+      "originalSha256": "a284e02591b46d8e6fab20068be1cf176100a81f9f66816bf54ebf275b45fc14",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162629196992763",
+      "postedAt": "2026-10-12T20:21:29Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-27.webp",
+      "bytes": 159156,
+      "sha256": "444615201dec89f4d1bc5559dc2bec1ef16f846f399273cd612713338272fd9d",
+      "original": "photos/photo-028.jpg",
+      "originalSha256": "4a7968f79fc3d47bb53700316be1c892aab53a29acdbc84c12e4abcd7e8b572a",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162629148992763",
+      "postedAt": "2026-10-12T20:21:29Z"
+    },
+    {
+      "file": "media/odej-042/gallery/gallery-28.webp",
+      "bytes": 144934,
+      "sha256": "a6235c370275458b6341552ef56cdea763fc5c5981d77aabb7c695960e4fa259",
+      "original": "photos/photo-029.jpg",
+      "originalSha256": "8ec07c40a60cf1736b91ec699cd81a46cc992b51588c1161a77edc443730c23b",
+      "sourceUrl": "https://www.facebook.com/photo/?fbid=122162629106992763",
+      "postedAt": "2026-10-12T20:21:29Z"
+    },
+    {
+      "file": "media/odej-042/videos/video-01.mp4",
+      "bytes": 5672105,
+      "sha256": "3cee9190dda3bd4a29880c2c9ea9b560b452a59dfda7301ec2896be14d3dd15d",
+      "original": "videos/video-001.mp4",
+      "originalSha256": "8210c8988ade955a85af180c0e093dc910a54f7b061c8ca089c563d7c3f93c55",
+      "sourceUrl": "https://www.facebook.com/61579782907491/videos/1130990239194805",
+      "postedAt": "2025-11-09T10:41:55Z"
+    }
+  ]
+}
