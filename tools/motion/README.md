@@ -16,7 +16,11 @@ npm run studio                                             # Remotion Studio : h
 npx remotion render src/index.ts Showcase out/showcase.mp4 # exporter en MP4
 npx remotion still src/index.ts Showcase out/frame.png --frame=60   # une seule image
 npm run typecheck
+npm run wordmark                                           # redessiner le titre de l'accueil (après un changement de texte ou de police)
+npx remotion render src/index.ts TitleAr out/title-ar.mp4  # titre animé, arabe (TitleEn : anglais)
 ```
+
+La police Onsor n'est pas dans le dépôt : pour l'utiliser, la poser dans `tools/motion/fonts/onsor.otf` (ou `.ttf`), puis lancer `npm run wordmark`. Sans elle, le titre utilise Reem Kufi.
 
 ## Changer le format
 
