@@ -8,7 +8,7 @@ import { Wordmark } from '../wordmark/Wordmark';
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
 /**
- * Titre de l'accueil, dessiné en vecteurs (src/wordmark) et animé comme la référence « Sable ». La boucle
+ * Titre de l'accueil, dessiné en vecteurs (src/wordmark) et dont les lettres se dessinent à la main. La boucle
  * requestAnimationFrame ne tourne que pendant une construction (environ 2,5 s), puis s'arrête jusqu'à la suivante.
  * Seul le dégradé de « Béjaia » défile en continu, en SMIL, sans JavaScript.
  */

@@ -2,6 +2,9 @@ import { useId } from 'react';
 import { FLAG, flagSpan, INK, NEUTRAL, PARTS, revealRadius, viewBoxOf } from './geometry';
 import { flagShift, fragmentAt, irisOrigin, TITLES, type Fill, type Lang } from './timeline';
 
+/** Épaisseur du trait qui dessine les lettres, en unités du titre (1 em = 100) */
+const STROKE = 1.8;
+
 interface Props {
   lang: Lang;
   /** Instant du cycle, en secondes (timeline.ts) */
@@ -19,7 +22,7 @@ interface Props {
 }
 
 /**
- * Titre vectoriel de l'accueil. Chaque morceau est un <g data-frag> : Remotion le redessine à chaque image ; la borne
+ * Titre vectoriel de l'accueil. Chaque lettre est un <path data-frag> : Remotion le redessine à chaque image ; la borne
  * le dessine une fois puis ne change que ses attributs pendant l'animation (paintWordmark).
  */
 export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag = false, className }: Props) {
@@ -45,9 +48,22 @@ export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag
           if ((f.fill === 'flag') !== isFlag) return null;
           const state = fragmentAt(f, i, parts.length, t);
           return (
-            <g key={i} data-frag={i} transform={state.transform || undefined} opacity={state.opacity}>
-              <path d={f.d} fill={fillOf(f.fill, kind)} clipPath={f.clip ? `url(#${id}-c${i})` : undefined} />
-            </g>
+            // pathLength 1 : le trait avance de 0 à 1 le long du contour, quelle que soit la lettre
+            <path
+              key={i}
+              data-frag={i}
+              d={f.d}
+              fill={fillOf(f.fill, kind)}
+              fillOpacity={state.fill}
+              stroke={fillOf(f.fill, kind)}
+              strokeWidth={STROKE}
+              strokeLinejoin="round"
+              pathLength={1}
+              strokeDasharray="1 1"
+              strokeDashoffset={1 - state.draw}
+              // Trait masqué tant qu'il n'a pas commencé : le bord du tiret laisserait des points
+              strokeOpacity={state.draw > 0 ? 1 : 0}
+            />
           );
         })}
       </g>
@@ -56,13 +72,6 @@ export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag
   return (
     <svg className={className} viewBox={viewBoxOf(lang).join(' ')} overflow="visible" aria-hidden="true">
       <defs>
-        {parts.map((f, i) =>
-          f.clip ? (
-            <clipPath key={i} id={`${id}-c${i}`}>
-              <rect x={f.clip[0]} y={f.clip[1]} width={f.clip[2] - f.clip[0]} height={f.clip[3] - f.clip[1]} />
-            </clipPath>
-          ) : null,
-        )}
         {variant === 'landing' && (
           <clipPath id={`${id}-reveal`}>
             <circle data-iris="" cx={ox} cy={oy} r={revealRadius(lang, t)} />

@@ -45,12 +45,12 @@ export function revealRadius(lang: Lang, t: number) {
 /** Met un titre déjà dessiné à l'instant `t`, sans React : la borne l'appelle à chaque image de l'animation seulement. */
 export function paintWordmark(svg: SVGSVGElement, lang: Lang, t: number) {
   const parts = PARTS[lang];
-  svg.querySelectorAll<SVGGElement>('[data-frag]').forEach((g) => {
-    const i = Number(g.dataset.frag);
+  svg.querySelectorAll<SVGPathElement>('[data-frag]').forEach((path) => {
+    const i = Number(path.dataset.frag);
     const state = fragmentAt(parts[i], i, parts.length, t);
-    if (state.transform) g.setAttribute('transform', state.transform);
-    else g.removeAttribute('transform');
-    g.setAttribute('opacity', String(state.opacity));
+    path.setAttribute('stroke-dashoffset', (1 - state.draw).toFixed(4));
+    path.setAttribute('fill-opacity', state.fill.toFixed(3));
+    path.setAttribute('stroke-opacity', state.draw > 0 ? '1' : '0');
   });
   svg.querySelector('[data-iris]')?.setAttribute('r', revealRadius(lang, t).toFixed(1));
 }

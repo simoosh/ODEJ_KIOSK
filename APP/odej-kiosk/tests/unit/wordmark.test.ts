@@ -15,18 +15,18 @@ describe("titre animé de l'accueil", () => {
     ]);
   });
 
-  it('est complet au début et à la fin du cycle, vide au début de la reconstruction', () => {
+  it('est complet au début et à la fin du cycle, effacé au début du tracé', () => {
     const at = (t: number) => ar.map((f, i) => fragmentAt(f, i, ar.length, t));
-    expect(at(0).every((s) => s.opacity === 1 && s.transform === '')).toBe(true);
-    expect(at(PHASES.assemble).every((s) => s.opacity === 0)).toBe(true);
-    expect(at(PHASES.irisEnd).every((s) => s.opacity === 1 && s.transform === '')).toBe(true);
+    expect(at(0).every((s) => s.draw === 1 && s.fill === 1)).toBe(true);
+    expect(at(PHASES.assemble).every((s) => s.draw === 0 && s.fill === 0)).toBe(true);
+    expect(at(PHASES.irisEnd).every((s) => s.draw === 1 && s.fill === 1)).toBe(true);
   });
 
-  it('se reconstruit dans le sens de lecture : de droite à gauche en arabe, de gauche à droite en anglais', () => {
+  it('se dessine dans le sens de lecture : de droite à gauche en arabe, de gauche à droite en anglais', () => {
     const first = (list: typeof ar) => list.reduce((a, b) => (b.delay < a.delay ? b : a));
     const last = (list: typeof ar) => list.reduce((a, b) => (b.delay > a.delay ? b : a));
-    expect(first(ar).pivot[0]).toBeGreaterThan(last(ar).pivot[0]);
-    expect(first(en).pivot[0]).toBeLessThan(last(en).pivot[0]);
+    expect(first(ar).cx).toBeGreaterThan(last(ar).cx);
+    expect(first(en).cx).toBeLessThan(last(en).cx);
   });
 
   it('ouvre son cercle depuis le bout de la lecture, et seulement à la fin', () => {
