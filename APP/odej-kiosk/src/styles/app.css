@@ -2775,3 +2775,67 @@ input:focus-visible {
     animation: none;
   }
 }
+
+/*
+ * Voile bleu au-dessus du titre : deux nappes floues en S, sans bord, qui remplissent le ciel vide.
+ * Derrière les paysages et le texte, figé : il ne coûte rien après le premier rendu.
+ */
+.landing-wisp {
+  position: absolute;
+  inset-inline-start: 26cqw;
+  top: 2cqh;
+  width: 48cqw;
+  height: 36cqh;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 34% 26% at 28% 32%, rgba(140, 200, 250, 0.85), transparent 72%),
+    radial-gradient(ellipse 44% 32% at 66% 64%, rgba(80, 150, 245, 0.75), transparent 74%),
+    radial-gradient(ellipse 28% 20% at 47% 48%, rgba(170, 215, 252, 0.7), transparent 72%);
+  filter: blur(2.2rem);
+  rotate: -10deg;
+  transition: opacity 0.9s ease;
+}
+.is-leaving .landing-wisp {
+  opacity: 0;
+}
+/* Bande de symboles amazighs (components/LandingBand.tsx) : grise, discrète, fondue aux deux bouts */
+.landing-band {
+  position: absolute;
+  inset-inline: 0;
+  top: 13.5cqh;
+  height: 2.2rem;
+  overflow: hidden;
+  color: #9aa3a6;
+  opacity: 0.38;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+  transition: opacity 0.9s ease;
+}
+.is-leaving .landing-band {
+  opacity: 0;
+}
+.band-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: band-scroll 70s linear infinite;
+}
+.band-run {
+  display: flex;
+  gap: 2.6rem;
+  padding-inline-end: 2.6rem;
+}
+.band-run svg {
+  width: 1.4rem;
+  height: 100%;
+}
+@keyframes band-scroll {
+  to {
+    translate: -50% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .band-track {
+    animation: none;
+  }
+}

@@ -5,6 +5,7 @@ import { useI18n } from '../i18n/I18n';
 import { CONFIG } from '../config';
 import { CountUp } from './CountUp';
 import { Icon } from './Icon';
+import { LandingBand } from './LandingBand';
 import { LandingClouds } from './LandingClouds';
 import { LandingIntroLogo } from './LandingIntroLogo';
 import { LandingLogo } from './LandingLogo';
@@ -39,8 +40,10 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
   return (
     <section className={`landing ${leaving ? 'is-leaving' : ''}`} aria-hidden={leaving}>
       <div className="landing-sky" aria-hidden="true" />
+      <LandingBand />
       <LandingScenes leaving={leaving} />
       <div className="landing-haze" aria-hidden="true" />
+      <div className="landing-wisp" aria-hidden="true" />
       <LandingClouds portrait={portrait} />
 
       <div className="landing-inner">
