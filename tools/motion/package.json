@@ -1,0 +1,28 @@
+{
+  "name": "odej-motion",
+  "private": true,
+  "type": "module",
+  "description": "Motion graphics de l'ODEJ Béjaïa avec Remotion : maquettes d'animation et de typographie, rendus MP4. Jamais déployé.",
+  "engines": {
+    "node": "^22.13.0"
+  },
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts",
+    "still": "remotion still src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/readex-pro": "5.3.0",
+    "@fontsource/amiri": "5.3.0",
+    "@remotion/cli": "4.0.541",
+    "@remotion/transitions": "4.0.541",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.541"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "5.7.3"
+  }
+}
