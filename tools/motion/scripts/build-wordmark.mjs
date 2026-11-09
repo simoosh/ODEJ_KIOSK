@@ -1,11 +1,11 @@
 // Dessin vectoriel du titre animé de l'accueil (« ديوان مؤسسات الشباب » et « ODEJ of Béjaia »).
 // HarfBuzz met le texte en forme (liaisons arabes comprises), puis chaque lettre est découpée en morceaux : son corps
 // (avec ses contre-formes) et ses points ou signes. Sortie : APP/odej-kiosk/src/wordmark/glyphs.json, lu par la borne et
-// par Remotion. Aucune police n'est copiée dans le dépôt : seuls les contours sont écrits.
+// par Remotion. Les polices viennent des paquets @fontsource (licence OFL) : seuls les contours sont écrits.
 //
-// Police principale : Onsor si fonts/onsor.otf (ou .ttf) existe ici (dossier ignoré par git), sinon Reem Kufi en attendant.
+// Police principale : Tajawal ExtraBold, choisie par le propriétaire. « of » : Great Vibes. « Béjaia » : Dancing Script.
 // Usage : npm run wordmark
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inflateSync } from 'node:zlib';
@@ -52,10 +52,9 @@ function loadFont(file) {
   return { font: new hb.Font(face), upem: face.upem, file };
 }
 
-const onsor = ['otf', 'ttf'].map((ext) => join(root, `fonts/onsor.${ext}`)).find(existsSync);
 const FONTS = {
-  mainAr: loadFont(onsor ?? fontsource('reem-kufi', 'reem-kufi-arabic-700-normal.woff')),
-  mainLat: loadFont(onsor ?? fontsource('reem-kufi', 'reem-kufi-latin-700-normal.woff')),
+  mainAr: loadFont(fontsource('tajawal', 'tajawal-arabic-800-normal.woff')),
+  mainLat: loadFont(fontsource('tajawal', 'tajawal-latin-800-normal.woff')),
   script: loadFont(fontsource('great-vibes', 'great-vibes-latin-400-normal.woff')),
   cursive: loadFont(fontsource('dancing-script', 'dancing-script-latin-700-normal.woff')),
 };
@@ -171,7 +170,7 @@ function layout({ dir, words }) {
 }
 
 const result = {
-  font: onsor ? 'Onsor' : 'Reem Kufi (en attendant Onsor)',
+  font: 'Tajawal ExtraBold',
   ar: layout(TITLES.ar),
   en: layout(TITLES.en),
 };

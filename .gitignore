@@ -208,5 +208,3 @@ tools/**/node_modules/
 # Motion graphics (tools/motion) : médias de travail, jamais commités
 tools/motion/public/**
 !tools/motion/public/.gitkeep
-# Polices sous licence (Onsor) : jamais commitées, seuls leurs contours le sont (src/wordmark/glyphs.json)
-tools/motion/fonts/

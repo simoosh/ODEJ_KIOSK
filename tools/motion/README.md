@@ -20,7 +20,7 @@ npm run wordmark                                           # redessiner le titre
 npx remotion render src/index.ts TitleAr out/title-ar.mp4  # titre animé, arabe (TitleEn : anglais)
 ```
 
-La police Onsor n'est pas dans le dépôt : pour l'utiliser, la poser dans `tools/motion/fonts/onsor.otf` (ou `.ttf`), puis lancer `npm run wordmark`. Sans elle, le titre utilise Reem Kufi.
+Le titre utilise Tajawal ExtraBold, avec Great Vibes pour « of » et Dancing Script pour « Béjaia ». Ces polices libres viennent de paquets npm : aucun fichier de police n'est dans le dépôt.
 
 ## Changer le format
 

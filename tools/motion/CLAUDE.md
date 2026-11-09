@@ -38,7 +38,7 @@ tools/motion/
 The animated landing title ("ديوان مؤسسات الشباب", "ODEJ of Béjaia") is shared with the kiosk:
 
 - `npm run wordmark` shapes both titles with HarfBuzz and writes their outlines, split into pieces, to `APP/odej-kiosk/src/wordmark/glyphs.json`. Run it after any change to the text, the fonts or the layout in `scripts/build-wordmark.mjs`.
-- Main font: Onsor when `fonts/onsor.otf` (or `.ttf`) exists in this folder (git-ignored: never commit a font file), otherwise Reem Kufi as a stand-in. "of": Great Vibes. "Béjaia": Dancing Script. The free fonts come from `@fontsource` packages.
+- Fonts (all OFL, from `@fontsource` packages, never copied into the repo): Tajawal ExtraBold for the main text (the owner's choice), Great Vibes for "of", Dancing Script for "Béjaia".
 - The animation itself lives in `APP/odej-kiosk/src/wordmark/` (`timeline.ts`: timing and motion of each piece; `geometry.ts`; `Wordmark.tsx`). It does not depend on React state or on the kiosk config, so `src/compositions/OdejTitle.tsx` imports it directly (`remotion.config.ts` points `react` to this folder). Change the motion there, and both the video and the landing follow.
 - Compositions `TitleAr` and `TitleEn`: two loops of the cycle, after the "Sable" reference (collapse into a closing circle, rebuild in white on dark, a circle opens from the last dot).
 - Colors: Algerian flag green `#006233` and red `#D21034`.
