@@ -3,7 +3,8 @@ import { featuredEstablishments, titleOf } from '../data/model';
 import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
-import { FlagRule, MotifBand } from './Motifs';
+import { LandingScenes } from './LandingScenes';
+import { FlagRule } from './Motifs';
 
 interface Props {
   data: KioskData;
@@ -24,8 +25,10 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
 
   return (
     <section className={`landing ${leaving ? 'is-leaving' : ''}`} aria-hidden={leaving}>
+      <div className="landing-sky" aria-hidden="true" />
+      <LandingScenes leaving={leaving} />
+      <div className="landing-haze" aria-hidden="true" />
       <LandingClouds portrait={portrait} />
-      <MotifBand className="landing-motifs" />
 
       <div className="landing-inner">
         <header className="landing-head">

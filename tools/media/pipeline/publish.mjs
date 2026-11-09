@@ -4,7 +4,7 @@
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, linkSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
-import { argValue, defaultMediaDir, establishmentIds, listFiles, repoRoot } from './lib/media-files.mjs';
+import { argValue, defaultMediaDir, establishmentIds, landingFiles, listFiles, repoRoot } from './lib/media-files.mjs';
 import { publishRefusals } from './lib/rules.mjs';
 
 const WRANGLER = 'wrangler@4.151.2';
@@ -19,8 +19,7 @@ const go = process.argv.includes('--go');
 const stage = resolve(repoRoot, '.media-stage');
 const mediaDir = argValue('--root') ? resolve(argValue('--root')) : defaultMediaDir;
 
-const files = establishmentIds(mediaDir)
-  .flatMap((id) => listFiles(mediaDir, id))
+const files = [...establishmentIds(mediaDir).flatMap((id) => listFiles(mediaDir, id)), ...landingFiles(mediaDir)]
   .filter(({ path }) => /\.(webp|mp4)$/.test(path));
 
 const refusals = publishRefusals(files);

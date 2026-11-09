@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
-import { cloudEdge, cloudOpacity, splitOpacity } from '../../src/lib/clouds';
+import { polylineDistance, puffLayer, puffOpacity } from '../../src/lib/clouds';
+import { edgeDistance, featherAlpha, maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
 import type { LngLat } from '../../src/lib/geo';
@@ -39,21 +40,57 @@ describe('brouillard', () => {
 });
 
 describe("nuages de l'accueil", () => {
-  it('descendent plus bas au centre que sur les côtés', () => {
-    expect(cloudEdge(0.5, false)).toBeGreaterThan(cloudEdge(0, false));
-    expect(cloudEdge(0, false)).toBeCloseTo(cloudEdge(1, false));
+  const puff = { x: 0.3, y: 0.5, w: 0.2, h: 0.1 };
+
+  it('sont opaques au cœur de la bouffée et transparents au-delà de son bord', () => {
+    expect(puffOpacity(puff, 0.3, 0.5, 0.5)).toBe(1);
+    expect(puffOpacity(puff, 0.3, 0.7, 0.5)).toBe(0);
+    expect(puffOpacity(puff, 0.55, 0.5, 0.5)).toBe(0);
   });
 
-  it('sont opaques en haut et disparaissent en bas', () => {
-    expect(cloudOpacity(0.5, 0.2, 0.5, false)).toBe(1);
-    expect(cloudOpacity(0.5, 1, 0.5, false)).toBe(0);
+  it('partent du côté de leur centre, au premier ou au second plan', () => {
+    expect(puffLayer(puff)).toBe('back-left');
+    expect(puffLayer({ ...puff, x: 0.7, front: true })).toBe('front-right');
   });
 
-  it("s'ouvrent en deux sans changer l'image au repos", () => {
-    for (const [alpha, share] of [[1, 0.5], [0.6, 0.3], [0.4, 1], [0.8, 0]]) {
-      const [left, right] = splitOpacity(alpha, share);
-      expect(right + left * (1 - right)).toBeCloseTo(alpha);
-    }
+  it("suivent le bord d'un paysage d'un seul tenant : la distance vaut jusqu'au segment le plus proche", () => {
+    const edge = [[0, 0], [0, 1], [1, 1]] as const;
+    expect(polylineDistance(edge, 0.3, 0.5)).toBeCloseTo(0.3);
+    expect(polylineDistance(edge, 0.5, 1.2)).toBeCloseTo(0.2);
+    expect(polylineDistance(edge, -0.3, -0.4)).toBeCloseTo(0.5);
+  });
+
+});
+
+describe("paysages de l'accueil", () => {
+  const mask = { width: 2, height: 2, alpha: new Uint8ClampedArray([255, 0, 0, 200]) };
+
+  it('ne réagissent que sur la partie opaque du détourage', () => {
+    expect(maskHit(mask, 0.2, 0.2)).toBe(true);
+    expect(maskHit(mask, 0.8, 0.2)).toBe(false);
+    expect(maskHit(mask, 0.8, 0.8)).toBe(true);
+  });
+
+  it("s'effacent vers leurs bords découpés, mais pas vers le bord de l'écran", () => {
+    // 5 × 1, opaque partout sauf le dernier pixel, à droite
+    const alpha = new Uint8ClampedArray([255, 255, 255, 255, 0]);
+    const open = edgeDistance(alpha, 5, 1, []);
+    // Haut et bas ouverts : chaque pixel est à 1 du bord
+    expect([...open]).toEqual([1, 1, 1, 1, 0]);
+    const pinned = edgeDistance(alpha, 5, 1, ['left', 'top', 'bottom']);
+    expect([...pinned]).toEqual([4, 3, 2, 1, 0]);
+  });
+
+  it('restent bien visibles dans leur fondu, sans cassure au bord', () => {
+    expect(featherAlpha(0, 10)).toBe(0);
+    expect(featherAlpha(5, 10)).toBeGreaterThan(0.5);
+    expect(featherAlpha(12, 10)).toBe(1);
+  });
+
+  it("ignorent un toucher hors de l'image, et retombent sur le cadre sans masque", () => {
+    expect(maskHit(mask, 1.2, 0.5)).toBe(false);
+    expect(maskHit(null, 0.5, 0.5)).toBe(true);
+    expect(maskHit(null, -0.1, 0.5)).toBe(false);
   });
 });
 

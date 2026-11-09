@@ -248,7 +248,15 @@ input:focus-visible {
   pointer-events: none;
   transition: visibility 0s linear 1.7s;
 }
-/* Sortie en parallaxe : le plan avant part plus vite et plus loin. Seul transform bouge, sur quatre calques */
+/*
+ * Parallaxe : nuages de devant, paysages, puis nuages de derrière, chacun vers son côté et à sa vitesse.
+ * Seuls transform et opacity bougent. La transition du rang .is-leaving sert à la sortie : départ lent, puis tout file.
+ * Celle du rang de base sert au retour : tout revient des côtés et ralentit en se posant, la brume et le texte ensuite.
+ */
+.landing {
+  --leave: cubic-bezier(0.55, 0, 0.25, 1);
+  --settle: cubic-bezier(0.16, 0.8, 0.3, 1);
+}
 .clouds {
   position: absolute;
   inset: 0;
@@ -261,17 +269,24 @@ input:focus-visible {
   width: 100%;
   height: 100%;
   will-change: transform;
-  transition: transform 1.6s cubic-bezier(0.55, 0, 0.25, 1);
+  transition: transform 1.5s var(--settle);
 }
 .cloud-front-left,
 .cloud-front-right {
+  transition-duration: 1.2s;
+}
+.is-leaving .cloud-layer {
+  transition: transform 1.6s var(--leave);
+}
+.is-leaving .cloud-front-left,
+.is-leaving .cloud-front-right {
   transition-duration: 1.25s;
 }
 .is-leaving .cloud-back-left {
-  transform: translateX(-75%);
+  transform: translateX(-95%);
 }
 .is-leaving .cloud-back-right {
-  transform: translateX(75%);
+  transform: translateX(95%);
 }
 .is-leaving .cloud-front-left {
   transform: translateX(-110%);
@@ -279,45 +294,222 @@ input:focus-visible {
 .is-leaving .cloud-front-right {
   transform: translateX(110%);
 }
-.landing-inner,
-.landing-motifs {
-  will-change: transform;
-  transition: transform 1.05s cubic-bezier(0.6, 0, 0.3, 1), opacity 0.8s ease;
-}
-.is-leaving .landing-inner,
-.is-leaving .landing-motifs {
-  transform: translateY(-115%);
-  opacity: 0;
-}
-.motif-band {
-  position: absolute;
-  inset-inline: 0;
-  top: 5.6rem;
-  height: 4rem;
-  color: #b9c3b5;
-  opacity: 0.8;
-  pointer-events: none;
-}
-.motif-wave {
+/* Ciel clair derrière les paysages, puis brume qui les fond vers le texte. Elles s'effacent à la sortie */
+.landing-sky,
+.landing-haze {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease 0.35s;
+}
+.is-leaving .landing-sky,
+.is-leaving .landing-haze {
+  transition: opacity 0.9s ease;
+}
+/* Le ciel en haut, la mer en bas, communs aux paysages : des bleus toujours clairs, jamais foncés. Entre les deux, la carte */
+.landing {
+  --sky: #d6e9f6;
+  --sky-pale: #e6f1f8;
+  --haze: 236, 244, 249;
+  --sea: 214, 238, 241;
+}
+.landing-sky {
+  background: linear-gradient(to bottom, var(--sky) 0, var(--sky-pale) 30%, rgba(230, 241, 248, 0) 58%, rgba(var(--sea), 0) 66%, rgba(var(--sea), 0.6) 100%);
+}
+.landing-haze {
+  background: radial-gradient(ellipse 30% 44% at 50% 40%, rgba(var(--haze), 0.85) 35%, rgba(var(--haze), 0) 100%);
+}
+.is-portrait .landing-haze {
+  background: radial-gradient(ellipse 56% 22% at 50% 46%, rgba(var(--haze), 0.85) 40%, rgba(var(--haze), 0) 100%);
+}
+.is-leaving .landing-sky,
+.is-leaving .landing-haze {
+  opacity: 0;
+}
+/*
+ * Paysages. Au chargement, chacun entre depuis son côté en se dézoomant vers son coin, une fois décodé : l'animation
+ * porte sur translate et scale, pour ne jamais gêner le transform de la sortie et du retour.
+ */
+.scenes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.scene {
+  position: absolute;
+  user-select: none;
+  opacity: 0;
+  will-change: transform;
+  transition: transform 1.35s var(--settle);
+}
+.scene.is-in {
+  opacity: 1;
+  animation: scene-in-start 2.2s var(--settle) 0.1s backwards;
+}
+.scene-top-right.is-in,
+.scene-bottom-right.is-in {
+  animation-name: scene-in-end;
+}
+.scene-bottom-left.is-in,
+.scene-bottom-right.is-in {
+  animation-delay: 0.3s;
+}
+/* Le fondu finit tôt : le paysage est déjà net quand il ralentit en se posant */
+@keyframes scene-in-start {
+  0% {
+    opacity: 0;
+    translate: -24% 0;
+    scale: 1.22;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+@keyframes scene-in-end {
+  0% {
+    opacity: 0;
+    translate: 24% 0;
+    scale: 1.22;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+.is-leaving .scene {
+  transition: transform 1.4s var(--leave);
+}
+.scene-art {
+  height: 100%;
+  transition:
+    scale 0.35s ease,
+    filter 0.35s ease;
+}
+.scene-img {
+  display: block;
   width: 100%;
+  height: auto;
+}
+.scene-top-left {
+  inset-inline-start: -2cqw;
+  top: 15cqh;
+  width: min(40cqw, 72cqh);
+  transform-origin: 0 50%;
+}
+.scene-top-right {
+  inset-inline-end: -2cqw;
+  top: 13cqh;
+  width: min(42cqw, 76cqh);
+  transform-origin: 100% 50%;
+}
+.scene-bottom-left {
+  inset-inline-start: -2cqw;
+  bottom: -3cqh;
+  height: min(52cqh, 30cqw);
+  transform-origin: 0 100%;
+}
+.scene-bottom-right {
+  inset-inline-end: -1cqw;
+  bottom: -3cqh;
+  height: min(64cqh, 36cqw);
+  transform-origin: 100% 100%;
+}
+.scene-bottom-left .scene-img,
+.scene-bottom-right .scene-img {
+  width: auto;
   height: 100%;
 }
-.motif-wave path {
-  stroke: #cdd5c9;
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
+.is-portrait .scene-top-left {
+  top: 9cqh;
+  width: 58cqw;
 }
-.motif-row {
+.is-portrait .scene-top-right {
+  inset-inline-end: -6cqw;
+  top: 12cqh;
+  width: 56cqw;
+}
+.is-portrait .scene-bottom-left {
+  inset-inline-start: -4cqw;
+  bottom: -2cqh;
+  height: 24cqh;
+}
+.is-portrait .scene-bottom-right {
+  bottom: -2cqh;
+  height: 30cqh;
+}
+/* Écrans 4:3 et 5:4 : le titre prend plus de place en largeur, les paysages se font plus petits et le texte descend */
+@container (orientation: landscape) and (aspect-ratio < 3 / 2) {
+  .scene-top-left {
+    top: 12cqh;
+    width: 30cqw;
+  }
+  .scene-top-right {
+    top: 11cqh;
+    width: 32cqw;
+  }
+  .scene-bottom-left {
+    height: 42cqh;
+  }
+  .scene-bottom-right {
+    height: 50cqh;
+  }
+  /* .landing devant : la règle de base de .landing-body vient plus bas */
+  .landing .landing-body {
+    padding-top: 21cqh;
+  }
+}
+/* Sortie et retour : chacun vers son côté, ceux du bas un peu plus lents */
+.is-leaving .scene-top-left,
+.is-leaving .scene-bottom-left {
+  transform: translateX(-108%);
+}
+.is-leaving .scene-top-right,
+.is-leaving .scene-bottom-right {
+  transform: translateX(108%);
+}
+.scene-bottom-left,
+.scene-bottom-right {
+  transition-duration: 1.5s;
+}
+.is-leaving .scene-bottom-left,
+.is-leaving .scene-bottom-right {
+  transition-duration: 1.55s;
+}
+/* Nuages accrochés à un paysage : leur canevas déborde son cadre de CONFIG.sceneCloudMargin de chaque côté */
+.scene-veil {
+  pointer-events: none;
+}
+.scene-veil canvas {
   position: absolute;
-  inset: 0.6rem 2rem 0;
-  display: flex;
-  justify-content: space-between;
+  inset-inline-start: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
 }
-.motif-row svg {
-  width: 2rem;
-  height: 2rem;
+/* Premier toucher : le bord du paysage s'allume. drop-shadow suit le détourage, pas le cadre de l'image */
+.scene.is-lit .scene-art {
+  scale: 1.015;
+  filter: drop-shadow(0 0 0.15rem #fff) drop-shadow(0 0 0.5rem rgba(255, 214, 110, 0.95)) drop-shadow(0 0 1.6rem rgba(236, 170, 40, 0.75));
+}
+.landing-inner {
+  pointer-events: none;
+}
+.landing-inner button {
+  pointer-events: auto;
+}
+.landing-inner {
+  will-change: transform;
+  transition:
+    transform 1.05s var(--settle) 0.3s,
+    opacity 0.8s ease 0.4s;
+}
+.is-leaving .landing-inner {
+  transition:
+    transform 1.05s cubic-bezier(0.6, 0, 0.3, 1),
+    opacity 0.8s ease;
+}
+.is-leaving .landing-inner {
+  transform: translateY(-115%);
+  opacity: 0;
 }
 .landing-inner {
   position: relative;
@@ -392,8 +584,8 @@ input:focus-visible {
   padding-bottom: 15cqh;
 }
 .is-portrait .landing-body {
-  padding-top: 7rem;
-  padding-bottom: 34cqh;
+  padding-top: 22cqh;
+  padding-bottom: 36cqh;
   gap: 1.5rem;
 }
 .is-portrait .landing-title {

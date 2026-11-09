@@ -13,6 +13,9 @@ export const argValue = (name) => {
   return index === -1 ? undefined : process.argv[index + 1];
 };
 
+/** Photos de l'accueil (src/config.ts, landingScenes) : publiées et contrôlées comme celles des établissements. */
+export const LANDING_DIR = 'landing';
+
 export const establishmentIds = (mediaDir) =>
   readdirSync(mediaDir)
     .filter((id) => /^odej-\d{3}$/.test(id))
@@ -27,6 +30,11 @@ export function listFiles(mediaDir, id) {
       return { path, bytes: statSync(resolve(mediaDir, path)).size };
     })
     .sort((a, b) => a.path.localeCompare(b.path));
+}
+
+/** Fichiers de public/media/landing/, s'il existe. */
+export function landingFiles(mediaDir) {
+  return existsSync(resolve(mediaDir, LANDING_DIR)) ? listFiles(mediaDir, LANDING_DIR) : [];
 }
 
 export function readMedia(mediaDir, id) {

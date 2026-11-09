@@ -1,4 +1,4 @@
-// npm run media:check : contrôle public/media/odej-* selon teamwork/README.md, section 4.
+// npm run media:check : contrôle public/media/odej-* et les photos de l'accueil selon teamwork/README.md, section 4.
 // Options : --hash compare les sha256 à docs/media/odej-NNN.json ; --root <dossier> remplace public/media.
 // Sort en erreur sur une limite dure. Les plafonds par établissement ne sont que des avertissements.
 import { execFile } from 'node:child_process';
@@ -7,7 +7,17 @@ import { createReadStream, existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { isFaststart } from './lib/mp4.mjs';
-import { appDir, argValue, defaultMediaDir, establishmentIds, listFiles, readMedia, references } from './lib/media-files.mjs';
+import {
+  appDir,
+  argValue,
+  defaultMediaDir,
+  establishmentIds,
+  LANDING_DIR,
+  landingFiles,
+  listFiles,
+  readMedia,
+  references,
+} from './lib/media-files.mjs';
 import {
   budgetWarnings,
   fileErrors,
@@ -94,6 +104,18 @@ async function checkEstablishment(id) {
   return { id, photos, videos: refs.videos.length, count: files.length, bytes, errors, warnings };
 }
 
+/** Photos de l'accueil : limites par fichier seulement, elles n'ont ni media.json ni plafond d'établissement. */
+async function checkLanding() {
+  const files = landingFiles(mediaDir);
+  const errors = files.flatMap(({ path, bytes }) => fileErrors(path, bytes));
+  for (const { path } of files.filter((f) => f.path.endsWith('.webp'))) {
+    const { width } = await sharp(resolve(mediaDir, path)).metadata();
+    errors.push(...photoErrors(path, width));
+  }
+  const bytes = files.reduce((sum, f) => sum + f.bytes, 0);
+  return { id: LANDING_DIR, photos: files.length, videos: 0, count: files.length, bytes, errors, warnings: [] };
+}
+
 function printList(label, lines) {
   for (const line of lines.slice(0, LISTED)) console.log(`  ${label} ${line}`);
   if (lines.length > LISTED) console.log(`  ${label} ... and ${lines.length - LISTED} more`);
@@ -102,6 +124,7 @@ function printList(label, lines) {
 const reports = [];
 try {
   for (const id of establishmentIds(mediaDir)) reports.push(await checkEstablishment(id));
+  reports.push(await checkLanding());
 } catch (error) {
   if (error.code !== 'ENOENT') throw error;
   console.error('media:check: ffprobe not found. Install ffmpeg: winget install ffmpeg');

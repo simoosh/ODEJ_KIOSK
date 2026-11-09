@@ -1,3 +1,5 @@
+import type { Side } from './lib/scenes';
+
 /** Racine des médias : le CDN si VITE_MEDIA_BASE_URL est défini, sinon le site lui-même. Toujours avec une barre finale. */
 export function resolveMediaBase(cdnUrl: string | undefined, baseUrl: string): string {
   const base = cdnUrl || `${baseUrl}media/`;
@@ -34,21 +36,147 @@ export const CONFIG = {
   landingMapTop: 0.58,
   landingMapTopPortrait: 0.62,
 
-  /** Nuages de l'accueil (lib/clouds.ts). Bord opaque en part de la hauteur : côtés, puis centre */
+  /**
+   * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
+   * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
+   * Dans l'ordre de peinture : le dernier passe au-dessus.
+   * solid : côtés du cadre collés au bord de l'écran, qui restent nets. Les autres s'effacent dans la brume, sur
+   * feather (part du petit côté de l'image, sceneFeather par défaut).
+   * clouds : des nuages d'un seul tenant le long des bords du paysage, tracés dans son cadre (0 à 1, ils peuvent en
+   * déborder). Ils suivent le paysage sur chaque écran et passent au-dessus de tous les paysages.
+   */
+  landingScenes: [
+    {
+      id: 'bottom-left',
+      src: 'landing/bottom-left.webp',
+      solid: ['left', 'bottom'] as Side[],
+      // Tout le bord droit, contre la carte
+      clouds: [
+        {
+          width: 0.3,
+          points: [
+            [0.6, 0.05],
+            [0.8, 0.11],
+            [0.88, 0.2],
+            [0.92, 0.3],
+            [0.96, 0.4],
+            [0.99, 0.5],
+            [0.99, 0.57],
+            [0.94, 0.63],
+            [0.84, 0.68],
+            [0.73, 0.73],
+            [0.79, 0.8],
+            [0.86, 0.88],
+            [0.91, 0.96],
+            [0.93, 1.06],
+          ],
+        },
+      ],
+    },
+    {
+      id: 'bottom-right',
+      src: 'landing/bottom-right.webp',
+      solid: ['right', 'bottom'] as Side[],
+      // Bord extérieur de la mer, contre la carte
+      clouds: [
+        {
+          width: 0.28,
+          points: [
+            [0.18, -0.04],
+            [0.12, 0.06],
+            [0.19, 0.12],
+            [0.3, 0.18],
+            [0.24, 0.25],
+            [0.2, 0.33],
+            [0.12, 0.43],
+            [0.06, 0.54],
+            [0.01, 0.6],
+            [0.05, 0.66],
+            [0.16, 0.72],
+            [0.18, 0.82],
+            [0.14, 0.9],
+            [0.07, 0.97],
+            [0.05, 1.06],
+          ],
+        },
+      ],
+    },
+    {
+      id: 'top-left',
+      src: 'landing/top-left.webp',
+      solid: ['left'] as Side[],
+      clouds: [
+        // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
+        {
+          width: 0.28,
+          core: 0.4,
+          points: [
+            [-0.2, 0.99],
+            [0.1, 1.01],
+            [0.35, 1],
+            [0.55, 0.96],
+            [0.72, 0.9],
+          ],
+        },
+        // Reste de ciel le long de la falaise, entre elle et le détourage
+        {
+          width: 0.16,
+          core: 0.5,
+          points: [
+            [0.36, -0.04],
+            [0.52, 0.15],
+            [0.63, 0.3],
+            [0.73, 0.45],
+            [0.82, 0.58],
+            [0.88, 0.64],
+          ],
+        },
+      ],
+    },
+    // Fondu plus court : son haut reste dégagé
+    { id: 'top-right', src: 'landing/top-right.webp', solid: ['right'] as Side[], feather: 0.14 },
+  ],
+  /** Longueur du fondu des bords des paysages, en part du petit côté de chaque image (lib/scenes.ts) */
+  sceneFeather: 0.28,
+  /** Débord du canevas des nuages d'un paysage autour de son cadre, de chaque côté (app.css, .scene-veil canvas) */
+  sceneCloudMargin: 0.5,
+  /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
+  sceneDecodeWaitMs: 600,
+
+  /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {
     canvas: [640, 360],
-    landscape: { side: 0.52, center: 0.66 },
-    portrait: { side: 0.56, center: 0.64 },
     /** Grilles du bruit, de la plus large à la plus fine : de grandes masses, pas un grain */
     noiseCells: [4, 8, 16, 32],
-    fade: 0.2,
-    tear: 0.2,
-    seam: 0.05,
-    light: [250, 250, 247],
-    shadow: [232, 237, 240],
-    wispLow: 0.5,
-    wispHigh: 0.68,
-    wispDrop: 0.05,
+    /** Part du rayon pleinement opaque, puis effilochage du bord par le bruit */
+    core: 0.3,
+    tear: 0.6,
+    /** Ombre sous chaque bouffée, pour le volume : un gris clair, jamais foncé */
+    underside: 0.55,
+    /** Opacité maximale des nuages accrochés aux paysages : une brume légère, les paysages respirent */
+    bandOpacity: 0.45,
+    light: [250, 251, 252],
+    shadow: [204, 211, 218],
+    /** Centre x, y et taille w, h en part de l'écran. front : plan avant, qui part plus vite à la sortie */
+    landscape: [
+      { x: 0.16, y: 0.06, w: 0.46, h: 0.16 },
+      { x: 0.84, y: 0.02, w: 0.46, h: 0.1 },
+      { x: 0.2, y: 0.97, w: 0.5, h: 0.2, front: true },
+      { x: 0.41, y: 1.02, w: 0.3, h: 0.14, front: true },
+      { x: 0.8, y: 0.97, w: 0.5, h: 0.2, front: true },
+      { x: 0.6, y: 1.02, w: 0.3, h: 0.14, front: true },
+    ],
+    portrait: [
+      { x: 0.2, y: 0.04, w: 0.6, h: 0.09 },
+      { x: 0.8, y: 0.04, w: 0.6, h: 0.09 },
+      // Horizon de la carte qui tourne
+      { x: 0.12, y: 0.635, w: 0.5, h: 0.07 },
+      { x: 0.4, y: 0.65, w: 0.45, h: 0.06 },
+      { x: 0.62, y: 0.65, w: 0.45, h: 0.06 },
+      { x: 0.9, y: 0.63, w: 0.5, h: 0.07 },
+      { x: 0.2, y: 0.99, w: 0.7, h: 0.08, front: true },
+      { x: 0.8, y: 0.99, w: 0.7, h: 0.08, front: true },
+    ],
   },
   /** Durée du recentrement de la caméra après le bouton de l'accueil (ms) */
   enterFlightMs: 3_600,
