@@ -13,7 +13,7 @@ import type {
 } from 'maplibre-gl';
 import type { BasemapId, Boundary, KioskData, Locale } from '../types';
 import { CONFIG, QUALITY, type QualityLevel } from '../config';
-import { titleOf } from '../data/model';
+import { buildPreviewCard, CARD_LEAVE_MS } from './previewCard';
 import { PLAN_SOURCE, SATELLITE_TILES, styleFor, SKY, TERRAIN_SPEC, terrainTemplate } from './basemaps';
 import { addFogLayers, buildFogImage, type FogImage } from './fog';
 import { preloadUrls, startPreload } from './preload';
@@ -67,6 +67,8 @@ interface Props {
   /** Élément de la boussole : tourné directement, sans passer par React */
   compass: RefObject<HTMLElement | null>;
   onSelect(id: string): void;
+  /** Toucher sur la fenêtre d'aperçu du sélectionné : afficher sa fiche */
+  onOpenDetails(): void;
   on3dChange(on: boolean): void;
   onOrbitChange(on: boolean): void;
   onBasemapFailed(id: BasemapId): void;
@@ -105,7 +107,7 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
   const shownRef = useRef(0);
   const popTimer = useRef(0);
   const imagesRef = useRef<MarkerImages | null>(null);
-  const labelRef = useRef<Marker | null>(null);
+  const labelRef = useRef<{ marker: Marker; key: string } | null>(null);
   const rotation = useRef<{ raf: number; speed: number; last: number; onStop?: () => void } | null>(null);
   /** Invalide la rotation ou l'animation programmées si une autre animation démarre entre-temps */
   const moveSeq = useRef(0);
@@ -389,15 +391,20 @@ export const MapView = memo(forwardRef<MapHandle, Props>(function MapView(props,
     if (!map) return;
     const { selectedId, highlightIds, locale } = live.current;
     syncMarkerLayers(map, selectedId, highlightIds);
-    labelRef.current?.remove();
-    labelRef.current = null;
     const placed = placedRef.current.find((p) => p.est.id === selectedId);
+    const key = placed ? `${placed.est.id}:${locale}` : '';
+    // Même établissement, même langue : la fenêtre ouverte reste, sans rejouer son ouverture
+    if (labelRef.current?.key === key) return;
+    const leaving = labelRef.current?.marker;
+    labelRef.current = null;
+    if (leaving) {
+      leaving.getElement().classList.add('is-leaving');
+      window.setTimeout(() => leaving.remove(), reducedMotion() ? 0 : CARD_LEAVE_MS);
+    }
     if (!placed) return;
-    const title = titleOf(placed.est);
-    const element = document.createElement('div');
-    element.className = 'mk-label';
-    element.textContent = title[locale] ?? title.ar ?? '';
-    labelRef.current = new maplibregl.Marker({ element, anchor: 'bottom', offset: selectedLabelOffset() }).setLngLat(placed.position).addTo(map);
+    const element = buildPreviewCard(live.current.data, placed.est, locale, () => live.current.onOpenDetails());
+    const marker = new maplibregl.Marker({ element, anchor: 'bottom', offset: selectedLabelOffset() }).setLngLat(placed.position).addTo(map);
+    labelRef.current = { marker, key };
   }
 
   /** Ajout par lots, du centre vers l'extérieur : un seul setData à chaque lot, aucune animation par marqueur. */
