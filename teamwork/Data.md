@@ -1,6 +1,6 @@
 # Data.md: known data problems
 
-Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-07, after the Youth Connect import into the 34 `info.json` files and the new coordinates from the ODEJ.
+Every open problem with the establishments' data, in one place: coordinates, Facebook pages, names, types, contact details and media. Last update: 2026-11-09, after the scrape of #39, 40, 42 and 43.
 
 ## How to use this file
 
@@ -14,13 +14,13 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 | Topic | Count | Establishments |
 |---|---|---|
-| Collected and on the CDN | 34 of 67 | section 8 |
-| Not scraped yet | 33 of 67 | section 9 |
+| Collected (on the CDN after the next publication) | 38 of 67 | section 8 |
+| Not scraped yet | 29 of 67 | section 9 |
 | No usable Facebook page | 4 | #2, 14, 37, 49 |
 | Pin to confirm with the ODEJ (its table has a doubtful value) | 2 | #48, 67 |
 | Commune to confirm | 4 | #13, 51, 64 and the English names of 3 new communes |
-| Page may belong to another place or name | 10 | #11, 27, 31, 33, 39, 46, 48, 51, 53, 56 |
-| Contact details collected but not on the map | 30 | section 6 |
+| Page may belong to another place or name | 11 | #11, 27, 31, 33, 39, 40, 46, 48, 51, 53, 56 |
+| Contact details collected but not on the map | 34 | section 6 |
 | No activities in the data | 67 | all |
 | Description shown on the map | 2 of 67 | #3, 21 |
 | Very little media | 4 | #11, 13, 19, 31 |
@@ -70,7 +70,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 |---|---|---|
 | 2 | Adekar Youth Hostel | The link failed on two separate checks. |
 | 14 | Abadi Martyrs, Sidi Ayad | The link opened #15, Sidi Aich youth centre. |
-| 37 | Tamokra sports complex | The link opened #39, Akfadou youth centre. |
+| 37 | Tamokra sports complex | The link opened #39, Akfadou youth centre. The #39 scrape confirms it: the building and the first video show the sign "MAISON DE JEUNES AKFADOU". |
 | 49 | Assam Tayeb and son Hamimi, Tazmalt | The link opened #33, Tazmalt youth centre. |
 
 **Page may not match the listed establishment**
@@ -82,6 +82,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 31 | Martyr Djeroud, Bermatane | Sidi Aich sports complex, and its e-mail is `cspsidiaich@` |
 | 33 | Martyr Ouchiha Lahlou | The building banner reads «دار الشباب الشهيد عصام طيب و إبنه عصام حميمي (محمود)», which is #49. The media is published under #33 for now. |
 | 39 | «بوعيدان أرزقي» | «بوعيفل أرزقي»: a different family name |
+| 40 | Page `profile.php?id=61579953660171` | The scrape read `mj.aokas.2025` («MJ Aokas»), another page of the same youth centre. `video-001` came from the numeric page, so the manifest marks it as from another owner. Its content looks like Aokas. Which page is the official one? |
 | 46 | Martyr Bouhedou Abdelhamid | Messissna youth centre |
 | 48 | Martyr Touati Amar | Beni Ksila youth camp |
 | 51 | Martyr Dehamla Mouloud | Melbou youth camp |
@@ -90,7 +91,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 **Weak pages:** #40 and #52 have no profile picture. #58 has 2 followers.
 
-**Pages with posts Facebook labels as machine-generated:** #16, 28, 29, 30, 43, 48, 63. Check the photos from these pages before using them. #16, 28, 29 and 30 are already published.
+**Pages with posts Facebook labels as machine-generated:** #16, 28, 29, 30, 43, 48, 63. Check the photos from these pages before using them. #16, 28, 29, 30 and 43 are already published.
 
 ## 5. Names and types
 
@@ -115,7 +116,7 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 
 ## 6. Contact details and page information
 
-**Not on the map yet.** `info.json` has contact details for #5, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38 and 41, but the map shows contact details only for #1, 3, 4 and 21. `tools/data/import-info.mjs` still has to run. Fix the bad values below first.
+**Not on the map yet.** `info.json` has contact details for #5, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42 and 43, but the map shows contact details only for #1, 3, 4 and 21. `tools/data/import-info.mjs` still has to run. Fix the bad values below first.
 
 **Bad or doubtful values** (they must not reach the map as they are)
 
@@ -124,11 +125,14 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 3 | Hours | "Toujours ouvert" is on the map as "Always open", which is unlikely to be true. |
 | 13, 30, 33, 38 | Hours | "Toujours ouvert", same doubt. |
 | 18 | Hours | "Ferme bientôt" is Facebook's live status, not a schedule. Do not import it. |
+| 42 | Hours | "Fermé en ce moment" is Facebook's live status, not a schedule. Do not import it. |
+| 39 | Address | Youth Connect's «بلدية أكفادو بجاية» is kept. The Facebook value was the page's title, not an address. |
+| 42 | Address | Youth Connect's «بلدية بجاية» is kept. Facebook gives the establishment's name with the city, which is not more precise. |
 | 18 | Address | Contains a Google Maps link. |
 | 18 | E-mail | A Gmail address, `mjttakariat@`, with an odd double t. Confirm it. |
 | 26, 31 | Address | Only the word "Coordonnées". This is a scraping error. Do not import it. |
 | 38 | Address | Only "Bejaïa, Algeria". The page text gives the village centre of Adjiouane, commune of Draa El Kaid. |
-| 11, 33, 34, 35 | E-mail | A Gmail address, not an ODEJ one. Confirm it. |
+| 11, 33, 34, 35, 39 | E-mail | A Gmail address, not an ODEJ one. Confirm it. |
 | 24, 38 | E-mail | Looks like a person's private Gmail address. Confirm it before showing it on a public kiosk. |
 | 21 | Phone | Starts with 044; other landlines here start with 034. The e-mail says Ighzer Amokrane while the establishment is Ouzellaguen. |
 | 9, 31 | Phone | Starts with 030. Confirm it. |
@@ -145,25 +149,26 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 |---|---|
 | 1 | The e-mail `cspadekar@odegbejaia-dz.com` has a typo in the domain (`odegbejaia`). Other pages use `odejbejaia-dz.com`. Confirm it. |
 | 38 | No phone: Youth Connect only has a placeholder, `000 00 00 00`, so the phone stays empty. The same placeholder was dropped for #41, 43, 61, 63. |
-| 11, 13, 18, 24, 26, 31, 33, 34, 35, 38 | The Facebook e-mail is kept, but Youth Connect gives a different one. For #24, 33 and 35 the Facebook one is a private-looking Gmail address and Youth Connect gives an ODEJ one. Ask the ODEJ which is right. |
+| 11, 13, 18, 24, 26, 31, 33, 34, 35, 38, 39 | The Facebook e-mail is kept, but Youth Connect gives a different one. For #24, 33, 35 and 39 the Facebook one is a private-looking Gmail address and Youth Connect gives an ODEJ one. Ask the ODEJ which is right. |
 | 3, 9, 33, 35 | The Facebook phone is kept, but Youth Connect gives a different number. |
 | 3, 7 | Youth Connect gives the same phone, `034 17 91 75`, to both. For #3 the Facebook mobile is kept. Confirm #7. |
 | 13, 15 | Youth Connect writes the e-mail domain as `odejbejaia-de.com` (#13) and `idejbejaia-dz.com` (#15): typos, not used for #13, and #15 is not collected yet. |
 | All | Youth Connect has only about 20 different descriptions for 67 establishments: they are text per type, not about each place. 20 of the 34 files have activities. |
 
-**Missing, among the 34 scraped**
+**Missing, among the 38 scraped**
 
 | Field | Missing for |
 |---|---|
-| Phone | #38 |
+| Phone | #38, 43 (Youth Connect has only the placeholder for #43, and Facebook shows none) |
 | E-mail | none |
 | Address | none (from Youth Connect), but #18, 26, 31 and 38 had a bad Facebook address, now replaced |
-| Opening hours | all except #3, 13, 18, 30, 33 and 38, and those six are doubtful |
+| Opening hours | all except #3, 13, 18, 30, 33, 38 and 42, and those seven are doubtful |
+| Activities | 24 of the 38 files have some |
 | Description | none, but see the generic texts above |
 
 **Whole dataset.** No establishment has activities. Only #3 and #21 show a description, and only #3 shows hours.
 
-**Wrong Facebook category.** These are only labels on the page, but they should not be shown: #4 music and health, #5 restaurant, #12 interior decoration, #18 news site, #20 music, #25 product, #27 digital creator, #29 personal blog, #31 music.
+**Wrong Facebook category.** These are only labels on the page, but they should not be shown: #4 music and health, #5 restaurant, #12 interior decoration, #18 news site, #20 music, #25 product, #27 digital creator, #29 personal blog, #31 music, #40 and 43 music and health.
 
 ## 7. Media
 
@@ -186,6 +191,10 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 26, 27 | The cover is a group photo, not the building. |
 | 5 | Cover 785 px wide, small for a large view. |
 | 8 | The cover was supplied by the colleague. A scrappper rebuild of the manifest would put `preview.jpg` back. |
+| 43 | The page had no cover. The colleague supplied a photo of the building (960 px, 9 Nov) as `preview/preview.jpg` and set it in the manifest by hand. A scrappper rebuild of the manifest would drop it. |
+| 39 | Cover 638 px wide, a smaller copy of the building photo. Sharp enough at 720p, weak on a large view. |
+| 40 | The cover shows the building with a red text overlay («Maison de jeunes Harriche Mohand Aokas»). |
+| 42 | The cover is the only outside photo: the building is dark and half the frame is sky. |
 
 **Videos that failed or changed**
 
@@ -200,6 +209,9 @@ Every open problem with the establishments' data, in one place: coordinates, Fac
 | 16 | `video-02` runs 90 s, over the 70 s default. |
 | 21 | `video-02` was cut from 170 s to 70 s. |
 | 10 | Three low-resolution videos, 360 to 480 px wide. |
+| 42 | `video-01` runs 161 s, over the 70 s default. It is only 540 px wide and 5.7 MB. |
+| 40 | `video-01` comes from the numeric page, not the scraped one (section 4). |
+| 39, 40 | Low-resolution videos: all three of #39 (360 to 368 px wide) and #40 `video-01` (360 px). |
 
 Facebook shows a logged-out visitor only about 10 videos per page, so video lists may be incomplete.
 
@@ -221,6 +233,7 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 | 26 | 015, 017, 018, 019 |
 | 29 | 002 |
 | 36 | 002 |
+| 40 | 018 (590 px), 020 (461 px) |
 | 41 | 012, 025, 026, 027, 036, 037 |
 
 **Near-duplicates kept**
@@ -233,6 +246,10 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 | 26 | 023 (almost the cover), and 031, 032 |
 | 35 | 005, 010 |
 | 36 | 044, 048 |
+| 39 | 014, 015 (015 is overexposed), and 034, 035 (035 is 720 px wide) |
+| 40 | 019, 020, 024 (same table), and 018, 022 |
+| 42 | 002, 003, and 005, 006, 007, and 015, 016, and 028, 029 |
+| 43 | 014, 015, and 023, 024 |
 
 **Posters with small text**
 
@@ -248,6 +265,9 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 | 28 | 041 |
 | 30 | 002 |
 | 35 | 017 to 022 (six almost identical sign-up posters) |
+| 39 | 024 (archive photos about 17 October 1961, small captions) |
+| 40 | 006, 026 (handwritten boards), 015, 030 (leaflets; 030 also shows a phone stamp) |
+| 42 | 020, 022, 026 |
 
 **Weak or off-topic photos**
 
@@ -264,6 +284,10 @@ Facebook shows a logged-out visitor only about 10 videos per page, so video list
 | 31 | 002 (a flag, no activity) |
 | 33 | 002, 003, 009, 010, 013 (tilted) |
 | 38 | 023, 037 (social media frame) |
+| 39 | 028, 029, 030, 033, 034 (a football tournament on a city pitch: maybe away, maybe #37's), 017 (fabric on a table), 018, 023 (dark stage) |
+| 40 | 013 (Directorate watermark), 033 to 038 (plants, a warehouse and volunteers: maybe another site) |
+| 42 | 021, 027 (hands only) |
+| 43 | 004 (dark), 010 (group in front of a sign naming another hall), 011 (a landscape), 020 (a banner, 707 px), 021 to 025 (tree planting away from the building) |
 
 The colleague kept all of these. The list is here so the choice can be reviewed before the exhibition.
 
@@ -312,20 +336,24 @@ Photos and videos count what is published, without the cover. "Contact gaps" lis
 | 35 | Martyr Berkani Tahar | 32 | 0 | none | 6, 7 |
 | 36 | Chaabane Amar | 55 | 1 | address | 5, 6, 7 |
 | 38 | Martyr Belghania Ahmed | 41 | 1 | phone, address (too vague) | 3, 6, 7 |
+| 39 | Martyr Bouaidane Arezki | 37 | 3 | none | 4, 6, 7 |
+| 40 | Martyr Harrich Mohand | 37 | 2 | none | 4, 6, 7 |
 | 41 | Chellata Youth Centre | 36 | 2 | e-mail | 6, 7 |
+| 42 | Martyr Fatma Remtani | 28 | 1 | none | 6, 7 |
+| 43 | Feraoun Youth Centre | 26 | 2 | phone | 4, 6, 7 |
 
 ## 9. Not scraped yet
 
 **Cannot be scraped until a page is found (4):** #2, 14, 37, 49.
 
-**Ready to scrape (29).** The problems already known are in the sections above.
+**Ready to scrape (25).** The problems already known are in the sections above.
 
 | Numbers | Known problems |
 |---|---|
-| 43, 48, 63 | Posts labelled as machine-generated (section 4) |
-| 6, 42, 44, 46, 50, 54, 57, 60 | Coordinates (section 3) |
-| 39, 48, 51, 53, 56 | Page, name or commune (sections 3 and 4) |
+| 48, 63 | Posts labelled as machine-generated (section 4) |
+| 6, 44, 46, 50, 54, 57, 60 | Coordinates (section 3) |
+| 48, 51, 53, 56 | Page, name or commune (sections 3 and 4) |
 | 15, 64 | Spelling (section 5) |
-| 40, 52, 58 | Weak page (section 4) |
+| 52, 58 | Weak page (section 4) |
 | 59 | Type from the link only (section 5) |
 | 45, 47, 55, 61, 62, 65, 66, 67 | None except #67, which shares its name with #29 |
