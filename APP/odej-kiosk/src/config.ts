@@ -1,3 +1,5 @@
+import type { Side } from './lib/scenes';
+
 /** Racine des médias : le CDN si VITE_MEDIA_BASE_URL est défini, sinon le site lui-même. Toujours avec une barre finale. */
 export function resolveMediaBase(cdnUrl: string | undefined, baseUrl: string): string {
   const base = cdnUrl || `${baseUrl}media/`;
@@ -38,6 +40,7 @@ export const CONFIG = {
    * Paysages détourés de l'accueil, dans public/media/landing/ (hors git, publiés avec les médias : docs/MEDIA.md).
    * Leur place à l'écran est dans app.css (.scene-*). Ils composent un tableau : la même place en arabe et en anglais.
    * Dans l'ordre de peinture : le dernier passe au-dessus.
+   * solid : côtés du cadre collés au bord de l'écran, qui restent nets. Les autres s'effacent dans la brume (sceneFeather).
    * clouds : des nuages d'un seul tenant le long des bords du paysage, tracés dans son cadre (0 à 1, ils peuvent en
    * déborder). Ils suivent le paysage sur chaque écran et passent au-dessus de tous les paysages.
    */
@@ -45,6 +48,7 @@ export const CONFIG = {
     {
       id: 'bottom-left',
       src: 'landing/bottom-left.webp',
+      solid: ['left', 'bottom'] as Side[],
       // Tout le bord droit, contre la carte
       clouds: [
         {
@@ -71,6 +75,7 @@ export const CONFIG = {
     {
       id: 'bottom-right',
       src: 'landing/bottom-right.webp',
+      solid: ['right', 'bottom'] as Side[],
       // Bord extérieur de la mer, contre la carte
       clouds: [
         {
@@ -98,6 +103,7 @@ export const CONFIG = {
     {
       id: 'top-left',
       src: 'landing/top-left.webp',
+      solid: ['left'] as Side[],
       clouds: [
         // Bord du bas, au-dessus du paysage bas gauche : comble le vide entre les deux. Cœur large, pour un nuage plein
         {
@@ -126,31 +132,12 @@ export const CONFIG = {
         },
       ],
     },
-    { id: 'top-right', src: 'landing/top-right.webp' },
+    { id: 'top-right', src: 'landing/top-right.webp', solid: ['right'] as Side[] },
   ],
+  /** Longueur du fondu des bords des paysages, en part du petit côté de chaque image (lib/scenes.ts) */
+  sceneFeather: 0.28,
   /** Débord du canevas des nuages d'un paysage autour de son cadre, de chaque côté (app.css, .scene-veil canvas) */
   sceneCloudMargin: 0.5,
-  /**
-   * Ruban de motifs de l'accueil (lib/ribbon.ts), dans un repère étiré sur toute la largeur de l'écran.
-   * gap : écart entre les deux ondes, où se posent les motifs. waves : nombre d'ondulations sur la largeur.
-   * clouds : nuages gris clair qui dépassent du ruban, [position de 0 à 1, côté : -1 au-dessus, 1 en dessous].
-   */
-  motifRibbon: {
-    width: 1200,
-    height: 64,
-    amplitude: 10,
-    gap: 34,
-    waves: 1.5,
-    phase: 0.4,
-    samples: 96,
-    clouds: [
-      [0.09, 1],
-      [0.3, -1],
-      [0.55, 1],
-      [0.76, -1],
-      [0.95, 1],
-    ],
-  },
   /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
   sceneDecodeWaitMs: 600,
 

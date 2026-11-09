@@ -1,8 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { perfCounters } from '../../src/lib/perf';
 import { polylineDistance, puffLayer, puffOpacity } from '../../src/lib/clouds';
-import { RIBBON, ribbonPath, waveY } from '../../src/lib/ribbon';
-import { maskHit } from '../../src/lib/scenes';
+import { edgeDistance, maskHit } from '../../src/lib/scenes';
 import { distanceField, fogOpacity, outsideFog } from '../../src/map/fog';
 import { preloadUrls, startPreload, tileRange } from '../../src/map/preload';
 import type { LngLat } from '../../src/lib/geo';
@@ -63,24 +62,6 @@ describe("nuages de l'accueil", () => {
 
 });
 
-describe("ruban de motifs de l'accueil", () => {
-  const ys = (path: string) => [...path.matchAll(/[ML][\d.]+ ([\d.]+)/g)].map((m) => Number(m[1]));
-
-  it('garde ses deux ondes dans son cadre, à écart constant, avec les motifs entre elles', () => {
-    const top = ys(ribbonPath(-1));
-    const bottom = ys(ribbonPath(1));
-    expect(Math.min(...top)).toBeGreaterThanOrEqual(0);
-    expect(Math.max(...bottom)).toBeLessThanOrEqual(RIBBON.height);
-    top.forEach((y, i) => expect(bottom[i] - y).toBeCloseTo(RIBBON.gap, 1));
-    expect(waveY(0)).toBeGreaterThan(top[0]);
-    expect(waveY(0)).toBeLessThan(bottom[0]);
-  });
-
-  it('se referme en parcourant le bas à l’envers', () => {
-    expect(ys(ribbonPath(1, true))).toEqual(ys(ribbonPath(1)).reverse());
-  });
-});
-
 describe("paysages de l'accueil", () => {
   const mask = { width: 2, height: 2, alpha: new Uint8ClampedArray([255, 0, 0, 200]) };
 
@@ -88,6 +69,16 @@ describe("paysages de l'accueil", () => {
     expect(maskHit(mask, 0.2, 0.2)).toBe(true);
     expect(maskHit(mask, 0.8, 0.2)).toBe(false);
     expect(maskHit(mask, 0.8, 0.8)).toBe(true);
+  });
+
+  it("s'effacent vers leurs bords découpés, mais pas vers le bord de l'écran", () => {
+    // 5 × 1, opaque partout sauf le dernier pixel, à droite
+    const alpha = new Uint8ClampedArray([255, 255, 255, 255, 0]);
+    const open = edgeDistance(alpha, 5, 1, []);
+    // Haut et bas ouverts : chaque pixel est à 1 du bord
+    expect([...open]).toEqual([1, 1, 1, 1, 0]);
+    const pinned = edgeDistance(alpha, 5, 1, ['left', 'top', 'bottom']);
+    expect([...pinned]).toEqual([4, 3, 2, 1, 0]);
   });
 
   it("ignorent un toucher hors de l'image, et retombent sur le cadre sans masque", () => {

@@ -254,10 +254,6 @@ input:focus-visible {
  * Celle du rang de base sert au retour : tout revient des côtés et ralentit en se posant, la brume et le texte ensuite.
  */
 .landing {
-  /* Ruban de motifs, et bord haut minimal des paysages du haut pour ne jamais le toucher */
-  --motif-top: 5.8rem;
-  --motif-height: 3.4rem;
-  --below-motifs: calc(var(--motif-top) + var(--motif-height) + 0.3rem);
   --leave: cubic-bezier(0.55, 0, 0.25, 1);
   --settle: cubic-bezier(0.16, 0.8, 0.3, 1);
 }
@@ -382,23 +378,26 @@ input:focus-visible {
 .is-leaving .scene {
   transition: transform 1.4s var(--leave);
 }
-.scene-img {
-  display: block;
-  width: 100%;
-  height: auto;
+.scene-art {
+  height: 100%;
   transition:
     scale 0.35s ease,
     filter 0.35s ease;
 }
+.scene-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .scene-top-left {
   inset-inline-start: -2cqw;
-  top: max(15cqh, var(--below-motifs));
+  top: 15cqh;
   width: min(40cqw, 72cqh);
   transform-origin: 0 50%;
 }
 .scene-top-right {
   inset-inline-end: -2cqw;
-  top: max(13cqh, var(--below-motifs));
+  top: 13cqh;
   width: min(42cqw, 76cqh);
   transform-origin: 100% 50%;
 }
@@ -419,17 +418,13 @@ input:focus-visible {
   width: auto;
   height: 100%;
 }
-/* Le haut de cette photo se fond dans la brume */
-.scene-bottom-left .scene-img {
-  mask-image: linear-gradient(to bottom, transparent, #000 16%);
-}
 .is-portrait .scene-top-left {
-  top: max(9cqh, var(--below-motifs));
+  top: 9cqh;
   width: 58cqw;
 }
 .is-portrait .scene-top-right {
   inset-inline-end: -6cqw;
-  top: max(12cqh, var(--below-motifs));
+  top: 12cqh;
   width: 56cqw;
 }
 .is-portrait .scene-bottom-left {
@@ -444,11 +439,11 @@ input:focus-visible {
 /* Écrans 4:3 et 5:4 : le titre prend plus de place en largeur, les paysages se font plus petits et le texte descend */
 @container (orientation: landscape) and (aspect-ratio < 3 / 2) {
   .scene-top-left {
-    top: max(12cqh, var(--below-motifs));
+    top: 12cqh;
     width: 30cqw;
   }
   .scene-top-right {
-    top: max(11cqh, var(--below-motifs));
+    top: 11cqh;
     width: 32cqw;
   }
   .scene-bottom-left {
@@ -491,7 +486,7 @@ input:focus-visible {
   height: 200%;
 }
 /* Premier toucher : le bord du paysage s'allume. drop-shadow suit le détourage, pas le cadre de l'image */
-.scene.is-lit .scene-img {
+.scene.is-lit .scene-art {
   scale: 1.015;
   filter: drop-shadow(0 0 0.15rem #fff) drop-shadow(0 0 0.5rem rgba(255, 214, 110, 0.95)) drop-shadow(0 0 1.6rem rgba(236, 170, 40, 0.75));
 }
@@ -501,68 +496,20 @@ input:focus-visible {
 .landing-inner button {
   pointer-events: auto;
 }
-.landing-inner,
-.landing-motifs {
+.landing-inner {
   will-change: transform;
   transition:
     transform 1.05s var(--settle) 0.3s,
     opacity 0.8s ease 0.4s;
 }
-.is-leaving .landing-inner,
-.is-leaving .landing-motifs {
+.is-leaving .landing-inner {
   transition:
     transform 1.05s cubic-bezier(0.6, 0, 0.3, 1),
     opacity 0.8s ease;
 }
-.is-leaving .landing-inner,
-.is-leaving .landing-motifs {
+.is-leaving .landing-inner {
   transform: translateY(-115%);
   opacity: 0;
-}
-/*
- * Ruban de motifs : le ciel et la mer, communs aux paysages. Onde du haut bleu ciel, onde du bas bleu mer, toujours
- * clairs, et quelques nuages gris clair qui dépassent. Il reste sous l'en-tête et au-dessus des paysages.
- */
-.motif-band {
-  position: absolute;
-  inset-inline: 0;
-  top: var(--motif-top);
-  height: var(--motif-height);
-  color: #86b4cf;
-  pointer-events: none;
-}
-.motif-wave {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.motif-line {
-  fill: none;
-  stroke: #9fcbe8;
-  stroke-width: 1.6;
-  vector-effect: non-scaling-stroke;
-}
-.motif-line.is-low {
-  stroke: #8fd0d8;
-}
-/* Nuages peints une fois en dégradé : rien ne bouge */
-.motif-cloud {
-  position: absolute;
-  width: 9rem;
-  height: 2.8rem;
-  translate: -50% -50%;
-  border-radius: 50%;
-  background:
-    radial-gradient(closest-side at 34% 62%, rgba(201, 208, 215, 0.85), transparent),
-    radial-gradient(closest-side at 60% 42%, rgba(212, 218, 224, 0.85), transparent),
-    radial-gradient(closest-side at 80% 64%, rgba(206, 213, 220, 0.7), transparent);
-}
-.motif {
-  position: absolute;
-  width: 1.3rem;
-  height: 1.3rem;
-  translate: -50% -50%;
 }
 .landing-inner {
   position: relative;

@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
 import { LandingScenes } from './LandingScenes';
-import { FlagRule, MotifBand } from './Motifs';
+import { FlagRule } from './Motifs';
 
 interface Props {
   data: KioskData;
@@ -29,7 +29,6 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
       <LandingScenes leaving={leaving} />
       <div className="landing-haze" aria-hidden="true" />
       <LandingClouds portrait={portrait} />
-      <MotifBand className="landing-motifs" />
 
       <div className="landing-inner">
         <header className="landing-head">
