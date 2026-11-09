@@ -742,7 +742,7 @@ input:focus-visible {
   Mouvements : transform et opacity, une seule fois par geste ; aucune animation infinie.
 */
 .kiosk {
-  --glass: rgba(255, 255, 255, 0.6);
+  --glass: rgba(255, 255, 255, 0.52);
   --glass-strong: rgba(252, 252, 249, 0.74);
   --glass-solid: rgba(252, 252, 249, 0.9);
   --glass-line: rgba(255, 255, 255, 0.8);
@@ -1622,7 +1622,6 @@ input:focus-visible {
 .carousel {
   position: relative;
   aspect-ratio: 16 / 10.5;
-  perspective: 62rem;
   touch-action: pan-y;
   outline: none;
   border-radius: var(--r-md);
@@ -1634,7 +1633,7 @@ input:focus-visible {
 .carousel-track {
   position: absolute;
   inset: 0;
-  transform-style: preserve-3d;
+  isolation: isolate;
 }
 .carousel-card {
   position: absolute;
@@ -1648,12 +1647,18 @@ input:focus-visible {
   overflow: hidden;
   background: var(--paper-2);
   box-shadow: 0 1.2rem 2rem -1rem rgba(20, 33, 27, 0.55);
-  backface-visibility: hidden;
   cursor: pointer;
-  will-change: transform;
   transition:
     transform 0.75s var(--ease-soft),
     opacity 0.5s ease;
+}
+/* Portrait : le tiroir est large et bas, le carrousel aussi */
+.is-portrait .carousel {
+  aspect-ratio: 16 / 7;
+}
+.is-portrait .carousel-card {
+  inset-inline-start: 27%;
+  width: 46%;
 }
 .carousel-card img {
   display: block;
@@ -2168,7 +2173,7 @@ input:focus-visible {
   }
 }
 .mk-card {
-  width: 17rem;
+  width: 19rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2355,6 +2360,13 @@ input:focus-visible {
 .is-portrait .notice {
   top: 6.8rem;
   bottom: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-items > li,
+  .detail-scroll > * {
+    animation-delay: 0s;
+  }
 }
 
 /* Niveau de qualité low : verre opaque, sans flou */

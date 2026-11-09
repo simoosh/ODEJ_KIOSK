@@ -22,7 +22,8 @@ export function carouselPose(o: number, rtl: boolean): CarouselPose {
   // Les cartes de côté regardent le centre : leur bord extérieur vient vers l'avant
   const x = d * s * (near * 70 + Math.max(0, a - 1) * 16);
   return {
-    transform: `translate3d(${x.toFixed(2)}%, 0, ${(-a * 7).toFixed(2)}rem) rotateY(${(-d * s * near * 48).toFixed(2)}deg)`,
+    // Perspective propre à chaque carte : pas de contexte 3D partagé, l'ordre d'empilement reste celui de z
+    transform: `perspective(62rem) translate3d(${x.toFixed(2)}%, 0, ${(-a * 7).toFixed(2)}rem) rotateY(${(-d * s * near * 48).toFixed(2)}deg)`,
     opacity: a <= radius - 1 ? 1 : Math.max(0, radius - a),
     shade: Math.min(a, 1.4) * 0.38,
     z: 100 - Math.round(a * 10),
