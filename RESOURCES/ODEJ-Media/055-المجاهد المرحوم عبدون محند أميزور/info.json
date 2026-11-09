@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:48:34Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 55,
+    "name": "المجاهد المرحوم عبدون محند أميزور",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61580024096605"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61580024096605",
+    "pageRef": "61580024096605",
+    "title": "دار الشباب أميزور-ولاية بجاية"
+  },
+  "email": "mjamizour@odejbejaia-dz.com",
+  "phone": "030 16 40 06",
+  "address": "قرية أميزور",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة عمومية ذات طابع تربوي وثقافي واجتماعي تهدف إلى استغلال وقت فراغ الشباب بشكل إيجابي عبر تقديم أنشطة ثقافية، فنية، رياضية، وترفيهية، إلى جانب توفير خدمات توجيهية وتكوينية. تشمل مهامها توفير معلومات للشباب في مختلف المجالات مثل الشغل، التعليم، والصحة، وتوجيههم لحل مشاكلهم، وتنمية مهاراتهم وكفاءاتهم.",
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 629,
+  "foundedYear": 2012,
+  "capacity": 65,
+  "accessible": null,
+  "activities": [
+    {
+      "id": 10392,
+      "title": "نادي تنس الطاولة",
+      "dates": "01 سبتمبر 2026 — 05 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 9964,
+      "title": "نادي المسرح",
+      "dates": "01 سبتمبر 2026 — 05 يوليو 2027 · نشاط الفنون الدرامية",
+      "status": "ongoing"
+    },
+    {
+      "id": 10366,
+      "title": "نادي البلياردو",
+      "dates": "01 سبتمبر 2026 — 05 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 55977,
+      "title": "نادي الكراتي أسيرم أميزور",
+      "dates": "01 سبتمبر 2026 — 05 يوليو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 8618,
+      "title": "نادي الكراتي دو",
+      "dates": "02 أكتوبر 2026 — 30 يونيو 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    },
+    {
+      "id": 57234,
+      "title": "الخياطة و التفصيل",
+      "dates": "02 أكتوبر 2026 — 30 يونيو 2027 · نشاط تمكين الفتاة",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 768,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/768",
+    "name": "المجاهد المرحوم عبدون محند أميزور",
+    "commune": "أميزور",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "قرية أميزور",
+        "replaced": "amizour, Amizour, Algeria"
+      }
+    }
+  },
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "accessible",
+    "openingHours",
+    "website"
+  ]
+}

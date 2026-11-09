@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:40:17Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 53,
+    "name": "الشهيد بوهراوة اعمر",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100092991300286"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100092991300286",
+    "pageRef": "100092991300286",
+    "title": "بيت الشباب سوق الاثنين بجاية"
+  },
+  "email": "ajsetenine@odejbejaia-dz.com",
+  "phone": "034 09 36 23",
+  "address": "سوق الإثنين مركز",
+  "website": null,
+  "description": "بيت الشباب هو منشأة لإيواء الشباب المسافرين بتكلفة منخفضة، حيث يوفر أسِرَّة في غرف مشتركة وغالباً ما تشمل المرافق المشتركة مثل الحمامات والمطابخ والصالات. كما تهدف بيوت الشباب إلى توفير بيئة آمنة ومناسبة للشباب لاستئجار مكان للإقامة، وتوفر أحيانًا أنشطة ثقافية ورياضية وترفيهية لضيوفها.",
+  "facebookCategory": "Services publics & administration",
+  "openingHours": "Toujours ouvert",
+  "followers": 1483,
+  "foundedYear": 2010,
+  "capacity": 60,
+  "accessible": null,
+  "activities": [
+    {
+      "id": 11542,
+      "title": "الايـــــــــــــــــــــــــــواء",
+      "dates": "10 أكتوبر 2025 — 31 ديسمبر 2026 · الشباب الجوال (التخييم Bivouac والتجوال).",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 742,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/742",
+    "name": "الشهيد بوهراوة اعمر",
+    "commune": "سوق لإثنين",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "سوق الإثنين مركز",
+        "replaced": "souk el tenine bejaia, Souk el Tenine, Algeria"
+      }
+    }
+  },
+  "sources": {
+    "phone": "facebook",
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "accessible",
+    "website"
+  ]
+}

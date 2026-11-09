@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:02:50Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 51,
+    "name": "الشهيد دهاملة مولود",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579738836631"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579738836631",
+    "pageRef": "61579738836631",
+    "title": "مخيم الشباب ملبو-ولاية بجاية"
+  },
+  "email": "cjmelbou@odejbejaia-dz.com",
+  "phone": "034 15 61 25",
+  "address": "بلدية ملبو",
+  "website": null,
+  "description": "مخيمات الشباب هي برامج منظمة تُقام في بيئة آمنة لتنمية الشباب خلال أوقات فراغهم، خاصة في العطلات. تهدف إلى توفير تجارب تعليمية وترفيهية متنوعة مثل الرياضة والفنون والرحلات، وتنمية مهاراتهم وقدراتهم الشخصية والاجتماعية، وتعزيز روح التعاون والتواصل بينهم، بالإضافة إلى اكتشاف مواهبهم وصقل شخصياتهم.",
+  "facebookCategory": "Camp de remise en forme · Sport · Auberge de jeunesse",
+  "openingHours": "Toujours ouvert",
+  "followers": 28,
+  "foundedYear": 2010,
+  "capacity": 30,
+  "accessible": null,
+  "activities": [],
+  "youthConnect": {
+    "id": 733,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/733",
+    "name": "الشهيد دهاملة مولود",
+    "commune": "سوق لإثنين",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية ملبو",
+        "replaced": "malbou, Bejaïa, Algeria"
+      }
+    }
+  },
+  "sources": {
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "accessible",
+    "website"
+  ]
+}

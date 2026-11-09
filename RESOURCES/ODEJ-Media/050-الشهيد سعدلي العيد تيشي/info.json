@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T03:15:50Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 50,
+    "name": "الشهيد سعدلي العيد تيشي",
+    "pageUrl": "https://www.facebook.com/AubergeDeJeunesseDeTichy"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/AubergeDeJeunesseDeTichy",
+    "pageRef": "AubergeDeJeunesseDeTichy",
+    "title": "بيت الشباب تيشي- ولاية بجاية"
+  },
+  "email": "ajtichy@odejbejaia-dz.com",
+  "phone": "034 81 66 86",
+  "address": "بلدية تيشي بجاية",
+  "website": null,
+  "description": "بيت الشباب هو مرفق إيواء مخصص للشباب المسافرين، يوفر أسرّة في غرف مشتركة بتكلفة منخفضة، وغالباً ما يحتوي على مرافق مشتركة مثل المطابخ والصالات. بالإضافة إلى الإقامة، تهدف بيوت الشباب إلى توفير مكان للتعارف وتبادل الخبرات والأنشطة الثقافية والترفيهية، مما يشجع على تنمية السياحة الشبابية والتعاون بين الشباب من مختلف الدول",
+  "facebookCategory": "Organisme gouvernemental",
+  "openingHours": null,
+  "followers": 4344,
+  "foundedYear": 1992,
+  "capacity": 60,
+  "accessible": true,
+  "activities": [],
+  "youthConnect": {
+    "id": 727,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/727",
+    "name": "الشهيد سعدلي العيد تيشي",
+    "commune": "تيشي",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية تيشي بجاية",
+        "replaced": "tichy centre"
+      }
+    }
+  },
+  "sources": {
+    "phone": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}
