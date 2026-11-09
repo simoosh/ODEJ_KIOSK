@@ -64,7 +64,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
         </header>
 
         <div key={`body-${replay}`} className="landing-body">
-          {!data.organization.logo && <LandingIntroLogo />}
+          <LandingIntroLogo />
           <LandingTitle leaving={leaving} />
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
