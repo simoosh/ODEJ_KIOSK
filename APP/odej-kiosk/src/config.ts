@@ -147,7 +147,7 @@ export const CONFIG = {
    * (repli, reconstruction, couleurs) toutes les wordmarkRepeatMs. 0 : une seule fois. Son déroulé est dans
    * wordmark/timeline.ts, partagé avec les vidéos de tools/motion.
    */
-  wordmarkRepeatMs: 10_000,
+  wordmarkRepeatMs: 0,
   /** Attente avant le tracé du titre, comptée depuis l'explosion du grand logo (ms) */
   wordmarkDelayMs: 0,
   /** Chiffres de l'accueil : durée de leur montée en compteur, et départ du premier puis écart entre deux (ms) */

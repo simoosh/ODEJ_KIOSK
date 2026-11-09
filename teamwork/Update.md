@@ -570,3 +570,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/components (Landing, LandingLogo, LandingIntroLogo, LandingTitle), src/logo/burst.ts, src/wordmark, tools/motion/scripts/build-wordmark.mjs, styles
 What: the header logo is shown complete from the start and the office name writes itself next to it; the wilaya line under it is gone. A large logo draws above the title, then bursts into pieces while the title draws. English title colours: "ODEJ" from flag green to white, "of" unchanged, "Béjaia" from white to red (static gradients, the looping flag gradient is gone).
 Impact on others: none.
+
+### 2026-11-09 12:30 · [app-agent] · CHANGE · Landing title colours and 5 s glint
+Area: APP/odej-kiosk/src (wordmark, i18n landingTitle, config, styles), tools/motion/scripts/build-wordmark.mjs
+What: Arabic title is now "ديوان مؤسسات الشباب بجاية" (green, "بجاية" red); English "ODEJ" flag green, "Béjaia" red. Every 5 s, together with the button, a white glint runs along the title letters and the title grows slightly. The title no longer replays its full cycle every 10 s (`wordmarkRepeatMs: 0`).
+Impact on others: none.

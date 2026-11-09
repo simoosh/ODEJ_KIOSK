@@ -134,6 +134,14 @@ export function Wordmark({ lang, t, variant = 'video', theme = 'color', classNam
           <g key={kind}>{layer(kind)}</g>
         ),
       )}
+      {/* Lueur blanche qui court le long des contours toutes les 5 s (CSS .title-glint), sur l'accueil seulement */}
+      {variant === 'landing' && (
+        <g className="title-glint">
+          {parts.map((f, i) => (
+            <path key={i} d={f.d} fill="none" stroke="#fff" strokeWidth={2.6} strokeLinecap="round" pathLength={1} />
+          ))}
+        </g>
+      )}
     </svg>
   );
 }

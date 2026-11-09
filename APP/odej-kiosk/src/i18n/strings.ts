@@ -1,7 +1,7 @@
 import type { Locale } from '../types';
 
 const ar = {
-  landingTitle: 'ديوان مؤسسات الشباب',
+  landingTitle: 'ديوان مؤسسات الشباب بجاية',
   statEstablishments: 'مؤسسة على الخريطة',
   cta: 'اكتشف ولاية بجاية',
   ctaHint: 'المس الزر لبدء الجولة',
