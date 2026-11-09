@@ -18,6 +18,8 @@ npx remotion still src/index.ts Showcase out/frame.png --frame=60   # une seule 
 npm run typecheck
 npm run wordmark                                           # redessiner le titre de l'accueil (après un changement de texte ou de police)
 npx remotion render src/index.ts TitleAr out/title-ar.mp4  # titre animé, arabe (TitleEn : anglais)
+npm run logo -- "<chemin>/ODEJ-logo-transparent.svg"     # redécouper le logo officiel
+npx remotion render src/index.ts Logo out/logo.mp4         # logo qui se dessine
 ```
 
 Le titre utilise Tajawal ExtraBold, avec Great Vibes pour « of » et Dancing Script pour « Béjaia ». Ces polices libres viennent de paquets npm : aucun fichier de police n'est dans le dépôt.

@@ -43,6 +43,11 @@ The animated landing title ("ديوان مؤسسات الشباب", "ODEJ of Bé
 - Compositions `TitleAr` and `TitleEn`: two loops of the cycle: the title fades out in a closing circle, each letter is drawn by hand in reading order (outline, then fill), and a circle opens from the last dot (after the "Sable" reference).
 - Colors: Algerian flag green `#006233` and red `#D21034`.
 
+## ODEJ logo
+
+- `npm run logo -- "<path to ODEJ-logo-transparent.svg>"` splits the official logo (an auto-traced SVG, kept outside the repo) into groups, simplifies them and writes `APP/odej-kiosk/src/logo/logo.json`: outer ring, red arcs, green arcs, inner ring, top text, bottom text, emblem.
+- The animation lives in `APP/odej-kiosk/src/logo/` (`timeline.ts`: when each group draws and fills; `OdejLogo.tsx`; `paint.ts`). The kiosk draws it in the landing header; composition `Logo` renders it as a video.
+
 ## Check before you finish
 
 ```bash

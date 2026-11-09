@@ -550,3 +550,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/App.tsx (goHome), src/components/Landing.tsx, styles
 What: the home button no longer resets the language: a visitor who switched to English comes back to an English landing. Only the idle timeout (next visitor) resets it. The landing content is redrawn on each return and language change, so the title, the counters and the button glow replay. The button glow is now white with a light sweep across it; the other landing items rise in one after the other.
 Impact on others: none.
+
+### 2026-11-09 10:00 · [app-agent] · CHANGE · Animated ODEJ logo in the landing header
+Area: APP/odej-kiosk/src/logo/** (new), src/components/LandingLogo.tsx, Landing.tsx, config.ts, styles, tools/motion
+What: the owner supplied the official logo as an SVG (kept outside the repo). `tools/motion` splits it into groups and lightens it into `src/logo/logo.json`. The landing header shows it instead of the empty logo slot: rings, arcs and texts draw themselves, then the central emblem fades in, on every arrival on the landing and language change. If `organization.logo` is set in the data file, that image still wins. Remotion composition `Logo` renders the same animation.
+Impact on others: data agent: nothing to do. The logo slot in `odej-bejaia.json` can stay empty.
