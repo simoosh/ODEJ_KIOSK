@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { CONFIG } from '../config';
+import { LOGO_DONE_MS } from './LandingLogo';
 import { useI18n } from '../i18n/I18n';
 import { PHASES } from '../wordmark/timeline';
 import { paintWordmark } from '../wordmark/geometry';
@@ -43,7 +44,8 @@ export function LandingTitle({ leaving }: { leaving: boolean }) {
       }, delay);
     };
     paintWordmark(svg, locale, PHASES.assemble);
-    play(PHASES.assemble, CONFIG.wordmarkDelayMs);
+    // Le titre se trace pendant que le logo, dessiné à sa place, part vers son coin
+    play(PHASES.assemble, LOGO_DONE_MS + CONFIG.wordmarkDelayMs);
     return () => {
       cancelAnimationFrame(raf);
       window.clearTimeout(timer);

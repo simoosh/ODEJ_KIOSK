@@ -508,19 +508,12 @@ input:focus-visible {
 .is-portrait .landing-inner {
   padding: 2rem 3rem;
 }
-/* En-tête : le logo et le nom au centre, la langue sur le côté */
+/* En-tête : le logo et le nom au début de la ligne, la langue à la fin */
 .landing-head {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-.landing-head .lang-btn {
-  position: absolute;
-  inset-inline-end: 0;
-  inset-block: 0;
-  margin-block: auto;
-  height: fit-content;
+  justify-content: space-between;
+  gap: 1rem;
 }
 .brand {
   display: flex;
@@ -533,7 +526,13 @@ input:focus-visible {
   border-radius: var(--r-md);
   object-fit: contain;
 }
-/* Logo vectoriel animé (components/LandingLogo.tsx) */
+/* Logo vectoriel animé (components/LandingLogo.tsx) : il vole de la place du titre à l'en-tête, au-dessus du reste */
+.brand-logo.is-drawn {
+  position: relative;
+  z-index: 2;
+  transform-origin: center;
+  will-change: transform;
+}
 .brand-logo.is-drawn svg {
   display: block;
   width: 100%;

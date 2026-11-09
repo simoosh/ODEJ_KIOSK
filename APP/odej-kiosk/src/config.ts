@@ -148,12 +148,14 @@ export const CONFIG = {
    * wordmark/timeline.ts, partagé avec les vidéos de tools/motion.
    */
   wordmarkRepeatMs: 10_000,
-  /** Attente avant la construction du titre, le temps que le texte de l'accueil se pose (ms) */
-  wordmarkDelayMs: 450,
+  /** Attente avant le tracé du titre, comptée depuis la fin du dessin du logo, quand il part vers son coin (ms) */
+  wordmarkDelayMs: 0,
   /** Chiffres de l'accueil : durée de leur montée en compteur, et départ du premier puis écart entre deux (ms) */
   countUpMs: 1400,
-  /** Attente avant le dessin du logo de l'en-tête, le temps que l'en-tête entre (ms) */
+  /** Logo : attente avant son dessin (ms), sa taille pendant le dessin (part de la hauteur de l'accueil), et la durée de son vol vers l'en-tête (ms) */
   logoDelayMs: 300,
+  logoIntroShare: 0.3,
+  logoFlyMs: 1100,
   countUpDelayMs: 600,
   countUpStepMs: 180,
 

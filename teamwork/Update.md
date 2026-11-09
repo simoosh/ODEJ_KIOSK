@@ -560,3 +560,8 @@ Impact on others: data agent: nothing to do. The logo slot in `odej-bejaia.json`
 Area: APP/odej-kiosk/src/components (Landing, Motifs removed), i18n/strings.ts (eventLine, eventDate removed), styles
 What: on the owner's request, the logo and the office name are larger and centred, the language button stays on the side. The event line ("Youth Establishments Exhibition · Palais des Expositions, Algiers · 11 November 2026") is removed from the landing, with its strings and the flag rule.
 Impact on others: none.
+
+### 2026-11-09 11:00 · [app-agent] · CHANGE · Landing logo intro
+Area: APP/odej-kiosk/src/components (LandingLogo, LandingTitle), config.ts, styles
+What: the header is back to its original layout (logo and name at the start, language at the end), still large. On each arrival on the landing, the logo draws itself large in place of the title, then slides and shrinks to its corner while the title starts drawing.
+Impact on others: none.
