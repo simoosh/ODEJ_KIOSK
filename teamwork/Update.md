@@ -490,3 +490,17 @@ What: at the owner's request, the landing shows four cut-out landscapes in its c
 What: the four photos live in public/media/landing/ (not in git, 1.2 MiB). `npm run media:landing` prepares them from the owner's PNG files. media:check checks them, media:publish sends them, kiosk:pack warns if they are missing. Their source and usage rights are still to be confirmed by the owner.
 Impact on others: data agent: copy public/media/landing/ from the owner before the next media:publish, or the Netlify site shows the landing without landscapes. Do not rename these files without telling the app agent.
 
+
+### 2026-11-09 04:05 · [data-agent] · CHANGE · odej-049 uses a copy of odej-033's folder
+Area: RESOURCES/ODEJ-Media/049-*, APP/odej-kiosk/public/data/odej-bejaia.json (shared file), teamwork/Data.md
+What: #49 has the same Facebook page as #33, so it is not scraped. The colleague decided to give it #33's data. The #33 folder was copied as `049-*` (info.json and manifest.json now say id 49, the #49 name and the #49 pin; page and files are #33's). #33 is unchanged. Both establishments got a `DUPLICATE_LINK` issue in `odej-bejaia.json`. Only `verification.issues` changed. `validate:data` and the 125 tests pass.
+Impact on others: app agent: nothing to run. `odej-049` has no optimized media yet: it will be built with the next batch.
+
+### 2026-11-09 05:30 · [data-agent] · CHANGE · odej-044 to 048 added, odej-049 built from odej-033
+Area: RESOURCES/ODEJ-Media/{044..049}-*, public/media, docs/media, teamwork/Data.md
+What: six establishments optimized with the scrappper's `publish_media.py`. `media:check --hash` passes with 0 errors. Counts exclude the cover: odej-044 39 photos, 2 videos, 14.3 MiB. odej-045 36 photos, 1 video, 7.7 MiB. odej-046 38 photos, 3 videos, 23.3 MiB. odej-047 30 photos, 1 video, 7.0 MiB. odej-048 30 photos, 2 videos, 35.9 MiB. odej-049 48 photos, 2 videos, 17.5 MiB.
+What: photo caps raised for all six. The 70 s video default is exceeded by odej-045 `video-01` (115 s) and odej-047 `video-01` (105 s). All under 50 MiB. Reason: the colleague kept each reviewed set, with no removals.
+What: odej-048 `video-02` (AV1) was 28.7 MiB after the standard encode. Rebuilt from the original with a 2 Mbit/s cap: 14.7 MiB, `yuv420p`, faststart, sizes and hashes updated in `docs/media`.
+What: odej-049 has no scrape of its own: its page is odej-033's. Its folder is a copy of odej-033's, with the #49 id, name and pin, and both establishments carry a `DUPLICATE_LINK` issue in `odej-bejaia.json` (only `verification.issues` changed). The folder name follows the scrappper's dataset («لشهداء …»). odej-045 has no page cover: the colleague's upscaled building photo is set by hand.
+What: five raw files were overwritten by contact sheets during an automatic review (#46 `photo-020`, #48 `photo-008`, `016`, `024`, `031`). The colleague chose to optimize and publish them as they are. How to fix them is in Data.md, section 7.
+Impact on others: project total is 1679 files and 651.5 MiB of 3 GiB, 44 of 67 establishments. App agent: nothing to run. The landing photos (`public/media/landing/`) were prepared by the colleague from four JPG files, with the background keyed out: a pale halo remains on the soft edges, so a transparent PNG from the owner would look cleaner.

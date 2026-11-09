@@ -1,0 +1,211 @@
+{
+  "$schema": "../../data/media.schema.json",
+  "cover": {
+    "src": "odej-049/cover.webp",
+    "kind": "image"
+  },
+  "gallery": [
+    {
+      "src": "odej-049/gallery/gallery-01.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-02.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-03.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-04.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-05.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-06.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-07.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-08.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-09.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-10.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-11.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-12.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-13.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-14.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-15.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-16.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-17.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-18.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-19.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-20.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-21.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-22.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-23.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-24.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-25.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-26.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-27.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-28.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-29.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-30.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-31.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-32.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-33.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-34.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-35.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-36.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-37.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-38.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-39.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-40.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-41.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-42.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-43.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-44.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-45.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-46.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-47.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/gallery/gallery-48.webp",
+      "kind": "image"
+    },
+    {
+      "src": "odej-049/videos/video-01.mp4",
+      "kind": "video",
+      "poster": "odej-049/videos/video-01-poster.webp"
+    },
+    {
+      "src": "odej-049/videos/video-02.mp4",
+      "kind": "video",
+      "poster": "odej-049/videos/video-02-poster.webp"
+    }
+  ]
+}
