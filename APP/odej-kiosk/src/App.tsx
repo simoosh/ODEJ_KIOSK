@@ -148,8 +148,11 @@ function KioskScreen({
     mapRef.current?.enter(id);
   };
 
-  /** Chaque visiteur retrouve la borne telle qu'au premier jour. */
-  const goHome = useCallback(() => {
+  /**
+   * Retour à l'accueil. newVisitor (inactivité) : le prochain visiteur retrouve la borne telle qu'au premier jour,
+   * langue comprise. Le bouton d'accueil, lui, garde la langue choisie.
+   */
+  const goHome = useCallback((newVisitor = false) => {
     setScreen('landing');
     setSelectedId(null);
     setFilters(NO_FILTERS);
@@ -158,11 +161,11 @@ function KioskScreen({
     setTerrain(QUALITY[quality].terrain);
     setNotice(null);
     setResets((n) => n + 1);
-    onResetLang();
+    if (newVisitor) onResetLang();
     mapRef.current?.attract();
   }, [quality, onResetLang]);
 
-  const idleLeft = useIdle(screen === 'map', CONFIG.idleTimeoutMs, CONFIG.idleWarningMs, goHome);
+  const idleLeft = useIdle(screen === 'map', CONFIG.idleTimeoutMs, CONFIG.idleWarningMs, () => goHome(true));
 
   // La liste garde l'état choisi par le visiteur : un marqueur touché ouvre d'abord sa fenêtre sur la carte
   const select = useCallback((id: string) => {
@@ -242,7 +245,7 @@ function KioskScreen({
 
       <div className="map-ui" aria-hidden={screen !== 'map'}>
         <div className="topbar" ref={topRef}>
-          <button type="button" className="home-btn" onClick={goHome} aria-label={t('home')}>
+          <button type="button" className="home-btn" onClick={() => goHome()} aria-label={t('home')}>
             <Icon name="home" />
             <span className="home-text">
               <strong>{data.organization.shortName[locale]}</strong>
