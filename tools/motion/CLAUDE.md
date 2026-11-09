@@ -28,7 +28,7 @@ tools/motion/
 - Everything moves from `useCurrentFrame()`. Never use CSS transitions or animations, `setTimeout`, or `Math.random()` without a seed: a render must give the same frame every time. Use `random('seed')` from `remotion` when you need randomness.
 - Durations in seconds through `seconds(s, fps)`, with `fps` from `useVideoConfig()`. Keep the timing of a composition in one exported constant, and compute its `durationInFrames` from it (see `SHOWCASE_TIMING` and `showcaseDuration`).
 - Sequence scenes with `<Sequence from durationInFrames>` or `<TransitionSeries>` (`fade`, `slide`, `wipe`; `springTiming`, `linearTiming`). A transition overlaps its two scenes: subtract its duration from the total.
-- Typography: Arabic text is RTL (`dir="rtl"`) and is animated **by word, never by letter** (letters are joined). Use `RevealText`. The one exception is the landing title below: it animates pieces of outlines that HarfBuzz already shaped, so the joins stay right. Fonts come from `theme.ts`, loaded with `@fontsource`: do not add font files to `public/`.
+- Typography: Arabic text is RTL (`dir="rtl"`) and is animated **by word, never by letter** (letters are joined). Use `RevealText`. The one exception is the landing title below: it draws outlines that HarfBuzz already shaped, so the joins stay right. Fonts come from `theme.ts`, loaded with `@fontsource`: do not add font files to `public/`.
 - Displayed text comes from the kiosk (`APP/odej-kiosk/src/i18n/strings.ts`, the data file). Never invent or translate an official text without your human's agreement.
 - Audio: put the file in `public/` (git-ignored) and use `<Audio src={staticFile('name.mp3')} />` from `remotion` inside the composition or a `<Sequence>`. Sync events to the music with frame numbers (`seconds()`); `volume` takes a function of the frame for fades.
 - New composition: create `src/compositions/Name.tsx`, export the component, its timing and its duration, then add a `<Composition id="Name" …>` in `Root.tsx` with `VIDEO` (or another size for a vertical video, e.g. 1080×1920).
@@ -39,8 +39,8 @@ The animated landing title ("ديوان مؤسسات الشباب", "ODEJ of Bé
 
 - `npm run wordmark` shapes both titles with HarfBuzz and writes their outlines, split into pieces, to `APP/odej-kiosk/src/wordmark/glyphs.json`. Run it after any change to the text, the fonts or the layout in `scripts/build-wordmark.mjs`.
 - Fonts (all OFL, from `@fontsource` packages, never copied into the repo): Tajawal ExtraBold for the main text (the owner's choice), Great Vibes for "of", Dancing Script for "Béjaia".
-- The animation itself lives in `APP/odej-kiosk/src/wordmark/` (`timeline.ts`: timing and motion of each piece; `geometry.ts`; `Wordmark.tsx`). It does not depend on React state or on the kiosk config, so `src/compositions/OdejTitle.tsx` imports it directly (`remotion.config.ts` points `react` to this folder). Change the motion there, and both the video and the landing follow.
-- Compositions `TitleAr` and `TitleEn`: two loops of the cycle, after the "Sable" reference (collapse into a closing circle, rebuild in white on dark, a circle opens from the last dot).
+- The animation itself lives in `APP/odej-kiosk/src/wordmark/` (`timeline.ts`: timing, and how each letter is drawn; `geometry.ts`; `Wordmark.tsx`). It does not depend on React state or on the kiosk config, so `src/compositions/OdejTitle.tsx` imports it directly (`remotion.config.ts` points `react` to this folder). Change the motion there, and both the video and the landing follow.
+- Compositions `TitleAr` and `TitleEn`: two loops of the cycle: the title fades out in a closing circle, each letter is drawn by hand in reading order (outline, then fill), and a circle opens from the last dot (after the "Sable" reference).
 - Colors: Algerian flag green `#006233` and red `#D21034`.
 
 ## Check before you finish

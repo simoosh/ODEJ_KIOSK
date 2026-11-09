@@ -535,3 +535,8 @@ Impact on others: data agent: nothing to do. The main font is a stand-in (Reem K
 Area: tools/motion (fonts, scripts/build-wordmark.mjs), APP/odej-kiosk/src/wordmark/glyphs.json
 What: the owner chose Tajawal instead of Onsor. The title outlines are regenerated from Tajawal ExtraBold (OFL, `@fontsource/tajawal`). The stand-in Reem Kufi and the Onsor font folder are gone.
 Impact on others: none.
+
+### 2026-11-09 08:00 · [app-agent] · CHANGE · Landing title letters are drawn by hand
+Area: APP/odej-kiosk/src/wordmark, tools/motion
+What: on the owner's request, the title no longer rebuilds from spinning pieces. Each letter now draws its outline, then fills, in reading order (right to left in Arabic). The closing and opening circles stay.
+Impact on others: none.
