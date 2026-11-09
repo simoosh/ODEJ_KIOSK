@@ -38,6 +38,11 @@ export const UI_ICONS = {
   people: '<circle cx="9" cy="8.5" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9.5" r="2.3"/><path d="M16.5 14.4A5 5 0 0 1 21 19.5"/>',
   access: '<circle cx="12" cy="4.5" r="1.8"/><path d="M12 8v6l3.5 5M12 11H7.5M9.2 14.6A4.5 4.5 0 1 0 15 19"/>',
   compass: '<path d="M12 2.5 15 12h-6z" fill="currentColor" stroke="none"/><path d="M12 21.5 9 12h6z"/>',
+  chevronStart: '<path d="m14.5 6-6 6 6 6"/>',
+  map: '<path d="M9 4.5 3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5z"/><path d="M9 4.5v13M15 6.5v13"/>',
+  globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/>',
+  mountain: '<path d="m2.5 19.5 6.5-11 4.2 7 2.3-3.5 6 7.5z"/>',
+  cube: '<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>',
 } as const;
 
 export type UiIconName = keyof typeof UI_ICONS;

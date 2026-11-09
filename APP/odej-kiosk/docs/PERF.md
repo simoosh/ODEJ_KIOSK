@@ -98,4 +98,12 @@ Tant que les tuiles viennent d'internet, on ne peut pas garantir qu'aucune ne se
 
 ## Galerie
 
-La grille charge uniquement les vignettes de 480 px : 12 au premier affichage, aucune image pleine. Si une vignette manque, l'image pleine la remplace. Les vidéos sont en `preload="metadata"`, et une seule existe à la fois, dans la visionneuse.
+Le carrousel 3D charge uniquement les vignettes de 480 px, et ne rend que 7 cartes : la photo courante et 3 de chaque côté (`CONFIG.carousel.radius`), aucune image pleine. Pendant le glissement, les positions s'écrivent directement dans le DOM (`transform`, `opacity`) : aucun rendu React par image. Si une vignette manque, l'image pleine la remplace. Les vidéos sont en `preload="metadata"`, et une seule existe à la fois, dans la visionneuse.
+
+## Verre de l'écran carte
+
+`backdrop-filter` floute ce qui est derrière l'élément : sur la carte WebGL, ce flou est recalculé à chaque image où la carte bouge, sur toute la surface de l'élément. Il est donc limité aux panneaux : la liste (environ 30 % de l'écran en paysage), la barre et les résultats de recherche, le clavier virtuel, et la fenêtre d'aperçu du marqueur sélectionné. Les boutons et la colonne de contrôles ont un verre sans flou (blanc translucide, reflet, liseré). La barre de recherche repliée est en `visibility: hidden` : son flou ne coûte rien.
+
+Au niveau de qualité `low`, aucun élément n'a de flou : le verre devient opaque (`.quality-low`). Le coût réel reste à mesurer sur la borne : FPS du survol avec la liste ouverte, puis masquée.
+
+Les animations de l'écran carte jouent une seule fois par geste (ouverture d'un panneau, d'une fenêtre, d'une liste), en `transform`, `opacity` et `clip-path`. Aucune n'est infinie.

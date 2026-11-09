@@ -15,19 +15,23 @@ export const TOUCH_LAYERS = [MARKER_LAYER, FEATURED_LAYER, SELECTED_LAYER];
 
 /** Dessin en pixels CSS, rasterisé à 2× */
 const SCALE = 2;
-const WIDTH = 64;
-const HEIGHT = 76;
-const PIN_RADIUS = 21.5;
-const RING_RADIUS = 29;
-const STEM_HEIGHT = 18;
-/** Centre de la pastille au-dessus du point d'ancrage */
-const PIN_CENTER = 6 + STEM_HEIGHT + PIN_RADIUS;
+const WIDTH = 68;
+const HEIGHT = 80;
+const PIN_RADIUS = 21;
+const RING_RADIUS = 27;
+/** Centre de la tête de la bulle, puis sa pointe, depuis le haut de l'image */
+const HEAD_Y = 30;
+const TIP_Y = HEIGHT - 5;
+/** Centre de la tête au-dessus du point d'ancrage (bas de l'image) */
+const PIN_CENTER = HEIGHT - HEAD_Y;
+/** Point du sélectionné : sa fenêtre d'aperçu (MapView) le surplombe */
+const DOT_SIZE = 36;
+const DOT_RADIUS = 8;
 const MIN_SIZE = 0.6;
 const MAX_SIZE = 1.08;
 const LABEL_SIZE = 14;
 
 const DIM_OPACITY = 0.25;
-const SELECTED_SIZE = 1.3;
 const FEATURED_SIZE = 1.25;
 const FEATURED_LABEL_SIZE = 1.15;
 const GOLD = '#C9A227';
@@ -45,49 +49,117 @@ function loadSvg(svg: string): Promise<HTMLImageElement> {
   });
 }
 
-function drawMarker(icon: HTMLImageElement, color: string, ring: string | null): ImageData {
+/** Mélange une couleur #RRGGBB avec du blanc (t > 0) ou du noir (t < 0). */
+export function shade(hex: string, t: number): string {
+  const n = parseInt(hex.replace('#', '').slice(0, 6), 16);
+  const target = t > 0 ? 255 : 0;
+  const mix = (c: number) => Math.round(c + (target - c) * Math.abs(t));
+  return `rgb(${mix((n >> 16) & 255)}, ${mix((n >> 8) & 255)}, ${mix(n & 255)})`;
+}
+
+function canvas2d(width: number, height: number) {
   const canvas = document.createElement('canvas');
-  canvas.width = WIDTH * SCALE;
-  canvas.height = HEIGHT * SCALE;
+  canvas.width = width * SCALE;
+  canvas.height = height * SCALE;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) throw new Error('canvas 2D indisponible');
   ctx.scale(SCALE, SCALE);
+  return ctx;
+}
 
-  const x = WIDTH / 2;
-  const y = HEIGHT - 6 - STEM_HEIGHT - PIN_RADIUS;
-
-  ctx.fillStyle = 'rgba(20, 33, 27, 0.32)';
+/** Contour en goutte : tête ronde, pointe sur le point exact de l'établissement. */
+function bubblePath(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, tip: number) {
+  const neck = tip - (tip - y) * 0.38;
   ctx.beginPath();
-  ctx.ellipse(x, HEIGHT - 3, 7, 3, 0, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.moveTo(x, tip);
+  ctx.bezierCurveTo(x - r * 0.3, neck, x - r, y + r * 0.78, x - r, y);
+  ctx.arc(x, y, r, Math.PI, 0);
+  ctx.bezierCurveTo(x + r, y + r * 0.78, x + r * 0.3, neck, x, tip);
+  ctx.closePath();
+}
 
-  ctx.fillStyle = color;
-  ctx.fillRect(x - 1.75, y + PIN_RADIUS - 2, 3.5, STEM_HEIGHT);
+function drawMarker(icon: HTMLImageElement, color: string, ring: string | null): ImageData {
+  const ctx = canvas2d(WIDTH, HEIGHT);
+  const x = WIDTH / 2;
+  const y = HEAD_Y;
+
+  // Ombre portée au sol, floue
+  ctx.save();
+  ctx.filter = 'blur(1.5px)';
+  ctx.fillStyle = 'rgba(20, 33, 27, 0.28)';
+  ctx.beginPath();
+  ctx.ellipse(x, TIP_Y, 8, 3, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
 
   if (ring) {
     ctx.strokeStyle = ring;
     ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.arc(x, y, RING_RADIUS - 1.5, 0, Math.PI * 2);
+    ctx.arc(x, y, RING_RADIUS, 0, Math.PI * 2);
     ctx.stroke();
   }
 
-  ctx.shadowColor = 'rgba(20, 33, 27, 0.35)';
-  ctx.shadowBlur = 8;
+  // Corps : dégradé de la couleur de la catégorie, liseré blanc, ombre douce
+  const body = ctx.createLinearGradient(0, y - PIN_RADIUS, 0, TIP_Y);
+  body.addColorStop(0, shade(color, 0.28));
+  body.addColorStop(0.5, color);
+  body.addColorStop(1, shade(color, -0.3));
+  ctx.save();
+  ctx.shadowColor = 'rgba(20, 33, 27, 0.32)';
+  ctx.shadowBlur = 9;
   ctx.shadowOffsetY = 3;
-  ctx.fillStyle = '#fff';
-  ctx.beginPath();
-  ctx.arc(x, y, PIN_RADIUS, 0, Math.PI * 2);
+  bubblePath(ctx, x, y, PIN_RADIUS, TIP_Y);
+  ctx.fillStyle = body;
   ctx.fill();
-  ctx.shadowColor = 'transparent';
+  ctx.restore();
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#fff';
+  bubblePath(ctx, x, y, PIN_RADIUS, TIP_Y);
+  ctx.stroke();
 
-  ctx.fillStyle = color;
+  // Pastille intérieure et reflet en haut : effet verre
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.16)';
   ctx.beginPath();
-  ctx.arc(x, y, PIN_RADIUS - 3.5, 0, Math.PI * 2);
+  ctx.arc(x, y, PIN_RADIUS - 5, 0, Math.PI * 2);
   ctx.fill();
+  ctx.save();
+  bubblePath(ctx, x, y, PIN_RADIUS - 1.5, TIP_Y - 2);
+  ctx.clip();
+  const gloss = ctx.createLinearGradient(0, y - PIN_RADIUS, 0, y);
+  gloss.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+  gloss.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  ctx.fillStyle = gloss;
+  ctx.beginPath();
+  ctx.ellipse(x - 3, y - PIN_RADIUS * 0.55, PIN_RADIUS * 0.72, PIN_RADIUS * 0.42, -0.25, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
 
   ctx.drawImage(icon, x - 10, y - 10, 20, 20);
-  return ctx.getImageData(0, 0, canvas.width, canvas.height);
+  return ctx.getImageData(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+}
+
+/** Le sélectionné se réduit à un point cerclé : sa fenêtre d'aperçu prend le relais. */
+function drawDot(color: string): ImageData {
+  const ctx = canvas2d(DOT_SIZE, DOT_SIZE);
+  const c = DOT_SIZE / 2;
+  ctx.fillStyle = shade(color, 0.55).replace('rgb', 'rgba').replace(')', ', 0.55)');
+  ctx.beginPath();
+  ctx.arc(c, c, DOT_RADIUS + 7, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.save();
+  ctx.shadowColor = 'rgba(20, 33, 27, 0.35)';
+  ctx.shadowBlur = 5;
+  ctx.shadowOffsetY = 1.5;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(c, c, DOT_RADIUS, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#fff';
+  ctx.stroke();
+  return ctx.getImageData(0, 0, DOT_SIZE * SCALE, DOT_SIZE * SCALE);
 }
 
 /** Rasterise une fois, au démarrage, trois images par catégorie : normale, sélectionnée, phare. */
@@ -100,7 +172,7 @@ export async function rasterizeMarkers(categories: Category[]): Promise<MarkerIm
       const svg = svgString(inner, 40).replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"').replace('stroke="currentColor"', 'stroke="#fff"');
       const icon = await loadSvg(svg);
       images.set(`mk-${cat.id}`, drawMarker(icon, cat.color, null));
-      images.set(`mk-${cat.id}-sel`, drawMarker(icon, cat.color, cat.color));
+      images.set(`mk-${cat.id}-sel`, drawDot(cat.color));
       images.set(`mk-${cat.id}-star`, drawMarker(icon, cat.color, GOLD));
     }),
   );
@@ -156,7 +228,7 @@ export function scaleMarkerLayers(map: MlMap) {
   const rem = remScale();
   map.setLayoutProperty(MARKER_LAYER, 'icon-size', markerSize(rem));
   map.setLayoutProperty(FEATURED_LAYER, 'icon-size', markerSize(FEATURED_SIZE * rem));
-  map.setLayoutProperty(SELECTED_LAYER, 'icon-size', markerSize(SELECTED_SIZE * rem));
+  map.setLayoutProperty(SELECTED_LAYER, 'icon-size', markerSize(rem));
   if (!map.getLayer(LABEL_LAYER)) return;
   const size = LABEL_SIZE * rem;
   map.setLayoutProperty(LABEL_LAYER, 'text-size', size);
@@ -176,9 +248,9 @@ export function scaleMarkerLayers(map: MlMap) {
   ]);
 }
 
-/** Décalage de l'étiquette HTML du sélectionné, au-dessus de son anneau (px). */
+/** Décalage de la fenêtre d'aperçu du sélectionné : sa pointe touche le haut du point (px). */
 export function selectedLabelOffset(): [number, number] {
-  return [0, -((PIN_CENTER + RING_RADIUS) * MAX_SIZE * SELECTED_SIZE * remScale() + 6)];
+  return [0, -(DOT_RADIUS + 2) * MAX_SIZE * remScale()];
 }
 
 const IS_FEATURED: ExpressionSpecification = ['==', ['get', 'featured'], true];
@@ -242,7 +314,7 @@ export function addMarkerLayers(map: MlMap, images: MarkerImages) {
     type: 'symbol',
     source: MARKER_SOURCE,
     filter: ['==', ['get', 'id'], ''],
-    layout: { ...icon, 'icon-image': ['concat', ['get', 'image'], '-sel'] },
+    layout: { ...icon, 'icon-anchor': 'center', 'icon-image': ['concat', ['get', 'image'], '-sel'] },
   });
   scaleMarkerLayers(map);
 }

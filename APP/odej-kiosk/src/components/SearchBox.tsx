@@ -39,8 +39,18 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
   const pick = (p: SearchPick) => {
     onPick(p);
     setQuery('');
+    close();
+  };
+
+  const close = () => {
     setOpen(false);
     inputRef.current?.blur();
+  };
+
+  /** Le bouton rond dévoile la barre ; le clavier virtuel remplace celui du système. */
+  const reveal = () => {
+    setOpen(true);
+    inputRef.current?.focus({ preventScroll: true });
   };
 
   const countFor = (kind: 'category' | 'activity', id: string) =>
@@ -64,7 +74,7 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
 
   return (
     <div className={`search ${open ? 'is-open' : ''}`}>
-      <label className="search-field">
+      <label className="search-field" aria-hidden={!open}>
         <Icon name="search" className="search-icon" />
         <input
           ref={inputRef}
@@ -73,13 +83,14 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
           inputMode={virtualKeyboard ? 'none' : 'search'}
           autoComplete="off"
           spellCheck={false}
+          tabIndex={open ? 0 : -1}
           value={query}
           placeholder={t('searchPlaceholder')}
           aria-label={t('searchPlaceholder')}
           onFocus={() => setOpen(true)}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Escape') setOpen(false);
+            if (e.key === 'Escape') close();
             if (e.key === 'Enter' && results.establishments[0]) pick({ kind: 'establishment', id: results.establishments[0].id });
           }}
         />
@@ -88,6 +99,7 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
             type="button"
             className="search-clear"
             aria-label={t('searchClear')}
+            tabIndex={open ? 0 : -1}
             onPointerDown={(e) => e.preventDefault()}
             onClick={() => setQuery('')}
           >
@@ -96,9 +108,21 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
         )}
       </label>
 
+      <button
+        type="button"
+        className="search-toggle"
+        onClick={open ? close : reveal}
+        aria-label={open ? t('close') : t('searchPlaceholder')}
+        aria-expanded={open}
+        aria-controls="kiosk-search"
+      >
+        <Icon name="search" className="search-toggle-glass" />
+        <Icon name="close" className="search-toggle-close" />
+      </button>
+
       {open && (
         <>
-          <button type="button" className="search-scrim" aria-label={t('keyboardHide')} onClick={() => setOpen(false)} />
+          <button type="button" className="search-scrim" aria-label={t('keyboardHide')} onClick={close} />
           <div className="search-results" role="listbox">
             {empty && featured.length > 0 && (
               <div className="sr-group">
@@ -186,10 +210,7 @@ export function SearchBox({ data, idx, virtualKeyboard, onPick, onOpenChange }: 
             <VirtualKeyboard
               onKey={(k) => setQuery((q) => q + k)}
               onBackspace={() => setQuery((q) => q.slice(0, -1))}
-              onClose={() => {
-                setOpen(false);
-                inputRef.current?.blur();
-              }}
+              onClose={close}
             />
           )}
         </>

@@ -71,11 +71,11 @@ export const EstablishmentList = memo(function EstablishmentList({ data, idx, it
       </div>
 
       <ul className="list-items">
-        {items.map((e) => {
+        {items.map((e, i) => {
           const c = idx.categories.get(e.category);
           const p = e.placeId ? idx.places.get(e.placeId) : undefined;
           return (
-            <li key={e.id}>
+            <li key={e.id} style={{ ['--i' as string]: i }}>
               <button type="button" className={`item ${e.featured ? 'is-featured' : ''}`} onClick={() => onSelect(e.id)}>
                 <span className="badge" style={{ ['--c' as string]: c?.color }}>
                   <Icon name={c?.icon ?? 'star'} size="1.15em" />

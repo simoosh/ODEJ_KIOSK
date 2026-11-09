@@ -119,7 +119,7 @@ describe('fiche : ordre des blocs', () => {
       at('class="display detail-name"'),
       at('class="photo '),
       at('class="detail-desc'),
-      at('class="gallery"'),
+      at('class="carousel"'),
       at('>Contact<'),
       at('>About the establishment<'),
       at('>Programme of activities<'),

@@ -106,7 +106,8 @@ function KioskScreen({
   const [terrain, setTerrain] = useState(QUALITY[quality].terrain);
   const [is3d, setIs3d] = useState(false);
   const [orbiting, setOrbiting] = useState(false);
-  const [sheetCollapsed, setSheetCollapsed] = useState(false);
+  /** Liste masquée : glissée hors de l'écran en paysage, tiroir replié en portrait */
+  const [panelHidden, setPanelHidden] = useState(false);
   /** Clé de la recherche et des contrôles : l'incrémenter vide leurs états internes */
   const [resets, setResets] = useState(0);
   const [notice, setNotice] = useState<StringKey | null>(null);
@@ -122,10 +123,13 @@ function KioskScreen({
   const padding = useMemo(() => {
     const gap = 16;
     const top = topSize.h + gap * 2;
-    if (portrait) return { top, right: 0, bottom: panelSize.h, left: 0 };
-    const side = panelSize.w + gap * 2;
+    if (portrait) {
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      return { top, right: 0, bottom: panelHidden ? CONFIG.sheetPeekRem * rem : panelSize.h, left: 0 };
+    }
+    const side = panelHidden ? 0 : panelSize.w + gap * 2;
     return dir === 'rtl' ? { top, right: side, bottom: 0, left: 0 } : { top, right: 0, bottom: 0, left: side };
-  }, [portrait, panelSize.w, panelSize.h, topSize.h, dir]);
+  }, [portrait, panelHidden, panelSize.w, panelSize.h, topSize.h, dir]);
 
   // Rotation continue derrière l'accueil
   useEffect(() => {
@@ -149,7 +153,7 @@ function KioskScreen({
     setScreen('landing');
     setSelectedId(null);
     setFilters(NO_FILTERS);
-    setSheetCollapsed(false);
+    setPanelHidden(false);
     setBasemap('plan');
     setTerrain(QUALITY[quality].terrain);
     setNotice(null);
@@ -160,11 +164,13 @@ function KioskScreen({
 
   const idleLeft = useIdle(screen === 'map', CONFIG.idleTimeoutMs, CONFIG.idleWarningMs, goHome);
 
+  // La liste garde l'état choisi par le visiteur : un marqueur touché ouvre d'abord sa fenêtre sur la carte
   const select = useCallback((id: string) => {
     setSelectedId(id);
-    setSheetCollapsed(false);
     mapRef.current?.focus(id);
   }, []);
+
+  const showPanel = useCallback(() => setPanelHidden(false), []);
 
   const pointsOf = (list: typeof data.establishments) => list.map((e) => [e.location.lng, e.location.lat] as [number, number]);
 
@@ -202,12 +208,12 @@ function KioskScreen({
     else if (p.kind === 'place') applyAndFit({ ...NO_FILTERS, place: p.id });
     else if (p.kind === 'category') applyAndFit({ ...NO_FILTERS, category: p.id });
     else applyAndFit({ ...NO_FILTERS, activity: p.id });
-    setSheetCollapsed(false);
+    setPanelHidden(false);
   };
 
   return (
     <div
-      className={`kiosk ${portrait ? 'is-portrait' : 'is-landscape'} screen-${screen}`}
+      className={`kiosk ${portrait ? 'is-portrait' : 'is-landscape'} screen-${screen} quality-${quality} ${panelHidden ? 'panel-hidden' : ''}`}
       dir={dir}
       lang={locale}
       style={{ width: size.w, height: size.h }}
@@ -227,6 +233,7 @@ function KioskScreen({
         quality={quality}
         compass={compassRef}
         onSelect={select}
+        onOpenDetails={showPanel}
         on3dChange={setIs3d}
         onOrbitChange={setOrbiting}
         onBasemapFailed={onBasemapFailed}
@@ -248,36 +255,50 @@ function KioskScreen({
           </button>
         </div>
 
-        <aside className={`panel ${portrait && sheetCollapsed ? 'is-collapsed' : ''}`} ref={panelRef}>
-          {portrait && (
+        <div className={`panel-shell ${panelHidden ? 'is-hidden' : ''}`}>
+          {!portrait && (
             <button
               type="button"
-              className="sheet-handle"
-              onClick={() => setSheetCollapsed((v) => !v)}
-              aria-label={sheetCollapsed ? t('expand') : t('collapse')}
+              className="panel-toggle"
+              onClick={() => setPanelHidden((v) => !v)}
+              aria-label={panelHidden ? t('expand') : t('collapse')}
+              aria-expanded={!panelHidden}
             >
-              <span />
+              <Icon name="chevronStart" className="flip-rtl" />
             </button>
           )}
-          {selected ? (
-            <EstablishmentDetail
-              key={selected.id}
-              data={data}
-              idx={idx}
-              est={selected}
-              orbiting={orbiting}
-              onBack={() => {
-                setSelectedId(null);
-                mapRef.current?.orbit(false);
-              }}
-              onSelect={select}
-              onShow={() => mapRef.current?.focus(selected.id)}
-              onOrbit={(on) => mapRef.current?.orbit(on)}
-            />
-          ) : (
-            <EstablishmentList data={data} idx={idx} items={items} filters={filters} onFilters={applyAndFit} onSelect={select} />
-          )}
-        </aside>
+          <aside className="panel" ref={panelRef} inert={!portrait && panelHidden}>
+            {portrait && (
+              <button
+                type="button"
+                className="sheet-handle"
+                onClick={() => setPanelHidden((v) => !v)}
+                aria-label={panelHidden ? t('expand') : t('collapse')}
+                aria-expanded={!panelHidden}
+              >
+                <span />
+              </button>
+            )}
+            {selected ? (
+              <EstablishmentDetail
+                key={selected.id}
+                data={data}
+                idx={idx}
+                est={selected}
+                orbiting={orbiting}
+                onBack={() => {
+                  setSelectedId(null);
+                  mapRef.current?.orbit(false);
+                }}
+                onSelect={select}
+                onShow={() => mapRef.current?.focus(selected.id)}
+                onOrbit={(on) => mapRef.current?.orbit(on)}
+              />
+            ) : (
+              <EstablishmentList data={data} idx={idx} items={items} filters={filters} onFilters={applyAndFit} onSelect={select} />
+            )}
+          </aside>
+        </div>
 
         <MapControls
           key={resets}

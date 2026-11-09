@@ -228,6 +228,23 @@ export const CONFIG = {
   /** Glissement minimal dans la visionneuse (px) */
   swipeThreshold: 60,
 
+  /** Carrousel 3D de la galerie (components/MediaGallery.tsx, lib/carousel.ts) */
+  carousel: {
+    /** Cartes rendues de chaque côté de la photo courante ; la dernière est transparente */
+    radius: 3,
+    /** Déplacement du doigt avant de décider entre glisser le carrousel et faire défiler la fiche (px) */
+    dragThreshold: 8,
+    /** Élan d'un geste vif : la vitesse est prolongée sur cette durée (ms) */
+    flingMs: 160,
+    /** Résistance au-delà de la première et de la dernière photo */
+    rubber: 0.3,
+    /** Au-delà, pas de points sous le carrousel : le compteur suffit */
+    maxDots: 12,
+  },
+
+  /** Hauteur visible du tiroir replié, en portrait (rem) */
+  sheetPeekRem: 12.5,
+
   /** Délai avant de recharger la page si le contexte WebGL ne revient pas (ms) */
   contextLostReloadMs: 5_000,
 
