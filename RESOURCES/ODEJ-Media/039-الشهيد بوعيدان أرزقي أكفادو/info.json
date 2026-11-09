@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-07T00:33:14Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 39,
+    "name": "الشهيد بوعيدان أرزقي أكفادو",
+    "pageUrl": "https://www.facebook.com/profile.php?id=100079941069593"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=100079941069593",
+    "pageRef": "100079941069593",
+    "title": "دار الشباب أكفادو - الشهيد بوعيفل أرزقي- ولاية بجاية"
+  },
+  "email": "mjaakfadou@gmail.com",
+  "phone": "034 86 97 54",
+  "address": "بلدية أكفادو بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية وثقافية واجتماعية تهدف إلى تنظيم أوقات فراغ الشباب، وتقديم خدمات متنوعة لهم في مجالات ثقافية، فنية، ترفيهية، وتربوية، للمساهمة في تنمية مهاراتهم وتشكيل شخصيتهم. تسعى إلى توفير مساحة للشباب للالتقاء، التعلم، وتنمية مواهبهم، بالإضافة إلى توجيههم ومساعدتهم على التعامل مع التحديات التي يواجهونها",
+  "facebookCategory": "Organisme jeunesse",
+  "openingHours": null,
+  "followers": 1954,
+  "foundedYear": 2008,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9655,
+      "title": "اعلام الي",
+      "dates": "01 أكتوبر 2025 — 20 يوليو 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "ongoing"
+    },
+    {
+      "id": 57985,
+      "title": "نادي اللغات",
+      "dates": "01 أكتوبر 2026 — 30 يونيو 2027 · النشاط الفكري الأدبي",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 284,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/284",
+    "name": "الشهيد بوعيدان أرزقي أكفادو",
+    "commune": "أكفادو",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "email": {
+        "youthConnect": "mjakfadou@odejbejaia-dz.com",
+        "facebook": "mjaakfadou@gmail.com"
+      },
+      "address": {
+        "youthConnect": "بلدية أكفادو بجاية",
+        "replaced": "Page Officielle de la Maison de jeunes d'Akfadou, Tiniri, Algeria, 06025"
+      }
+    }
+  },
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

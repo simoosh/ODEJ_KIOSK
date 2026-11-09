@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T01:24:13Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 42,
+    "name": "الشهيدة فاطمة رمطاني بجاية",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579782907491"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579782907491",
+    "pageRef": "61579782907491",
+    "title": "دار الشباب فاطمة رمطاني - ولاية بجاية"
+  },
+  "email": "mjfatimaramtani@odejbejaia-dz.com",
+  "phone": "034 16 56 65",
+  "address": "بلدية بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم.",
+  "facebookCategory": "Centre de loisirs",
+  "openingHours": "Fermé en ce moment",
+  "followers": 50,
+  "foundedYear": 2010,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 10656,
+      "title": "يوسيكان بيدو",
+      "dates": "30 سبتمبر 2026 — 30 سبتمبر 2027 · الرياضة الترفيهية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 588,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/588",
+    "name": "الشهيدة فاطمة رمطاني بجاية",
+    "commune": "بجاية",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {
+      "address": {
+        "youthConnect": "بلدية بجاية",
+        "replaced": "دار الشباب الشهيدة  فاطمة رمطاني  , Bejaïa, Algeria, 06000"
+      }
+    }
+  },
+  "sources": {
+    "email": "facebook",
+    "phone": "facebook",
+    "address": "youth-connect",
+    "facebookCategory": "facebook",
+    "openingHours": "facebook",
+    "followers": "facebook",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "website"
+  ]
+}

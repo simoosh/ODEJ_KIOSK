@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-07T00:40:04Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 40,
+    "name": "الشهيد حريش محند أوقاس",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579953660171"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/share/1LkzomGzeK/",
+    "pageRef": "mj.aokas.2025",
+    "title": "MJ Aokas"
+  },
+  "email": "mjaokas@odejbejaia-dz.com",
+  "phone": "034 84 22 52",
+  "address": "بلدية أوقاس بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم",
+  "facebookCategory": "Musique/groupe · Santé/beauté",
+  "openingHours": null,
+  "followers": 6002,
+  "foundedYear": 2010,
+  "capacity": 150,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9831,
+      "title": "نادي التجوال",
+      "dates": "01 سبتمبر 2025 — 31 ديسمبر 2026 · الشباب الجوال (التخييم Bivouac والتجوال).",
+      "status": "ongoing"
+    },
+    {
+      "id": 254,
+      "title": "الرسم والاشغال يدوية و الرسكلة",
+      "dates": "13 أكتوبر 2025 — 31 ديسمبر 2026 · نشاط الفن التشكيلي المعاصر",
+      "status": "ongoing"
+    },
+    {
+      "id": 28266,
+      "title": "نادي الالعاب الالكترونية",
+      "dates": "05 مارس 2026 — 31 ديسمبر 2026 · نشاط الصيانة الإلكترونية",
+      "status": "ongoing"
+    },
+    {
+      "id": 28586,
+      "title": "نادي الموسيقى",
+      "dates": "05 مارس 2026 — 31 ديسمبر 2026 · نشاط الموسيقى والفنون الغنائية",
+      "status": "ongoing"
+    },
+    {
+      "id": 28589,
+      "title": "نادي المطالعة",
+      "dates": "05 مارس 2026 — 31 ديسمبر 2026 · الفكري الأدبي",
+      "status": "ongoing"
+    },
+    {
+      "id": 53092,
+      "title": "برنامج قادة الشباب",
+      "dates": "10 مايو 2026 — 31 ديسمبر 2026 · برنامج الشباب المتميز",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 563,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/563",
+    "name": "الشهيد حريش محند أوقاس",
+    "commune": "أوقاس",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
+  "sources": {
+    "description": "youth-connect",
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "phone": "youth-connect",
+    "address": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "website"
+  ]
+}

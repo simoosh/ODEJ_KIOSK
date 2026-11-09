@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-09T01:25:55Z",
+  "source": "Facebook page, as shown to a logged-out visitor, then Youth Connect (Ministry of Youth platform)",
+  "institution": {
+    "id": 43,
+    "name": "دار الشباب فرعون",
+    "pageUrl": "https://www.facebook.com/profile.php?id=61579678238775"
+  },
+  "scrapedPage": {
+    "url": "https://www.facebook.com/profile.php?id=61579678238775",
+    "pageRef": "61579678238775",
+    "title": "دار الشباب فرعون -ولاية بجاية"
+  },
+  "email": "mjferaoune@odejbejaia-dz.com",
+  "phone": null,
+  "address": "بلدية فرعون بجاية",
+  "website": null,
+  "description": "دار الشباب هي مؤسسة تربوية ثقافية واجتماعية تهدف إلى استغلال أوقات فراغ الشباب بطريقة مفيدة من خلال توفير أنشطة متنوعة مثل التكوين والأنشطة الفنية والثقافية والترفيهية. كما تعمل على توجيه الشباب وتوفير المعلومات والإرشاد لهم في مجالات مختلفة كالتعليم، الصحة، والشغل، وتساهم في تنمية مهاراتهم ومواهبهم.",
+  "facebookCategory": "Musique/groupe · Santé/beauté",
+  "openingHours": null,
+  "followers": 143,
+  "foundedYear": 2018,
+  "capacity": 120,
+  "accessible": true,
+  "activities": [
+    {
+      "id": 9934,
+      "title": "الاعلام الالي",
+      "dates": "10 أكتوبر 2025 — 10 يوليو 2027 · نشاط الإعلام الآلي والبرمجة الرقمية",
+      "status": "ongoing"
+    }
+  ],
+  "youthConnect": {
+    "id": 592,
+    "url": "https://youthconnect.mjeunesse.gov.dz/showestablishmentpage/592",
+    "name": "دار الشباب فرعون",
+    "commune": "فرعون",
+    "status": "حيز الخدمة",
+    "readOn": "2026-11-07",
+    "conflicts": {}
+  },
+  "sources": {
+    "facebookCategory": "facebook",
+    "followers": "facebook",
+    "email": "youth-connect",
+    "address": "youth-connect",
+    "description": "youth-connect",
+    "foundedYear": "youth-connect",
+    "capacity": "youth-connect",
+    "accessible": "youth-connect",
+    "activities": "youth-connect"
+  },
+  "notAvailable": [
+    "openingHours",
+    "phone",
+    "website"
+  ]
+}
