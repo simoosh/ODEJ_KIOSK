@@ -152,6 +152,8 @@ export const CONFIG = {
   wordmarkDelayMs: 450,
   /** Chiffres de l'accueil : durée de leur montée en compteur, et départ du premier puis écart entre deux (ms) */
   countUpMs: 1400,
+  /** Attente avant le dessin du logo de l'en-tête, le temps que l'en-tête entre (ms) */
+  logoDelayMs: 300,
   countUpDelayMs: 600,
   countUpStepMs: 180,
 

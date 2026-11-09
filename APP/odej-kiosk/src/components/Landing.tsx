@@ -6,6 +6,7 @@ import { CONFIG } from '../config';
 import { CountUp } from './CountUp';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
+import { LandingLogo } from './LandingLogo';
 import { LandingScenes } from './LandingScenes';
 import { LandingTitle } from './LandingTitle';
 import { FlagRule } from './Motifs';
@@ -48,7 +49,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
             {data.organization.logo ? (
               <img className="brand-logo" src={`${import.meta.env.BASE_URL}${data.organization.logo}`} alt="" />
             ) : (
-              <span className="brand-logo is-slot">{t('logoSlot')}</span>
+              <LandingLogo />
             )}
             <span className="brand-text">
               <strong>{tx(data.organization.shortName)}</strong>

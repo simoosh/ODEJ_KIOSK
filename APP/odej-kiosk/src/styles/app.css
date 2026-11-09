@@ -525,6 +525,16 @@ input:focus-visible {
   border-radius: var(--r-md);
   object-fit: contain;
 }
+/* Logo vectoriel animé (components/LandingLogo.tsx) */
+.brand-logo.is-drawn {
+  width: 4.6rem;
+  height: 4.6rem;
+}
+.brand-logo.is-drawn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .brand-logo.is-slot {
   display: grid;
   place-items: center;
