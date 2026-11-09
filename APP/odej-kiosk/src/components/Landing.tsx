@@ -1,6 +1,8 @@
 import type { KioskData } from '../types';
 import { featuredEstablishments, titleOf } from '../data/model';
 import { useI18n } from '../i18n/I18n';
+import { CONFIG } from '../config';
+import { CountUp } from './CountUp';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
 import { LandingScenes } from './LandingScenes';
@@ -59,10 +61,12 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
           <dl className="facts">
-            {facts.map((f) => (
+            {facts.map((f, i) => (
               <div key={f.label} className={f.strong ? 'is-strong' : ''}>
                 <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
+                <dd>
+                  <CountUp value={f.value} run={!leaving} delay={CONFIG.countUpDelayMs + i * CONFIG.countUpStepMs} />
+                </dd>
               </div>
             ))}
           </dl>

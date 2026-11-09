@@ -540,3 +540,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/wordmark, tools/motion
 What: on the owner's request, the title no longer rebuilds from spinning pieces. Each letter now draws its outline, then fills, in reading order (right to left in Arabic). The closing and opening circles stay.
 Impact on others: none.
+
+### 2026-11-09 08:40 · [app-agent] · CHANGE · Landing call to action glows, figures count up
+Area: APP/odej-kiosk/src/components (Landing, CountUp), config.ts, styles
+What: every 5 s a golden glow runs around the green button while it grows slightly. The figures count up from 0 each time the landing appears.
+Impact on others: none.

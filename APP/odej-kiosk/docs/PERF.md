@@ -113,3 +113,5 @@ Les animations de l'écran carte jouent une seule fois par geste (ouverture d'un
 - Le titre est un SVG dessiné une fois (`src/wordmark`). Pendant sa construction, environ 2,5 s, une boucle `requestAnimationFrame` change seulement les attributs `stroke-dashoffset` et `fill-opacity` de ses lettres (une trentaine), sans rendu React. Elle s'arrête ensuite et reprend toutes les `CONFIG.wordmarkRepeatMs` (10 s), ou jamais si la valeur vaut 0.
 - Le dégradé de « Béjaia » défile en continu par SMIL (`animateTransform`), sans JavaScript. Son halo est un filtre SVG sur ce seul mot : c'est le seul effet redessiné en permanence. Si la borne peine, c'est lui à retirer en premier.
 - `prefers-reduced-motion` : le titre s'affiche complet, sans animation.
+- Bouton vert : sa lueur tourne et il grossit un peu toutes les 5 s, en CSS sur ce seul élément (`@property --cta-angle`, `scale`). Arrêté à la sortie vers la carte et avec `prefers-reduced-motion`.
+- Chiffres : ils montent en compteur à chaque arrivée sur l'accueil (`CountUp`), en écrivant le texte directement, pendant 1,4 s seulement.

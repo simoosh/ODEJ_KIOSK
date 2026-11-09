@@ -150,6 +150,10 @@ export const CONFIG = {
   wordmarkRepeatMs: 10_000,
   /** Attente avant la construction du titre, le temps que le texte de l'accueil se pose (ms) */
   wordmarkDelayMs: 450,
+  /** Chiffres de l'accueil : durée de leur montée en compteur, et départ du premier puis écart entre deux (ms) */
+  countUpMs: 1400,
+  countUpDelayMs: 600,
+  countUpStepMs: 180,
 
   /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {

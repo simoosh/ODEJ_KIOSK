@@ -688,6 +688,80 @@ input:focus-visible {
   box-shadow: 0 0.7rem 1.8rem rgba(31, 110, 62, 0.3);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+/*
+ * Toutes les 5 s, une lueur dorée fait le tour du contour pendant que le bouton grossit un peu. Un seul élément animé ;
+ * l'angle du dégradé est une propriété typée (@property) pour pouvoir tourner. Arrêté hors de l'accueil.
+ */
+@property --cta-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.cta {
+  position: relative;
+  isolation: isolate;
+  animation: cta-pulse 5s ease-in-out 2s infinite;
+}
+.cta::before,
+.cta::after {
+  content: '';
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: inherit;
+  padding: 0.25rem;
+  background: conic-gradient(from var(--cta-angle), transparent 0 62%, rgba(255, 214, 110, 0.9) 78%, #fff 86%, rgba(255, 214, 110, 0.9) 92%, transparent 100%);
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  pointer-events: none;
+  animation: cta-sweep 5s linear 2s infinite;
+}
+/* Le halo : le même anneau, flou, derrière */
+.cta::after {
+  z-index: -1;
+  inset: -0.5rem;
+  padding: 0.5rem;
+  filter: blur(0.5rem);
+}
+@keyframes cta-sweep {
+  0% {
+    --cta-angle: 0deg;
+    opacity: 0;
+  }
+  4%,
+  24% {
+    opacity: 1;
+  }
+  30%,
+  100% {
+    --cta-angle: 360deg;
+    opacity: 0;
+  }
+}
+@keyframes cta-pulse {
+  0%,
+  30%,
+  100% {
+    scale: 1;
+  }
+  14% {
+    scale: 1.05;
+  }
+}
+.is-leaving .cta,
+.is-leaving .cta::before,
+.is-leaving .cta::after {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .cta::before,
+  .cta::after {
+    animation: none;
+  }
+}
 .cta:active {
   transform: scale(0.97);
   box-shadow: 0 0.3rem 0.9rem rgba(31, 110, 62, 0.3);
