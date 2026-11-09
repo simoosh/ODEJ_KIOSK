@@ -72,10 +72,10 @@ const TITLES = {
   en: {
     dir: 'ltr',
     words: [
-      { text: 'O', font: 'mainLat', size: 1, fill: 'red', join: true },
-      { text: 'DEJ', font: 'mainLat', size: 1, fill: 'green' },
+      { text: 'O', font: 'mainLat', size: 1, fill: 'fade-green', join: true },
+      { text: 'DEJ', font: 'mainLat', size: 1, fill: 'fade-green' },
       { text: 'of', font: 'script', size: 0.62, fill: 'neutral' },
-      { text: 'Béjaia', font: 'cursive', size: 0.92, fill: 'flag' },
+      { text: 'Béjaia', font: 'cursive', size: 0.92, fill: 'fade-red' },
     ],
   },
 };

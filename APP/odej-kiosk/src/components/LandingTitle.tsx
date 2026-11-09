@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { CONFIG } from '../config';
-import { LOGO_DONE_MS } from './LandingLogo';
+import { LOGO_END } from '../logo/timeline';
 import { useI18n } from '../i18n/I18n';
 import { PHASES } from '../wordmark/timeline';
 import { paintWordmark } from '../wordmark/geometry';
@@ -11,7 +11,6 @@ const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce
 /**
  * Titre de l'accueil, dessiné en vecteurs (src/wordmark) et dont les lettres se dessinent à la main. La boucle
  * requestAnimationFrame ne tourne que pendant une construction (environ 2,5 s), puis s'arrête jusqu'à la suivante.
- * Seul le dégradé de « Béjaia » défile en continu, en SMIL, sans JavaScript.
  */
 export function LandingTitle({ leaving }: { leaving: boolean }) {
   const { locale, t } = useI18n();
@@ -44,8 +43,8 @@ export function LandingTitle({ leaving }: { leaving: boolean }) {
       }, delay);
     };
     paintWordmark(svg, locale, PHASES.assemble);
-    // Le titre se trace pendant que le logo, dessiné à sa place, part vers son coin
-    play(PHASES.assemble, LOGO_DONE_MS + CONFIG.wordmarkDelayMs);
+    // Le titre se trace dès que le grand logo, dessiné au-dessus de lui, explose
+    play(PHASES.assemble, CONFIG.logoDelayMs + LOGO_END * 1000 + CONFIG.wordmarkDelayMs);
     return () => {
       cancelAnimationFrame(raf);
       window.clearTimeout(timer);
@@ -54,14 +53,7 @@ export function LandingTitle({ leaving }: { leaving: boolean }) {
 
   return (
     <h1 ref={host} className="landing-title" aria-label={t('landingTitle')}>
-      <Wordmark
-        key={locale}
-        lang={locale}
-        t={PHASES.assemble}
-        variant="landing"
-        liveFlag
-        className="landing-wordmark"
-      />
+      <Wordmark key={locale} lang={locale} t={PHASES.assemble} variant="landing" className="landing-wordmark" />
     </h1>
   );
 }

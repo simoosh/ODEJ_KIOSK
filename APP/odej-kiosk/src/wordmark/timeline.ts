@@ -7,7 +7,8 @@
 import glyphs from './glyphs.json';
 
 export type Lang = 'ar' | 'en';
-export type Fill = 'green' | 'red' | 'neutral' | 'flag';
+/** fade-green : du vert du drapeau vers le blanc (ODEJ) ; fade-red : du même blanc vers le rouge (Béjaia) */
+export type Fill = 'green' | 'red' | 'neutral' | 'fade-green' | 'fade-red';
 type Box = [number, number, number, number];
 
 interface Piece {
@@ -129,6 +130,3 @@ export function irisCloseAt(t: number) {
   const { collapse, assemble } = PHASES;
   return 1 - easeOut(clamp((t - collapse) / (assemble - collapse - TIMING.gap)));
 }
-
-/** Décalage du dégradé du drapeau (rouge, blanc, vert), de 0 à 1, en boucle de `period` secondes. */
-export const flagShift = (t: number, period = 3) => (((t % period) + period) % period) / period;

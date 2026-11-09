@@ -2,7 +2,9 @@
 import { LOGO_CENTER, logoGroupAt } from './timeline';
 
 export const logoTransform = (scale: number) =>
-  scale === 1 ? '' : `translate(${LOGO_CENTER[0]} ${LOGO_CENTER[1]}) scale(${scale.toFixed(3)}) translate(${-LOGO_CENTER[0]} ${-LOGO_CENTER[1]})`;
+  scale === 1
+    ? ''
+    : `translate(${LOGO_CENTER[0]} ${LOGO_CENTER[1]}) scale(${scale.toFixed(3)}) translate(${-LOGO_CENTER[0]} ${-LOGO_CENTER[1]})`;
 
 export function paintLogo(svg: SVGSVGElement, t: number) {
   svg.querySelectorAll<SVGPathElement>('[data-logo]').forEach((path) => {

@@ -6,6 +6,7 @@ import { CONFIG } from '../config';
 import { CountUp } from './CountUp';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
+import { LandingIntroLogo } from './LandingIntroLogo';
 import { LandingLogo } from './LandingLogo';
 import { LandingScenes } from './LandingScenes';
 import { LandingTitle } from './LandingTitle';
@@ -52,7 +53,6 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
             )}
             <span className="brand-text">
               <strong>{tx(data.organization.shortName)}</strong>
-              <span>{tx(data.wilaya.name)}</span>
             </span>
           </div>
           <button type="button" className="lang-btn" onClick={onToggleLang}>
@@ -61,6 +61,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
         </header>
 
         <div key={`body-${replay}`} className="landing-body">
+          {!data.organization.logo && <LandingIntroLogo />}
           <LandingTitle leaving={leaving} />
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 

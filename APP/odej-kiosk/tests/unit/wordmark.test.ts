@@ -5,13 +5,13 @@ describe("titre animé de l'accueil", () => {
   const ar = fragments(TITLES.ar);
   const en = fragments(TITLES.en);
 
-  it('a les couleurs demandées : arabe vert puis dernier mot rouge, anglais O rouge, DEJ vert, of neutre, Béjaia drapeau', () => {
+  it('a les couleurs demandées : arabe vert puis dernier mot rouge, anglais ODEJ du vert au blanc, of neutre, Béjaia du blanc au rouge', () => {
     expect(TITLES.ar.words.map((w) => w.fill)).toEqual(['green', 'green', 'red']);
     expect(TITLES.en.words.map((w) => [w.text, w.fill])).toEqual([
-      ['O', 'red'],
-      ['DEJ', 'green'],
+      ['O', 'fade-green'],
+      ['DEJ', 'fade-green'],
       ['of', 'neutral'],
-      ['Béjaia', 'flag'],
+      ['Béjaia', 'fade-red'],
     ]);
   });
 

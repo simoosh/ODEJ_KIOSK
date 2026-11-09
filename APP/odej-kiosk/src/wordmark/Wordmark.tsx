@@ -1,9 +1,19 @@
 import { useId } from 'react';
-import { FLAG, flagSpan, INK, NEUTRAL, PARTS, revealRadius, viewBoxOf } from './geometry';
-import { flagShift, fragmentAt, irisOrigin, TITLES, type Fill, type Lang } from './timeline';
+import { FLAG, fillSpan, INK, NEUTRAL, PARTS, revealRadius, viewBoxOf } from './geometry';
+import { fragmentAt, irisOrigin, TITLES, type Fill, type Lang } from './timeline';
 
 /** Épaisseur du trait qui dessine les lettres, en unités du titre (1 em = 100) */
 const STROKE = 1.8;
+
+/** Le blanc où « ODEJ » finit et où « Béjaia » commence : un blanc pur, plus clair que le ciel du fond */
+const FADE_WHITE = '#ffffff';
+const FADES: { fill: Fill; from: string; to: string }[] = [
+  { fill: 'fade-green', from: FLAG.green, to: FADE_WHITE },
+  { fill: 'fade-red', from: FADE_WHITE, to: FLAG.red },
+];
+const isFade = (fill: Fill) => fill === 'fade-green' || fill === 'fade-red';
+
+type Layer = 'ink' | 'color' | 'white';
 
 interface Props {
   lang: Lang;
@@ -16,8 +26,6 @@ interface Props {
   variant?: 'video' | 'landing';
   /** video seulement : white pour la phase sombre */
   theme?: 'color' | 'white';
-  /** Le dégradé de « Béjaia » défile tout seul (SMIL) au lieu de suivre `t` : la borne, sans boucle JavaScript */
-  liveFlag?: boolean;
   className?: string;
 }
 
@@ -25,27 +33,25 @@ interface Props {
  * Titre vectoriel de l'accueil. Chaque lettre est un <path data-frag> : Remotion le redessine à chaque image ; la borne
  * le dessine une fois puis ne change que ses attributs pendant l'animation (paintWordmark).
  */
-export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag = false, className }: Props) {
+export function Wordmark({ lang, t, variant = 'video', theme = 'color', className }: Props) {
   const id = useId().replace(/:/g, '');
   const parts = PARTS[lang];
-  const [x0, x1] = flagSpan(lang);
-  const flagWidth = x1 - x0;
   const [ox, oy] = irisOrigin(TITLES[lang]);
-  const flagWord = parts.some((f) => f.fill === 'flag');
-  const layers: ('ink' | 'color' | 'white')[] = variant === 'landing' ? ['ink', 'color'] : [theme];
+  const fades = FADES.filter((fade) => parts.some((f) => f.fill === fade.fill));
+  const layers: Layer[] = variant === 'landing' ? ['ink', 'color'] : [theme];
 
-  const fillOf = (fill: Fill, layer: 'ink' | 'color' | 'white') => {
+  const fillOf = (fill: Fill, layer: Layer) => {
     if (layer === 'white') return FLAG.white;
     if (layer === 'ink') return INK;
-    if (fill === 'flag') return `url(#${id}-flag)`;
+    if (fill === 'fade-green' || fill === 'fade-red') return `url(#${id}-${fill})`;
     return fill === 'neutral' ? NEUTRAL : FLAG[fill];
   };
 
-  const layer = (kind: 'ink' | 'color' | 'white') =>
-    [false, true].map((isFlag) => (
-      <g key={`${kind}-${String(isFlag)}`} filter={isFlag && kind === 'color' ? `url(#${id}-glow)` : undefined}>
+  const layer = (kind: Layer) =>
+    [false, true].map((faded) => (
+      <g key={`${kind}-${String(faded)}`} filter={faded && kind === 'color' ? `url(#${id}-glow)` : undefined}>
         {parts.map((f, i) => {
-          if ((f.fill === 'flag') !== isFlag) return null;
+          if (isFade(f.fill) !== faded) return null;
           const state = fragmentAt(f, i, parts.length, t);
           return (
             // pathLength 1 : le trait avance de 0 à 1 le long du contour, quelle que soit la lettre
@@ -77,40 +83,30 @@ export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag
             <circle data-iris="" cx={ox} cy={oy} r={revealRadius(lang, t)} />
           </clipPath>
         )}
-        {flagWord && layers.includes('color') && (
+        {fades.length > 0 && layers.includes('color') && (
           <>
-            {/* Rouge, blanc, vert, blanc, rouge : la répétition boucle sans couture et sans passer par le brun */}
-            <linearGradient
-              id={`${id}-flag`}
-              gradientUnits="userSpaceOnUse"
-              x1={x0}
-              x2={x0 + flagWidth}
-              y1={0}
-              y2={0}
-              spreadMethod="repeat"
-              gradientTransform={liveFlag ? undefined : `translate(${(flagShift(t) * flagWidth).toFixed(1)} 0)`}
-            >
-              <stop offset="0" stopColor={FLAG.red} />
-              <stop offset="0.25" stopColor={FLAG.white} />
-              <stop offset="0.5" stopColor={FLAG.green} />
-              <stop offset="0.75" stopColor={FLAG.white} />
-              <stop offset="1" stopColor={FLAG.red} />
-              {liveFlag && (
-                <animateTransform
-                  attributeName="gradientTransform"
-                  type="translate"
-                  from="0 0"
-                  to={`${flagWidth} 0`}
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              )}
-            </linearGradient>
-            {/* Halo : le mot flou derrière lui-même, et une ombre légère pour lire le blanc sur un fond clair */}
+            {fades.map(({ fill, from, to }) => {
+              const [x0, x1] = fillSpan(lang, fill);
+              return (
+                <linearGradient
+                  key={fill}
+                  id={`${id}-${fill}`}
+                  gradientUnits="userSpaceOnUse"
+                  x1={x0}
+                  x2={x1}
+                  y1={0}
+                  y2={0}
+                >
+                  <stop offset="0" stopColor={from} />
+                  <stop offset="1" stopColor={to} />
+                </linearGradient>
+              );
+            })}
+            {/* Halo léger, et une ombre fine pour lire le blanc sur le fond clair */}
             <filter id={`${id}-glow`} x="-20%" y="-40%" width="140%" height="180%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="2.4" result="blur" />
               <feComponentTransfer in="blur" result="halo">
-                <feFuncA type="linear" slope="0.7" />
+                <feFuncA type="linear" slope="0.6" />
               </feComponentTransfer>
               <feDropShadow
                 in="SourceGraphic"
@@ -118,7 +114,7 @@ export function Wordmark({ lang, t, variant = 'video', theme = 'color', liveFlag
                 dy="0.6"
                 stdDeviation="0.8"
                 floodColor={INK}
-                floodOpacity="0.28"
+                floodOpacity="0.32"
                 result="edge"
               />
               <feMerge>

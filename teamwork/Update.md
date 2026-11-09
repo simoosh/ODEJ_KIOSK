@@ -565,3 +565,8 @@ Impact on others: none.
 Area: APP/odej-kiosk/src/components (LandingLogo, LandingTitle), config.ts, styles
 What: the header is back to its original layout (logo and name at the start, language at the end), still large. On each arrival on the landing, the logo draws itself large in place of the title, then slides and shrinks to its corner while the title starts drawing.
 Impact on others: none.
+
+### 2026-11-09 11:40 · [app-agent] · CHANGE · Landing opening: header logo still, large logo bursts
+Area: APP/odej-kiosk/src/components (Landing, LandingLogo, LandingIntroLogo, LandingTitle), src/logo/burst.ts, src/wordmark, tools/motion/scripts/build-wordmark.mjs, styles
+What: the header logo is shown complete from the start and the office name writes itself next to it; the wilaya line under it is gone. A large logo draws above the title, then bursts into pieces while the title draws. English title colours: "ODEJ" from flag green to white, "of" unchanged, "Béjaia" from white to red (static gradients, the looping flag gradient is gone).
+Impact on others: none.

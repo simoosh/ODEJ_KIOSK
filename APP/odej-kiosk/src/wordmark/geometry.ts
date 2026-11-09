@@ -1,5 +1,5 @@
 /** Géométrie et couleurs du titre animé, et sa mise à jour sans React (la borne). Partagé avec tools/motion. */
-import { fragmentAt, fragments, irisAt, irisOrigin, PHASES, TITLES, type Lang } from './timeline';
+import { fragmentAt, fragments, irisAt, irisOrigin, PHASES, TITLES, type Fill, type Lang } from './timeline';
 
 /** Vert et rouge du drapeau algérien. */
 export const FLAG = { green: '#006233', red: '#D21034', white: '#ffffff' } as const;
@@ -17,10 +17,10 @@ export const viewBoxOf = (lang: Lang) => {
 
 export const PARTS = { ar: fragments(TITLES.ar), en: fragments(TITLES.en) };
 
-/** Étendue horizontale du mot au dégradé du drapeau : une période du dégradé par mot. */
-export function flagSpan(lang: Lang): [number, number] {
+/** Étendue horizontale des mots d'une couleur : un dégradé s'étire sur tout le groupe. */
+export function fillSpan(lang: Lang, fill: Fill): [number, number] {
   const boxes = TITLES[lang].words
-    .filter((w) => w.fill === 'flag')
+    .filter((w) => w.fill === fill)
     .flatMap((w) => w.glyphs.flatMap((g) => g.pieces.map((p) => p.box)));
   if (!boxes.length) return [0, 1];
   return [Math.min(...boxes.map((b) => b[0])), Math.max(...boxes.map((b) => b[2]))];

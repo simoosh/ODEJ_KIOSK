@@ -10,7 +10,13 @@ const STROKE = 2.4;
  */
 export function OdejLogo({ t, className, title }: { t: number; className?: string; title?: string }) {
   return (
-    <svg className={className} viewBox={LOGO_VIEWBOX} role={title ? 'img' : undefined} aria-label={title} aria-hidden={title ? undefined : true}>
+    <svg
+      className={className}
+      viewBox={LOGO_VIEWBOX}
+      role={title ? 'img' : undefined}
+      aria-label={title}
+      aria-hidden={title ? undefined : true}
+    >
       {LOGO.groups.map((g) => {
         const state = logoGroupAt(g.id, t);
         return (
