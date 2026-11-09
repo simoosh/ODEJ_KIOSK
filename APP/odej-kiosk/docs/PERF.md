@@ -107,3 +107,9 @@ Le carrousel 3D charge uniquement les vignettes de 480 px, et ne rend que 7 cart
 Au niveau de qualité `low`, aucun élément n'a de flou : le verre devient opaque (`.quality-low`). Le coût réel reste à mesurer sur la borne : FPS du survol avec la liste ouverte, puis masquée.
 
 Les animations de l'écran carte jouent une seule fois par geste (ouverture d'un panneau, d'une fenêtre, d'une liste), en `transform`, `opacity` et `clip-path`. Aucune n'est infinie.
+
+## Titre animé de l'accueil
+
+- Le titre est un SVG dessiné une fois (`src/wordmark`). Pendant sa construction, environ 2,5 s, une boucle `requestAnimationFrame` change seulement les attributs `transform` et `opacity` de ses morceaux (une quarantaine), sans rendu React. Elle s'arrête ensuite et reprend toutes les `CONFIG.wordmarkRepeatMs` (10 s), ou jamais si la valeur vaut 0.
+- Le dégradé de « Béjaia » défile en continu par SMIL (`animateTransform`), sans JavaScript. Son halo est un filtre SVG sur ce seul mot : c'est le seul effet redessiné en permanence. Si la borne peine, c'est lui à retirer en premier.
+- `prefers-reduced-motion` : le titre s'affiche complet, sans animation.

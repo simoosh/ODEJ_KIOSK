@@ -574,8 +574,8 @@ input:focus-visible {
   padding-bottom: 36cqh;
   gap: 1.5rem;
 }
-.is-portrait .landing-title {
-  font-size: 5rem;
+.is-portrait .landing-wordmark {
+  height: min(5.6rem, 7cqh);
 }
 .is-portrait .landing-lead {
   font-size: 1.35rem;
@@ -619,14 +619,20 @@ input:focus-visible {
 [dir='rtl'] .flag-rule {
   flex-direction: row-reverse;
 }
+/* Titre vectoriel animé (components/LandingTitle.tsx) : sa hauteur fixe sa taille, sa largeur suit ses proportions */
 .landing-title {
   margin: 0;
-  font-size: min(4.6rem, 8cqh);
-  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
-.kiosk[lang='en'] .landing-title {
-  font-size: min(4.2rem, 7.6cqh);
-  letter-spacing: -0.01em;
+.landing-wordmark {
+  display: block;
+  height: min(6.2rem, 10.5cqh);
+  max-width: 100%;
+}
+.kiosk[lang='en'] .landing-wordmark {
+  height: min(7rem, 12cqh);
 }
 .landing-lead {
   margin: 0;

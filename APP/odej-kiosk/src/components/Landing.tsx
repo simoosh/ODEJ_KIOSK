@@ -4,6 +4,7 @@ import { useI18n } from '../i18n/I18n';
 import { Icon } from './Icon';
 import { LandingClouds } from './LandingClouds';
 import { LandingScenes } from './LandingScenes';
+import { LandingTitle } from './LandingTitle';
 import { FlagRule } from './Motifs';
 
 interface Props {
@@ -54,7 +55,7 @@ export function Landing({ data, leaving, portrait, onStart, onToggleLang }: Prop
             <span>{t('eventLine')}</span>
             <span className="eyebrow-date">{t('eventDate')}</span>
           </p>
-          <h1 className="display landing-title">{t('landingTitle')}</h1>
+          <LandingTitle leaving={leaving} />
           <p className="landing-lead">{tx(data.organization.intro)}</p>
 
           <dl className="facts">

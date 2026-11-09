@@ -142,6 +142,14 @@ export const CONFIG = {
   sceneCloudMargin: 0.5,
   /** Attente maximale du décodage d'un paysage avant son entrée (ms) */
   sceneDecodeWaitMs: 600,
+  /**
+   * Titre animé de l'accueil (src/wordmark) : il se construit à chaque arrivée sur l'accueil, puis rejoue son cycle
+   * (repli, reconstruction, couleurs) toutes les wordmarkRepeatMs. 0 : une seule fois. Son déroulé est dans
+   * wordmark/timeline.ts, partagé avec les vidéos de tools/motion.
+   */
+  wordmarkRepeatMs: 10_000,
+  /** Attente avant la construction du titre, le temps que le texte de l'accueil se pose (ms) */
+  wordmarkDelayMs: 450,
 
   /** Nuages de l'accueil (lib/clouds.ts) : des bouffées qui cachent les bords des paysages et le haut de la carte */
   clouds: {
